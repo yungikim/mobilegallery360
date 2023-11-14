@@ -20,8 +20,6 @@ class _IndicatorSliderSampleState extends State<IndicatorSliderSample> {
   @override
   void initState() {
 
-    HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
-
     // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
     //   imageList.forEach((imageUrl) {
     //     precacheImage(NetworkImage(imageUrl), context);

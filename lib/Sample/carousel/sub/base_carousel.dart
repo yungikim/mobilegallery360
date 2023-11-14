@@ -18,7 +18,17 @@ final List<String> imageList =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_trial.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_dbook.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_mypalce.jpg',
+];
 
+final List<String> mainMessage =[
+  '전시에 대한 새로운 생각 1',
+  '전시에 대한 새로운 생각 2',
+  '전시에 대한 새로운 생각 3',
+  '전시에 대한 새로운 생각 4',
+  '전시에 대한 새로운 생각 5',
+  '전시에 대한 새로운 생각 6',
+  '전시에 대한 새로운 생각 7',
+  '전시에 대한 새로운 생각 8',
 ];
 
 
@@ -30,28 +40,41 @@ final List<Widget> imageSliders = imageList.map(
         child: Stack(
           children: [
             Image.network(item, fit: BoxFit.fitHeight, height: 200,),
-            Positioned(
-              bottom: 0.0,
-              left: 0.0,
-              right: 0.0,
-              child: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Color.fromARGB(200,0,0,0),
-                        Color.fromARGB(0, 0, 0, 0),
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                    )
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                child: Text(
-                  'No. ${imageList.indexOf(item)} image',
-                  style: const TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("${mainMessage[imageList.indexOf(item)]}",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
+                    //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
+                  ],
                 ),
               ),
             )
+            // Positioned(
+            //   bottom: 0.0,
+            //   left: 0.0,
+            //   right: 0.0,
+            //   child: Container(
+            //     decoration: const BoxDecoration(
+            //         gradient: LinearGradient(
+            //           colors: [
+            //             Color.fromARGB(200,0,0,0),
+            //             Color.fromARGB(0, 0, 0, 0),
+            //           ],
+            //           begin: Alignment.bottomCenter,
+            //           end: Alignment.topCenter,
+            //         )
+            //     ),
+            //     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+            //     child: Text(
+            //       //'No. ${imageList.indexOf(item)} image',
+            //       "${mainMessage[imageList.indexOf(item)]}",
+            //       style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
