@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery360/Sample/carousel/sub/base_carousel.dart';
+
+import '../../../main.dart';
+import 'base_carousel.dart';
 
 class IndicatorSliderSample extends StatefulWidget {
   const IndicatorSliderSample({super.key});
@@ -15,11 +19,14 @@ class _IndicatorSliderSampleState extends State<IndicatorSliderSample> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      imageList.forEach((imageUrl) {
-        precacheImage(NetworkImage(imageUrl), context);
-      });
-    });
+
+    HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
+
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   imageList.forEach((imageUrl) {
+    //     precacheImage(NetworkImage(imageUrl), context);
+    //   });
+    // });
     // TODO: implement initState
     super.initState();
   }
@@ -37,7 +44,8 @@ class _IndicatorSliderSampleState extends State<IndicatorSliderSample> {
               options: CarouselOptions(
                 autoPlay: true,
                 enlargeCenterPage: true,
-                aspectRatio: 2.0,
+                aspectRatio: 2,
+                enlargeFactor: 0.4,
                 enlargeStrategy: CenterPageEnlargeStrategy.zoom,
                 onPageChanged: (index, reason){
                   setState(() {

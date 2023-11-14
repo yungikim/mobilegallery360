@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/Sample/carousel/sub/basic_sample.dart';
@@ -18,12 +20,17 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+import '../../main.dart';
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
   runApp(TestMain());
 }
 
 class TestMain extends StatelessWidget {
   const TestMain({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
