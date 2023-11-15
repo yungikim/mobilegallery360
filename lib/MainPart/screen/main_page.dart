@@ -21,9 +21,9 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (ResponsiveBreakpoints.of(context).isMobile){
+    if (ResponsiveBreakpoints.of(context).isMobile) {
       _slideController.firstCarouselHeight.value = 250.0;
-    }else{
+    } else {
       _slideController.firstCarouselHeight.value = 500.0;
     }
 
@@ -34,101 +34,138 @@ class _MainPageState extends State<MainPage> {
     _slideController.firstCarouselWidth.value = width * 0.79;
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          onPressed: (){},
-          icon: const Icon(Icons.menu, color: Colors.white,),
-        ),
-        title: const Padding(
-          padding: EdgeInsets.only(top: 5.0),
-          child: Image(
-            image: AssetImage("assets/images/logo/logo.png"),
-            width: 130,
-          ),
-        ),
-        actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.search, color: Colors.white,)),
-        ],
-      ),
-      body: Column(
-        children: [
-          CarouselSlider(
-            items: imageList.map((item) => Container(
-              margin: const EdgeInsets.only(top: 3.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: _slideController.firstCarouselHeight.value,
-                      width: _slideController.firstCarouselWidth.value,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          image: DecorationImage(
-                            image: NetworkImage(item),
-                            fit: BoxFit.cover,
-                          )
-                      ),
-                    ),
-                    Positioned.fill(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("${mainMessage[imageList.indexOf(item)]}",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
-                            //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )).toList(),
-            carouselController: _carouselController,
-            options: CarouselOptions(
-                height: _slideController.firstCarouselHeight.value,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 7),
-                enlargeCenterPage: true,
-                aspectRatio: 2,
-                enlargeFactor: 0.4,
-                enlargeStrategy: CenterPageEnlargeStrategy.zoom,
-                onPageChanged: (index, reason){
-                  setState(() {
-                    _current = index;
-                  });
-                }
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imageSliders.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: (){
-                  print(entry.key);
-                  _carouselController.animateToPage(entry.key);
-                },
-                child: Container(
-                  width: 12.0,
-                  height: 12.0,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: (Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black
-                      ).withOpacity(_current == entry.key ? 0.9 : 0.4)
+          title: const Padding(
+            padding: EdgeInsets.only(top: 5.0),
+            child: Image(
+              image: AssetImage("assets/images/logo/logo.png"),
+              width: 130,
+            ),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                )),
+          ],
+        ),
+        body: Column(
+          children: [
+            CarouselSlider(
+              items: imageList
+                  .map((item) => Container(
+                        margin: const EdgeInsets.only(top: 3.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5.0),
+                          child: Stack(
+                            children: [
+                              Container(
+                                height:
+                                    _slideController.firstCarouselHeight.value,
+                                width:
+                                    _slideController.firstCarouselWidth.value,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    image: DecorationImage(
+                                      image: NetworkImage(item),
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                              Positioned.fill(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(mainMessage[imageList.indexOf(item)],
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 27.0,
+                                              fontWeight: FontWeight.bold)),
+                                      const SizedBox(
+                                        height: 20.0,
+                                      ),
+                                      Text(
+                                          mainMessage_sub[
+                                              imageList.indexOf(item)],
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 50.0,),
+                                      OutlinedButton(
+                                        onPressed: () {},
+                                        style: OutlinedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(0.0),
+                                          ),
+                                          side: BorderSide(
+                                            color: mainMessage_btn_color[_current],
+                                            width: 1.0,
+                                          )
+                                        ),
+                                        child: Text("소개 영상 보기", style: TextStyle(color: mainMessage_btn_color[_current]),),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ))
+                  .toList(),
+              carouselController: _carouselController,
+              options: CarouselOptions(
+                  height: _slideController.firstCarouselHeight.value,
+                  //   autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 7),
+                  enlargeCenterPage: true,
+                  aspectRatio: 2,
+                  enlargeFactor: 0.4,
+                  enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  }),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: imageSliders.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () {
+                    print(entry.key);
+                    _carouselController.animateToPage(entry.key);
+                  },
+                  child: Container(
+                    width: 12.0,
+                    height: 12.0,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 4.0),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: (Theme.of(context).brightness == Brightness.dark
+                                ? Colors.white
+                                : Colors.black)
+                            .withOpacity(_current == entry.key ? 0.9 : 0.4)),
                   ),
-                ),
-              );
-            }).toList(),
-          )
-        ],
-      )
-    );
+                );
+              }).toList(),
+            )
+          ],
+        ));
   }
 }

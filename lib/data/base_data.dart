@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../core/const.dart';
-
-final List<String> imageList2 =[
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-];
 
 final List<String> imageList =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
@@ -23,8 +13,30 @@ final List<String> imageList =[
 ];
 
 final List<String> mainMessage =[
-  '전시에 대한 새로운 생각 1',
-  '전시에 대한 새로운 생각 2',
+  '전시에 대한 새로운 생각',
+  '갤러리360 작가 모집',
+  'VR갤러리도 빌려쓰세요',
+  '전시에 대한 새로운 생각 4',
+  '전시에 대한 새로운 생각 5',
+  '전시에 대한 새로운 생각 6',
+  '전시에 대한 새로운 생각 7',
+  '전시에 대한 새로운 생각 8',
+];
+
+final List<String> mainMessage_sub =[
+  '디지털 전시의 기획자와 관람객\n모두를 위한 새로운 경험을 제공합니다.',
+  '갤러리360와 함께 새로운 전시 문화를\n선도해 나갈 작가님을 모십니다.',
+  '세상에서 가장 쉽고, 직관적인 방법으로\nVR전시를 대관할 수 있습니다.',
+  '전시에 대한 새로운 생각 4',
+  '전시에 대한 새로운 생각 5',
+  '전시에 대한 새로운 생각 6',
+  '전시에 대한 새로운 생각 7',
+  '전시에 대한 새로운 생각 8',
+];
+
+final List<String> mainMessage_btn_title =[
+  '소개 영상 보기',
+  '작가 등록 하기',
   '전시에 대한 새로운 생각 3',
   '전시에 대한 새로운 생각 4',
   '전시에 대한 새로운 생각 5',
@@ -32,6 +44,19 @@ final List<String> mainMessage =[
   '전시에 대한 새로운 생각 7',
   '전시에 대한 새로운 생각 8',
 ];
+
+final List<Color> mainMessage_btn_color =[
+  Colors.white,
+  Colors.white,
+  const Color(0xff4af5d4),
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+  Colors.white,
+];
+
+
 
 final SlideController _slideController = SlideController();
 
