@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/const.dart';
+
 final List<String> imageList2 =[
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
   'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -31,6 +33,7 @@ final List<String> mainMessage =[
   '전시에 대한 새로운 생각 8',
 ];
 
+final SlideController _slideController = SlideController();
 
 final List<Widget> imageSliders = imageList.map(
         (item) => Container(
@@ -39,7 +42,18 @@ final List<Widget> imageSliders = imageList.map(
         borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         child: Stack(
           children: [
-            Image.network(item, fit: BoxFit.fitHeight, height: 200,),
+            Container(
+              height: 500,
+              width: 600,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                image: DecorationImage(
+                  image: NetworkImage(item),
+                  fit: BoxFit.cover,
+                )
+              ),
+            ),
+           // Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
             Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
@@ -75,6 +89,43 @@ final List<Widget> imageSliders = imageList.map(
             //     ),
             //   ),
             // )
+          ],
+        ),
+      ),
+    )
+).toList();
+
+final List<Widget> imageSliders2= imageList.map(
+        (item) => Container(
+      margin: const EdgeInsets.all(5.0),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+        child: Stack(
+          children: [
+            Container(
+              height: 500,
+              width: 600,
+              decoration: BoxDecoration(
+                  color: Colors.grey,
+                  image: DecorationImage(
+                    image: NetworkImage(item),
+                    fit: BoxFit.cover,
+                  )
+              ),
+            ),
+            // Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("${mainMessage[imageList.indexOf(item)]}",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
+                    //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -19,7 +19,10 @@ import 'package:gallery360/Sample/carousel/sub/vertical_slider.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:responsive_framework/breakpoint.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../core/const.dart';
 import '../../main.dart';
 
 void main() {
@@ -34,17 +37,31 @@ class TestMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
+      builder: (context, child){
+        return ResponsiveBreakpoints(
+          breakpoints: const [
+            Breakpoint(start:0, end: 450, name: MOBILE),
+            Breakpoint(start: 451, end: 850, name: TABLET),
+            Breakpoint(start: 851, end: 1920, name: DESKTOP),
+            Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          ],
+          child: child!,
+        );
+      },
       home: TextPage(),
+
     );
   }
 }
 
 class TextPage extends StatelessWidget {
-  const TextPage({super.key});
-
+  TextPage({super.key});
+  final SlideController _slideController = SlideController();
   @override
   Widget build(BuildContext context) {
+
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

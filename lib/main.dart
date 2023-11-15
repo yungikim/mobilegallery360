@@ -32,7 +32,7 @@ class Gallery360Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-        fontFamily: "Inter",
+        fontFamily: "NotoSans",
         useMaterial3: true
       ),
       builder: (context, child){

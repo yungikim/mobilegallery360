@@ -14,14 +14,16 @@ class ImageSlider extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Image Slider Sample"),
       ),
-      body: Container(
-        child: CarouselSlider(
-          options: CarouselOptions(),
-          items: imageList.map((item) => Container(
-            child: Center(
-              child: Image.network(item, fit: BoxFit.cover, width: 10000,),
-            ),
-          )).toList()
+      body: SingleChildScrollView(
+        child: Container(
+          child: CarouselSlider(
+            options: CarouselOptions(),
+            items: imageList.map((item) => Container(
+              child: Center(
+                child: Image.network(item, fit: BoxFit.cover, width: 10000,),
+              ),
+            )).toList()
+          ),
         ),
       ),
     );
