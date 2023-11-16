@@ -120,7 +120,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
           carouselController: _carouselController,
           options: CarouselOptions(
               height: _slideController.firstCarouselHeight.value,
-              //   autoPlay: true,
+              autoPlay: true,
               autoPlayInterval: const Duration(seconds: 7),
               enlargeCenterPage: true,
               aspectRatio: 2,
