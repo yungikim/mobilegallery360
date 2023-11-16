@@ -14,10 +14,13 @@ class VRList extends StatefulWidget {
 }
 
 class _VRListState extends State<VRList> {
+  int _current = 0;
   final DataController _dataController = Get.put(DataController());
+  final CarouselController _carouselController = CarouselController();
 
   @override
   void initState() {
+    checkVR();
     // TODO: implement initState
     super.initState();
   }
@@ -34,41 +37,72 @@ class _VRListState extends State<VRList> {
           _dataController.imageURLs.add(url);
         }
       }
+      _dataController.vrListInit.value = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    checkVR();
-    print("VRList Draw.................");
-    print(_dataController.imageURLs.length);
-    //print(Obx((){return _dataController.imageURLs.length}));
-    // int ll = Get.find<DataController>().imageURLs.length;
-    // print(ll);
+    return Obx(() {
+      if (_dataController.vrListInit.value){
+        return Column(
+          children: [
+            CarouselSlider(
+                items: _dataController.imageURLs.map((e) => Container(
+                  height: 400.0,
+                  // width: double.infinity,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      //  borderRadius: BorderRadius.circular(15.0),
+                      image: DecorationImage(
+                        image: NetworkImage(e), fit: BoxFit.cover,
+                      )
+                  ),
+                )).toList(),
+                carouselController: _carouselController,
+                options: CarouselOptions(
 
-    return Obx(
-      () => CarouselSlider(
-        items: _dataController.imageURLs.map((e) => Container(
-           height: 400.0,
-          // width: double.infinity,
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.white),
-          //  borderRadius: BorderRadius.circular(15.0),
-            image: DecorationImage(
-              image: NetworkImage(e), fit: BoxFit.cover,
+                  //height: 200,
+                  autoPlay: true,
+                  viewportFraction: 1,
+                  autoPlayInterval: const Duration(seconds: 10),
+                  aspectRatio: 1.5,
+                  //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
+                  enlargeStrategy: CenterPageEnlargeStrategy.zoom,  //높이가 동일한 이미지로 표시하는 옵션
+                ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _dataController.imageURLs.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () {
+                    _carouselController.animateToPage(entry.key);
+                    setState(() {
+                      _current = entry.key;
+                    });
+                  },
+                  child: Container(
+                    width: 12.0,
+                    height: 12.0,
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 4.0),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: (Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black)
+                            .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                  ),
+                );
+              }).toList(),
             )
-          ),
-        )).toList(),
-        options: CarouselOptions(
-          //height: 200,
-          autoPlay: true,
-          viewportFraction: 1,
-          autoPlayInterval: const Duration(seconds: 10),
-          aspectRatio: 1.5,
-          //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
-          enlargeStrategy: CenterPageEnlargeStrategy.zoom,  //높이가 동일한 이미지로 표시하는 옵션
-        ),
-      ),
-    );
+          ],
+        );
+      }else{
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    });
   }
 }

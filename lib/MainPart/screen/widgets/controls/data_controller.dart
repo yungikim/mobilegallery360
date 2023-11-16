@@ -10,7 +10,9 @@ class DataController extends GetxController{
   var loadingCoplete = false.obs;
   final DataConnectionRepository _dataRepository = DataConnectionRepository();
   var firstPageArtData = <DataModel>[].obs;
+  final artListInit = false.obs;
   var vrListData = <VRModel>[].obs;
+  final vrListInit = false.obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;
