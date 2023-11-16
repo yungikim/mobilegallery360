@@ -31,16 +31,17 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
     final double height = MediaQuery.of(context).size.height;
 
     _slideController.firstCarouselHeight.value = height * 0.4;
-    _slideController.firstCarouselWidth.value = width * 0.79;
+    //_slideController.firstCarouselWidth.value = width * 0.79;
+    _slideController.firstCarouselWidth.value = width;
 
     return Column(
       children: [
         CarouselSlider(
           items: imageList
               .map((item) => Container(
-            margin: const EdgeInsets.only(top: 3.0),
+         //   margin: const EdgeInsets.only(top: 3.0),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(5.0),
+           //   borderRadius: BorderRadius.circular(5.0),
               child: Stack(
                 children: [
                   Container(
@@ -57,9 +58,9 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                   ),
                   Positioned.fill(
                     child: Align(
-                      alignment: Alignment.center,
+                      alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(18.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,8 +122,9 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
           options: CarouselOptions(
               height: _slideController.firstCarouselHeight.value,
               autoPlay: true,
+              viewportFraction: 1.0,
               autoPlayInterval: const Duration(seconds: 7),
-              enlargeCenterPage: true,
+           //   enlargeCenterPage: true,
               aspectRatio: 2,
               enlargeFactor: 0.4,
               enlargeStrategy: CenterPageEnlargeStrategy.zoom,

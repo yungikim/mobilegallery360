@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
+import '../../../../util/Util.dart';
 import '../models/data_model.dart';
 import '../repository/data_repository.dart';
 
@@ -36,6 +39,18 @@ class DataController extends GetxController{
       e.printError();
     }
   }
+
+  Future getArtImage() async{
+    try{
+      List<DataModel> response = await _dataRepository.loadArtImage();
+      firstPageArtData.addAll(response);
+      DataModel dm = response[0];
+      mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
+    }catch(e){
+      e.printError();
+    }
+  }
+
 
   void dataContollerupdate(){
     update();

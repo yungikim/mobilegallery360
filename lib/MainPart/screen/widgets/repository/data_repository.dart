@@ -5,6 +5,11 @@ import '../models/data_model.dart';
 import '../models/vr_model.dart';
 
 class DataConnectionRepository extends GetConnect{
+  DataConnectionRepository(){
+    allowAutoSignedCert = true;
+    timeout = const Duration(seconds: 30);
+  }
+
   final dio = Dio();
   Future<dynamic> loadFirstArtDatWidthDio() async{
     var response = await dio.get(MainPage_ArtList_URL);
@@ -18,6 +23,17 @@ class DataConnectionRepository extends GetConnect{
     List<dynamic> rbody = response.data;
     List<VRModel> vrList = rbody.map<VRModel>((json) => VRModel.fromJson(json)).toList();
     return vrList;
+  }
+
+  Future<List<DataModel>> loadArtImage() async{
+    try{
+      final response = await get(MainPage_ArtList_URL);
+      final data = response.body;
+      return List<DataModel>.from(data.map((e) => DataModel.fromJson(e)));
+    }catch(e){
+      e.printError();
+      return <DataModel>[];
+    }
   }
 }
 
