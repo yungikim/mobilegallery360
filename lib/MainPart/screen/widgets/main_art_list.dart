@@ -40,8 +40,11 @@ class _MainArtListState extends State<MainArtList> {
 
   @override
   void initState() {
-    print("111111");
-    _dataController.getFirstPageArtDataCallDio();
+    _dataController.getFirstPageArtDataCallDio().then((value){
+      setState(() {
+        _dataController.firstPageArtData.value = value;
+      });
+    });
     // TODO: implement initState
     super.initState();
   }
@@ -70,18 +73,23 @@ class _MainArtListState extends State<MainArtList> {
                 children: [
                   CachedNetworkImage(
                     imageUrl: url,
-                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
                     // imageBuilder: (context, imageProvider){
-                    //   imageProvider.rea
                     //   return Container(
-                    //     height: 200,
-                    //     width: 100,
                     //     decoration: BoxDecoration(
                     //       image: DecorationImage(
-                    //         image: imageProvider,
-                    //         fit: BoxFit.fitHeight,
-                    //       ),
+                    //         image: CachedNetworkImageProvider(url),
+                    //       )
                     //     ),
+                    //     // height: 200,
+                    //     // width: 100,
+                    //     // decoration: BoxDecoration(
+                    //     //   image: DecorationImage(
+                    //     //     image: imageProvider,
+                    //     //     fit: BoxFit.fitHeight,
+                    //     //   ),
+                    //     // ),
                     //   );
                     // },
                   ),
@@ -93,9 +101,10 @@ class _MainArtListState extends State<MainArtList> {
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: width * 0.30,
+                          width: width * 0.25,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -108,14 +117,11 @@ class _MainArtListState extends State<MainArtList> {
                                 ),
                               ),
                               Text(dm.artArtist),
-                              Row(
-                                children: [
-                                  Text("${dm.artHeight} X ${dm.artWidth}"),
-                                  Visibility(
-                                    visible: dm.artHosu != null,
-                                    child: Text("(${dm.artHosu})호"),
-                                  )
-                                ],
+                              Text(
+                                "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
+                                style: const TextStyle(
+                                  overflow: TextOverflow.clip,
+                                ),
                               ),
                             ],
                           ),
@@ -126,26 +132,27 @@ class _MainArtListState extends State<MainArtList> {
                               Icons.favorite_outline,
                               color: Colors.grey,
                             )),
+                        //SizedBox.shrink(),
                       ],
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         left: 10.0, top: 10.0, bottom: 10.0, right: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "₩ ${f.format(dm.artPrice)}",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Row(
                           children: [
                             Visibility(
                               visible: dm.vrinfo != null,
-                              child: Icon(Icons.smart_display_outlined),
+                              child: const Icon(Icons.smart_display_outlined),
                             ),
-                            Icon(Icons.vrpano_outlined)
+                            const Icon(Icons.vrpano_outlined)
                           ],
                         )
                       ],

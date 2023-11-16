@@ -56,14 +56,38 @@ class _MainPageState extends State<MainPage> {
       // ),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: MainCarouselWidget(),
           ),
-          SliverToBoxAdapter(
-            child: MainArtList(),
-          )
+          SliverList(
+            delegate: SliverChildListDelegate(
+                [
+                  const SizedBox(height: 20.0,),
+                  const CenterText1(),
+                  const SizedBox(height: 20.0,),
+                  const MainArtList(),
+                ]
+            ),
+          ),
+          // SliverToBoxAdapter(
+          //   child: MainArtList(),
+          // )
         ],
       ),
+    );
+  }
+}
+
+class CenterText1 extends StatelessWidget {
+  const CenterText1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        Text("당신이 만나는 새로운 전시", style: TextStyle(fontSize: 15.0),),
+        Text("VR 갤러리", style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),),
+      ],
     );
   }
 }

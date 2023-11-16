@@ -58,40 +58,57 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                   Positioned.fill(
                     child: Align(
                       alignment: Alignment.center,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(mainMessage[imageList.indexOf(item)],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 27.0,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          Text(
-                              mainMessage_sub[
-                              imageList.indexOf(item)],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 50.0,),
-                          OutlinedButton(
-                            onPressed: () {},
-                            style: OutlinedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                ),
-                                side: BorderSide(
-                                  color: mainMessage_btn_color[_current],
-                                  width: 1.0,
-                                )
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(mainMessage[imageList.indexOf(item)],
+                                style: const TextStyle(
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(3.0, 0.0),
+                                        blurRadius: 30.0,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold)),
+                            const SizedBox(
+                              height: 20.0,
                             ),
-                            child: Text("소개 영상 보기", style: TextStyle(color: mainMessage_btn_color[_current]),),
-                          ),
-                        ],
+                            Text(
+                                mainMessage_sub[
+                                imageList.indexOf(item)],
+                                style: const TextStyle(
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(3.0, 0.0),
+                                        blurRadius: 30,
+                                        color: Colors.black,
+                                      )
+                                    ],
+                                    color: Colors.white,
+                                    fontSize: 13.0,
+                                    fontWeight: FontWeight.bold)),
+                            const SizedBox(height: 50.0,),
+                            OutlinedButton(
+                              onPressed: () {},
+                              style: OutlinedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                  side: BorderSide(
+                                    color: mainMessage_btn_color[_current],
+                                    width: 1.0,
+                                  )
+                              ),
+                              child: Text("소개 영상 보기", style: TextStyle(color: mainMessage_btn_color[_current]),),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )
