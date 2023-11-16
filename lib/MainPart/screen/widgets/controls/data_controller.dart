@@ -4,9 +4,19 @@ import '../models/data_model.dart';
 import '../repository/data_repository.dart';
 
 class DataController extends GetxController{
+  var loadingCoplete = false.obs;
   final DataConnectionRepository _dataRepository = DataConnectionRepository();
   var firstPageArtData = <DataModel>[].obs;
   var vrListData = <VRModel>[].obs;
+
+  var mainPageRecommandImageURL = "".obs;
+  var mainPageRecommandImageTitle = "".obs;
+  var mainPageRecommandImageArtist = "".obs;
+  var mainPageRecommandImageDockey = "".obs;
+
+  List<String> emails = <String>[].obs;
+  List<String> dockeys = <String>[].obs;
+  List<String> imageURLs = <String>[].obs;
 
   Future getFirstPageArtDataCallDio() async{
     try{
@@ -25,6 +35,10 @@ class DataController extends GetxController{
     }catch(e){
       e.printError();
     }
+  }
+
+  void dataContollerupdate(){
+    update();
   }
 }
 
