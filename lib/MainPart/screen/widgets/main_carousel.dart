@@ -58,14 +58,14 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                   ),
                   Positioned.fill(
                     child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(mainMessage[imageList.indexOf(item)],
+                            Text(mainMessage[imageList.indexOf(item)], textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     shadows: [
                                       Shadow(
@@ -74,8 +74,9 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                         color: Colors.black,
                                       ),
                                     ],
+
                                     color: Colors.white,
-                                    fontSize: 20.0,
+                                    fontSize: 30.0,
                                     fontWeight: FontWeight.bold)),
                             const SizedBox(
                               height: 20.0,
@@ -83,6 +84,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                             Text(
                                 mainMessage_sub[
                                 imageList.indexOf(item)],
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
                                     shadows: [
                                       Shadow(
@@ -92,7 +94,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                       )
                                     ],
                                     color: Colors.white,
-                                    fontSize: 13.0,
+                                    fontSize: 15.0,
                                     fontWeight: FontWeight.bold)),
                             const SizedBox(height: 50.0,),
                             OutlinedButton(
@@ -106,7 +108,8 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                     width: 1.0,
                                   )
                               ),
-                              child: Text("소개 영상 보기", style: TextStyle(color: mainMessage_btn_color[_current]),),
+                              child: Text(mainMessage_btn_title[
+                              imageList.indexOf(item)], style: TextStyle(color: mainMessage_btn_color[_current]),),
                             ),
                           ],
                         ),
@@ -121,7 +124,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
           carouselController: _carouselController,
           options: CarouselOptions(
               height: _slideController.firstCarouselHeight.value,
-              autoPlay: true,
+           //   autoPlay: true,
               viewportFraction: 1.0,
               autoPlayInterval: const Duration(seconds: 7),
            //   enlargeCenterPage: true,
