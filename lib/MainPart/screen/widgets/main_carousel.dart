@@ -129,8 +129,8 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
               autoPlayInterval: const Duration(seconds: 7),
            //   enlargeCenterPage: true,
               aspectRatio: 2,
-              enlargeFactor: 0.4,
-              enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+           //   enlargeFactor: 0.4,
+           //   enlargeStrategy: CenterPageEnlargeStrategy.zoom,
               onPageChanged: (index, reason) {
                 setState(() {
                   _current = index;
