@@ -55,93 +55,105 @@ class _MPPState extends State<MPP> {
         appBar: AppBar(
           title: const Text("Staggered Grid View"),
         ),
-        body: Container(
-            child: MasonryGridView.count(
-          itemCount: _dataController.firstPageArtData.length,
-          // crossAxisSpacing: 5,
-          // mainAxisSpacing: 5,
-          crossAxisCount: 2,
-          itemBuilder: (context, index) {
-            DataModel dm = _dataController.firstPageArtData[index];
-            String url =
-                "https://www.gallery360.co.kr/artimage/${dm.email}/art/preview/${dm.artImgFilename}.jpg";
-            return Container(
-                margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: const Color(0xffe0e0e0)),
-                  ),
-                  child: Column(
-                    children: [
-                      Image.network(
-                        url,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 500,
+                color: Colors.red,
+              ),
+              Container(
+                height: 300,
+                  child: MasonryGridView.count(
+                    //physics: NeverScrollableScrollPhysics(),
+                itemCount: _dataController.firstPageArtData.length,
+                // crossAxisSpacing: 5,
+                // mainAxisSpacing: 5,
+                crossAxisCount: 2,
+                itemBuilder: (context, index) {
+                  DataModel dm = _dataController.firstPageArtData[index];
+                  String url =
+                      "https://www.gallery360.co.kr/artimage/${dm.email}/art/preview/${dm.artImgFilename}.jpg";
+                  return Container(
+                      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xffe0e0e0)),
+                        ),
+                        child: Column(
                           children: [
-                            SizedBox(
-                              width: width * 0.30,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            Image.network(
+                              url,
+                              fit: BoxFit.cover,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text(
-                                    Util.chageText(dm.artTitle),
-                                    maxLines: 2,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.clip,
+                                  SizedBox(
+                                    width: width * 0.30,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          Util.chageText(dm.artTitle),
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            overflow: TextOverflow.clip,
+                                          ),
+                                        ),
+                                        Text(dm.artArtist),
+                                        Row(
+                                          children: [
+                                            Text("${dm.artHeight} X ${dm.artWidth}"),
+                                            Visibility(
+                                              visible: dm.artHosu != null,
+                                              child: Text("(${dm.artHosu})호"),
+                                            )
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Text(dm.artArtist),
-                                  Row(
-                                    children: [
-                                      Text("${dm.artHeight} X ${dm.artWidth}"),
-                                      Visibility(
-                                        visible: dm.artHosu != null,
-                                        child: Text("(${dm.artHosu})호"),
-                                      )
-                                    ],
-                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.favorite_outline,
+                                        color: Colors.grey,
+                                      )),
+
                                 ],
                               ),
                             ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.favorite_outline,
-                                  color: Colors.grey,
-                                )),
 
-                          ],
-                        ),
-                      ),
-
-                      Container(
-                        padding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0, right: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("₩ ${f.format(dm.artPrice)}", style: TextStyle(fontWeight: FontWeight.bold),),
-                            Row(
-                              children: [
-                                Visibility(
-                                  visible: dm.vrinfo != null,
-                                  child: Icon(Icons.smart_display_outlined),
-                                ),
-                                Icon(Icons.vrpano_outlined)
-                              ],
+                            Container(
+                              padding: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0, right: 10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("₩ ${f.format(dm.artPrice)}", style: TextStyle(fontWeight: FontWeight.bold),),
+                                  Row(
+                                    children: [
+                                      Visibility(
+                                        visible: dm.vrinfo != null,
+                                        child: Icon(Icons.smart_display_outlined),
+                                      ),
+                                      Icon(Icons.vrpano_outlined)
+                                    ],
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                ));
-          },
-        )),
+                      ));
+                },
+              )),
+            ],
+          ),
+        ),
       ),
     );
   }
