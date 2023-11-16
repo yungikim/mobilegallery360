@@ -86,9 +86,11 @@ class _MainArtListState extends State<MainArtList> {
     final double width = MediaQuery.of(context).size.width;
     var f = NumberFormat('###,###,###,###');
 
-    print("그린다.....");
     // print(_dataController.firstPageArtData.length);
-    // print(_dataController.mainPageRecommandImageURL.value);
+     print(_dataController.mainPageRecommandImageURL.value);
+    if (_dataController.mainPageRecommandImageURL.value.isEmpty){
+      return SizedBox();
+    }
 
     return Obx(
       ()=> Column(
@@ -99,7 +101,7 @@ class _MainArtListState extends State<MainArtList> {
                imageUrl: _dataController.mainPageRecommandImageURL.value.toString(),
               //imageUrl:  'https://www.gallery360.co.kr/artimage/kimjiyoun72@naver.com/art/preview/kimjiyoun72@naver.com_b8a1d8f684a9dcd8d28a995eb37adb39.7021844.jpg?open&ver=1700114846568?open&ver=1602322826950',
             ),
-
+            //  child: Image.network(_dataController.mainPageRecommandImageURL.value.toString()),
 
           ),
             MasonryGridView.count(
@@ -107,9 +109,12 @@ class _MainArtListState extends State<MainArtList> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            itemCount: _dataController.firstPageArtData.value.length,
+            itemCount: _dataController.firstPageArtData.value.sublist(1).length,
             crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 2 : 3,
             itemBuilder: (context, index) {
+              if (index == 0) {
+                return Container();
+              }
               DataModel dm = _dataController.firstPageArtData.value[index];
               String url = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
               return Container(
