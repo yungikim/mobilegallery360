@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
+import 'package:gallery360/MainPart/screen/widgets/models/data_monthly_artist.dart';
 import 'package:get/get.dart';
 import '../../../../const/const.dart';
 import '../models/data_model.dart';
 import '../models/vr_model.dart';
+import '../models/data_monthly_artist.dart';
 
 class DataConnectionRepository extends GetConnect{
   DataConnectionRepository(){
@@ -35,6 +38,13 @@ class DataConnectionRepository extends GetConnect{
       return <DataModel>[];
     }
   }
+
+  // Future<List<MonthlyArtist>> loadMonthlyArtist() async{
+  //   var response = await dio.get(MainPage_Month_Artist_URL);
+  //   Map<String, dynamic> responseMap = response.data;
+  //   List<MonthlyArtist> res = responseMap.map((e))
+  // }
+
 }
 
 
