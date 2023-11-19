@@ -5,6 +5,7 @@ import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
 import '../../../../util/Util.dart';
 import '../models/data_model.dart';
+import '../models/vr_showmodel.dart';
 import '../repository/data_repository.dart';
 
 class DataController extends GetxController{
@@ -15,6 +16,7 @@ class DataController extends GetxController{
   var vrListData = <VRModel>[].obs;
   final vrListInit = false.obs;
   var monthlyArtist = <MonthlyArtist>[].obs;
+  var vrShowlist = <VrShow>[].obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;
@@ -38,6 +40,7 @@ class DataController extends GetxController{
   Future getVrListDataCallDio() async{
     try{
       List<VRModel> dataList = await _dataRepository.LoadVRDataWidthDio();
+
       return dataList;
     }catch(e){
       e.printError();
@@ -59,6 +62,16 @@ class DataController extends GetxController{
     try{
       List<MonthlyArtist> response = await _dataRepository.loadMonthlyArtist();
       monthlyArtist.addAll(response);
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future getVrShowList() async{
+    try{
+      List<VrShow> response = await _dataRepository.loadVrShowList();
+    //  vrShowlist.addAll(response);
+      return response;
     }catch(e){
       e.printError();
     }

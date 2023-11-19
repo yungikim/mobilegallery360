@@ -79,7 +79,7 @@ class _MainArtListState extends State<MainArtList> {
         return  Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(38.0),
+                padding: const EdgeInsets.all(88.0),
                 child:  CachedNetworkImage(
                    imageUrl: _dataController.mainPageRecommandImageURL.value.toString(),
                   placeholder: (context, url) => const CircularProgressIndicator(),

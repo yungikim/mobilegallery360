@@ -4,8 +4,10 @@ import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart
 import 'package:gallery360/MainPart/screen/widgets/main_art_list.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_carousel.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
+import 'package:gallery360/MainPart/screen/widgets/main_vrshowlist.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar1.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar2.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar3.dart';
 import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -89,7 +91,6 @@ class _MainPageState extends State<MainPage> {
                   title1: "당신이 만나는 새로운 작품",
                   title2: "추천 작품",
                 ),
-            //    const MainRecommandImage(),
                 const SizedBox(
                   height: 30.0,
                 ),
@@ -99,11 +100,14 @@ class _MainPageState extends State<MainPage> {
                 const MainArtList(),
                 const SizedBox(height: 50.0,),
                 const Spacebar1(),
-                const SizedBox(height: 50.0,),
+                const SizedBox(height: 70.0,),
                 const MonthlyArtistWidget(),
-                const SizedBox(height: 50.0,),
+                const SizedBox(height: 70.0,),
                 const Spacebar2(),
-
+                const SizedBox(height: 70.0,),
+                const Spacebar3(),
+                const SizedBox(height: 20.0,),
+                const VrShowList(),
                 const SizedBox(height: 100.0,),
               ]),
             ),

@@ -28,7 +28,7 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
     return CarouselSlider(
       items: _dataController.monthlyArtist
           .map((item) => Container(
-              width: 350.0,
+              width: double.infinity,
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   image: DecorationImage(
@@ -77,7 +77,8 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
       options: CarouselOptions(
         autoPlay: true,
         autoPlayInterval: const Duration(seconds: 10),
-        aspectRatio: 3.0,
+      //  viewportFraction: 1,
+        aspectRatio: 2.0,
         enlargeFactor: 0.2,
         enlargeCenterPage: true,
       ),

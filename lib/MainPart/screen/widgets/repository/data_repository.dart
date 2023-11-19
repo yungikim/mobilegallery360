@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
+import 'package:gallery360/MainPart/screen/widgets/main_vrshowlist.dart';
 import 'package:gallery360/MainPart/screen/widgets/models/data_monthly_artist.dart';
 import 'package:get/get.dart';
 import '../../../../const/const.dart';
 import '../models/data_model.dart';
 import '../models/vr_model.dart';
 import '../models/data_monthly_artist.dart';
+import '../models/vr_showmodel.dart';
 
 class DataConnectionRepository extends GetConnect{
   DataConnectionRepository(){
@@ -43,6 +45,13 @@ class DataConnectionRepository extends GetConnect{
     var response = await dio.get(MainPage_Month_Artist_URL);
     List<dynamic> responseMap = response.data;
     List<MonthlyArtist> res = responseMap.map((json) => MonthlyArtist.fromJson(json)).toList();
+    return res;
+  }
+
+  Future<List<VrShow>> loadVrShowList() async{
+    var response = await dio.get(MainPage_VrShow_URL);
+    List<dynamic> responseMap = response.data['lending'];
+    List<VrShow> res = responseMap.map((json) => VrShow.fromJson(json)).toList();
     return res;
   }
 
