@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:gallery360/MainPart/screen/widgets/models/data_monthly_artist.dart';
 import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
 import '../../../../util/Util.dart';
@@ -13,6 +14,7 @@ class DataController extends GetxController{
   final artListInit = false.obs;
   var vrListData = <VRModel>[].obs;
   final vrListInit = false.obs;
+  var monthlyArtist = <MonthlyArtist>[].obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;
@@ -48,6 +50,15 @@ class DataController extends GetxController{
       firstPageArtData.addAll(response);
       DataModel dm = response[0];
       mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future<void> getMonthlyArt() async{
+    try{
+      List<MonthlyArtist> response = await _dataRepository.loadMonthlyArtist();
+      monthlyArtist.addAll(response);
     }catch(e){
       e.printError();
     }

@@ -39,11 +39,12 @@ class DataConnectionRepository extends GetConnect{
     }
   }
 
-  // Future<List<MonthlyArtist>> loadMonthlyArtist() async{
-  //   var response = await dio.get(MainPage_Month_Artist_URL);
-  //   Map<String, dynamic> responseMap = response.data;
-  //   List<MonthlyArtist> res = responseMap.map((e))
-  // }
+  Future<List<MonthlyArtist>> loadMonthlyArtist() async{
+    var response = await dio.get(MainPage_Month_Artist_URL);
+    List<dynamic> responseMap = response.data;
+    List<MonthlyArtist> res = responseMap.map((json) => MonthlyArtist.fromJson(json)).toList();
+    return res;
+  }
 
 }
 

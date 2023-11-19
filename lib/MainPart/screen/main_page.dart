@@ -1,22 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_art_list.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_carousel.dart';
-import 'package:gallery360/MainPart/screen/widgets/main_recommand_image.dart';
-import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
+import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar1.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar2.dart';
 import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:gallery360/MainPart/screen/widgets/models/data_model.dart';
-import '../../data/base_data.dart';
-
-import '../../core/const.dart';
-import '../../util/Util.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -35,20 +27,6 @@ class _MainPageState extends State<MainPage> {
     // checkMainImage();
     super.initState();
   }
-
-  // void checkMainImage(){
-  //   _dataController.getFirstPageArtDataCallDio().then((value){
-  //     _dataController.firstPageArtData.value = value;
-  //     //for (var i = 0 ; i < _dataController.firstPageArtData.value.length; i++){
-  //     DataModel dm = _dataController.firstPageArtData[0];
-  //     _dataController.mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
-  //     _dataController.mainPageRecommandImageTitle.value = dm.artTitle;
-  //     _dataController.mainPageRecommandImageDockey.value = dm.dockey;
-  //     _dataController.mainPageRecommandImageArtist.value = dm.artArtist;
-  //     //}
-  //   });
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +96,15 @@ class _MainPageState extends State<MainPage> {
                 const SizedBox(
                   height: 0.0,
                 ),
-                  const MainArtList(),
+                const MainArtList(),
+                const SizedBox(height: 50.0,),
+                const Spacebar1(),
+                const SizedBox(height: 50.0,),
+                const MonthlyArtistWidget(),
+                const SizedBox(height: 50.0,),
+                const Spacebar2(),
+
+                const SizedBox(height: 100.0,),
               ]),
             ),
             // SliverToBoxAdapter(
