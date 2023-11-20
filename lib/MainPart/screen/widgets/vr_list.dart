@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
+import '../../../util/Util.dart';
+
+
 class VRList extends StatefulWidget {
   const VRList({super.key});
 
@@ -25,16 +28,18 @@ class _VRListState extends State<VRList> {
     super.initState();
   }
 
-  void checkVR(){
+  void checkVR() {
     _dataController.getVrListDataCallDio().then((value) {
       _dataController.vrListData.value = value;
-      for (int i = 0 ; i < _dataController.vrListData.value.length; i++){
+      for (int i = 0; i < _dataController.vrListData.value.length; i++) {
         VRModel vr = _dataController.vrListData.value[i];
-        if (vr.email != null){
+        if (vr.email != null) {
           _dataController.emails.add(vr.email.toString());
           _dataController.dockeys.add(vr.dockey.toString());
-          String url = "https://www.gallery360.co.kr/vr/vr/vrgallery/${vr.email}/${vr.dockey}/pano_f.jpg";
+          String url =
+              "https://www.gallery360.co.kr/vr/vr/vrgallery/${vr.email}/${vr.dockey}/pano_f.jpg";
           _dataController.imageURLs.add(url);
+
         }
       }
       _dataController.vrListInit.value = true;
@@ -44,32 +49,96 @@ class _VRListState extends State<VRList> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (_dataController.vrListInit.value){
+      if (_dataController.vrListInit.value) {
         return Column(
           children: [
             CarouselSlider(
-                items: _dataController.imageURLs.map((e) => Container(
-                  height: 400.0,
-                  // width: double.infinity,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white),
-                      //  borderRadius: BorderRadius.circular(15.0),
-                      image: DecorationImage(
-                        image: NetworkImage(e), fit: BoxFit.cover,
-                      )
-                  ),
-                )).toList(),
-                carouselController: _carouselController,
-                options: CarouselOptions(
-
-                  //height: 200,
-                  autoPlay: true,
-                  viewportFraction: 1,
-                  autoPlayInterval: const Duration(seconds: 10),
-                  aspectRatio: 1.5,
-                  //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
-                  enlargeStrategy: CenterPageEnlargeStrategy.zoom,  //높이가 동일한 이미지로 표시하는 옵션
-                ),
+              items: _dataController.vrListData
+                  .map((e) => Container(
+                        height: 400.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            //  borderRadius: BorderRadius.circular(15.0),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
+                              fit: BoxFit.cover,
+                            )),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              bottom: 10.0,
+                              left: 10.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    Util.chageText(e.title.toString()),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5,),
+                                  Text(
+                                    "${e.nickname}",
+                                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                                  ),
+                                  const SizedBox(height: 10.0,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.dataset_linked,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "${e.read}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Icon(
+                                        Icons.favorite_border_outlined,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "${e.like}",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ))
+                  .toList(),
+              carouselController: _carouselController,
+              options: CarouselOptions(
+                //height: 200,
+                autoPlay: true,
+                viewportFraction: 1,
+                autoPlayInterval: const Duration(seconds: 10),
+                aspectRatio: 1.5,
+                //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
+                enlargeStrategy:
+                    CenterPageEnlargeStrategy.zoom, //높이가 동일한 이미지로 표시하는 옵션
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -89,8 +158,8 @@ class _VRListState extends State<VRList> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: (Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black)
+                                ? Colors.white
+                                : Colors.black)
                             .withOpacity(_current == entry.key ? 0.9 : 0.4)),
                   ),
                 );
@@ -98,7 +167,7 @@ class _VRListState extends State<VRList> {
             )
           ],
         );
-      }else{
+      } else {
         return Center(
           child: CircularProgressIndicator(),
         );

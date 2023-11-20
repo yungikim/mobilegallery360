@@ -43,21 +43,21 @@ class _MainArtListState extends State<MainArtList> {
 
   @override
   void initState() {
-     // _dataController.getArtImage();
+    // _dataController.getArtImage();
     checkMainImage();
     // TODO: implement initState
     super.initState();
   }
 
-
-  void checkMainImage(){
+  void checkMainImage() {
     print("checkMainImage");
     //_dataController.firstPageArtData.value = <DataModel>[];
-    _dataController.getFirstPageArtDataCallDio().then((value){
+    _dataController.getFirstPageArtDataCallDio().then((value) {
       _dataController.firstPageArtData.value = value;
 
       DataModel dm = _dataController.firstPageArtData.value[0];
-      _dataController.mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
+      _dataController.mainPageRecommandImageURL.value =
+          Util.makeMainArtListURL(dm.email, dm.artImgFilename);
       _dataController.mainPageRecommandImageTitle.value = dm.artTitle;
       _dataController.mainPageRecommandImageDockey.value = dm.dockey;
       _dataController.mainPageRecommandImageArtist.value = dm.artArtist;
@@ -67,162 +67,211 @@ class _MainArtListState extends State<MainArtList> {
     });
   }
 
-
   @override
-  build(BuildContext context){
-
+  build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     var f = NumberFormat('###,###,###,###');
 
-    return Obx((){
-      if (_dataController.artListInit.value){
-        return  Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(88.0),
-                child:  CachedNetworkImage(
-                   imageUrl: _dataController.mainPageRecommandImageURL.value.toString(),
-                  placeholder: (context, url) => const CircularProgressIndicator(),
-                  // imageBuilder: (context, imageProvider){
-                  //    return Container(
-                  //      decoration: BoxDecoration(
-                  //        image: DecorationImage(
-                  //          image: CachedNetworkImageProvider(_dataController.mainPageRecommandImageURL.value.toString()),
-                  //        )
-                  //      ),
-                  //    );
-                  // },
-                  //imageUrl:  'https://www.gallery360.co.kr/artimage/kimjiyoun72@naver.com/art/preview/kimjiyoun72@naver.com_b8a1d8f684a9dcd8d28a995eb37adb39.7021844.jpg?open&ver=1700114846568?open&ver=1602322826950',
-                ),
+    return Obx(() {
+      if (_dataController.artListInit.value) {
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: CachedNetworkImage(
+                width: width * 0.70,
+                imageUrl:
+                    _dataController.mainPageRecommandImageURL.value.toString(),
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                // imageBuilder: (context, imageProvider){
+                //    return Container(
+                //      decoration: BoxDecoration(
+                //        image: DecorationImage(
+                //          image: CachedNetworkImageProvider(_dataController.mainPageRecommandImageURL.value.toString()),
+                //        )
+                //      ),
+                //    );
+                // },
+                //imageUrl:  'https://www.gallery360.co.kr/artimage/kimjiyoun72@naver.com/art/preview/kimjiyoun72@naver.com_b8a1d8f684a9dcd8d28a995eb37adb39.7021844.jpg?open&ver=1700114846568?open&ver=1602322826950',
               ),
-              MasonryGridView.count(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: _dataController.firstPageArtData.value.length,
-                crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 2 : 3,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return Container();
-                  }
-                  DataModel dm = _dataController.firstPageArtData.value[index];
-                  String url = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
-                  return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffe0e0e0)),
+            ),
+            Container(
+              height: 200,
+              width: width,
+           //   color: Colors.green,
+              child: Column(
+                children: [
+                  Text(
+                    Util.chageText(
+                        _dataController.mainPageRecommandImageTitle.value),
+                    style: const TextStyle(
+                        fontSize: 23,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10,),
+                  Text(
+                    _dataController.mainPageRecommandImageArtist.value,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0),
                         ),
-                        child: Column(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: url,
-                              placeholder: (context, url) => const CircularProgressIndicator(),
-                              // imageBuilder: (context, imageProvider){
-                              //   return Container(
-                              //     decoration: BoxDecoration(
-                              //       image: DecorationImage(
-                              //         image: CachedNetworkImageProvider(url),
-                              //       )
-                              //     ),
-                              //     height: 200,
-                              //     width: 100,
-                              //     // decoration: BoxDecoration(
-                              //     //   image: DecorationImage(
-                              //     //     image: imageProvider,
-                              //     //     fit: BoxFit.fitHeight,
-                              //     //   ),
-                              //     // ),
-                              //   );
-                              // },
-                            ),
-                            // Image.network(
-                            //   url,
-                            //   fit: BoxFit.cover,
-                            // ),
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: width * (ResponsiveBreakpoints.of(context).isMobile ? 0.25 : 0.2),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          Util.chageText(dm.artTitle),
-                                          maxLines: 2,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            overflow: TextOverflow.clip,
-                                          ),
-                                        ),
-                                        Text(dm.artArtist),
-                                        Text(
-                                          "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
-                                          style: const TextStyle(
-                                            overflow: TextOverflow.clip,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 30.0,
-                                    height: 20.0,
-                                    //  padding: EdgeInsets.zero,
-                                    //  color: Colors.red,
-                                    child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.favorite_outline,
-                                          color: Colors.grey,
-                                        )),
-                                  ),
-                                  //SizedBox.shrink(),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0, top: 10.0, bottom: 10.0, right: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "₩ ${f.format(dm.artPrice)}",
-                                    style: const TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
+                        side: const BorderSide(color: Colors.black)),
+                    child: const Text("작품보기", style: TextStyle(color: Colors.black),),
+                  ),
+                ],
+              ),
+            ),
+            MasonryGridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: _dataController.firstPageArtData.value.length,
+              crossAxisCount:
+                  ResponsiveBreakpoints.of(context).isMobile ? 2 : 3,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return Container();
+                }
+                DataModel dm = _dataController.firstPageArtData.value[index];
+                String url =
+                    Util.makeMainArtListURL(dm.email, dm.artImgFilename);
+                return Container(
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: const Color(0xffe0e0e0)),
+                      ),
+                      child: Column(
+                        children: [
+                          CachedNetworkImage(
+                            imageUrl: url,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            // imageBuilder: (context, imageProvider){
+                            //   return Container(
+                            //     decoration: BoxDecoration(
+                            //       image: DecorationImage(
+                            //         image: CachedNetworkImageProvider(url),
+                            //       )
+                            //     ),
+                            //     height: 200,
+                            //     width: 100,
+                            //     // decoration: BoxDecoration(
+                            //     //   image: DecorationImage(
+                            //     //     image: imageProvider,
+                            //     //     fit: BoxFit.fitHeight,
+                            //     //   ),
+                            //     // ),
+                            //   );
+                            // },
+                          ),
+                          // Image.network(
+                          //   url,
+                          //   fit: BoxFit.cover,
+                          // ),
+                          Container(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: width *
+                                      (ResponsiveBreakpoints.of(context)
+                                              .isMobile
+                                          ? 0.25
+                                          : 0.2),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Visibility(
-                                        visible: dm.vrinfo != null,
-                                        child: const Icon(Icons.smart_display_outlined),
+                                      Text(
+                                        Util.chageText(dm.artTitle),
+                                        maxLines: 2,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.clip,
+                                        ),
                                       ),
-                                      const Icon(Icons.vrpano_outlined)
+                                      Text(dm.artArtist),
+                                      Text(
+                                        "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
+                                        style: const TextStyle(
+                                          overflow: TextOverflow.clip,
+                                        ),
+                                      ),
                                     ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ));
-                },
-              ),
-            ],
-
-
+                                  ),
+                                ),
+                                Container(
+                                  width: 30.0,
+                                  height: 20.0,
+                                  //  padding: EdgeInsets.zero,
+                                  //  color: Colors.red,
+                                  child: IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.favorite_outline,
+                                        color: Colors.grey,
+                                      )),
+                                ),
+                                //SizedBox.shrink(),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.only(
+                                left: 10.0,
+                                top: 10.0,
+                                bottom: 10.0,
+                                right: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "₩ ${f.format(dm.artPrice)}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Row(
+                                  children: [
+                                    Visibility(
+                                      visible: dm.vrinfo != null,
+                                      child: const Icon(
+                                          Icons.smart_display_outlined),
+                                    ),
+                                    const Icon(Icons.vrpano_outlined)
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ));
+              },
+            ),
+          ],
         );
-      }else{
+      } else {
         return const Center(
           child: CircularProgressIndicator(),
         );
       }
     });
-
-
   }
 }

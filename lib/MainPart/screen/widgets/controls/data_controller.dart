@@ -40,8 +40,7 @@ class DataController extends GetxController{
   Future getVrListDataCallDio() async{
     try{
       List<VRModel> dataList = await _dataRepository.LoadVRDataWidthDio();
-
-      return dataList;
+      return dataList.sublist(1);
     }catch(e){
       e.printError();
     }
