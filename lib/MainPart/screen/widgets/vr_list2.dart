@@ -131,32 +131,6 @@ class CarouselTablet extends StatelessWidget {
           carouselController: _carouselController,
           imageL: _dataController.half_list,
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   //children: _dataController.imageURLs.asMap().entries.map((entry) {
-        //   children: _dataController.half_list.asMap().entries.map((entry) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         _carouselController.animateToPage(entry.key);
-        //         _dataController.vrcurrentItem.value = entry.key;
-        //       },
-        //       child: Obx(
-        //             ()=> Container(
-        //           width: 12.0,
-        //           height: 12.0,
-        //           margin: const EdgeInsets.symmetric(
-        //               vertical: 8.0, horizontal: 4.0),
-        //           decoration: BoxDecoration(
-        //               shape: BoxShape.circle,
-        //               color: (Theme.of(context).brightness == Brightness.dark
-        //                   ? Colors.white
-        //                   : Colors.black)
-        //                   .withOpacity(_dataController.vrcurrentItem.value == entry.key ? 0.9 : 0.4)),
-        //         ),
-        //       ),
-        //     );
-        //   }).toList(),
-        // ),
       ],
     );
   }
@@ -220,9 +194,7 @@ class CarouselMobile extends StatelessWidget {
 
 class CarouselInnerText extends StatelessWidget {
   const CarouselInnerText({super.key, required this.e});
-
   final VRModel e;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
