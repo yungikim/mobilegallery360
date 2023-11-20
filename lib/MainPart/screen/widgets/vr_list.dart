@@ -217,7 +217,7 @@ class _VRListState extends State<VRList> {
           ],
         );
       } else {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       }
