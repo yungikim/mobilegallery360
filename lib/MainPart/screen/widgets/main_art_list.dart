@@ -97,41 +97,44 @@ class _MainArtListState extends State<MainArtList> {
               ),
             ),
             Container(
-              height: 200,
+              height: 250,
               width: width,
            //   color: Colors.green,
-              child: Column(
-                children: [
-                  Text(
-                    Util.chageText(
-                        _dataController.mainPageRecommandImageTitle.value),
-                    style: const TextStyle(
-                        fontSize: 23,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10,),
-                  Text(
-                    _dataController.mainPageRecommandImageArtist.value,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    Text(
+                      Util.chageText(
+                          _dataController.mainPageRecommandImageTitle.value),
+                      style: const TextStyle(
+                          fontSize: 23,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                        side: const BorderSide(color: Colors.black)),
-                    child: const Text("작품보기", style: TextStyle(color: Colors.black),),
-                  ),
-                ],
+                    const SizedBox(height: 10,),
+                    Text(
+                      _dataController.mainPageRecommandImageArtist.value,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                          side: const BorderSide(color: Colors.black)),
+                      child: const Text("작품보기", style: TextStyle(color: Colors.black),),
+                    ),
+                  ],
+                ),
               ),
             ),
             MasonryGridView.count(

@@ -8,7 +8,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../../util/Util.dart';
 
-
 class VRList extends StatefulWidget {
   const VRList({super.key});
 
@@ -39,7 +38,6 @@ class _VRListState extends State<VRList> {
           String url =
               "https://www.gallery360.co.kr/vr/vr/vrgallery/${vr.email}/${vr.dockey}/pano_f.jpg";
           _dataController.imageURLs.add(url);
-
         }
       }
       _dataController.vrListInit.value = true;
@@ -61,6 +59,7 @@ class _VRListState extends State<VRList> {
                             border: Border.all(color: Colors.white),
                             //  borderRadius: BorderRadius.circular(15.0),
                             image: DecorationImage(
+                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.darken),
                               image: NetworkImage(
                                   "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
                               fit: BoxFit.cover,
@@ -78,45 +77,80 @@ class _VRListState extends State<VRList> {
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                      fontSize: 15,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 0.0),
+                                          blurRadius: 3,
+                                          color: Colors.black,
+                                        )
+                                      ]
                                     ),
                                   ),
-                                  const SizedBox(height: 5,),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
                                   Text(
                                     "${e.nickname}",
-                                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(1.0, 0.0),
+                                          blurRadius: 3.0,
+                                          color: Colors.black,
+                                        )
+                                      ]
+                                    ),
                                   ),
-                                  const SizedBox(height: 10.0,),
+                                  const SizedBox(
+                                    height: 10.0,
+                                  ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.dataset_linked,
                                         color: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
                                         "${e.read}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(1, 0),
+                                              blurRadius: 3,
+                                              color: Colors.black,
+                                            )
+                                          ]
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.favorite_border_outlined,
                                         color: Colors.white,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
                                         "${e.like}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(1.0, 0.0),
+                                              blurRadius: 3,
+                                              color: Colors.black,
+                                            )
+                                          ]
                                         ),
                                       )
                                     ],

@@ -16,6 +16,7 @@ class VrShowList extends StatefulWidget {
 class _VrShowListState extends State<VrShowList> {
   final DataController _dataController = Get.put(DataController());
   final CarouselController _carouselController = CarouselController();
+  var _current = 0;
 
   @override
   void initState() {
@@ -26,8 +27,6 @@ class _VrShowListState extends State<VrShowList> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return FutureBuilder(
       future: _dataController.getVrShowList(),
       builder: (context, snapshot) {
@@ -96,7 +95,10 @@ class _VrShowListState extends State<VrShowList> {
                           )))
                       .toList(),
                   options: CarouselOptions(
-               //     autoPlay: true,
+                    onPageChanged: (index, reaseon){
+                        _dataController.currentItem.value = index;
+                    },
+                //    autoPlay: true,
                //     viewportFraction: 1,
               //      autoPlayInterval: const Duration(seconds: 7),
                     aspectRatio: 2.0,
@@ -120,18 +122,21 @@ class _VrShowListState extends State<VrShowList> {
   }
 
   Widget customOutlineButton(String title, int index){
-    return OutlinedButton(
-      onPressed : () async{
-        await _carouselController.animateToPage(index);
-      },
-      style: OutlinedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
-          side: const BorderSide(color: Color(0xff9b3de4))
-      ),
-      child: Text(
-        "#$title",
-        style: const TextStyle(
-          color: Color(0xff9b3de4),
+    return Obx(
+        ()=> OutlinedButton(
+        onPressed : () async{
+          await _carouselController.animateToPage(index);
+          _dataController.currentItem.value = index;
+        },
+        style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
+            side: index == _dataController.currentItem.value ? BorderSide(color: Color(0xff9b3de4)) : BorderSide(color: Colors.transparent),
+        ),
+        child: Text(
+          "#$title",
+          style: TextStyle(
+            color: index == _dataController.currentItem.value ? Color(0xff9b3de4) : Colors.black,
+          ),
         ),
       ),
     );

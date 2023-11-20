@@ -17,6 +17,7 @@ class DataController extends GetxController{
   final vrListInit = false.obs;
   var monthlyArtist = <MonthlyArtist>[].obs;
   var vrShowlist = <VrShow>[].obs;
+  var currentItem = 0.obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;
