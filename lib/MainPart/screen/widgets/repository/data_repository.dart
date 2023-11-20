@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
 import 'package:gallery360/MainPart/screen/widgets/main_vrshowlist.dart';
@@ -52,6 +54,16 @@ class DataConnectionRepository extends GetConnect{
     var response = await dio.get(MainPage_VrShow_URL);
     List<dynamic> responseMap = response.data['lending'];
     List<VrShow> res = responseMap.map((json) => VrShow.fromJson(json)).toList();
+    return res;
+  }
+
+  Future<int> loadArtistCount() async{
+    var response = await dio.get(MainPage_Artist_Count);
+    print(MainPage_Artist_Count);
+    print(jsonDecode(response.toString())['count']);
+    //List<dynamic> responseMap = response.data;
+    //print(responseMap);
+    int res = jsonDecode(response.toString())['count'];
     return res;
   }
 

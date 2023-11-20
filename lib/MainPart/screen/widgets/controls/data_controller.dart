@@ -77,9 +77,20 @@ class DataController extends GetxController{
     }
   }
 
+  Future getArtistCount() async{
+    try{
+      int res = await _dataRepository.loadArtistCount();
+      return res;
+    }catch(e){
+      e.printError();
+    }
+  }
+
 
   void dataContollerupdate(){
     update();
   }
+
+
 }
 

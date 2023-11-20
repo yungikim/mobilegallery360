@@ -8,6 +8,10 @@ import 'package:gallery360/MainPart/screen/widgets/main_vrshowlist.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar1.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar2.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar3.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar4.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar5.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebar6.dart';
+import 'package:gallery360/MainPart/screen/widgets/spacebarBottom.dart';
 import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -108,7 +112,14 @@ class _MainPageState extends State<MainPage> {
                 const Spacebar3(),
                 const SizedBox(height: 20.0,),
                 const VrShowList(),
-                const SizedBox(height: 100.0,),
+                const SizedBox(height: 70,),
+                const SpaceBar4(),
+                const SizedBox(height: 70,),
+                const SpaceBar5(),
+                const SizedBox(height: 30,),
+                const SpaceBar6(),
+                const SizedBox(height: 10,),
+                const SpacebarBottom(),
               ]),
             ),
             // SliverToBoxAdapter(
