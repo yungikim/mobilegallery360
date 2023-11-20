@@ -17,7 +17,7 @@ final List<String> mainMessage =[
   '갤러리360\n작가 모집',
   'VR갤러리도\n빌려쓰세요',
   '큐리야~~\n그림을 부탁해!',
-  'VR 전시 서비스\n리뉴얼사이트 오픈',
+  'VR 전시 서비스\n\n리뉴얼사이트 오픈',
   '대관서비스\n궁금하시죠?',
   '디지털 출판\nD-Book',
   '내 공간에 작품 걸기',
@@ -52,8 +52,131 @@ final List<Color> mainMessage_btn_color =[
   Colors.white,
   Colors.white,
   Colors.white,
-  Colors.black,
   Colors.white,
+  Colors.white,
+];
+
+final List<Widget> main_btn_widget = [
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("소개 영상 보기", style: TextStyle(color: Colors.white),),
+    ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("작가 등록 하기", style: TextStyle(color: Colors.white),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Color(0xff4af5d4),
+          width: 1.0,
+        )),
+    child: Text("자세히 알아보기", style: TextStyle(color: Color(0xff4af5d4)),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("AI페인터로 그려보기", style: TextStyle(color: Colors.white),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("자세히 알아보기", style: TextStyle(color: Colors.white),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("무료체험 신청하기", style: TextStyle(color: Colors.white),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.black,
+          width: 1.0,
+        )),
+    child: Text("D-Book 알아보기", style: TextStyle(color: Colors.white),),
+  ),
+
+  OutlinedButton(
+    onPressed: () {},
+    style: OutlinedButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(0.0),
+        ),
+        side: BorderSide(
+          color: Colors.white,
+          width: 1.0,
+        )),
+    child: Text("작품 걸어보기", style: TextStyle(color: Colors.white),),
+  ),
 ];
 
 

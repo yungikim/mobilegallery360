@@ -67,8 +67,8 @@ class _VRListState extends State<VRList> {
                         child: Stack(
                           children: [
                             Positioned(
-                              bottom: 10.0,
-                              left: 10.0,
+                              bottom: 20.0,
+                              left: 15.0,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -113,6 +113,13 @@ class _VRListState extends State<VRList> {
                                       const Icon(
                                         Icons.dataset_linked,
                                         color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            offset: Offset(1.0, 0.0),
+                                            blurRadius: 3,
+                                            color: Colors.black,
+                                          )
+                                        ],
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -136,6 +143,13 @@ class _VRListState extends State<VRList> {
                                       const Icon(
                                         Icons.favorite_border_outlined,
                                         color: Colors.white,
+                                        shadows: [
+                                          Shadow(
+                                            offset: Offset(1.0, 0.0),
+                                            blurRadius: 3,
+                                            color: Colors.black,
+                                          )
+                                        ],
                                       ),
                                       const SizedBox(
                                         width: 10,
