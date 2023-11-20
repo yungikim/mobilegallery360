@@ -11,33 +11,32 @@ class MultipleItemSample extends StatelessWidget {
       appBar: AppBar(
         title: const Text("MultipleItem Slider"),
       ),
-      body: Container(
-          child: CarouselSlider.builder(
+      body: CarouselSlider.builder(
         itemCount: (imageList.length / 2).round(),
         itemBuilder: (context, index, realIdx){
-          final int first = index * 2;
-          final int second = first + 1;
-          return Row(
-            children: [first, second].map((idx){
-              return Expanded(
-                flex: 1,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Image.network(imageList[idx], fit: BoxFit.cover,),
-                ),
-              );
-            }).toList(),
+      final int first = index * 2;
+      final int second = first + 1;
+      return Row(
+        children: [first, second].map((idx){
+          return Expanded(
+            flex: 1,
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 5),
+              child: Image.network(imageList[idx], fit: BoxFit.cover,),
+            ),
           );
+        }).toList(),
+      );
         },
         options: CarouselOptions(
-          height: 300,
+      height: 300,
         //  autoPlay: true,
-          autoPlayInterval: const Duration(milliseconds: 5000),
+      autoPlayInterval: const Duration(milliseconds: 5000),
          // aspectRatio: 1.0,
-          enlargeCenterPage: false,
-          viewportFraction: 1,
+      enlargeCenterPage: false,
+      viewportFraction: 1,
         ),
-      )),
+      ),
     );
   }
 }
