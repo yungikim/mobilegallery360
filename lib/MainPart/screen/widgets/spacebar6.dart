@@ -5,14 +5,14 @@ class SpaceBar6 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 300,
      // color: Colors.yellow,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               children: [
                 Image.asset(

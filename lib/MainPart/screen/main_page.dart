@@ -16,6 +16,7 @@ import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
 import 'package:gallery360/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -37,6 +38,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    _dataController.isMobile.value = ResponsiveBreakpoints.of(context).isMobile;
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,

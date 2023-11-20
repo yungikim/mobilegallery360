@@ -59,10 +59,6 @@ class DataConnectionRepository extends GetConnect{
 
   Future<int> loadArtistCount() async{
     var response = await dio.get(MainPage_Artist_Count);
-    print(MainPage_Artist_Count);
-    print(jsonDecode(response.toString())['count']);
-    //List<dynamic> responseMap = response.data;
-    //print(responseMap);
     int res = jsonDecode(response.toString())['count'];
     return res;
   }

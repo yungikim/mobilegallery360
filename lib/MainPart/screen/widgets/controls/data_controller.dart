@@ -7,6 +7,7 @@ import '../models/vr_showmodel.dart';
 import '../repository/data_repository.dart';
 
 class DataController extends GetxController{
+  var isMobile = true.obs;
   var loadingCoplete = false.obs;
   final DataConnectionRepository _dataRepository = DataConnectionRepository();
   var firstPageArtData = <DataModel>[].obs;
@@ -17,6 +18,7 @@ class DataController extends GetxController{
   var vrShowlist = <VrShow>[].obs;
   var currentItem = 0.obs;
   var vrcurrentItem = 0.obs;
+  var half_list = <String>[].obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;
