@@ -9,7 +9,7 @@ class SpaceBar6 extends StatelessWidget {
       height: 300,
      // color: Colors.yellow,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           children: [
             SizedBox(height: 10,),

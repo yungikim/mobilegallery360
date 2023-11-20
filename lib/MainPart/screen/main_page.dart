@@ -13,6 +13,7 @@ import 'package:gallery360/MainPart/screen/widgets/spacebar5.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebar6.dart';
 import 'package:gallery360/MainPart/screen/widgets/spacebarBottom.dart';
 import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
+import 'package:gallery360/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -84,7 +85,7 @@ class _MainPageState extends State<MainPage> {
                   ],
                 )),
             const SliverToBoxAdapter(
-                 child: VRList(),
+                 child: VRList2(),
             ),
             SliverList(
               delegate: SliverChildListDelegate([

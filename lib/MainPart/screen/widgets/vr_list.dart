@@ -28,6 +28,12 @@ class _VRListState extends State<VRList> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   void checkVR() {
     _dataController.getVrListDataCallDio().then((value) {
       _dataController.vrListData.value = value;
@@ -89,7 +95,7 @@ class _VRListState extends State<VRList> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 2,
                                   ),
                                   Text(
                                     "${e.nickname}",
@@ -106,7 +112,7 @@ class _VRListState extends State<VRList> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    height: 10.0,
+                                    height: 5.0,
                                   ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -183,6 +189,9 @@ class _VRListState extends State<VRList> {
                 autoPlay: true,
                 viewportFraction: ResponsiveBreakpoints.of(context).isMobile ? 1.0 :  0.6,
                 autoPlayInterval: const Duration(seconds: 10),
+                onPageChanged: (index, reaseon){
+                  _dataController.vrcurrentItem.value = index;
+                },
              //   aspectRatio: 1.5,
                 //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
                 // enlargeStrategy:
@@ -195,21 +204,23 @@ class _VRListState extends State<VRList> {
                 return GestureDetector(
                   onTap: () {
                     _carouselController.animateToPage(entry.key);
-                    setState(() {
-                      _current = entry.key;
-                    });
+
+                    _dataController.vrcurrentItem.value = entry.key;
+
                   },
-                  child: Container(
-                    width: 12.0,
-                    height: 12.0,
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 4.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: (Theme.of(context).brightness == Brightness.dark
-                                ? Colors.white
-                                : Colors.black)
-                            .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                  child: Obx(
+                    ()=> Container(
+                      width: 12.0,
+                      height: 12.0,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 4.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
+                              .withOpacity(_dataController.vrcurrentItem.value == entry.key ? 0.9 : 0.4)),
+                    ),
                   ),
                 );
               }).toList(),

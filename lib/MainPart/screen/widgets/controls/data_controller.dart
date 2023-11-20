@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:gallery360/MainPart/screen/widgets/models/data_monthly_artist.dart';
 import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
@@ -18,6 +16,7 @@ class DataController extends GetxController{
   var monthlyArtist = <MonthlyArtist>[].obs;
   var vrShowlist = <VrShow>[].obs;
   var currentItem = 0.obs;
+  var vrcurrentItem = 0.obs;
 
   var mainPageRecommandImageURL = "".obs;
   var mainPageRecommandImageTitle = "".obs;

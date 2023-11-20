@@ -7,7 +7,7 @@ class SpacebarBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 400,
       color: Colors.black,
       child: Column(
         children: [

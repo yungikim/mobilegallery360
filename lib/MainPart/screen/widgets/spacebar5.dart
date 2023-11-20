@@ -26,14 +26,14 @@ class SpaceBar5 extends StatelessWidget {
             const Text(
               "당신의 공간에 다양한 작품을 미리 걸어보세요",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Colors.white,
               ),
             ),
             const Text(
               "내 공간에 작품 걸어보기 서비스는 당신의 가장 소중한 공간을 풍요롭게 채워드립니다.",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
