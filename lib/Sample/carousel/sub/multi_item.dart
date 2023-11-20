@@ -22,17 +22,18 @@ class MultipleItemSample extends StatelessWidget {
               return Expanded(
                 flex: 1,
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Image.network(imageList[index], fit: BoxFit.cover,),
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Image.network(imageList[idx], fit: BoxFit.cover,),
                 ),
               );
             }).toList(),
           );
         },
         options: CarouselOptions(
-          autoPlay: true,
+          height: 300,
+        //  autoPlay: true,
           autoPlayInterval: const Duration(milliseconds: 5000),
-          aspectRatio: 2.0,
+         // aspectRatio: 1.0,
           enlargeCenterPage: false,
           viewportFraction: 1,
         ),

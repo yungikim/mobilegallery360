@@ -5,6 +5,7 @@ import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../util/Util.dart';
 
@@ -53,8 +54,8 @@ class _VRListState extends State<VRList> {
             CarouselSlider(
               items: _dataController.vrListData
                   .map((e) => Container(
-                        height: 400.0,
-                        width: double.infinity,
+                        //height: 400.0,
+                        //width: double.infinity,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
                             //  borderRadius: BorderRadius.circular(15.0),
@@ -178,14 +179,14 @@ class _VRListState extends State<VRList> {
                   .toList(),
               carouselController: _carouselController,
               options: CarouselOptions(
-                //height: 200,
+                height: ResponsiveBreakpoints.of(context).isMobile ? 250 : 350,
                 autoPlay: true,
-                viewportFraction: 1,
+                viewportFraction: ResponsiveBreakpoints.of(context).isMobile ? 1.0 :  0.6,
                 autoPlayInterval: const Duration(seconds: 10),
-                aspectRatio: 1.5,
+             //   aspectRatio: 1.5,
                 //    enlargeCenterPage: true,   //가운데 만 조금 커지는 옵션
-                enlargeStrategy:
-                    CenterPageEnlargeStrategy.zoom, //높이가 동일한 이미지로 표시하는 옵션
+                // enlargeStrategy:
+                //     CenterPageEnlargeStrategy.zoom, //높이가 동일한 이미지로 표시하는 옵션
               ),
             ),
             Row(
