@@ -6,6 +6,7 @@ import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controlle
 import 'package:gallery360/pages/artist/artist_main.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 
 class DrawerScreen extends StatefulWidget {
@@ -22,26 +23,27 @@ class _DrawerScreenState extends State<DrawerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ZoomDrawer(
-      style: DrawerStyle.defaultStyle,
-      borderRadius: _dataController.isMobile.value ? 40 : 30,
-      angle: -8,
-      slideWidth:  MediaQuery.of(context).size.width * (_dataController.isMobile.value ? 0.7 : 0.4),
-      showShadow: true,
-      shadowLayer2Color: Colors.orangeAccent,
-      menuScreen: Builder(
-        builder: (context) => MenuScreen(
-          currentItem: currentItem,
-          onSelectedItem: (item){
-            setState(() {
-              currentItem = item;
 
-              ZoomDrawer.of(context)!.close();
-            });
-          },
+    return ZoomDrawer(
+        style: DrawerStyle.defaultStyle,
+        borderRadius: ResponsiveBreakpoints.of(context).isMobile ? 40 : 30,
+        angle: -8,
+        slideWidth:  MediaQuery.of(context).size.width * (ResponsiveBreakpoints.of(context).isMobile ? 0.7 : 0.4),
+        showShadow: true,
+        shadowLayer2Color: Colors.orangeAccent,
+        menuScreen: Builder(
+          builder: (context) => MenuScreen(
+            currentItem: currentItem,
+            onSelectedItem: (item){
+              setState(() {
+                currentItem = item;
+
+                ZoomDrawer.of(context)!.close();
+              });
+            },
+          ),
         ),
-      ),
-      mainScreen: getScreen(),
+        mainScreen: getScreen(),
     );
   }
 
