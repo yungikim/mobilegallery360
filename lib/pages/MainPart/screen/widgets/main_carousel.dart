@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import '../../../data/base_data.dart';
-import '../../../core/const.dart';
+import '../../../../data/base_data.dart';
+import '../../../../core/const.dart';
 
 class MainCarouselWidget extends StatefulWidget {
   const MainCarouselWidget({super.key});

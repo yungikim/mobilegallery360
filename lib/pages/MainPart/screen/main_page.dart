@@ -1,21 +1,20 @@
 
 import 'package:flutter/material.dart';
-import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart';
-import 'package:gallery360/MainPart/screen/widgets/main_art_list.dart';
-import 'package:gallery360/MainPart/screen/widgets/main_carousel.dart';
-import 'package:gallery360/MainPart/screen/widgets/main_monthly_artist.dart';
-import 'package:gallery360/MainPart/screen/widgets/main_vrshowlist.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar1.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar2.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar3.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar4.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar5.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebar6.dart';
-import 'package:gallery360/MainPart/screen/widgets/spacebarBottom.dart';
-import 'package:gallery360/MainPart/screen/widgets/vr_list.dart';
-import 'package:gallery360/MainPart/screen/widgets/vr_list2.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/main_art_list.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/main_carousel.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/main_monthly_artist.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/main_vrshowlist.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar1.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar2.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar3.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar4.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar5.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebar6.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/spacebarBottom.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class MainPage extends StatefulWidget {
@@ -45,7 +44,13 @@ class _MainPageState extends State<MainPage> {
           centerTitle: true,
           backgroundColor: Colors.black,
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if (ZoomDrawer.of(context)!.isOpen()){
+                ZoomDrawer.of(context)!.close();
+              }else{
+                ZoomDrawer.of(context)!.open();
+              }
+            },
             icon: const Icon(
               Icons.menu,
               color: Colors.white,

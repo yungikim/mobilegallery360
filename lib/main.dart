@@ -1,11 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-import 'MainPart/screen/main_page.dart';
+import 'pages/MainPart/screen/main_page.dart';
+import 'draw/sample/DrawController.dart';
+import 'draw/drawScreen.dart';
 
 
 class MyHttpOverrides extends HttpOverrides{
@@ -17,8 +21,8 @@ class MyHttpOverrides extends HttpOverrides{
 }
 
 void main() {
-  HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
 
+  HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
   runApp(const Gallery360Main());
 }
 
@@ -46,7 +50,7 @@ class Gallery360Main extends StatelessWidget {
         child: child!,
         );
       },
-      home: const MainPage(),
+      home: DrawerScreen(),
     );
   }
 }

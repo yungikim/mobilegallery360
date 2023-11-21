@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../../Sample/carousel/sub/base_carousel.dart';
+import '../../../../Sample/carousel/sub/base_carousel.dart';
 
 class MonthlyArtistWidget extends StatefulWidget {
   const MonthlyArtistWidget({super.key});

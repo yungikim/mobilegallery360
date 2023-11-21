@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart';
-import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import '../../../util/Util.dart';
+import '../../../../util/Util.dart';
 
 class VRList2 extends StatefulWidget {
   const VRList2({super.key});

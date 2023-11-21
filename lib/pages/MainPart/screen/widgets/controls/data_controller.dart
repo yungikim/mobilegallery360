@@ -1,7 +1,7 @@
-import 'package:gallery360/MainPart/screen/widgets/models/data_monthly_artist.dart';
-import 'package:gallery360/MainPart/screen/widgets/models/vr_model.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/models/data_monthly_artist.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
-import '../../../../util/Util.dart';
+import '../../../../../util/Util.dart';
 import '../models/data_model.dart';
 import '../models/vr_showmodel.dart';
 import '../repository/data_repository.dart';

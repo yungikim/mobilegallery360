@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gallery360/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
