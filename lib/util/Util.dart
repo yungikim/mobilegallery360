@@ -1,4 +1,6 @@
 
+import 'package:intl/intl.dart';
+
 class Util{
   static String chageText(String str){
     return str.replaceAll("&#40;", "(").replaceAll("&#41;", ")").replaceAll("&lt;", "<").replaceAll("&gt;", ">");
@@ -6,5 +8,10 @@ class Util{
 
   static String makeMainArtListURL(String email, String artImgFilename){
     return "https://www.gallery360.co.kr/artimage/${email}/art/preview/${artImgFilename}.jpg";
+  }
+
+  static String addComma(double price){
+    var f = NumberFormat('###,###,###,###');
+    return f.format(price);
   }
 }
