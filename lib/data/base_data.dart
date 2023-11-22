@@ -66,11 +66,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("소개 영상 보기", style: TextStyle(color: Colors.white),),
+    child: const Text("소개 영상 보기", style: TextStyle(color: Colors.white),),
     ),
 
   OutlinedButton(
@@ -81,11 +81,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("작가 등록 하기", style: TextStyle(color: Colors.white),),
+    child: const Text("작가 등록 하기", style: TextStyle(color: Colors.white),),
   ),
 
   OutlinedButton(
@@ -96,11 +96,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Color(0xff4af5d4),
           width: 1.0,
         )),
-    child: Text("자세히 알아보기", style: TextStyle(color: Color(0xff4af5d4)),),
+    child: const Text("자세히 알아보기", style: TextStyle(color: Color(0xff4af5d4)),),
   ),
 
   OutlinedButton(
@@ -111,11 +111,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("AI페인터로 그려보기", style: TextStyle(color: Colors.white),),
+    child: const Text("AI페인터로 그려보기", style: TextStyle(color: Colors.white),),
   ),
 
   OutlinedButton(
@@ -126,11 +126,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("자세히 알아보기", style: TextStyle(color: Colors.white),),
+    child: const Text("자세히 알아보기", style: TextStyle(color: Colors.white),),
   ),
 
   OutlinedButton(
@@ -141,11 +141,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("무료체험 신청하기", style: TextStyle(color: Colors.white),),
+    child: const Text("무료체험 신청하기", style: TextStyle(color: Colors.white),),
   ),
 
   OutlinedButton(
@@ -156,11 +156,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.black,
           width: 1.0,
         )),
-    child: Text("D-Book 알아보기", style: TextStyle(color: Colors.white),),
+    child: const Text("D-Book 알아보기", style: TextStyle(color: Colors.white),),
   ),
 
   OutlinedButton(
@@ -171,11 +171,11 @@ final List<Widget> main_btn_widget = [
           borderRadius:
           BorderRadius.circular(0.0),
         ),
-        side: BorderSide(
+        side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: Text("작품 걸어보기", style: TextStyle(color: Colors.white),),
+    child: const Text("작품 걸어보기", style: TextStyle(color: Colors.white),),
   ),
 ];
 

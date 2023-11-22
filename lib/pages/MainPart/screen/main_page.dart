@@ -17,6 +17,8 @@ import 'package:gallery360/pages/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../search/search_bar.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -65,7 +67,9 @@ class _MainPageState extends State<MainPage> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const SearchBarScreen(), transition: Transition.fadeIn);
+                },
                 icon: const Icon(
                   Icons.search,
                   color: Colors.white,
