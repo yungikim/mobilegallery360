@@ -28,7 +28,12 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
 
-    _slideController.firstCarouselHeight.value = height * 0.5;
+    if (height * 0.5 < 300){
+      _slideController.firstCarouselHeight.value = 400;
+    }else{
+      _slideController.firstCarouselHeight.value = height * 0.5;
+    }
+
     //_slideController.firstCarouselWidth.value = width * 0.79;
     _slideController.firstCarouselWidth.value = width;
 
@@ -65,7 +70,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                       ResponsiveBreakpoints.of(context).isMobile
                                           ? CrossAxisAlignment.center
                                           : CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                               //   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                         ResponsiveBreakpoints.of(context)
@@ -148,7 +153,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
               viewportFraction: 1.0,
               autoPlayInterval: const Duration(seconds: 7),
               //   enlargeCenterPage: true,
-              aspectRatio: 2,
+            //  aspectRatio: 2,
               //   enlargeFactor: 0.4,
               //   enlargeStrategy: CenterPageEnlargeStrategy.zoom,
               onPageChanged: (index, reason) {
