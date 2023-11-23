@@ -19,9 +19,18 @@ class TotalSearchArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final width = MediaQuery.of(context).size.width;
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Container(
+          width: width * 0.95,
+          height: 1,
+          color: Colors.grey.withOpacity(0.3),
+        ),
+        const SizedBox(height: 20,),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           child: Row(

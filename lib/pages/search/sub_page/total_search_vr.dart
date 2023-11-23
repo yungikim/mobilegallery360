@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:get/get.dart';
@@ -30,8 +31,16 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
+        Container(
+          width: width * 0.95,
+          height: 1,
+          color: Colors.grey.withOpacity(0.3),
+        ),
+        const SizedBox(height: 20,),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           child: Row(
@@ -59,18 +68,17 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
             ],
           ),
         ),
-        GridView.builder(
+        MasonryGridView.count(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _searchResultController.SearchVrGallyResult.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  ResponsiveBreakpoints.of(context).isMobile ? 1 : 2),
-          itemBuilder: (context, index) {
+          crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
+          itemBuilder: (context, index){
             var item = _searchResultController.SearchVrGallyResult[index];
             Map<String, dynamic> etc = jsonDecode(item.source.etc);
             String id = item.source.id.split("-=spl=-")[0];
-            var url = "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
+            var url =
+            "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
             return Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
@@ -78,34 +86,54 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
                 children: [
                   Container(
                     width: double.infinity,
-                    height : 270,
+                    height: 270,
                     decoration: BoxDecoration(
-                        color: Colors.red,
                       image: DecorationImage(
-                        image: NetworkImage(url),fit: BoxFit.cover,
+                        image: NetworkImage(url),
+                        fit: BoxFit.cover,
                       ),
-                    ),  //child:
+                    ), //child:
                   ),
-                  const SizedBox(height: 10,),
-                  Text(Util.chageText(etc['title']), style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                  Text(item.source.nickname, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    Util.chageText(etc['title']),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    item.source.nickname,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       const Icon(MyFlutterApp.icon_vr_view_count_b),
-                      const SizedBox(width: 5,),
-                      Text("${Util.addComma2(etc['read'])}"),
-                      const SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(Util.addComma2(etc['read'])),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       const Icon(MyFlutterApp.icon_vr_collect_count_b),
-                      const SizedBox(width: 5,),
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Text("${etc['like']}"),
                     ],
                   ),
+                  const SizedBox(height: 10,),
                 ],
               ),
             );
           },
         ),
+
       ],
     );
   }
