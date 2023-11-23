@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
 import '../../../const/const.dart';
 
@@ -20,11 +21,21 @@ class SearchRepository extends GetConnect{
     return data;
   }
 
-  Future<dynamic> LoadSearchCategory(query, opt, start) async{
-    String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-opt-", opt).replaceFirst("-start-", start);
-    print(url);
-    var response = await dio.get(url);
-   final data = response.data;
-   return data;
+  Future<dynamic> LoadSearchCategory(String query, String opt, int page, int limit) async{
+    try{
+      int px = page - 1;
+      if (page > 1){
+        px = (page - 1) * limit;
+      }
+      String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-opt-", opt).replaceFirst("-start-", px.toString());
+      print(url);
+      var response = await dio.get(url);
+      final data = response.data;
+      return data;
+    }catch(e){
+      return
+      e.printError();
+    }
+
   }
 }

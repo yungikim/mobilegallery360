@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:gallery360/draw/drawScreen.dart';
 import 'package:gallery360/pages/search/model/artist_category_model.dart';
 import 'package:gallery360/pages/search/repository/search_repository.dart';
@@ -23,18 +24,20 @@ class SearchResultController extends GetxController{
   var searchcomplete = false.obs;
   var isSearching = false.obs;
 
-  var SearchQuery = "".obs;
-
   final List<ArtistCategoryModel> SearchArtistCategory = <ArtistCategoryModel>[].obs;
 
-  final int _limit = 10;
+  final int _limit = 8;
   var hasMore = true.obs;
   int _page = 1;
+  var isLoadingComplete = false.obs;
+  var totalSearchCount = 0.obs;
+
+  late final TextEditingController searchquery;
 
 
   Future<void> getSearchResult(String query) async{
     try{
-      SearchQuery.value = query;
+      // SearchQuery.value = query;
       SearchArtResult.clear();
       SearchNewsResult.clear();
       SearchArtistResult.clear();
@@ -79,44 +82,54 @@ class SearchResultController extends GetxController{
     }
   }
 
-  Future getSearchCategory(String query, String opt, String start) async{
+  Future getSearchCategory(String opt) async{
     try{
-      print(searchcomplete.value);
+      print("getSearchCategory");
 
-      if (start == "0"){
-        SearchArtistCategory.clear();
-      }
+      // int start = 0;
+      // if (_page.value == 0){
+      //   print("초기화 한다.");
+      //   SearchArtistCategory.clear();
+      //   start = 0;
+      // }else{
+      //   start = _page.value * _limit;
+      // }
 
-      SearchQuery.value = query;
+      // print(_page.value);
+      // print(start);
 
-     Util.WLine();
-     print(query);
-     print(opt);
-     print(start);
-     Util.WLine();
+      String query = searchquery.text;
+      // String qstart = start.toString();
 
-
-      var res = await _searchRepository.LoadSearchCategory(query, opt, start);
-
-      print(res);
-
-
+     // Util.WLine();
+     // print(query);
+     // print(opt);
+     // print(qstart);
+     // Util.WLine();
+      var res = await _searchRepository.LoadSearchCategory(query, opt, _page, _limit);
+    //  print(res);
       if (opt == "user"){
         List<dynamic> artistlist = res['hits']['hits'];
-        print(artistlist);
+        totalSearchCount.value = res['hits']['total'];
+      //  print(artistlist);
 
         List<ArtistCategoryModel> rx1 = artistlist.map<ArtistCategoryModel>((json) => ArtistCategoryModel.fromJson(json)).toList();
-        print("22222222222");
-       // SearchArtistCategory.addAll(rx1);
-        print("333333333");
+       //  print("22222222222");
 
+       //  print("333333333");
+
+         print(rx1.length);
+        // print(_limit);
+        // print("+++++++++++++++++++++++++++++++++++++++");
         if (rx1.length < _limit){
           hasMore.value = false;
         }
+
+
+        SearchArtistCategory.addAll(rx1);
         _page++;
 
-        return rx1;
-
+        isLoadingComplete.value = true;
       }
 
 

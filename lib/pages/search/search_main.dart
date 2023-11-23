@@ -14,7 +14,7 @@ class SearchBarScreen extends StatefulWidget {
 }
 
 class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderStateMixin{
-  final TextEditingController _searchTextController = TextEditingController();
+  //final TextEditingController _searchTextController = TextEditingController();
   final SearchResultController _searchController = Get.put(SearchResultController());
   late TabController _tabController;
 
@@ -26,13 +26,15 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   @override
   void initState() {
     // TODO: implement initState
+    _searchController.searchquery = TextEditingController();
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
   }
 
   @override
   void dispose() {
-    _searchTextController.dispose();
+    //_searchTextController.dispose();
+    _searchController.searchquery.dispose();
     _tabController.dispose();
     // TODO: implement dispose
     super.dispose();
@@ -79,7 +81,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                     onSubmitted: (value){
                       TotalSearchFnc(value);
                     },
-                    controller: _searchTextController,
+                    controller: _searchController.searchquery,
                     style: const TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       // enabledBorder: const UnderlineInputBorder(
@@ -94,7 +96,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                           icon: const Icon(Icons.clear, color: Colors.black,),
                           onPressed: () {
                             //Get.back();
-                            _searchTextController.text = "";
+                            _searchController.searchquery.text = "";
                           },
                         ),
                         hintText: '작품, 작가, VR갤러리, 소식 통합검색',
