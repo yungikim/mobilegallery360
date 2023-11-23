@@ -17,9 +17,17 @@ class TotalSeachPage extends StatefulWidget {
 }
 
 class _TotalSeachPageState extends State<TotalSeachPage> {
+  SearchResultController _searchResultController = Get.put(SearchResultController());
 
   @override
   void initState() {
+    String query = _searchResultController.searchquery.text;
+   // print("query : ${query}");
+    if (query != ""){
+      _searchResultController.searchcomplete.value = false;
+      _searchResultController.getSearchResult(query);
+    }
+
     // TODO: implement initState
     super.initState();
   }

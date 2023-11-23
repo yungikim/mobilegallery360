@@ -19,14 +19,37 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   late TabController _tabController;
 
   void TotalSearchFnc(String query){
-    _searchController.getSearchResult(query);
-    _tabController.animateTo(0);
+    print("###############################################################");
+    print("_tabController.index : ${_tabController.index}");
+    if (_tabController.index == 0){
+      _searchController.getSearchResult(query);
+      _tabController.animateTo(0);
+    }else if (_tabController.index == 1){
+      _searchController.artist_page.value = 1;
+      _searchController.isLoadingComplete.value = false;
+      _searchController.searchquery.text = query;
+      _searchController.hasMore.value = true;
+      _searchController.getSearchCategory("user");
+      _tabController.animateTo(1);
+    }
+  }
+
+  void CloseBtn(){
+    _searchController.searchquery.text = "";
+
+    if (_tabController.index == 0){
+
+    }else if (_tabController.index == 1){
+        _searchController.totalSearchCount.value = 0;
+        _searchController.SearchArtistCategory.clear();
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
     _searchController.searchquery = TextEditingController();
+    print("시작한다....... : ${_searchController.searchquery.text}");
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
   }
@@ -96,7 +119,8 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                           icon: const Icon(Icons.clear, color: Colors.black,),
                           onPressed: () {
                             //Get.back();
-                            _searchController.searchquery.text = "";
+                            CloseBtn();
+
                           },
                         ),
                         hintText: '작품, 작가, VR갤러리, 소식 통합검색',

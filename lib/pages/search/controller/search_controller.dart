@@ -28,7 +28,7 @@ class SearchResultController extends GetxController{
 
   final int _limit = 8;
   var hasMore = true.obs;
-  int _page = 1;
+  var artist_page = 1.obs;
   var isLoadingComplete = false.obs;
   var totalSearchCount = 0.obs;
 
@@ -85,28 +85,22 @@ class SearchResultController extends GetxController{
   Future getSearchCategory(String opt) async{
     try{
       print("getSearchCategory");
+      print("_page : ${artist_page.value}");
 
-      // int start = 0;
-      // if (_page.value == 0){
-      //   print("초기화 한다.");
-      //   SearchArtistCategory.clear();
-      //   start = 0;
-      // }else{
-      //   start = _page.value * _limit;
-      // }
 
-      // print(_page.value);
-      // print(start);
+      if (artist_page.value == 1){
+        SearchArtistCategory.clear();
+      }
 
       String query = searchquery.text;
       // String qstart = start.toString();
 
-     // Util.WLine();
-     // print(query);
-     // print(opt);
-     // print(qstart);
-     // Util.WLine();
-      var res = await _searchRepository.LoadSearchCategory(query, opt, _page, _limit);
+     Util.WLine();
+     print(query);
+     print(opt);
+    print(artist_page.value);
+     Util.WLine();
+      var res = await _searchRepository.LoadSearchCategory(query, opt, artist_page.value, _limit);
     //  print(res);
       if (opt == "user"){
         List<dynamic> artistlist = res['hits']['hits'];
@@ -125,9 +119,11 @@ class SearchResultController extends GetxController{
           hasMore.value = false;
         }
 
+        print("hasMore.value : ${hasMore.value}");
+
 
         SearchArtistCategory.addAll(rx1);
-        _page++;
+        artist_page.value++;
 
         isLoadingComplete.value = true;
       }

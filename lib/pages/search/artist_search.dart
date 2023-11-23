@@ -29,7 +29,16 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
     // TODO: implement initState
     scrollController = ScrollController();
     scrollController.addListener(onScroll);
-    _searchResultController.getSearchCategory("user");
+
+    String query = _searchResultController.searchquery.text;
+    if (query != ""){
+      _searchResultController.artist_page.value = 1;
+      _searchResultController.isLoadingComplete.value = false;
+      _searchResultController.getSearchCategory("user");
+    }else{
+      _searchResultController.isLoadingComplete.value = true;
+    }
+
     super.initState();
   }
 
@@ -44,7 +53,7 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
   void onScroll() {
     double maxScroll = scrollController.position.maxScrollExtent;
     double currentScroll = scrollController.position.pixels;
-    double delta = 600.0;
+    double delta = 10.0;
 
     if (maxScroll == currentScroll && _searchResultController.hasMore.value) {
       _searchResultController.getSearchCategory("user");
@@ -64,11 +73,11 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
-                  child: Text(
+                  child: _searchResultController.SearchArtistCategory.length > 0 ? Text(
                     "검색결과 ${_searchResultController.totalSearchCount.value}개",
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  ) : Text(""),
                 ),
               ),
               SliverToBoxAdapter(
@@ -88,9 +97,9 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             color: Colors.white,
-                           // border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1),
+                            border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1),
                           ),
                           //height:  100,
                           //color: Colors.blue,
@@ -117,7 +126,7 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                           "${item.source.name} | ${item.source.nameEng}",
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16,
+                                            fontSize: 15,
                                             overflow: TextOverflow.clip
                                           ),
                                         ),
@@ -129,13 +138,27 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                     ],
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           )),
                     );
                   },
                 ),
-              )
+              ),
+
+              // SliverToBoxAdapter(
+              //   // child: Visibility(
+              //   //   visible: !_searchResultController.isLoadingComplete.value,
+              //     child: Container(
+              //       height: !_searchResultController.isLoadingComplete.value ? 100 : 0,
+              //      // color: Colors.red,
+              //       child: Center(
+              //         child: !_searchResultController.isLoadingComplete.value ? const CircularProgressIndicator() : const SizedBox(),
+              //       ),
+              //     ),
+              //   ),
+
+           //   )
             ],
           );
         } else {
