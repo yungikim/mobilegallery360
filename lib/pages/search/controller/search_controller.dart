@@ -26,7 +26,7 @@ class SearchResultController extends GetxController{
 
   final List<ArtistCategoryModel> SearchArtistCategory = <ArtistCategoryModel>[].obs;
 
-  final int _limit = 8;
+  final int _limit = 20;
   var hasMore = true.obs;
   var artist_page = 1.obs;
   var isLoadingComplete = false.obs;

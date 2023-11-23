@@ -27,7 +27,7 @@ class SearchRepository extends GetConnect{
       if (page > 1){
         px = (page - 1) * limit;
       }
-      String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-opt-", opt).replaceFirst("-start-", px.toString());
+      String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-perpage-", limit.toString()).replaceFirst("-opt-", opt).replaceFirst("-start-", px.toString());
       print(url);
       var response = await dio.get(url);
       final data = response.data;
