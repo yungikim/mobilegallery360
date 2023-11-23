@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../const/const.dart';
+import '../../util/Util.dart';
 
 class ArtistSearchPage extends StatefulWidget {
   const ArtistSearchPage({super.key});
@@ -123,7 +124,7 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                     children: [
                                       SizedBox(
                                         child: Text(
-                                          "${item.source.name} | ${item.source.nameEng}",
+                                          "${Util.chageText(item.source.name)} | ${Util.chageText(item.source.nameEng)}",
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 15,

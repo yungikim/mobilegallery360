@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:get/get.dart';
 import '../../../const/const.dart';
+import '../../../util/Util.dart';
 import '../model/artist_model.dart';
 
 class TotalSearchArtist extends StatelessWidget {
@@ -78,7 +79,7 @@ class TotalSearchArtist extends StatelessWidget {
                           SizedBox(
                             width: width - 110,
                             child: Text(
-                              "${item.source.nickname} | ${item.source.nameEng}",
+                              "${Util.chageText(item.source.nickname)} | ${Util.chageText(item.source.nameEng)}",
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
