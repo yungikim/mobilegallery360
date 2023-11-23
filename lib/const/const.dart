@@ -6,3 +6,5 @@ const String MainPage_Month_Artist_URL = "${base_url}/load_monthly_artist_public
 const String MainPage_VrShow_URL = "${base_url}/loadAll_lending.mon";
 const String MainPage_Artist_Count = "${base_url}/load_all_partners_count.mon";
 const String Search_Url = "${base_url}/portal_search_public.mon?q=query";
+
+

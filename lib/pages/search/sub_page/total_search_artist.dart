@@ -45,7 +45,7 @@ class TotalSearchArtist extends StatelessWidget {
         ),
         ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.all(0.0),
             itemCount: _searchResultController.SearchArtistResult.length,
             itemBuilder: (context, index) {
@@ -54,8 +54,8 @@ class TotalSearchArtist extends StatelessWidget {
               String purl =
                   "${base_url}/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
               return Container(
-                padding: EdgeInsets.all(0.0),
-                margin: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(0.0),
+                margin: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.withOpacity(0.2)),
                 ),
@@ -65,8 +65,10 @@ class TotalSearchArtist extends StatelessWidget {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(purl), fit: BoxFit.cover)),
+
                       width: 80,
                       height: 80,
+
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),

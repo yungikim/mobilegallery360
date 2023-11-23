@@ -5,6 +5,8 @@ import 'package:gallery360/pages/search/model/art_model.dart';
 import 'package:gallery360/pages/search/model/artist_model.dart';
 import 'package:gallery360/pages/search/sub_page/total_search_art.dart';
 import 'package:gallery360/pages/search/sub_page/total_search_artist.dart';
+import 'package:gallery360/pages/search/sub_page/total_search_news.dart';
+import 'package:gallery360/pages/search/sub_page/total_search_vr.dart';
 import 'package:get/get.dart';
 
 class TotalSeachPage extends StatefulWidget {
@@ -44,6 +46,10 @@ class _TotalSeachPageState extends State<TotalSeachPage> {
                 TotalSearchArtist(),
                 const SizedBox(height: 20,),
                 TotalSearchArt(),
+                const SizedBox(height: 30,),
+                TotalSearchVR(),
+                const SizedBox(height: 30,),
+                TotalSearchNews(),
               ]),
             )
 

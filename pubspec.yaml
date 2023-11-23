@@ -101,6 +101,9 @@ flutter:
           weight: 300
         - asset: assets/fonts/NotoSansKR-Thin.otf
           weight: 100
+    - family: MyFlutterApp
+      fonts:
+        - asset: assets/fonts/MyFlutterApp.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
