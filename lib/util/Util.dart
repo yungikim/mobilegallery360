@@ -23,4 +23,8 @@ class Util{
     var f = NumberFormat('###,###,###,###');
     return f.format(price);
   }
+
+  static void WLine(){
+    print("=============================================================");
+  }
 }

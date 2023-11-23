@@ -52,62 +52,6 @@ class _TotalSeachPageState extends State<TotalSeachPage> {
                 TotalSearchNews(),
               ]),
             )
-
-            // SliverToBoxAdapter(
-            //   child: ListView.builder(
-            //     //    shrinkWrap: true,
-            //       padding: const EdgeInsets.all(0.0),
-            //       itemCount: _searchResultController.SearchArtistResult.length,
-            //       itemBuilder: (context, index) {
-            //         ArtistModel item =
-            //         _searchResultController.SearchArtistResult[index];
-            //         String purl =
-            //             "${base_url}/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
-            //         return Container(
-            //           padding: EdgeInsets.all(0.0),
-            //           margin: EdgeInsets.all(5),
-            //           decoration: BoxDecoration(
-            //             border: Border.all(color: Colors.grey.withOpacity(0.2)),
-            //           ),
-            //           child: Row(
-            //             children: [
-            //               Container(
-            //                 decoration: BoxDecoration(
-            //                     image: DecorationImage(
-            //                         image: NetworkImage(purl),
-            //                         fit: BoxFit.cover)),
-            //                 width: 80,
-            //                 height: 80,
-            //               ),
-            //               Padding(
-            //                 padding: const EdgeInsets.all(8.0),
-            //                 child: Column(
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   children: [
-            //                     SizedBox(
-            //                       width: width - 110,
-            //                       child: Text(
-            //                         "${item.source.nickname} | ${item.source.nameEng}",
-            //                         overflow: TextOverflow.ellipsis,
-            //                         style: const TextStyle(
-            //                           fontWeight: FontWeight.bold,
-            //                           fontSize: 14,
-            //                         ),
-            //                       ),
-            //                     ),
-            //                     const SizedBox(
-            //                       height: 8,
-            //                     ),
-            //                     const Text("작가정보 더보기 >", style: TextStyle(fontSize: 13),),
-            //                   ],
-            //                 ),
-            //               )
-            //             ],
-            //           ),
-            //
-            //         );
-            //       }),
-            // )
           ],
 
         );

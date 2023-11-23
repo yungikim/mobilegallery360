@@ -13,10 +13,18 @@ class SearchRepository extends GetConnect{
   final Dio dio = Dio();
 
   Future<dynamic> LoadSearch(query) async{
-    print(Search_Url.replaceFirst("query", query));
+    //print(Search_Url.replaceFirst("query", query));
     var response = await dio.get(Search_Url.replaceFirst("query", query));
     final data = response.data;
-    print(data);
+   // print(data);
     return data;
+  }
+
+  Future<dynamic> LoadSearchCategory(query, opt, start) async{
+    String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-opt-", opt).replaceFirst("-start-", start);
+    print(url);
+    var response = await dio.get(url);
+   final data = response.data;
+   return data;
   }
 }

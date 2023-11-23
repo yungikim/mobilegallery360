@@ -17,7 +17,7 @@ import 'package:gallery360/pages/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
-import '../../search/search_bar.dart';
+import '../../search/search_main.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

@@ -1,10 +1,12 @@
 import 'package:gallery360/draw/drawScreen.dart';
+import 'package:gallery360/pages/search/model/artist_category_model.dart';
 import 'package:gallery360/pages/search/repository/search_repository.dart';
 import 'package:get/get.dart';
 import '../model/art_model.dart';
 import '../model/artist_model.dart';
 import '../model/news_model.dart';
 import '../model/vrgallery_model.dart';
+import 'package:gallery360/util/Util.dart';
 
 class SearchResultController extends GetxController{
 
@@ -18,14 +20,21 @@ class SearchResultController extends GetxController{
   var SearchVrGalleryTotalCount = 0.obs;
   final List<NewsModel> SearchNewsResult = <NewsModel>[].obs;
   var SearchNewsTotalCount = 0.obs;
-
   var searchcomplete = false.obs;
   var isSearching = false.obs;
+
+  var SearchQuery = "".obs;
+
+  final List<ArtistCategoryModel> SearchArtistCategory = <ArtistCategoryModel>[].obs;
+
+  final int _limit = 10;
+  var hasMore = true.obs;
+  int _page = 1;
 
 
   Future<void> getSearchResult(String query) async{
     try{
-
+      SearchQuery.value = query;
       SearchArtResult.clear();
       SearchNewsResult.clear();
       SearchArtistResult.clear();
@@ -36,7 +45,6 @@ class SearchResultController extends GetxController{
       List<dynamic> keys = res['aggregations']['by_district']['buckets'];
       for (int k = 0; k < keys.length; k++){
         String key = keys[k]['key'];
-        //print(key);
         if (key == "art"){
           //작품 검색 결과를 리스트업 한다.
           List<dynamic> artlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
@@ -67,6 +75,53 @@ class SearchResultController extends GetxController{
       searchcomplete.value = true;
     }catch(e){
      // return <ArtModel>[];
+      e.printError();
+    }
+  }
+
+  Future getSearchCategory(String query, String opt, String start) async{
+    try{
+      print(searchcomplete.value);
+
+      if (start == "0"){
+        SearchArtistCategory.clear();
+      }
+
+      SearchQuery.value = query;
+
+     Util.WLine();
+     print(query);
+     print(opt);
+     print(start);
+     Util.WLine();
+
+
+      var res = await _searchRepository.LoadSearchCategory(query, opt, start);
+
+      print(res);
+
+
+      if (opt == "user"){
+        List<dynamic> artistlist = res['hits']['hits'];
+        print(artistlist);
+
+        List<ArtistCategoryModel> rx1 = artistlist.map<ArtistCategoryModel>((json) => ArtistCategoryModel.fromJson(json)).toList();
+        print("22222222222");
+       // SearchArtistCategory.addAll(rx1);
+        print("333333333");
+
+        if (rx1.length < _limit){
+          hasMore.value = false;
+        }
+        _page++;
+
+        return rx1;
+
+      }
+
+
+    }catch(e){
+
       e.printError();
     }
   }

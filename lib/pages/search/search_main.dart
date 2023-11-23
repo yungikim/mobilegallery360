@@ -115,6 +115,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                 labelColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: Colors.grey,
+
                 tabs: const [
                   Tab(
                     text: "통합검색",
