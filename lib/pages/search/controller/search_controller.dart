@@ -42,39 +42,45 @@ class SearchResultController extends GetxController{
       SearchNewsResult.clear();
       SearchArtistResult.clear();
       SearchVrGallyResult.clear();
+      SearchVrGalleryTotalCount.value = 0;
+      SearchArtTotalCount.value = 0;
+      SearchNewsTotalCount.value = 0;
+      SearchArtistTotalCount.value = 0;
 
       var res = await _searchRepository.LoadSearch(query);
-
       List<dynamic> keys = res['aggregations']['by_district']['buckets'];
-      for (int k = 0; k < keys.length; k++){
-        String key = keys[k]['key'];
-        if (key == "art"){
-          //작품 검색 결과를 리스트업 한다.
-          List<dynamic> artlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-          List<ArtModel> rx1 = artlist.map<ArtModel>((json) => ArtModel.fromJson(json)).toList();
-          SearchArtResult.addAll(rx1);
-          SearchArtTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-        }else if (key == "user"){
-          //작가 검색 결과 리스트업 한다.
-          List<dynamic> artistlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-          List<ArtistModel> rx3 = artistlist.map<ArtistModel>((json) => ArtistModel.fromJson(json)).toList();
-          SearchArtistResult.addAll(rx3);
-          SearchArtistTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-        }else if (key == "news"){
-          //뉴스관련 검색 결과 리스트업 한다.
-          List<dynamic> newslist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-          List<NewsModel> rx2 = newslist.map<NewsModel>((json) => NewsModel.fromJson(json)).toList();
-          SearchNewsResult.addAll(rx2);
-          SearchNewsTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-        }else if (key == "vr"){
-          //VR갤러리 검색 결과 리스트업 한다.
-          List<dynamic> vrgallerylist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-          List<VrGalleryModel> rx4 = vrgallerylist.map<VrGalleryModel>((json) => VrGalleryModel.fromJson(json)).toList();
-          SearchVrGallyResult.addAll(rx4);
-          SearchVrGalleryTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+      int tcount = res['hits']['total'];
+
+      if (tcount > 0){
+        for (int k = 0; k < keys.length; k++){
+          String key = keys[k]['key'];
+          if (key == "art"){
+            //작품 검색 결과를 리스트업 한다.
+            List<dynamic> artlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<ArtModel> rx1 = artlist.map<ArtModel>((json) => ArtModel.fromJson(json)).toList();
+            SearchArtResult.addAll(rx1);
+            SearchArtTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          }else if (key == "user"){
+            //작가 검색 결과 리스트업 한다.
+            List<dynamic> artistlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<ArtistModel> rx3 = artistlist.map<ArtistModel>((json) => ArtistModel.fromJson(json)).toList();
+            SearchArtistResult.addAll(rx3);
+            SearchArtistTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          }else if (key == "news"){
+            //뉴스관련 검색 결과 리스트업 한다.
+            List<dynamic> newslist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<NewsModel> rx2 = newslist.map<NewsModel>((json) => NewsModel.fromJson(json)).toList();
+            SearchNewsResult.addAll(rx2);
+            SearchNewsTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          }else if (key == "vr"){
+            //VR갤러리 검색 결과 리스트업 한다.
+            List<dynamic> vrgallerylist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<VrGalleryModel> rx4 = vrgallerylist.map<VrGalleryModel>((json) => VrGalleryModel.fromJson(json)).toList();
+            SearchVrGallyResult.addAll(rx4);
+            SearchVrGalleryTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          }
         }
       }
-
       searchcomplete.value = true;
     }catch(e){
      // return <ArtModel>[];
@@ -84,64 +90,25 @@ class SearchResultController extends GetxController{
 
   Future getSearchCategory(String opt) async{
     try{
-      print("getSearchCategory");
-      print("_page : ${artist_page.value}");
-
-
       if (artist_page.value == 1){
         SearchArtistCategory.clear();
       }
-
       String query = searchquery.text;
-      // String qstart = start.toString();
-
-     Util.WLine();
-     print(query);
-     print(opt);
-    print(artist_page.value);
-     Util.WLine();
       var res = await _searchRepository.LoadSearchCategory(query, opt, artist_page.value, _limit);
-    //  print(res);
+
       if (opt == "user"){
         List<dynamic> artistlist = res['hits']['hits'];
         totalSearchCount.value = res['hits']['total'];
-      //  print(artistlist);
-
         List<ArtistCategoryModel> rx1 = artistlist.map<ArtistCategoryModel>((json) => ArtistCategoryModel.fromJson(json)).toList();
-       //  print("22222222222");
-
-       //  print("333333333");
-
-         print(rx1.length);
-        // print(_limit);
-        // print("+++++++++++++++++++++++++++++++++++++++");
         if (rx1.length < _limit){
           hasMore.value = false;
         }
-
-        print("hasMore.value : ${hasMore.value}");
-
-
         SearchArtistCategory.addAll(rx1);
         artist_page.value++;
-
         isLoadingComplete.value = true;
       }
-
-
     }catch(e){
-
       e.printError();
     }
   }
-
-
-  // Future getVrListDataCallDio() async{
-  //   try{
-  //     List<VRModel> dataList = await _dataRepository.LoadVRDataWidthDio();
-  //     return dataList.sublist(1);
-  //   }catch(e){
-  //     e.printError();
-  //   }
-  // }
 }

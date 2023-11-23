@@ -5,7 +5,6 @@ import '../../../const/const.dart';
 
 
 class SearchRepository extends GetConnect{
-
   SearchRepository(){
     allowAutoSignedCert = true;
     timeout = const Duration(seconds: 30);
@@ -28,7 +27,7 @@ class SearchRepository extends GetConnect{
         px = (page - 1) * limit;
       }
       String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-perpage-", limit.toString()).replaceFirst("-opt-", opt).replaceFirst("-start-", px.toString());
-      print(url);
+    //  print(url);
       var response = await dio.get(url);
       final data = response.data;
       return data;

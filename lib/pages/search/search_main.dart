@@ -22,6 +22,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
     print("###############################################################");
     print("_tabController.index : ${_tabController.index}");
     if (_tabController.index == 0){
+      _searchController.searchcomplete.value = false;
       _searchController.getSearchResult(query);
       _tabController.animateTo(0);
     }else if (_tabController.index == 1){

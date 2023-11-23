@@ -33,108 +33,111 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    return Column(
-      children: [
-        Container(
-          width: width * 0.95,
-          height: 1,
-          color: Colors.grey.withOpacity(0.3),
-        ),
-        const SizedBox(height: 20,),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "VR갤러리",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "(${_searchResultController.SearchVrGalleryTotalCount.value})",
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const Text(
-                "작품 더 보기 >",
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ],
+    return Visibility(
+      visible: _searchResultController.SearchVrGalleryTotalCount.value > 0,
+      child: Column(
+        children: [
+          Container(
+            width: width * 0.95,
+            height: 1,
+            color: Colors.grey.withOpacity(0.3),
           ),
-        ),
-        MasonryGridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _searchResultController.SearchVrGallyResult.length,
-          crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
-          itemBuilder: (context, index){
-            var item = _searchResultController.SearchVrGallyResult[index];
-            Map<String, dynamic> etc = jsonDecode(item.source.etc);
-            String id = item.source.id.split("-=spl=-")[0];
-            var url =
-            "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
-            return Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 270,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(url),
-                        fit: BoxFit.cover,
-                      ),
-                    ), //child:
+          const SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const Text(
+                      "VR갤러리",
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "(${_searchResultController.SearchVrGalleryTotalCount.value})",
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const Text(
+                  "작품 더 보기 >",
+                  style: TextStyle(
+                    fontSize: 12,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    Util.chageText(etc['title']),
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    item.source.nickname,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(MyFlutterApp.icon_vr_view_count_b),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(Util.addComma2(etc['read'])),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Icon(MyFlutterApp.icon_vr_collect_count_b),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text("${etc['like']}"),
-                    ],
-                  ),
-                  const SizedBox(height: 10,),
-                ],
-              ),
-            );
-          },
-        ),
+                ),
+              ],
+            ),
+          ),
+          MasonryGridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _searchResultController.SearchVrGallyResult.length,
+            crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
+            itemBuilder: (context, index){
+              var item = _searchResultController.SearchVrGallyResult[index];
+              Map<String, dynamic> etc = jsonDecode(item.source.etc);
+              String id = item.source.id.split("-=spl=-")[0];
+              var url =
+              "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
+              return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 270,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(url),
+                          fit: BoxFit.cover,
+                        ),
+                      ), //child:
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      Util.chageText(etc['title']),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      item.source.nickname,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(MyFlutterApp.icon_vr_view_count_b),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(Util.addComma2(etc['read'])),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Icon(MyFlutterApp.icon_vr_collect_count_b),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text("${etc['like']}"),
+                      ],
+                    ),
+                    const SizedBox(height: 10,),
+                  ],
+                ),
+              );
+            },
+          ),
 
-      ],
+        ],
+      ),
     );
   }
 }

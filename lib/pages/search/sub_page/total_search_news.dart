@@ -21,89 +21,92 @@ class TotalSearchNews extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    return Column(
-      children: [
-        Container(
-          width: width * 0.95,
-          height: 1,
-          color: Colors.grey.withOpacity(0.3),
-        ),
-        const SizedBox(height: 20,),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    "소식",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "(${_searchResultController.SearchNewsTotalCount.value})",
-                    style: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              const Text(
-                "작가 더 보기 >",
-                style: TextStyle(
-                  fontSize: 12,
-                ),
-              ),
-            ],
+    return Visibility(
+      visible: _searchResultController.SearchNewsTotalCount.value > 0,
+      child: Column(
+        children: [
+          Container(
+            width: width * 0.95,
+            height: 1,
+            color: Colors.grey.withOpacity(0.3),
           ),
-        ),
-        MasonryGridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _searchResultController.SearchNewsResult.length,
-          crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
-          itemBuilder: (context, index){
-            NewsModel item = _searchResultController.SearchNewsResult[index];
-            Map<String, dynamic> etc = jsonDecode(item.source.etc);
-            String url =
-            "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
-            return Column(
+          const SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  height: 300,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(url), fit: BoxFit.cover)),
+                Row(
+                  children: [
+                    const Text(
+                      "소식",
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "(${_searchResultController.SearchNewsTotalCount.value})",
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        Util.chageText(etc['title']),
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        Util.chageText(etc['tag']),
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black.withOpacity(0.7)),
-                      ),
-                    ],
+                const Text(
+                  "작가 더 보기 >",
+                  style: TextStyle(
+                    fontSize: 12,
                   ),
                 ),
-                const SizedBox(height: 30,),
               ],
-             );
-          },
-        ),
-      ],
+            ),
+          ),
+          MasonryGridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _searchResultController.SearchNewsResult.length,
+            crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
+            itemBuilder: (context, index){
+              NewsModel item = _searchResultController.SearchNewsResult[index];
+              Map<String, dynamic> etc = jsonDecode(item.source.etc);
+              String url =
+              "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
+              return Column(
+                children: [
+                  Container(
+                    height: 300,
+                    margin: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(url), fit: BoxFit.cover)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          Util.chageText(etc['title']),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          Util.chageText(etc['tag']),
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black.withOpacity(0.7)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30,),
+                ],
+               );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
