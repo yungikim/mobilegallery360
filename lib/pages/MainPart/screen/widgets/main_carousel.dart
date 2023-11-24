@@ -70,7 +70,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                       ResponsiveBreakpoints.of(context).isMobile
                                           ? CrossAxisAlignment.center
                                           : CrossAxisAlignment.start,
-                               //   mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                         ResponsiveBreakpoints.of(context)
