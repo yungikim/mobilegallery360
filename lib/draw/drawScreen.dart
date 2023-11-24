@@ -51,7 +51,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
     switch (currentItem){
       case MenuItems.home:
         return const MainPage();
-      case MenuItems.vrgallery:
+      case MenuItems.artist:
         return const ArtistMainPage();
       default:
         return const ArtistMainPage();

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
 import 'dart:convert';
 
 List<ArtistModel> artistModelFromJson(String str) => List<ArtistModel>.from(json.decode(str).map((x) => ArtistModel.fromJson(x)));
