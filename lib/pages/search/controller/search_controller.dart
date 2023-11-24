@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gallery360/draw/drawScreen.dart';
+import 'package:gallery360/pages/search/model/art_category_model.dart';
 import 'package:gallery360/pages/search/model/artist_category_model.dart';
+import 'package:gallery360/pages/search/model/news_category_model.dart';
+import 'package:gallery360/pages/search/model/vr_category_model.dart';
 import 'package:gallery360/pages/search/repository/search_repository.dart';
 import 'package:get/get.dart';
 import '../model/art_model.dart';
@@ -24,13 +27,40 @@ class SearchResultController extends GetxController{
   var searchcomplete = false.obs;
   var isSearching = false.obs;
 
-  final List<ArtistCategoryModel> SearchArtistCategory = <ArtistCategoryModel>[].obs;
+
+
 
   final int _limit = 20;
+
+  //artist 변수
+  final List<ArtistCategoryModel> SearchArtistCategory = <ArtistCategoryModel>[].obs;
   var hasMore = true.obs;
-  var artist_page = 1.obs;
+  var page = 1.obs;
   var isLoadingComplete = false.obs;
   var totalSearchCount = 0.obs;
+
+  //art 변수
+  final List<ArtCategory> SearchArtCategory = <ArtCategory>[].obs;
+  var hasMore_art = true.obs;
+  var page_art = 1.obs;
+  var isLoadingComplete_art = false.obs;
+  var totalSearchCount_art = 0.obs;
+
+  //vr갤러리 변수
+  final List<VRCategory> SearchVRCategory = <VRCategory>[].obs;
+  var hasMore_vr = true.obs;
+  var page_vr = 1.obs;
+  var isLoadingComplete_vr = false.obs;
+  var totalSearchCount_vr = 0.obs;
+
+  //news 변수
+  final List<NewsCategory> SearchNewsCategory = <NewsCategory>[].obs;
+  var hasMore_news = true.obs;
+  var page_news = 1.obs;
+  var isLoadingComplete_news = false.obs;
+  var totalSearchCount_news = 0.obs;
+
+
 
   late final TextEditingController searchquery;
 
@@ -90,25 +120,56 @@ class SearchResultController extends GetxController{
 
   Future getSearchCategory(String opt) async{
     try{
-      if (artist_page.value == 1){
-        SearchArtistCategory.clear();
-      }
       String query = searchquery.text;
-      var res = await _searchRepository.LoadSearchCategory(query, opt, artist_page.value, _limit);
 
       if (opt == "user"){
-        List<dynamic> artistlist = res['hits']['hits'];
+        var res = await _searchRepository.LoadSearchCategory(query, opt, page.value, _limit);
+        List<dynamic> reslist = res['hits']['hits'];
         totalSearchCount.value = res['hits']['total'];
-        List<ArtistCategoryModel> rx1 = artistlist.map<ArtistCategoryModel>((json) => ArtistCategoryModel.fromJson(json)).toList();
+        List<ArtistCategoryModel> rx1 = reslist.map<ArtistCategoryModel>((json) => ArtistCategoryModel.fromJson(json)).toList();
         if (rx1.length < _limit){
           hasMore.value = false;
         }
         SearchArtistCategory.addAll(rx1);
-        artist_page.value++;
         isLoadingComplete.value = true;
+        page.value++;
+      }else if (opt == "art"){
+        var res = await _searchRepository.LoadSearchCategory(query, opt, page_art.value, _limit);
+        List<dynamic> reslist = res['hits']['hits'];
+        totalSearchCount_art.value = res['hits']['total'];
+        List<ArtCategory> rx2 = reslist.map<ArtCategory>((json) => ArtCategory.fromJson(json)).toList();
+        if (rx2.length < _limit){
+          hasMore_art.value = false;
+        }
+        SearchArtCategory.addAll(rx2);
+        isLoadingComplete_art.value = true;
+        page_art.value++;
+      }else if (opt == "vr"){
+        var res = await _searchRepository.LoadSearchCategory(query, opt, page_vr.value, _limit);
+        List<dynamic> reslist = res['hits']['hits'];
+        totalSearchCount_vr.value = res['hits']['total'];
+        List<VRCategory> rx3 = reslist.map<VRCategory>((json) => VRCategory.fromJson(json)).toList();
+        if (rx3.length < _limit){
+          hasMore_vr.value = false;
+        }
+        SearchVRCategory.addAll(rx3);
+        isLoadingComplete_vr.value = true;
+        page_vr.value++;
+      }else if (opt == "news"){
+        var res = await _searchRepository.LoadSearchCategory(query, opt, page_news.value, _limit);
+        List<dynamic> reslist = res['hits']['hits'];
+        totalSearchCount_news.value = res['hits']['total'];
+        List<NewsCategory> rx3 = reslist.map<NewsCategory>((json) => NewsCategory.fromJson(json)).toList();
+        if (rx3.length < _limit){
+          hasMore_news.value = false;
+        }
+        SearchNewsCategory.addAll(rx3);
+        isLoadingComplete_news.value = true;
+        page_news.value++;
       }
     }catch(e){
       e.printError();
     }
   }
+
 }

@@ -62,7 +62,7 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
                   ],
                 ),
                 const Text(
-                  "작품 더 보기 >",
+                  "VR갤러리 더 보기 >",
                   style: TextStyle(
                     fontSize: 12,
                   ),

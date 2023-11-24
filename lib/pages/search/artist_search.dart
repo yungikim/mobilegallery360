@@ -22,24 +22,13 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
   final SearchResultController _searchResultController =
       Get.put(SearchResultController());
 
-  late final ScrollController scrollController;
+  late ScrollController scrollController;
 
   @override
   void initState() {
-    //_searchResultController.getSearchCategory("여름날", "user", "0");
     // TODO: implement initState
     scrollController = ScrollController();
     scrollController.addListener(onScroll);
-
-    String query = _searchResultController.searchquery.text;
-    if (query != ""){
-      _searchResultController.artist_page.value = 1;
-      _searchResultController.isLoadingComplete.value = false;
-      _searchResultController.getSearchCategory("user");
-    }else{
-      _searchResultController.isLoadingComplete.value = true;
-    }
-
     super.initState();
   }
 
@@ -55,7 +44,6 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
     double maxScroll = scrollController.position.maxScrollExtent;
     double currentScroll = scrollController.position.pixels;
     double delta = 10.0;
-
     if (maxScroll == currentScroll && _searchResultController.hasMore.value) {
       _searchResultController.getSearchCategory("user");
     }
@@ -74,11 +62,11 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
-                  child: _searchResultController.SearchArtistCategory.length > 0 ? Text(
+                  child: _searchResultController.SearchArtistCategory.isNotEmpty ? Text(
                     "검색결과 ${_searchResultController.totalSearchCount.value}개",
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.bold),
-                  ) : Text(""),
+                  ) : const Text(""),
                 ),
               ),
               SliverToBoxAdapter(
@@ -146,20 +134,6 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                   },
                 ),
               ),
-
-              // SliverToBoxAdapter(
-              //   // child: Visibility(
-              //   //   visible: !_searchResultController.isLoadingComplete.value,
-              //     child: Container(
-              //       height: !_searchResultController.isLoadingComplete.value ? 100 : 0,
-              //      // color: Colors.red,
-              //       child: Center(
-              //         child: !_searchResultController.isLoadingComplete.value ? const CircularProgressIndicator() : const SizedBox(),
-              //       ),
-              //     ),
-              //   ),
-
-           //   )
             ],
           );
         } else {
@@ -169,83 +143,5 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
         }
       }),
     );
-    // return FutureBuilder(
-    //     future: _searchResultController.getSearchCategory("user"),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.connectionState == ConnectionState.done &&
-    //           snapshot.hasData) {
-    //         List<ArtistCategoryModel> items = _searchResultController.SearchArtistCategory;
-    //         return GridView.builder(
-    //           shrinkWrap: true,
-    //           controller: scrollController,
-    //           itemCount: items.length,
-    //           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-    //           itemBuilder: (context, index){
-    //             ArtistCategoryModel item = items[index];
-    //             return Container(
-    //               height: 50,
-    //               child: Text("${item.source.nickname}"),
-    //             );
-    //           },
-    //         );
-    //
-    //         // return CustomScrollView(
-    //         //
-    //         //   controller: scrollController,
-    //         //   slivers: [
-    //         //     SliverList.builder(
-    //         //       itemCount: _searchResultController.hasMore.value ? items.length + 1 : items.length,
-    //         //       itemBuilder: (context, index){
-    //         //         ArtistCategoryModel item = items[index];
-    //         //         if (index < items.length){
-    //         //           return Container(
-    //         //             margin: const EdgeInsets.all(10),
-    //         //             height: 200,
-    //         //             color: Colors.red,
-    //         //             child: Text(item.source.nickname, style: const TextStyle(fontSize: 50),),
-    //         //           );
-    //         //         }else {
-    //         //           return const Center(
-    //         //             child: CircularProgressIndicator(),
-    //         //           );
-    //         //         }
-    //         //       },
-    //         //     ),
-    //         //   ],
-    //         // );
-    //       } else if (snapshot.hasError) {
-    //         return const Center(
-    //           child: Text('Initialization Failed'),
-    //         );
-    //       } else {
-    //         return const Center(
-    //           child: CircularProgressIndicator(),
-    //         );
-    //       }
-    //     },
-
-    //);
-
-    // return Obx(() {
-    //   if (_searchResultController.searchcomplete.value) {
-    //     return FutureBuilder(
-    //       child: CustomScrollView(
-    //         slivers: [
-    //           SliverList.builder(
-    //             itemCount: _searchResultController.SearchArtistCategory.length,
-    //             itemBuilder: (context, index){
-    //               ArtistCategoryModel item = _searchResultController.SearchArtistCategory[index];
-    //               return Text(item.source.nickname);
-    //             },
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   } else {
-    //     return const Center(
-    //       child: CircularProgressIndicator(),
-    //     );
-    //   }
-    // });
   }
 }

@@ -50,7 +50,7 @@ class TotalSearchNews extends StatelessWidget {
                   ],
                 ),
                 const Text(
-                  "작가 더 보기 >",
+                  "뉴스 더 보기 >",
                   style: TextStyle(
                     fontSize: 12,
                   ),

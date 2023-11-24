@@ -22,19 +22,23 @@ class SearchRepository extends GetConnect{
 
   Future<dynamic> LoadSearchCategory(String query, String opt, int page, int limit) async{
     try{
+      print("query : ${query}");
+      print("opt : ${opt}");
+      print("page : ${page}");
+      print("limit :  ${limit}");
+
       int px = page - 1;
       if (page > 1){
         px = (page - 1) * limit;
       }
       String url = SearchCategory_Url.replaceFirst("query",query).replaceFirst("-perpage-", limit.toString()).replaceFirst("-opt-", opt).replaceFirst("-start-", px.toString());
-    //  print(url);
+      print(url);
       var response = await dio.get(url);
-      final data = response.data;
-      return data;
+      return response.data;
     }catch(e){
       return
       e.printError();
     }
-
   }
+
 }

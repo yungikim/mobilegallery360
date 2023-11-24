@@ -19,19 +19,37 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   late TabController _tabController;
 
   void TotalSearchFnc(String query){
-    print("###############################################################");
-    print("_tabController.index : ${_tabController.index}");
+    // print("###############################################################");
+    // print("_tabController.index : ${_tabController.index}");
+
+    _searchController.searchcomplete.value = false;
     if (_tabController.index == 0){
-      _searchController.searchcomplete.value = false;
       _searchController.getSearchResult(query);
-      _tabController.animateTo(0);
+    //  _tabController.animateTo(0);
     }else if (_tabController.index == 1){
-      _searchController.artist_page.value = 1;
+      _searchController.page.value = 1;
       _searchController.isLoadingComplete.value = false;
-      _searchController.searchquery.text = query;
       _searchController.hasMore.value = true;
+      _searchController.SearchArtistCategory.clear();
       _searchController.getSearchCategory("user");
-      _tabController.animateTo(1);
+    }else if (_tabController.index == 2){
+      _searchController.page_art.value = 1;
+      _searchController.isLoadingComplete_art.value = false;
+      _searchController.hasMore_art.value = true;
+      _searchController.SearchArtCategory.clear();
+      _searchController.getSearchCategory("art");
+    }else if (_tabController.index == 3){
+      _searchController.page_vr.value = 1;
+      _searchController.isLoadingComplete_vr.value = false;
+      _searchController.hasMore_vr.value = true;
+      _searchController.SearchVRCategory.clear();
+      _searchController.getSearchCategory("vr");
+    }else if (_tabController.index == 4){
+      _searchController.page_news.value = 1;
+      _searchController.isLoadingComplete_news.value = false;
+      _searchController.hasMore_news.value = true;
+      _searchController.SearchNewsCategory.clear();
+      _searchController.getSearchCategory("news");
     }
   }
 
@@ -43,6 +61,15 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
     }else if (_tabController.index == 1){
         _searchController.totalSearchCount.value = 0;
         _searchController.SearchArtistCategory.clear();
+    }else if (_tabController.index == 2){
+      _searchController.totalSearchCount_art.value = 0;
+      _searchController.SearchArtCategory.clear();
+    }else if (_tabController.index == 3){
+      _searchController.totalSearchCount_vr.value = 0;
+      _searchController.SearchVRCategory.clear();
+    }else if (_tabController.index == 4){
+      _searchController.totalSearchCount_news.value = 0;
+      _searchController.SearchNewsCategory.clear();
     }
   }
 
@@ -50,7 +77,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   void initState() {
     // TODO: implement initState
     _searchController.searchquery = TextEditingController();
-    print("시작한다....... : ${_searchController.searchquery.text}");
+    //print("시작한다....... : ${_searchController.searchquery.text}");
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
   }
@@ -142,6 +169,38 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                 labelColor: Colors.black,
                 unselectedLabelColor: Colors.grey,
                 indicatorColor: Colors.grey,
+                onTap: (index){
+                //  print("Tab Click ${index}");
+                  if (index == 1){
+                    //작가 탭 클릭
+                    _searchController.page.value = 1;
+                    _searchController.isLoadingComplete.value = false;
+                    _searchController.hasMore.value = true;
+                    _searchController.SearchArtistCategory.clear();
+                    _searchController.getSearchCategory("user");
+                  }else if (index == 2){
+                    //작품 탭 클릭
+                    _searchController.page_art.value = 1;
+                    _searchController.isLoadingComplete_art.value = false;
+                    _searchController.hasMore_art.value = true;
+                    _searchController.SearchArtCategory.clear();
+                    _searchController.getSearchCategory("art");
+                  }else if (index == 3){
+                    //VR 갤러리 탭 클릭
+                    _searchController.page_vr.value = 1;
+                    _searchController.isLoadingComplete_vr.value = false;
+                    _searchController.hasMore_vr.value = true;
+                    _searchController.SearchVRCategory.clear();
+                    _searchController.getSearchCategory("vr");
+                  }else if (index == 4){
+                    //News 탭 클릭
+                    _searchController.page_news.value = 1;
+                    _searchController.isLoadingComplete_news.value = false;
+                    _searchController.hasMore_news.value = true;
+                    _searchController.SearchNewsCategory.clear();
+                    _searchController.getSearchCategory("news");
+                  }
+                },
 
                 tabs: const [
                   Tab(
