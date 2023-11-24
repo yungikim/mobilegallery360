@@ -23,13 +23,13 @@ class ImageCard2 extends StatelessWidget {
         children: [
           ImageLoadCache(
             width: width * 0.49,
-            height: 200,
+            height: 170,
             url:
             "${base_url}/artimage/${state2.artists[index].email}/art/preview/${state2.artists[index].avatar}.jpg",
           ),
           Container(
               width: width * 0.49,
-              height: 200,
+              height: 170,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   //image: new CachedNetworkImageProvider("https://www.gallery360.co.kr/artimage/${state2.users[index].email}/photo_list/${state2.users[index].email}_gray.jpg"),
@@ -37,6 +37,7 @@ class ImageCard2 extends StatelessWidget {
                       "${base_url}/artimage/${state2.artists[index].email}/photo_list/${state2.artists[index].email}_gray.jpg" ??
                           ""),
                   fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
                 ),
               ),
               child: Padding(
