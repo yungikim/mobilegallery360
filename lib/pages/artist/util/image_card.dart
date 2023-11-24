@@ -14,8 +14,11 @@ class ImageCard extends StatelessWidget {
     final ArtistController state2 = Get.put(ArtistController());
     final width = MediaQuery.of(context).size.width;
 
-    return Card(
-      color: Colors.white,
+    return Container(
+      margin: EdgeInsets.only(bottom: 10, left: 5, right: 5),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+      ),
       child: Row(
         children: [
           Expanded(
@@ -36,6 +39,7 @@ class ImageCard extends StatelessWidget {
                       "${base_url}/artimage/${state2.artists[index].email}/photo_list/${state2.artists[index].email}_gray.jpg" ??
                           ""),
                   fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
                 ),
               ),
               child: Padding(
