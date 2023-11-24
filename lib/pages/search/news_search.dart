@@ -52,6 +52,7 @@ class _NewSearchPageState extends State<NewSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Obx(() {
         if (_searchResultController.isLoadingComplete_news.value) {
           return CustomScrollView(
@@ -59,7 +60,7 @@ class _NewSearchPageState extends State<NewSearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
                   child: _searchResultController.SearchNewsCategory.isNotEmpty
                       ? Text(
                           "검색결과 ${_searchResultController.totalSearchCount_news.value}개",
@@ -85,46 +86,49 @@ class _NewSearchPageState extends State<NewSearchPage> {
                     Map<String, dynamic> etc = jsonDecode(item.source.etc);
                     String url =
                         "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 300,
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(url), fit: BoxFit.cover)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  Util.chageText(etc['title']),
-                                  style: const TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  Util.chageText(etc['tag']),
-                                  style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black.withOpacity(0.7)),
-                                ),
-                              ],
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 300,
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(url), fit: BoxFit.cover)),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    Util.chageText(etc['title']),
+                                    style: const TextStyle(
+                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    Util.chageText(etc['tag']),
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black.withOpacity(0.7)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

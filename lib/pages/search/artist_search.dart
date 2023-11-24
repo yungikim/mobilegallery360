@@ -61,7 +61,7 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
                   child: _searchResultController.SearchArtistCategory.isNotEmpty ? Text(
                     "검색결과 ${_searchResultController.totalSearchCount.value}개",
                     style: const TextStyle(

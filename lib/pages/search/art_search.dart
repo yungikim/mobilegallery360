@@ -49,6 +49,7 @@ class _ArtSearchPageState extends State<ArtSearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Obx(() {
         if (_searchResultController.isLoadingComplete_art.value) {
           return CustomScrollView(
@@ -56,7 +57,7 @@ class _ArtSearchPageState extends State<ArtSearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
                   child: _searchResultController.SearchArtCategory.isNotEmpty
                       ? Text(
                           "검색결과 ${_searchResultController.totalSearchCount_art.value}개",

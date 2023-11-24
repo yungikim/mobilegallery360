@@ -52,6 +52,7 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Obx(() {
         if (_searchResultController.isLoadingComplete_vr.value) {
           return CustomScrollView(
@@ -59,7 +60,7 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
                   child: _searchResultController.SearchVRCategory.isNotEmpty
                       ? Text(
                           "검색결과 ${_searchResultController.totalSearchCount_vr.value}개",
@@ -73,6 +74,8 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                 child: MasonryGridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
                   itemCount: _searchResultController.SearchVRCategory.length,
                   gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
@@ -84,58 +87,63 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                     String id = item.source.id.split("-=spl=-")[0];
                     var url =
                         "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
-                    return Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: double.infinity,
-                            height: 270,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(url),
-                                fit: BoxFit.cover,
-                              ),
-                            ), //child:
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            Util.chageText(etc['title']),
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            item.source.nickname,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              const Icon(MyFlutterApp.icon_vr_view_count_b),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text(Util.addComma2(etc['read'])),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Icon(MyFlutterApp.icon_vr_collect_count_b),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Text("${etc['like']}"),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 270,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(url),
+                                  fit: BoxFit.cover,
+                                ),
+                              ), //child:
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              Util.chageText(etc['title']),
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              item.source.nickname,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                const Icon(MyFlutterApp.icon_vr_view_count_b),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(Util.addComma2(etc['read'])),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                const Icon(MyFlutterApp.icon_vr_collect_count_b),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text("${etc['like']}"),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },
