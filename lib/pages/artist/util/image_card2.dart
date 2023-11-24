@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'image_cache.dart';
 
-class ImageCard extends StatelessWidget {
+class ImageCard2 extends StatelessWidget {
   final int index;
-  const ImageCard({super.key, required this.index});
+  const ImageCard2({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,18 @@ class ImageCard extends StatelessWidget {
     final ArtistController state2 = Get.put(ArtistController());
     final width = MediaQuery.of(context).size.width;
 
-    return Card(
-      color: Colors.white,
-      child: Row(
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.withOpacity(0.4)),
+      ),
+      child: Column(
         children: [
-          Expanded(
-            child: ImageLoadCache(
-              width: width * 0.49,
-              height: 200,
-              url:
-              "${base_url}/artimage/${state2.artists[index].email}/art/preview/${state2.artists[index].avatar}.jpg",
-            ),
+          ImageLoadCache(
+            width: width * 0.49,
+            height: 200,
+            url:
+            "${base_url}/artimage/${state2.artists[index].email}/art/preview/${state2.artists[index].avatar}.jpg",
           ),
           Container(
               width: width * 0.49,

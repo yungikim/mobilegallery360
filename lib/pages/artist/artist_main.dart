@@ -4,8 +4,10 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:gallery360/pages/artist/model/artist_model.dart';
 import 'package:gallery360/pages/artist/util/image_card.dart';
+import 'package:gallery360/pages/artist/util/image_card2.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ArtistMainPage extends StatefulWidget {
   const ArtistMainPage({super.key});
@@ -201,9 +203,9 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                     physics: const NeverScrollableScrollPhysics(),
                   //  itemCount: _artistController.isSearch.value ? _artistController.artists.length : _artistController.artists_search.length,
                     itemCount: _artistController.artists.length,
-                    gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+                    gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2),
                     itemBuilder: (context, index){
-                      return ImageCard(index:index);
+                      return ResponsiveBreakpoints.of(context).isMobile ? ImageCard(index:index) : ImageCard2(index : index);
                     },
                   ),
                 )
