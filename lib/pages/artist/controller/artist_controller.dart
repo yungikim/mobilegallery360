@@ -18,6 +18,9 @@ class ArtistController extends GetxController{
   var dataLoadingComplete = false.obs;
   var isSearch = false.obs;
 
+  //Detail Page
+  var selectEmail = "".obs;
+
   Future getArtist() async{
     isSearch.value = false;
     String ty = type.toString();

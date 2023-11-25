@@ -8,30 +8,31 @@ import 'package:intl/intl.dart';
 
 import '../pages/search/search_main.dart';
 
-class Util{
-  static String chageText(String str){
-    return str.replaceAll("&#40;", "(")
+class Util {
+  static String chageText(String str) {
+    return str
+        .replaceAll("&#40;", "(")
         .replaceAll("&#41;", ")")
         .replaceAll("&#39;", "'")
         .replaceAll("&lt;", "<")
         .replaceAll("&gt;", ">");
   }
 
-  static String makeMainArtListURL(String email, String artImgFilename){
+  static String makeMainArtListURL(String email, String artImgFilename) {
     return "https://www.gallery360.co.kr/artimage/${email}/art/preview/${artImgFilename}.jpg";
   }
 
-  static String addComma(double price){
+  static String addComma(double price) {
     var f = NumberFormat('###,###,###,###');
     return f.format(price);
   }
 
-  static String addComma2(int price){
+  static String addComma2(int price) {
     var f = NumberFormat('###,###,###,###');
     return f.format(price);
   }
 
-  static void WLine(){
+  static void WLine() {
     print("=============================================================");
   }
 }
@@ -43,7 +44,9 @@ class cacheImage extends StatelessWidget {
     required this.url,
     this.width,
     this.height,
-    this.childtext, this.bordertext, this.boxshadow,
+    this.childtext,
+    this.bordertext,
+    this.boxshadow, this.colorFilter,
   });
 
   final String url;
@@ -52,14 +55,10 @@ class cacheImage extends StatelessWidget {
   final Widget? childtext;
   final Border? bordertext;
   final BoxShadow? boxshadow;
+  final ColorFilter? colorFilter;
 
-  final CacheManager cacheManager = CacheManager(
-      Config(
-          'images_Key',
-          maxNrOfCacheObjects: 100,
-          stalePeriod: const Duration(days: 7)
-      )
-  );
+  final CacheManager cacheManager = CacheManager(Config('images_Key',
+      maxNrOfCacheObjects: 100, stalePeriod: const Duration(days: 7)));
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +71,13 @@ class cacheImage extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          border: bordertext,
+            border: bordertext,
             boxShadow: boxshadow != null ? [boxshadow!] : null,
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover)),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              colorFilter: colorFilter,
+            )),
         child: childtext,
       ),
       //아래를 돌리면 더 느려 보여서 주석처리한다.
@@ -103,16 +106,12 @@ class cacheImageOnly extends StatelessWidget {
     this.width,
     this.height,
   });
+
   final String url;
   final double? width;
   final double? height;
-  final CacheManager cacheManager = CacheManager(
-      Config(
-          'images_Key_Only',
-          maxNrOfCacheObjects: 100,
-          stalePeriod: const Duration(days: 7)
-      )
-  );
+  final CacheManager cacheManager = CacheManager(Config('images_Key_Only',
+      maxNrOfCacheObjects: 100, stalePeriod: const Duration(days: 7)));
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +132,7 @@ class cacheImageOnly extends StatelessWidget {
 }
 
 //AppBar를 공통으로 사용하기 위해서 템플릿화 한다.
-Widget customAppBar(BuildContext context){
+Widget customAppBar(BuildContext context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.black,
@@ -159,13 +158,14 @@ Widget customAppBar(BuildContext context){
     ),
     actions: [
       IconButton(
-        onPressed: () {
-          Get.to(() => const SearchBarScreen(), transition: Transition.fadeIn);
-        },
-        icon: const Icon(
-          Icons.search,
-          color: Colors.white,
-        )),
+          onPressed: () {
+            Get.to(() => const SearchBarScreen(),
+                transition: Transition.fadeIn);
+          },
+          icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          )),
     ],
   );
 }

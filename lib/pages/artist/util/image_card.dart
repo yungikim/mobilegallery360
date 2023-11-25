@@ -40,6 +40,8 @@ class ImageCard extends StatelessWidget {
             url: "${base_url}/artimage/${state2.artists[index].email}/photo_list/${state2.artists[index].email}_gray.jpg",
             width: width * 0.49,
             height: 200,
+            colorFilter: ColorFilter.mode(
+                 Colors.black.withOpacity(0.2), BlendMode.darken),
             childtext: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(

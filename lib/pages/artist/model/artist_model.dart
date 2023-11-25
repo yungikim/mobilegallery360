@@ -1,11 +1,12 @@
 class ArtistModel {
-  String? nickname, name, email, avatar, ename;
+  String email;
+  String? nickname, name, avatar, ename;
   int? artcount, vrcount;
 
   ArtistModel(
       {this.nickname,
         this.name,
-        this.email,
+        required this.email,
         this.avatar,
         this.ename,
         this.artcount,
