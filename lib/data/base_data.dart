@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/const.dart';
 
-final List<String> imageList =[
+final List<String> imageList2 =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_artist.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_rental_01.jpg',
@@ -10,6 +10,17 @@ final List<String> imageList =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_trial.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_dbook.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_mypalce.jpg',
+];
+
+final List<String> imageList =[
+  'assets/images/mainPage/banner/main_banner_welcome.jpg',
+  'assets/images/mainPage/banner/main_banner_artist.jpg',
+  'assets/images/mainPage/banner/main_banner_rental_01.jpg',
+  'assets/images/mainPage/banner/main_banner_curie.jpg',
+  'assets/images/mainPage/banner/renewal.jpg',
+  'assets/images/mainPage/banner/main_banner_trial.jpg',
+  'assets/images/mainPage/banner/main_banner_dbook.jpg',
+  'assets/images/mainPage/banner/main_banner_mypalce.jpg',
 ];
 
 final List<String> mainMessage =[

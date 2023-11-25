@@ -53,7 +53,8 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 image: DecorationImage(
-                                  image: NetworkImage(item),
+                                //  image: NetworkImage(item),
+                                  image: AssetImage(item),
                                   fit: BoxFit.cover,
                                 )),
                           ),
