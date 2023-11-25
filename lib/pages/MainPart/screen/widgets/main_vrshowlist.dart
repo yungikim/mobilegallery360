@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -35,7 +36,7 @@ class _VrShowListState extends State<VrShowList> {
           List<VrShow> items = snapshot.data;
           return Column(
             children: [
-              Container(
+              SizedBox(
                 height: 150,
               //  color: Colors.red,
                 child: SingleChildScrollView(
@@ -57,43 +58,71 @@ class _VrShowListState extends State<VrShowList> {
               CarouselSlider(
                 carouselController: _carouselController,
                   items: items
-                      .map((item) => Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                        //    color: Colors.red,
-                            boxShadow: const [
-                              BoxShadow(
+                          .map((item) => cacheImage(
+                              url: "https://www.gallery360.co.kr/artimage/lending/${item.image}",
+                              childtext: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    alignment: Alignment.centerLeft,
+                                    width: double.infinity,
+                                    height: 70.0,
+                                    color: Colors.black.withOpacity(0.5),
+                                    child: Text(
+                                      "${item.lendingName} / ${item.organizerName}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 17,
+                                          color: Colors.white.withOpacity(0.7),
+                                          overflow: TextOverflow.ellipsis),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              boxshadow:  const BoxShadow(
                                 offset: Offset(0,13),
                                 blurRadius: 15.0,
                                 color: Colors.black,
-                              )
-                            ],
-                              image: DecorationImage(
-                            image: NetworkImage(
-                                "https://www.gallery360.co.kr/artimage/lending/${item.image}"),
-                            fit: BoxFit.cover,
-                          )),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.only(left: 10),
-                                alignment: Alignment.centerLeft,
-                                width: double.infinity,
-                                height: 70.0,
-                                color: Colors.black.withOpacity(0.5),
-                                child: Text(
-                                  "${item.lendingName} / ${item.organizerName}",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 17,
-                                      color: Colors.white.withOpacity(0.7),
-                                      overflow: TextOverflow.ellipsis),
-                                ),
-                              )
-                            ],
-                          )))
-                      .toList(),
+                              ),
+                          )).toList(),
+                      // .map((item) => Container(
+                      //     width: double.infinity,
+                      //     decoration: BoxDecoration(
+                      //   //    color: Colors.red,
+                      //       boxShadow: const [
+                      //         BoxShadow(
+                      //           offset: Offset(0,13),
+                      //           blurRadius: 15.0,
+                      //           color: Colors.black,
+                      //         )
+                      //       ],
+                      //         image: DecorationImage(
+                      //       image: NetworkImage(
+                      //           "https://www.gallery360.co.kr/artimage/lending/${item.image}"),
+                      //       fit: BoxFit.cover,
+                      //     )),
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.end,
+                      //       children: [
+                      //         Container(
+                      //           padding: const EdgeInsets.only(left: 10),
+                      //           alignment: Alignment.centerLeft,
+                      //           width: double.infinity,
+                      //           height: 70.0,
+                      //           color: Colors.black.withOpacity(0.5),
+                      //           child: Text(
+                      //             "${item.lendingName} / ${item.organizerName}",
+                      //             style: TextStyle(
+                      //                 fontWeight: FontWeight.w600,
+                      //                 fontSize: 17,
+                      //                 color: Colors.white.withOpacity(0.7),
+                      //                 overflow: TextOverflow.ellipsis),
+                      //           ),
+                      //         )
+                      //       ],
+                      //     )))
+                      // .toList(),
                   options: CarouselOptions(
                     onPageChanged: (index, reaseon){
                         _dataController.currentItem.value = index;

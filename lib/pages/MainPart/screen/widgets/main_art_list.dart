@@ -162,32 +162,7 @@ class _MainArtListState extends State<MainArtList> {
                         ),
                         child: Column(
                           children: [
-                            CachedNetworkImage(
-                              imageUrl: url,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              // imageBuilder: (context, imageProvider){
-                              //   return Container(
-                              //     decoration: BoxDecoration(
-                              //       image: DecorationImage(
-                              //         image: CachedNetworkImageProvider(url),
-                              //       )
-                              //     ),
-                              //     height: 200,
-                              //     width: 100,
-                              //     // decoration: BoxDecoration(
-                              //     //   image: DecorationImage(
-                              //     //     image: imageProvider,
-                              //     //     fit: BoxFit.fitHeight,
-                              //     //   ),
-                              //     // ),
-                              //   );
-                              // },
-                            ),
-                            // Image.network(
-                            //   url,
-                            //   fit: BoxFit.cover,
-                            // ),
+                            cacheImageOnly(url: url,),
                             Container(
                               padding: const EdgeInsets.all(10.0),
                               child: Row(

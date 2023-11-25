@@ -50,7 +50,7 @@ class Gallery360Main extends StatelessWidget {
         child: child!,
         );
       },
-      home: DrawerScreen(),
+      home: const DrawerScreen(),
     );
   }
 }

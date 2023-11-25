@@ -155,21 +155,25 @@ class CarouselMobile extends StatelessWidget {
           itemCount: _dataController.vrListData.length,
           itemBuilder: (context, index, realIdx) {
             final e = _dataController.vrListData[index];
-            return Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                  //  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.1), BlendMode.darken),
-                    image: NetworkImage(
-                        "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
-                    fit: BoxFit.cover,
-                  )),
-              child: CarouselInnerText(
-                e: e,
-              ),
+            return cacheImage(
+              url: "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg",
+              bordertext: Border.all(color: Colors.white),
             );
+          //   return Container(
+          //     decoration: BoxDecoration(
+          //         border: Border.all(color: Colors.white),
+          //         //  borderRadius: BorderRadius.circular(15.0),
+          //         image: DecorationImage(
+          //           colorFilter: ColorFilter.mode(
+          //               Colors.black.withOpacity(0.1), BlendMode.darken),
+          //           image: NetworkImage(
+          //               "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
+          //           fit: BoxFit.cover,
+          //         )),
+          //     child: CarouselInnerText(
+          //       e: e,
+          //     ),
+          //   );
           },
           carouselController: _carouselController,
           options: CarouselOptions(
