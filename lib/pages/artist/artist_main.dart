@@ -5,6 +5,7 @@ import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:gallery360/pages/artist/model/artist_model.dart';
 import 'package:gallery360/pages/artist/util/image_card.dart';
 import 'package:gallery360/pages/artist/util/image_card2.dart';
+import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
@@ -74,38 +75,42 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black,
-          leading: IconButton(
-            onPressed: () {
-              if (ZoomDrawer.of(context)!.isOpen()) {
-                ZoomDrawer.of(context)!.close();
-              } else {
-                ZoomDrawer.of(context)!.open();
-              }
-            },
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
-          ),
-          title: const Padding(
-            padding: EdgeInsets.only(top: 5.0),
-            child: Image(
-              image: AssetImage("assets/images/logo/logo.png"),
-              width: 130,
-            ),
-          ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search,
-                  color: Colors.white,
-                )),
-          ],
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: customAppBar(context),
+      ),
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   backgroundColor: Colors.black,
+        //   leading: IconButton(
+        //     onPressed: () {
+        //       if (ZoomDrawer.of(context)!.isOpen()) {
+        //         ZoomDrawer.of(context)!.close();
+        //       } else {
+        //         ZoomDrawer.of(context)!.open();
+        //       }
+        //     },
+        //     icon: const Icon(
+        //       Icons.menu,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        //   title: const Padding(
+        //     padding: EdgeInsets.only(top: 5.0),
+        //     child: Image(
+        //       image: AssetImage("assets/images/logo/logo.png"),
+        //       width: 130,
+        //     ),
+        //   ),
+        //   actions: [
+        //     IconButton(
+        //         onPressed: () {},
+        //         icon: const Icon(
+        //           Icons.search,
+        //           color: Colors.white,
+        //         )),
+        //   ],
+        // ),
         body: Obx(() {
           if (_artistController.dataLoadingComplete.value) {
             return CustomScrollView(
@@ -143,17 +148,17 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                               isExpanded: true,
                               //  menuMaxHeight: 300.0,
                               //  itemHeight: null,
-                              underline: SizedBox(),
+                              underline: const SizedBox(),
                               value: _selectedValue,
                               items: _valueItems,
                               onChanged: (newValue) {
-                                setState(() {
+                               // setState(() {
                                   _selectedValue = newValue!;
                                   _artistController.type.value = _selectedValue.key;
                                   _artistController.refreshData();
                                   // state2.getUser();
                                   // print(_selectedValue.key);
-                                });
+                              //  });
                               },
                             ),
                           ),
@@ -168,14 +173,14 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                               child: TextField(
                                 textInputAction: TextInputAction.search,
                                 onSubmitted: (value) {
-                                  print("search query : $value");
+                                // print("search query : $value");
                                   _artistController.dataLoadingComplete.value = false;
                                   _artistController.artists.value = <ArtistModel>[];
                                   _artistController.searchUser(value);
                                 },
                                 controller: queryController,
                                 decoration: InputDecoration(
-                                  border: UnderlineInputBorder(),
+                                  border: const UnderlineInputBorder(),
                                   contentPadding: const EdgeInsets.only(
                                       top: 10.0, left: 6.0, bottom: 10.0),
                                   hintText: '작가 검색',
