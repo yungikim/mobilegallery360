@@ -16,10 +16,12 @@ class ArtistController extends GetxController{
   var artists_search = <ArtistModelSearch>[].obs;
 
   var dataLoadingComplete = false.obs;
+  var dataLoadingComplete_detail = false.obs;
   var isSearch = false.obs;
 
   //Detail Page
   var selectEmail = "".obs;
+
 
   Future getArtist() async{
     isSearch.value = false;
@@ -104,10 +106,9 @@ class ArtistController extends GetxController{
 
   Future artistDetail(String email) async{
     try{
-      String response = await _artistRepository.artistDetail(email);
-      ArtistDetail artistdetail = artistDetailFromJson2(response);
-      artistInfo.value = artistdetail;
-      dataLoadingComplete.value = true;
+      var response = await _artistRepository.artistDetail(email);
+      artistInfo.value = ArtistDetail.fromJson(response);
+      dataLoadingComplete_detail.value = true;
     }catch(e){
       e.printError();
     }

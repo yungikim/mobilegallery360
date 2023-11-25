@@ -83,27 +83,11 @@ class ArtistRepository extends GetConnect{
     }
   }
 
-  Future<String> artistDetail(String email) async {
+  Future<dynamic> artistDetail(String email) async {
     //try {
     String url = "${base_url}/load_artist_detail_public.mon?email=$email";
-    print(url);
-    // final response = await get(url);
-    // final data = response.body.toString();
-
-    final response2 = await http.get(Uri.parse(url));
-    print(response2.body);
-    if (response2.statusCode == 200) {
-      print("111111111111111111");
-      print(response2.body);
-      // final UserDetail user2 = userDetailFromJson(response2.body);
-      print("first nicknae");
-      // print(userDetailFromJson(response2.body));
-      // print(user2.nickname);
-      return response2.body;
-    } else {
-      //Fluttertoast.showToast(msg: "Error occurred. Please try again");
-      return "";
-    }
+    var response2 = await dio.get(url);
+    return response2.data;
   }
 
 }

@@ -35,7 +35,7 @@ class ArtistDetail {
   // String? curnickname;
   List<Group>? group;
   List<Education>? education;
-  // List<Career>? career;
+  List<Career>? career;
   // List<Cert>? cert;
   // List<Career>? display;
   // String? summary;
@@ -74,7 +74,7 @@ class ArtistDetail {
     this.content2,
     this.group,
     this.education,
-    //  this.career,
+    this.career,
     //  this.cert,
     //  this.display,
     //  this.summary,
@@ -98,6 +98,12 @@ class ArtistDetail {
     }
     if (json["education"] != null){
       education = List<Education>.from(json["education"].map((x) => Education.fromJson(x)));
+    }
+    if (json["career"] != null){
+      career = List<Career>.from(json["career"].map((x) => Career.fromJson(x)));
+    }
+    if (json["group"] != null){
+      group = List<Group>.from(json["group"].map((x) => Group.fromJson(x)));
     }
   }
 
