@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
@@ -34,16 +35,16 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("작가 상세보기", style: TextStyle(color: Colors.white),),
-        centerTitle: true,
-        actions: [
-          IconButton(onPressed: (){
-            Get.back();
-          }, icon: const Icon(Icons.close, color: Colors.white, size: 35,)),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.black,
+      //   title: const Text("작가 상세보기", style: TextStyle(color: Colors.white),),
+      //   centerTitle: true,
+      //   actions: [
+      //     IconButton(onPressed: (){
+      //       Get.back();
+      //     }, icon: const Icon(Icons.close, color: Colors.white, size: 25,)),
+      //   ],
+      // ),
       body: Obx(() {
         if (_artistController.dataLoadingComplete_detail.value){
           return DefaultTabController(
@@ -54,8 +55,15 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
                   backgroundColor: Colors.black,
                   automaticallyImplyLeading: false,
                   floating: false,
-                  pinned: false,
+                  pinned: true,
                   expandedHeight: 250,
+                  actions: [
+                      IconButton(onPressed: (){
+                        Get.back();
+                      }, icon: const Icon(Icons.close, color: Colors.white, size: 25,)),
+                  ],
+                  title: const Text("작가 상세보기", style: TextStyle(color: Colors.white, fontSize:18),),
+                  centerTitle: true,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(
                       children: [
@@ -72,10 +80,10 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
                     ),
                   ),
                   bottom: const TabBar(
-                    indicatorColor: Colors.black,
+                    indicatorColor: Colors.red,
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white,
-                    labelStyle: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                    labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(fontSize: 15.0),
                     tabs: [
                       Tab(

@@ -12,6 +12,9 @@ class ArtistExpressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    const double dfontsize = 13.0;
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -21,14 +24,14 @@ class ArtistExpressWidget extends StatelessWidget {
             Text(
               _artistController.artistInfo.value.nickname,
               style: const TextStyle(
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               _artistController.artistInfo.value.nameEng ?? '',
               style: const TextStyle(
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -38,7 +41,7 @@ class ArtistExpressWidget extends StatelessWidget {
             Text(
               _artistController.artistInfo.value.content ?? '',
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: dfontsize,
               ),
             ),
             const SizedBox(
@@ -60,7 +63,7 @@ class ArtistExpressWidget extends StatelessWidget {
             ),
             Text(
               _artistController.artistInfo.value.content2 ?? '',
-              style: const TextStyle(letterSpacing: 1, fontSize: 16),
+              style: const TextStyle(letterSpacing: 1, fontSize: dfontsize),
             ),
             const SizedBox(
               height: 40,
@@ -77,7 +80,7 @@ class ArtistExpressWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),),
                   const SizedBox(height: 20,),
-                  Text(Util.chageText(draw0()), style: TextStyle(fontSize: 16),),
+                  Text(Util.chageText(draw0()), style: TextStyle(fontSize: dfontsize),),
                 ],
               ),
             ),
@@ -93,22 +96,22 @@ class ArtistExpressWidget extends StatelessWidget {
             SizedBox(height: 20,),
             Text(
               draw1(),
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: dfontsize),
             ),
             const SizedBox(
               height: 30,
             ),
-            Text(
+            const Text(
               "수상 경력",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Text(
               draw2(),
-              style: const TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: dfontsize),
             ),
           ],
         ),
