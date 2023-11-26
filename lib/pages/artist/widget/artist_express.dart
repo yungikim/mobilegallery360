@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:gallery360/pages/artist/model/artist_detail.dart';
 
 import '../../../util/Util.dart';
 
@@ -38,7 +39,9 @@ class ArtistExpressWidget extends StatelessWidget {
               height: 30,
             ),
             Text(
-              Util.chageText(_artistController.artistInfo.value.content.toString()) ?? '',
+              Util.chageText(
+                      _artistController.artistInfo.value.content.toString()) ??
+                  '',
               style: const TextStyle(
                 fontSize: dfontsize,
               ),
@@ -47,7 +50,7 @@ class ArtistExpressWidget extends StatelessWidget {
               height: 30,
             ),
             Visibility(
-              visible: _artistController.artistInfo.value.content2 != null,
+              visible: _artistController.artistInfo.value.content2 != "",
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -62,7 +65,9 @@ class ArtistExpressWidget extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    Util.chageText(_artistController.artistInfo.value.content2.toString()) ?? '',
+                    Util.chageText(_artistController.artistInfo.value.content2
+                            .toString()) ??
+                        '',
                     style:
                         const TextStyle(letterSpacing: 1, fontSize: dfontsize),
                   ),
@@ -73,7 +78,8 @@ class ArtistExpressWidget extends StatelessWidget {
               ),
             ),
             Visibility(
-              visible: _artistController.artistInfo.value.group != null,
+              visible: _artistController.artistInfo.value.group != null &&
+                  _artistController.artistInfo.value.group!.length > 0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -122,9 +128,10 @@ class ArtistExpressWidget extends StatelessWidget {
                 ],
               ),
             ),
-
             Visibility(
-              visible: _artistController.artistInfo.value.cert?[0].certname != "",
+              visible:
+                  _artistController.artistInfo.value.cert?[0].certname != "" &&
+                      _artistController.artistInfo.value.cert != null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -148,7 +155,6 @@ class ArtistExpressWidget extends StatelessWidget {
                 ],
               ),
             ),
-
             Visibility(
               visible: _artistController.artistInfo.value.career != null,
               child: Column(
@@ -162,14 +168,15 @@ class ArtistExpressWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 0,
                   ),
-                  Text(
-                    Util.chageText(draw2()),
-                    style: const TextStyle(fontSize: dfontsize),
-                  ),
+                  changeTextCareer(context),
+                  // Text(
+                  //   Util.chageText(draw2()),
+                  //   style: const TextStyle(fontSize: dfontsize),
+                  // ),
                   const SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                 ],
               ),
@@ -187,12 +194,13 @@ class ArtistExpressWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 1,
                   ),
-                  Text(
-                    Util.chageText(draw3()),
-                    style: const TextStyle(fontSize: dfontsize),
-                  ),
+                  changeTextDisplay(context),
+                  // Text(
+                  //   Util.chageText(draw3()),
+                  //   style: const TextStyle(fontSize: dfontsize),
+                  // ),
                 ],
               ),
             )
@@ -211,7 +219,7 @@ class ArtistExpressWidget extends StatelessWidget {
         var group = _artistController.artistInfo.value.group![i];
         String dept = group.dept ?? '';
         String jobtitle = group.jobtitle ?? '';
-        String title = group.title ?? '';
+        String title = group.title.trim() ?? '';
         res = "$res$title $dept $jobtitle\n";
       }
     }
@@ -235,44 +243,66 @@ class ArtistExpressWidget extends StatelessWidget {
     return res;
   }
 
-  String draw2() {
-    String res = "";
+  Widget changeTextCareer(BuildContext context){
+    final width = MediaQuery.of(context).size.width;
     if (_artistController.artistInfo.value.career != null) {
-      for (var i = 0;
-          i < _artistController.artistInfo.value.career!.length;
-          i++) {
-        var career = _artistController.artistInfo.value.career![i];
-        String term = career.term ?? '';
-        String title = career.title ?? '';
-        res = "$res$term         $title \n";
-      }
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: _artistController.artistInfo.value.career!.length,
+        itemBuilder: (context, index){
+          Career item = _artistController.artistInfo.value.career![index];
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(width:80,child: Text(Util.chageText(item.term))),
+              const SizedBox(width: 10,),
+              SizedBox(width: width - 140,
+                child: Text(Util.chageText(item.title.trim())),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      return const SizedBox();
     }
-    return res;
   }
 
-  String draw3() {
-    String res = "";
+  Widget changeTextDisplay(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     if (_artistController.artistInfo.value.display != null) {
-      for (var i = 0;
-          i < _artistController.artistInfo.value.display!.length;
-          i++) {
-        var display = _artistController.artistInfo.value.display![i];
-        String term = display.term ?? '';
-        String title = display.title ?? '';
-        res = "$res$term         $title \n";
-      }
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: _artistController.artistInfo.value.display!.length,
+        itemBuilder: (context, index){
+          Display item = _artistController.artistInfo.value.display![index];
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(width : 80, child: Text(item.term)),
+              const SizedBox(width: 10,),
+              SizedBox(width: width - 140,
+                child: Text(Util.chageText(item.title.trim())),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      return const SizedBox();
     }
-    return res;
   }
 
   String draw4() {
     String res = "";
     if (_artistController.artistInfo.value.cert != null) {
       for (var i = 0;
-      i < _artistController.artistInfo.value.cert!.length;
-      i++) {
+          i < _artistController.artistInfo.value.cert!.length;
+          i++) {
         var cert = _artistController.artistInfo.value.cert![i];
-        String title = cert.certname ?? '';
+        String title = cert.certname.trim() ?? '';
         res = "$res$title \n";
       }
     }

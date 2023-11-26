@@ -6,6 +6,7 @@ import 'package:gallery360/icons/custom_icons_icons.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../const/const.dart';
 import '../../../util/Util.dart';
@@ -32,8 +33,10 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
       if (_artistController.dataLoadingComplete_vr.value) {
         return MasonryGridView.builder(
           itemCount: _artistController.detailvrs.length,
-          gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-          itemBuilder: (context, index){
+          gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
+          ),
+          itemBuilder: (context, index) {
             var item = _artistController.detailvrs[index];
             String email = item.dockey.split("_")[0];
             var url =

@@ -7,6 +7,7 @@ import 'package:gallery360/pages/artist/widget/artist_express.dart';
 import 'package:gallery360/pages/artist/widget/artist_vr.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ArtistDetailPage extends StatefulWidget {
   const ArtistDetailPage({super.key, required this.email});
@@ -25,6 +26,9 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
   void initState() {
     callDetail();
     _artistController.current_email.value = widget.email;
+    _artistController.dataLoadingComplete_art.value = false;
+    _artistController.dataLoadingComplete_vr.value = false;
+
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
@@ -89,7 +93,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                   automaticallyImplyLeading: false,
                   floating: false,
                   pinned: true,
-                  expandedHeight: 250,
+                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : 350,
                   actions: [
                       IconButton(onPressed: (){
                         Get.back();

@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../icons/custom_icons_icons.dart';
 import '../../../util/Util.dart';
@@ -37,21 +38,24 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
             crossAxisSpacing: 10,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _artistController.detailarts.length,
-            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index){
+            gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 2 : 3,
+            ),
+            itemBuilder: (context, index) {
               DetailArt item = _artistController.detailarts[index];
-              String url =
-              Util.makeMainArtListURL(item.email, item.dockey);
+              String url = Util.makeMainArtListURL(item.email, item.dockey);
               String art_title = Util.chageText(item.art_title);
               String art_artist = item.artArtist;
               String width = item.art_width;
               String height = item.art_height;
-              int hosu = item.art_hosu;
+              int hosu = item.art_hosu ?? 0;
               String art_dis = "${height}x$width($hosu호)";
               String opt = item.opt ?? '';
-              String price = opt == "none" ? "가격문의" : "￦${Util.addComma(item.art_price / 10000)}만원";
+              String price = opt == "none"
+                  ? "가격문의"
+                  : "￦${Util.addComma(item.art_price / 10000)}만원";
               return Container(
-               // margin: EdgeInsets.only(left: 10, right: 10),
+                // margin: EdgeInsets.only(left: 10, right: 10),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey.withOpacity(0.4)),
                 ),
@@ -60,30 +64,65 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                   children: [
                     CachedNetworkImage(
                       imageUrl: url,
-                      placeholder: (context, url) => const CircularProgressIndicator(),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
                       fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 5,),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(art_title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
-                          const SizedBox(height: 5,),
-                          Text(art_artist, style: const TextStyle(fontSize: 12),),
-                          const SizedBox(height: 5,),
-                          Text(art_dis, style: TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.5)),),
-                          const SizedBox(height: 7,),
+                          Text(
+                            art_title,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 13),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            art_artist,
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            art_dis,
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.5)),
+                          ),
+                          const SizedBox(
+                            height: 7,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(price, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                              Text(
+                                price,
+                                style: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
                               const Row(
                                 children: [
-                                  Icon(CustomIcons.icon_artwork_original, color: Colors.grey, size: 18,),
-                                  SizedBox(width: 10,),
-                                  Icon(CustomIcons.icon_artwork_vr, color: Colors.grey, size: 18,),
+                                  Icon(
+                                    CustomIcons.icon_artwork_original,
+                                    color: Colors.grey,
+                                    size: 18,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(
+                                    CustomIcons.icon_artwork_vr,
+                                    color: Colors.grey,
+                                    size: 18,
+                                  ),
                                 ],
                               )
                             ],

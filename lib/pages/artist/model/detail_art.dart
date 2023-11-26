@@ -11,9 +11,9 @@ class DetailArt {
   String nickname;
   String art_width;
   String art_height;
-  int art_hosu;
+  int? art_hosu;
   int art_price;
-  String isSales;
+  String? isSales;
   Vrinfo? vrinfo;
   String? opt;
   String dockey;
@@ -82,10 +82,10 @@ class DetailArt {
     required this.nickname,
     this.vrinfo,
     required this.art_height,
-    required this.art_hosu,
+    this.art_hosu,
     required this.art_price,
     required this.art_width,
-    required this.isSales,
+    this.isSales,
     this.opt,
     required this.email,
     required this.dockey

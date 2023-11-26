@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../Sample/carousel/sub/base_carousel.dart';
+import '../../../artist/artist_detail.dart';
 
 class MonthlyArtistWidget extends StatefulWidget {
   const MonthlyArtistWidget({super.key});
@@ -46,17 +47,22 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                           Positioned(
                             bottom: 10.0,
                             left: 10.0,
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: 120,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white),
-                              ),
-                              child: const Text(
-                                "작가 만나러 가기",
-                                style: TextStyle(
-                                  color: Colors.white,
+                            child: InkWell(
+                              onTap: (){
+                                Get.to(() => ArtistDetailPage(email: item.email), transition: Transition.fadeIn);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: 120,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white),
+                                ),
+                                child: const Text(
+                                  "작가 만나러 가기",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),

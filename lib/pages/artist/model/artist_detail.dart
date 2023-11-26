@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 ArtistDetail artistDetailFromJson2(String str) =>
     ArtistDetail.fromJson(json.decode(str));
