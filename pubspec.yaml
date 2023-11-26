@@ -107,6 +107,9 @@ flutter:
     - family: MyFlutterApp
       fonts:
         - asset: assets/fonts/MyFlutterApp.ttf
+    - family: CustomIcons
+      fonts:
+        - asset: assets/fonts/CustomIcons.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

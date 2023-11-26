@@ -90,4 +90,40 @@ class ArtistRepository extends GetConnect{
     return response2.data;
   }
 
+  //Detail page
+
+  Future<dynamic> detailArt(int page, int limit,  String email) async {
+    try {
+      int px = page - 1;
+      if (page > 1) {
+        px = (page - 1) * limit;
+      }
+      String url = "${base_url}/load_image_for_artist.mon?start=$px&perpage=$limit&email=$email";
+      final response = await dio.get(url);
+      print(Uri.parse(url));
+      List<dynamic> data = response.data;
+      data = data.sublist(1,data.length);   //첫번째 totalcount json데이터를 제거한다.
+      return data;
+    } catch (e) {
+      e.printError();
+    }
+  }
+
+  Future<dynamic> detailVR(int page, int limit, String email) async {
+    try {
+      int px = page - 1;
+      if (page > 1) {
+        px = (page - 1) * limit;
+      }
+      String url = "${base_url}/load_VRRoom_public.mon.mon?start=$px&perpage=$limit&ty=artist&artist=$email";
+      final response = await dio.get(url);
+      print(Uri.parse(url));
+      List<dynamic> data = response.data;
+      data = data.sublist(1,data.length);   //첫번째 totalcount json데이터를 제거한다.
+      return data;
+    } catch (e) {
+      e.printError();
+    }
+  }
+
 }

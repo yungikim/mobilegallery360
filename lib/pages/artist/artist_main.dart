@@ -174,8 +174,8 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                             textInputAction: TextInputAction.search,
                             onSubmitted: (value) {
                               // print("search query : $value");
-                              _artistController.dataLoadingComplete.value =
-                                  false;
+                              // _artistController.dataLoadingComplete.value =
+                              //     false;
                               _artistController.artists.value = <ArtistModel>[];
                               _artistController.searchUser(value);
                             },
@@ -192,12 +192,20 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                           ),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         right: 5,
                         top: 17,
-                        child: Icon(
-                          Icons.search,
-                          size: 20.0,
+                        child: GestureDetector(
+                          onTap: (){
+                            // _artistController.dataLoadingComplete.value =
+                            // false;
+                            _artistController.artists.value = <ArtistModel>[];
+                            _artistController.searchUser(queryController.text);
+                          },
+                          child: Icon(
+                            Icons.search,
+                            size: 20.0,
+                          ),
                         ),
                       ),
                     ],

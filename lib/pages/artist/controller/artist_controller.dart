@@ -1,8 +1,10 @@
 import 'package:gallery360/pages/artist/model/artist_detail.dart';
+import 'package:gallery360/pages/artist/model/detail_art.dart';
 import 'package:gallery360/pages/artist/repository/artist_repository.dart';
 import 'package:get/get.dart';
 import '../model/artist_model_search.dart';
 import '../model/artist_model.dart';
+import '../model/detail_vr.dart';
 
 class ArtistController extends GetxController{
   final ArtistRepository _artistRepository = ArtistRepository();
@@ -12,15 +14,22 @@ class ArtistController extends GetxController{
   var artists = <ArtistModel>[].obs;
   var type = "1".obs;
   var artistInfo = ArtistDetail(nickname: "").obs;
-
   var artists_search = <ArtistModelSearch>[].obs;
-
   var dataLoadingComplete = false.obs;
   var dataLoadingComplete_detail = false.obs;
   var isSearch = false.obs;
 
   //Detail Page
-  var selectEmail = "".obs;
+  var current_email = "".obs;
+  var detailarts = <DetailArt>[].obs;
+  int _page_art = 1;
+  var hasMore_art = true.obs;
+  var dataLoadingComplete_art = false.obs;
+
+  var detailvrs = <DetailVR>[].obs;
+  int _page_vr = 1;
+  var hasMore_vr = true.obs;
+  var dataLoadingComplete_vr = false.obs;
 
 
   Future getArtist() async{
@@ -36,22 +45,15 @@ class ArtistController extends GetxController{
     dataLoadingComplete.value = true;
   }
 
-
-
-
   Future searchUser(String query) async{
     try{
       isSearch.value = true;
       String ty = type.toString();
-      print("111111");
       List<dynamic> response = await _artistRepository.searchUsers(_page, _limit, ty, query);
-      print(response);
       List<ArtistModel> rx = response.map<ArtistModel>((json) => ArtistModel.fromJson(json)).toList();
-      print(rx);
       if (rx.length < _limit){
         hasMore.value = false;
       }
-
       artists.addAll(rx);
       _page++;
       dataLoadingComplete.value = true;
@@ -59,50 +61,6 @@ class ArtistController extends GetxController{
       e.printError();
     }
   }
-
-
-
-  //
-  // Future getArtist() async {
-  //   try {
-  //     print("getUser ..............");
-  //     String ty = type.toString();
-  //     print("type : $ty");
-  //
-  //     List<ArtistModel> response = await _artistRepository.fetchUsers(_page, _limit, ty);
-  //     if (response.length < _limit) {
-  //       hasMore.value = false;
-  //     }
-  //
-  //     print("response.length : ${response.length}");
-  //     artists.addAll(response.sublist(1, response.length));
-  //     //    users.addAll(response);
-  //     _page++;
-  //     dataLoadingComplete.value = true;
-  //   } catch (e) {
-  //     e.printError();
-  //   }
-  // }
-  //
-  //
-  // Future searchUser(String query) async {
-  //   try {
-  //     String ty = type.toString();
-  //     List<ArtistModel> response =
-  //     await _artistRepository.searchUsers(_page, _limit, ty, query);
-  //     if (response.length < _limit) {
-  //       hasMore.value = false;
-  //     }
-  //
-  //     print("Search length : ${response.length}");
-  //     artists.addAll(response.sublist(1, response.length));
-  //     print(response);
-  //     _page++;
-  //     dataLoadingComplete.value = true;
-  //   } catch (e) {
-  //     e.printError();
-  //   }
-  // }
 
   Future artistDetail(String email) async{
     try{
@@ -121,4 +79,33 @@ class ArtistController extends GetxController{
 
     await getArtist();
   }
+
+
+  //Detail Page
+  Future getDetailArt() async{
+    String email = current_email.value;
+    List<dynamic> response = await _artistRepository.detailArt(_page_art, _limit, email);
+    print(response);
+    List<DetailArt> rx = response.map<DetailArt>((json) => DetailArt.fromJson(json)).toList();
+    print(rx);
+    if (rx.length < _limit){
+      hasMore_art.value = false;
+    }
+    detailarts.addAll(rx);
+    _page_art++;
+    dataLoadingComplete_art.value = true;
+  }
+
+  Future getDetailVR() async{
+    String email = current_email.value;
+    List<dynamic> response = await _artistRepository.detailVR(_page_vr, _limit, email);
+    List<DetailVR> rx = response.map<DetailVR>((json) => DetailVR.fromJson(json)).toList();
+    if (rx.length < _limit){
+      hasMore_vr.value = false;
+    }
+    detailvrs.addAll(rx);
+    _page_vr++;
+    dataLoadingComplete_vr.value = true;
+  }
+
 }

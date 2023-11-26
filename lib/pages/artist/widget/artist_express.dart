@@ -12,7 +12,6 @@ class ArtistExpressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     const double dfontsize = 13.0;
 
     return SingleChildScrollView(
@@ -39,7 +38,7 @@ class ArtistExpressWidget extends StatelessWidget {
               height: 30,
             ),
             Text(
-              _artistController.artistInfo.value.content ?? '',
+              Util.chageText(_artistController.artistInfo.value.content.toString()) ?? '',
               style: const TextStyle(
                 fontSize: dfontsize,
               ),
@@ -47,72 +46,156 @@ class ArtistExpressWidget extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-
-
-
-
-            const Text(
-              "작가노트",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Visibility(
+              visible: _artistController.artistInfo.value.content2 != null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "작가노트",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    Util.chageText(_artistController.artistInfo.value.content2.toString()) ?? '',
+                    style:
+                        const TextStyle(letterSpacing: 1, fontSize: dfontsize),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              _artistController.artistInfo.value.content2 ?? '',
-              style: const TextStyle(letterSpacing: 1, fontSize: dfontsize),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-
             Visibility(
               visible: _artistController.artistInfo.value.group != null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("소속 및 단체",
+                  const Text(
+                    "소속 및 단체",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                    ),),
-                  const SizedBox(height: 20,),
-                  Text(Util.chageText(draw0()), style: TextStyle(fontSize: dfontsize),),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    Util.chageText(draw0()),
+                    style: const TextStyle(fontSize: dfontsize),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: _artistController.artistInfo.value.education != null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "학력 정보",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    Util.chageText(draw1()),
+                    style: const TextStyle(fontSize: dfontsize),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
             ),
 
+            Visibility(
+              visible: _artistController.artistInfo.value.cert != null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "작품 소장처",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    Util.chageText(draw4()),
+                    style: const TextStyle(fontSize: dfontsize),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+            ),
 
-            const Text(
-              "학력 정보",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Visibility(
+              visible: _artistController.artistInfo.value.career != null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "수상 경력",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    Util.chageText(draw2()),
+                    style: const TextStyle(fontSize: dfontsize),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: 20,),
-            Text(
-              draw1(),
-              style: const TextStyle(fontSize: dfontsize),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              "수상 경력",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Visibility(
+              visible: _artistController.artistInfo.value.display != null,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "전시 및 프로젝트 경력",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    Util.chageText(draw3()),
+                    style: const TextStyle(fontSize: dfontsize),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 20,),
-            Text(
-              draw2(),
-              style: const TextStyle(fontSize: dfontsize),
-            ),
+            )
           ],
         ),
       ),
@@ -123,8 +206,8 @@ class ArtistExpressWidget extends StatelessWidget {
     String res = "";
     if (_artistController.artistInfo.value.group != null) {
       for (var i = 0;
-      i < _artistController.artistInfo.value.group!.length;
-      i++) {
+          i < _artistController.artistInfo.value.group!.length;
+          i++) {
         var group = _artistController.artistInfo.value.group![i];
         String dept = group.dept ?? '';
         String jobtitle = group.jobtitle ?? '';
@@ -164,7 +247,35 @@ class ArtistExpressWidget extends StatelessWidget {
         res = "$res$term         $title \n";
       }
     }
-    print(res);
+    return res;
+  }
+
+  String draw3() {
+    String res = "";
+    if (_artistController.artistInfo.value.display != null) {
+      for (var i = 0;
+          i < _artistController.artistInfo.value.display!.length;
+          i++) {
+        var display = _artistController.artistInfo.value.display![i];
+        String term = display.term ?? '';
+        String title = display.title ?? '';
+        res = "$res$term         $title \n";
+      }
+    }
+    return res;
+  }
+
+  String draw4() {
+    String res = "";
+    if (_artistController.artistInfo.value.cert != null) {
+      for (var i = 0;
+      i < _artistController.artistInfo.value.cert!.length;
+      i++) {
+        var cert = _artistController.artistInfo.value.cert![i];
+        String title = cert.certname ?? '';
+        res = "$res$title \n";
+      }
+    }
     return res;
   }
 }

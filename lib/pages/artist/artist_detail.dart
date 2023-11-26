@@ -23,6 +23,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
   @override
   void initState() {
     callDetail();
+    _artistController.current_email.value = widget.email;
     // TODO: implement initState
     super.initState();
   }
@@ -79,13 +80,27 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
                       ],
                     ),
                   ),
-                  bottom: const TabBar(
+                  bottom: TabBar(
                     indicatorColor: Colors.red,
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white,
                     labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(fontSize: 15.0),
-                    tabs: [
+                    onTap: (index){
+                      print(index);
+                      if (index == 1){
+                        _artistController.hasMore_art.value = true;
+                        _artistController.detailarts.value = [];
+                        _artistController.dataLoadingComplete_art.value = false;
+                        _artistController.getDetailArt();
+                      }else if (index == 2){
+                        _artistController.hasMore_vr.value = true;
+                        _artistController.detailvrs.value = [];
+                        _artistController.dataLoadingComplete_vr.value = false;
+                        _artistController.getDetailVR();
+                      }
+                    },
+                    tabs: const [
                       Tab(
                         text: "작가 소개",
                       ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 ArtistDetail artistDetailFromJson2(String str) =>
     ArtistDetail.fromJson(json.decode(str));
@@ -6,13 +7,16 @@ ArtistDetail artistDetailFromJson2(String str) =>
 // String userDetailToJson2(UserDetail2 data) => json.encode(data.toJson());
 
 class ArtistDetail {
-  String nickname ="";
+  String nickname = "";
+
   // ID id;
   String? email;
+
   // String? gubun;
   // String? site;
   // String? welcomeId;
   String? name;
+
   // String? gender;
   // String? sortdate;
   // int? artCount;
@@ -23,21 +27,26 @@ class ArtistDetail {
   // String? emailAuth;
   // int? random;
   String? photoimage;
+
   // String? photoimageVersion;
   // String? photoimageList;
   // String? photoimageListVersion;
   String? photoimageProfile;
+
   // String? photoimageProfileVersion;
   String? nameEng;
+
   // String? birth;
   String? content;
   String? content2;
+
   // String? curnickname;
   List<Group>? group;
   List<Education>? education;
   List<Career>? career;
-  // List<Cert>? cert;
-  // List<Career>? display;
+  List<Cert>? cert;
+  List<Display>? display;
+
   // String? summary;
   // String? lastArtPath;
   // String? autoupload;
@@ -75,16 +84,15 @@ class ArtistDetail {
     this.group,
     this.education,
     this.career,
-    //  this.cert,
-    //  this.display,
+    this.cert,
+    this.display,
     //  this.summary,
     //  this.lastArtPath,
     //  this.autoupload,
     //  this.mode,
-
   });
 
-  ArtistDetail.fromJson(Map<String, dynamic> json){
+  ArtistDetail.fromJson(Map<String, dynamic> json) {
     nickname = json['nickname'];
     email = json['email'];
     photoimageProfile = json['photoimage'];
@@ -93,17 +101,27 @@ class ArtistDetail {
     nameEng = json['name_eng'];
     content = json['content'];
     content2 = json['content2'];
-    if (json["group"] != null){
+    if (json["group"] != null) {
       group = List<Group>.from(json["group"].map((x) => Group.fromJson(x)));
     }
-    if (json["education"] != null){
-      education = List<Education>.from(json["education"].map((x) => Education.fromJson(x)));
+    if (json["education"] != null) {
+      education = List<Education>.from(
+          json["education"].map((x) => Education.fromJson(x)));
     }
-    if (json["career"] != null){
+    if (json["career"] != null) {
       career = List<Career>.from(json["career"].map((x) => Career.fromJson(x)));
     }
-    if (json["group"] != null){
+    if (json["group"] != null) {
       group = List<Group>.from(json["group"].map((x) => Group.fromJson(x)));
+    }
+
+    if (json["cert"] != null) {
+      cert = List<Cert>.from(json["cert"].map((x) => Cert.fromJson(x)));
+    }
+
+    if (json["display"] != null) {
+      display =
+          List<Display>.from(json["display"].map((x) => Display.fromJson(x)));
     }
   }
 
@@ -113,15 +131,12 @@ class ArtistDetail {
     data['email'] = email;
     data['photoimage'] = photoimage;
     data['photoimage_profile'] = photoimageProfile;
-    if (group != null){
+    if (group != null) {
       data['group'] = List<dynamic>.from(group!.map((x) => x.toJson()));
     }
     return data;
   }
-
 }
-
-
 
 class Career {
   String term;
@@ -132,14 +147,12 @@ class Career {
     required this.title,
   });
 
-  factory Career.fromJson(Map<String, dynamic> json) =>
-      Career(
+  factory Career.fromJson(Map<String, dynamic> json) => Career(
         term: json['term'],
         title: json['title'],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "term": term,
         "title": title,
       };
@@ -152,13 +165,11 @@ class Cert {
     required this.certname,
   });
 
-  factory Cert.fromJson(Map<String, dynamic> json) =>
-      Cert(
+  factory Cert.fromJson(Map<String, dynamic> json) => Cert(
         certname: json['certname'],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "certname": certname,
       };
 }
@@ -180,8 +191,7 @@ class Education {
     this.end,
   });
 
-  factory Education.fromJson(Map<String, dynamic> json) =>
-      Education(
+  factory Education.fromJson(Map<String, dynamic> json) => Education(
         level: json['level'],
         status: json['status'],
         schoolname: json['schoolname'],
@@ -190,8 +200,7 @@ class Education {
         end: json['end'],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "level": level,
         "status": status,
         "schoolname": schoolname,
@@ -212,19 +221,29 @@ class Group {
     required this.jobtitle,
   });
 
-  factory Group.fromJson(Map<String, dynamic> json) =>
-      Group(
+  factory Group.fromJson(Map<String, dynamic> json) => Group(
         title: json["title"],
         dept: json['dept'],
         jobtitle: json['jobtitle'],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "title": title,
         "dept": dept,
         "jobtitle": jobtitle,
       };
+}
+
+class Display {
+  String term;
+  String title;
+
+  Display({required this.term, required this.title});
+
+  factory Display.fromJson(Map<String, dynamic> json) => Display(
+        term: json['term'],
+        title: json['title'],
+      );
 }
 
 class ID {
@@ -235,17 +254,15 @@ class ID {
   });
 
   factory ID.fromJson(Map<String, dynamic> json) => ID(
-    oid: json["\u0024oid"],
-  );
+        oid: json["\u0024oid"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "\u0024oid": oid,
-  };
+        "\u0024oid": oid,
+      };
 }
 
-
 ArtistDetail EmptyUserDetail2() {
-
   return ArtistDetail(
     // id: ID(oid: ""),
     // email: "",
