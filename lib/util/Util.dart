@@ -136,6 +136,7 @@ Widget customAppBar(BuildContext context) {
   return AppBar(
     centerTitle: true,
     backgroundColor: Colors.black,
+    elevation: 0,
     leading: IconButton(
       onPressed: () {
         if (ZoomDrawer.of(context)!.isOpen()) {

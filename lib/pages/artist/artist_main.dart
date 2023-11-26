@@ -77,7 +77,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
+          preferredSize: const Size.fromHeight(60),
           child: customAppBar(context),
         ),
         body: Obx(() {
@@ -96,12 +96,18 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                       children: [
                         Container(
                           height: 250,
-                          color: Colors.black,
-                          child: const Image(
-                            image: AssetImage(
-                                "assets/images/logo/main-visual.jpg"),
-                            fit: BoxFit.cover,
+                          decoration: const BoxDecoration(
+                              color: Colors.black,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/logo/main-visual.jpg"),
+                              fit: BoxFit.cover
+                            )
                           ),
+                          // child: const Image(
+                          //   image: AssetImage(
+                          //       "assets/images/logo/main-visual.jpg"),
+                          //   fit: BoxFit.cover,
+                          // ),
                         ),
                         Positioned(
                           left: 15,
@@ -114,7 +120,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.8),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 28.0,
+                                  fontSize: 24.0,
                                 ),
                               ),
                               Text(
@@ -122,7 +128,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.8),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 28.0,
+                                  fontSize: 24.0,
                                 ),
                               ),
                             ],

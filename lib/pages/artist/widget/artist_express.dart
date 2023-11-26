@@ -124,7 +124,7 @@ class ArtistExpressWidget extends StatelessWidget {
             ),
 
             Visibility(
-              visible: _artistController.artistInfo.value.cert != null,
+              visible: _artistController.artistInfo.value.cert?[0].certname != "",
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

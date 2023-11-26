@@ -1,7 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:gallery360/icons/custom_icons_icons.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
+import '../../../const/const.dart';
+import '../../../util/Util.dart';
 
 class ArtistVRWidget extends StatefulWidget {
   const ArtistVRWidget({super.key});
@@ -11,7 +18,6 @@ class ArtistVRWidget extends StatefulWidget {
 }
 
 class _ArtistVRWidgetState extends State<ArtistVRWidget> {
-
   final ArtistController _artistController = Get.put(ArtistController());
 
   @override
@@ -22,6 +28,82 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Obx(() {
+      if (_artistController.dataLoadingComplete_vr.value) {
+        return MasonryGridView.builder(
+          itemCount: _artistController.detailvrs.length,
+          gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+          itemBuilder: (context, index){
+            var item = _artistController.detailvrs[index];
+            String email = item.dockey.split("_")[0];
+            var url =
+                "${base_url}/vr/vr/vrgallery/${email}/${item.dockey}/pano_f.jpg";
+            return Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.withOpacity(0.4)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      height: 270,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(url),
+                          fit: BoxFit.cover,
+                        ),
+                      ), //child:
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      Util.chageText(item.title),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      item.nickname,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(CustomIcons.icon_vr_view_count_b),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(Util.addComma2(item.read)),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Icon(CustomIcons.icon_vr_collect_count_b),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text("${item.like}"),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    });
   }
 }

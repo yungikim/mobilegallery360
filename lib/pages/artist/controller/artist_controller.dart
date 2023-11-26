@@ -22,12 +22,12 @@ class ArtistController extends GetxController{
   //Detail Page
   var current_email = "".obs;
   var detailarts = <DetailArt>[].obs;
-  int _page_art = 1;
+  var page_art = 1.obs;
   var hasMore_art = true.obs;
   var dataLoadingComplete_art = false.obs;
 
   var detailvrs = <DetailVR>[].obs;
-  int _page_vr = 1;
+  var page_vr = 1.obs;
   var hasMore_vr = true.obs;
   var dataLoadingComplete_vr = false.obs;
 
@@ -84,7 +84,7 @@ class ArtistController extends GetxController{
   //Detail Page
   Future getDetailArt() async{
     String email = current_email.value;
-    List<dynamic> response = await _artistRepository.detailArt(_page_art, _limit, email);
+    List<dynamic> response = await _artistRepository.detailArt(page_art.value, _limit, email);
     print(response);
     List<DetailArt> rx = response.map<DetailArt>((json) => DetailArt.fromJson(json)).toList();
     print(rx);
@@ -92,19 +92,19 @@ class ArtistController extends GetxController{
       hasMore_art.value = false;
     }
     detailarts.addAll(rx);
-    _page_art++;
+    page_art++;
     dataLoadingComplete_art.value = true;
   }
 
   Future getDetailVR() async{
     String email = current_email.value;
-    List<dynamic> response = await _artistRepository.detailVR(_page_vr, _limit, email);
+    List<dynamic> response = await _artistRepository.detailVR(page_vr.value, _limit, email);
     List<DetailVR> rx = response.map<DetailVR>((json) => DetailVR.fromJson(json)).toList();
     if (rx.length < _limit){
       hasMore_vr.value = false;
     }
     detailvrs.addAll(rx);
-    _page_vr++;
+    page_vr++;
     dataLoadingComplete_vr.value = true;
   }
 

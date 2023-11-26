@@ -115,9 +115,8 @@ class ArtistRepository extends GetConnect{
       if (page > 1) {
         px = (page - 1) * limit;
       }
-      String url = "${base_url}/load_VRRoom_public.mon.mon?start=$px&perpage=$limit&ty=artist&artist=$email";
+      String url = "${base_url}/load_VRRoom_public.mon?start=$px&perpage=$limit&ty=artist&artist=$email";
       final response = await dio.get(url);
-      print(Uri.parse(url));
       List<dynamic> data = response.data;
       data = data.sublist(1,data.length);   //첫번째 totalcount json데이터를 제거한다.
       return data;

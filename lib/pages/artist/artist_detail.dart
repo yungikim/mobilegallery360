@@ -17,8 +17,9 @@ class ArtistDetailPage extends StatefulWidget {
   State<ArtistDetailPage> createState() => _ArtistDetailPageState();
 }
 
-class _ArtistDetailPageState extends State<ArtistDetailPage> {
+class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProviderStateMixin{
   final ArtistController _artistController = Get.put(ArtistController());
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -26,11 +27,42 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
     _artistController.current_email.value = widget.email;
     // TODO: implement initState
     super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(_chageTab);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _tabController.removeListener(_chageTab);
+    // TODO: implement dispose
+    super.dispose();
   }
 
   void callDetail() async{
     _artistController.dataLoadingComplete_detail.value = false;
     _artistController.artistDetail(widget.email);
+  }
+
+  void _chageTab(){
+    switch (_tabController.index) {
+      case 1:
+        if (!_artistController.dataLoadingComplete_art.value){
+          _artistController.page_art.value = 1;
+          _artistController.hasMore_art.value = true;
+          _artistController.detailarts.value = [];
+          _artistController.dataLoadingComplete_art.value = false;
+          _artistController.getDetailArt();
+        }
+      case 2:
+        if (!_artistController.dataLoadingComplete_vr.value){
+          _artistController.page_vr.value = 1;
+          _artistController.hasMore_vr.value = true;
+          _artistController.detailvrs.value = [];
+          _artistController.dataLoadingComplete_vr.value = false;
+          _artistController.getDetailVR();
+        }
+    }
   }
 
   @override
@@ -81,25 +113,28 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
                     ),
                   ),
                   bottom: TabBar(
+                    controller: _tabController,
                     indicatorColor: Colors.red,
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white,
                     labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(fontSize: 15.0),
-                    onTap: (index){
-                      print(index);
-                      if (index == 1){
-                        _artistController.hasMore_art.value = true;
-                        _artistController.detailarts.value = [];
-                        _artistController.dataLoadingComplete_art.value = false;
-                        _artistController.getDetailArt();
-                      }else if (index == 2){
-                        _artistController.hasMore_vr.value = true;
-                        _artistController.detailvrs.value = [];
-                        _artistController.dataLoadingComplete_vr.value = false;
-                        _artistController.getDetailVR();
-                      }
-                    },
+                    // onTap: (index){
+                    //   print(index);
+                    //   if (index == 1){
+                    //     _artistController.page_art.value = 1;
+                    //     _artistController.hasMore_art.value = true;
+                    //     _artistController.detailarts.value = [];
+                    //     _artistController.dataLoadingComplete_art.value = false;
+                    //     _artistController.getDetailArt();
+                    //   }else if (index == 2){
+                    //     _artistController.page_vr.value = 1;
+                    //     _artistController.hasMore_vr.value = true;
+                    //     _artistController.detailvrs.value = [];
+                    //     _artistController.dataLoadingComplete_vr.value = false;
+                    //     _artistController.getDetailVR();
+                    //   }
+                    // },
                     tabs: const [
                       Tab(
                         text: "작가 소개",
@@ -116,6 +151,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> {
 
               ],
               body: TabBarView(
+                controller: _tabController,
                 children: [
                   ArtistExpressWidget(),
                   ArtistArtWidget(),
