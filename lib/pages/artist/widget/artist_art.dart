@@ -69,8 +69,8 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                   children: [
                     CachedNetworkImage(
                       imageUrl: url,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
+                      // placeholder: (context, url) =>
+                      //     const CircularProgressIndicator(),
                       fit: BoxFit.cover,
                     ),
                     const SizedBox(
