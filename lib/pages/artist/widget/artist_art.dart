@@ -30,6 +30,11 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (_artistController.dataLoadingComplete_art.value) {
+        if (_artistController.detailarts.isEmpty){
+          return const Center(
+            child: Text("전시중인 작품이 없습니다.", style: TextStyle(fontSize: 18),),
+          );
+        }
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: MasonryGridView.builder(

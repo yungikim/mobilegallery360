@@ -31,6 +31,11 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (_artistController.dataLoadingComplete_vr.value) {
+        if (_artistController.detailvrs.isEmpty){
+          return const Center(
+            child: Text("전시중인 VR갤러리가 없습니다.", style: TextStyle(fontSize: 18),),
+          );
+        }
         return MasonryGridView.builder(
           itemCount: _artistController.detailvrs.length,
           gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
