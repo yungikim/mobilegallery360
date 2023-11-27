@@ -38,19 +38,22 @@ class ArtistExpressWidget extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Text(
-              Util.chageText(
-                      _artistController.artistInfo.value.content.toString()) ??
-                  '',
-              style: const TextStyle(
-                fontSize: dfontsize,
+            Visibility(
+              visible: _artistController.artistInfo.value.content != null,
+              child: Text(
+                Util.chageText(
+                        _artistController.artistInfo.value.content.toString()) ??
+                    '',
+                style: const TextStyle(
+                  fontSize: dfontsize,
+                ),
               ),
             ),
             const SizedBox(
               height: 30,
             ),
             Visibility(
-              visible: _artistController.artistInfo.value.content2 != "",
+              visible: _artistController.artistInfo.value.content2 != null,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

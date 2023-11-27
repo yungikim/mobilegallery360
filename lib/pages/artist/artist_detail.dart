@@ -9,6 +9,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../util/Util.dart';
+
 class ArtistDetailPage extends StatefulWidget {
   const ArtistDetailPage({super.key, required this.email});
 
@@ -104,15 +106,19 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage("${base_url}/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg"),
-                                fit: BoxFit.cover,
-                                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
-                              )
-                          ),
-                        )
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //       image: DecorationImage(
+                        //         image: NetworkImage("${base_url}/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg"),
+                        //         fit: BoxFit.cover,
+                        //         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+                        //       )
+                        //   ),
+                        // ),
+                       cacheImage(
+                         url: "${base_url}/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg",
+                         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
+                       ),
                       ],
                     ),
                   ),
@@ -123,22 +129,6 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                     unselectedLabelColor: Colors.white,
                     labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(fontSize: 15.0),
-                    // onTap: (index){
-                    //   print(index);
-                    //   if (index == 1){
-                    //     _artistController.page_art.value = 1;
-                    //     _artistController.hasMore_art.value = true;
-                    //     _artistController.detailarts.value = [];
-                    //     _artistController.dataLoadingComplete_art.value = false;
-                    //     _artistController.getDetailArt();
-                    //   }else if (index == 2){
-                    //     _artistController.page_vr.value = 1;
-                    //     _artistController.hasMore_vr.value = true;
-                    //     _artistController.detailvrs.value = [];
-                    //     _artistController.dataLoadingComplete_vr.value = false;
-                    //     _artistController.getDetailVR();
-                    //   }
-                    // },
                     tabs: const [
                       Tab(
                         text: "작가 소개",

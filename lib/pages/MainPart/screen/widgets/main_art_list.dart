@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../../main.dart';
+import '../../../art/art_detail.dart';
 import 'models/data_model.dart';
 import '../../../../util/Util.dart';
 
@@ -23,7 +24,7 @@ class MM extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         body: MainArtList(),
       ),
@@ -78,25 +79,20 @@ class _MainArtListState extends State<MainArtList> {
           children: [
             Padding(
               padding: const EdgeInsets.all(30.0),
-              child: CachedNetworkImage(
-                width: width * 0.70,
-                imageUrl:
-                    _dataController.mainPageRecommandImageURL.value.toString(),
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                // imageBuilder: (context, imageProvider){
-                //    return Container(
-                //      decoration: BoxDecoration(
-                //        image: DecorationImage(
-                //          image: CachedNetworkImageProvider(_dataController.mainPageRecommandImageURL.value.toString()),
-                //        )
-                //      ),
-                //    );
-                // },
-                //imageUrl:  'https://www.gallery360.co.kr/artimage/kimjiyoun72@naver.com/art/preview/kimjiyoun72@naver.com_b8a1d8f684a9dcd8d28a995eb37adb39.7021844.jpg?open&ver=1700114846568?open&ver=1602322826950',
+              child: InkWell(
+                onTap: (){
+                  Get.to(() => ArtDetailPage(dockey: _dataController.mainPageRecommandImageDockey.value), transition: Transition.fadeIn);
+                },
+                child: CachedNetworkImage(
+                  width: width * 0.70,
+                  imageUrl:
+                      _dataController.mainPageRecommandImageURL.value.toString(),
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                ),
               ),
             ),
-            Container(
+            SizedBox(
               height: 250,
               width: width,
            //   color: Colors.green,
@@ -125,7 +121,9 @@ class _MainArtListState extends State<MainArtList> {
                       height: 30,
                     ),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => ArtDetailPage(dockey: _dataController.mainPageRecommandImageDockey.value), transition: Transition.fadeIn);
+                      },
                       style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0.0),
@@ -153,96 +151,101 @@ class _MainArtListState extends State<MainArtList> {
                   DataModel dm = _dataController.firstPageArtData.value[index];
                   String url =
                       Util.makeMainArtListURL(dm.email, dm.artImgFilename);
-                  return Container(
-                      margin:
-                          const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xffe0e0e0)),
-                        ),
-                        child: Column(
-                          children: [
-                            cacheImageOnly(url: url,),
-                            Container(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: width *
-                                        (ResponsiveBreakpoints.of(context)
-                                                .isMobile
-                                            ? 0.25
-                                            : 0.2),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          Util.chageText(dm.artTitle),
-                                          maxLines: 2,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            overflow: TextOverflow.clip,
+                  return GestureDetector(
+                    onTap: (){
+                      Get.to(() => ArtDetailPage(dockey: dm.dockey), transition: Transition.fadeIn);
+                    },
+                    child: Container(
+                        margin:
+                            const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: const Color(0xffe0e0e0)),
+                          ),
+                          child: Column(
+                            children: [
+                              cacheImageOnly(url: url,),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: width *
+                                          (ResponsiveBreakpoints.of(context)
+                                                  .isMobile
+                                              ? 0.25
+                                              : 0.2),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            Util.chageText(dm.artTitle),
+                                            maxLines: 2,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              overflow: TextOverflow.clip,
+                                            ),
                                           ),
-                                        ),
-                                        Text(dm.artArtist),
-                                        Text(
-                                          "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
-                                          style: const TextStyle(
-                                            overflow: TextOverflow.clip,
+                                          Text(dm.artArtist),
+                                          Text(
+                                            "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
+                                            style: const TextStyle(
+                                              overflow: TextOverflow.clip,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 30.0,
-                                    height: 20.0,
-                                    //  padding: EdgeInsets.zero,
-                                    //  color: Colors.red,
-                                    child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.favorite_outline,
-                                          color: Colors.grey,
-                                        )),
-                                  ),
-                                  //SizedBox.shrink(),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: const EdgeInsets.only(
-                                  left: 10.0,
-                                  top: 10.0,
-                                  bottom: 10.0,
-                                  right: 10.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "₩ ${f.format(dm.artPrice)}",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Visibility(
-                                        visible: dm.vrinfo != null,
-                                        child: const Icon(
-                                            Icons.smart_display_outlined),
+                                        ],
                                       ),
-                                      const Icon(Icons.vrpano_outlined)
-                                    ],
-                                  )
-                                ],
+                                    ),
+                                    Container(
+                                      width: 30.0,
+                                      height: 20.0,
+                                      //  padding: EdgeInsets.zero,
+                                      //  color: Colors.red,
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.favorite_outline,
+                                            color: Colors.grey,
+                                          )),
+                                    ),
+                                    //SizedBox.shrink(),
+                                  ],
+                                ),
                               ),
-                            )
-                          ],
-                        ),
-                      ));
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    left: 10.0,
+                                    top: 10.0,
+                                    bottom: 10.0,
+                                    right: 10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "₩ ${f.format(dm.artPrice)}",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Visibility(
+                                          visible: dm.vrinfo != null,
+                                          child: const Icon(
+                                              Icons.smart_display_outlined),
+                                        ),
+                                        const Icon(Icons.vrpano_outlined)
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )),
+                  );
                 },
               ),
             ),

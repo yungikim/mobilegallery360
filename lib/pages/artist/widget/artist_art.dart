@@ -8,6 +8,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../icons/custom_icons_icons.dart';
 import '../../../util/Util.dart';
+import '../../art/art_detail.dart';
 import '../model/detail_art.dart';
 
 class ArtistArtWidget extends StatefulWidget {
@@ -67,11 +68,16 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: url,
-                      // placeholder: (context, url) =>
-                      //     const CircularProgressIndicator(),
-                      fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.fadeIn);
+                      },
+                      child: CachedNetworkImage(
+                        imageUrl: url,
+                        // placeholder: (context, url) =>
+                        //     const CircularProgressIndicator(),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     const SizedBox(
                       height: 5,
