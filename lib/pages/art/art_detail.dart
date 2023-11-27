@@ -462,13 +462,18 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                         color: Colors.grey),
                                                   ),
                                                   Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: [
-                                                      Text(
-                                                        "${item.artArtist}",
-                                                        style: const TextStyle(
-                                                          fontSize: 23,
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                      SizedBox(
+                                                        width: item.artArtist.toString().length > 5 ? 170 : 80,
+                                                        child: Text(
+                                                          "${item.artArtist}",
+                                                          style: const TextStyle(
+                                                            fontSize: 23,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
                                                         ),
                                                       ),
                                                       const SizedBox(
@@ -486,7 +491,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                       ),
                                                       Expanded(
                                                         child: Container(
-                                                          width: width - 300,
+                                                          //width: width - 300,
                                                           height: 3,
                                                           color: Colors.black,
                                                         ),
