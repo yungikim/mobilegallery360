@@ -46,7 +46,7 @@ class cacheImage extends StatelessWidget {
     this.height,
     this.childtext,
     this.bordertext,
-    this.boxshadow, this.colorFilter,
+    this.boxshadow, this.colorFilter, this.margin
   });
 
   final String url;
@@ -56,6 +56,8 @@ class cacheImage extends StatelessWidget {
   final Border? bordertext;
   final BoxShadow? boxshadow;
   final ColorFilter? colorFilter;
+  final EdgeInsets? margin;
+
 
   final CacheManager cacheManager = CacheManager(Config('images_Key',
       maxNrOfCacheObjects: 100, stalePeriod: const Duration(days: 7)));
@@ -70,6 +72,7 @@ class cacheImage extends StatelessWidget {
       imageBuilder: (context, imageProvider) => Container(
         width: width,
         height: height,
+        margin: margin,
         decoration: BoxDecoration(
             border: bordertext,
             boxShadow: boxshadow != null ? [boxshadow!] : null,
@@ -120,7 +123,9 @@ class cacheImageOnly extends StatelessWidget {
       fadeInDuration: const Duration(milliseconds: 100),
       key: UniqueKey(),
       imageUrl: url,
+      fit: BoxFit.cover,
       errorWidget: (context, url, error) => Container(
+        margin: const EdgeInsets.only(bottom: 10.0),
         width: double.infinity,
         height: height,
         color: Colors.grey.withOpacity(0.6),

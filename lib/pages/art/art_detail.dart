@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:gallery360/const/const.dart';
@@ -329,14 +330,10 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                       String email = item.filename.split("_")[0];
                                       String url =
                                           "${base_url}/artimage/${email}/art/${item.filename}";
-                                      return Container(
+                                      return cacheImage(
+                                        url: url,
                                         margin: const EdgeInsets.only(bottom: 10.0),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(color: Colors.grey),
-                                            image: DecorationImage(
-                                              image: NetworkImage(url),
-                                              fit: BoxFit.cover,
-                                            )),
+                                        bordertext: Border.all(color:Colors.grey),
                                       );
                                     },
                                   ),
