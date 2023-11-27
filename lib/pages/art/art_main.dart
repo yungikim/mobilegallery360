@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:gallery360/pages/art/art_detail.dart';
 import 'package:gallery360/pages/art/controller/art_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -50,6 +51,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _artInfoController.artinfolist.value = [];
     _artInfoController.type.value = "random";
     _selectedValue = values[0];
+
+    print("11111111");
 
     // TODO: implement initState
     super.initState();
@@ -106,51 +109,56 @@ class _ArtMainPageState extends State<ArtMainPage> {
                 }
                 return CarouselSlider(
                   items: _artInfoController.monthlyart
-                      .map((item) => cacheImage(
-                            url:
-                                "${base_url}/artimage/${item.email}/art/expand/${item.dockey}.jpg",
-                            width: double.infinity,
-                            height: 600,
-                            childtext: Stack(
-                              children: [
-                                Positioned(
-                                  top: 100,
-                                  left: 30,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: width - 50,
-                                        child: Text(
-                                          Util.chageText(item.artTitle),
+                      .map((item) => GestureDetector(
+                    onTap: (){
+                      Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.fadeIn);
+                    },
+                        child: cacheImage(
+                              url:
+                                  "${base_url}/artimage/${item.email}/art/expand/${item.dockey}.jpg",
+                              width: double.infinity,
+                              height: 600,
+                              childtext: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 100,
+                                    left: 30,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: width - 50,
+                                          child: Text(
+                                            Util.chageText(item.artTitle),
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          Util.chageText(item.artArtist),
                                           style: const TextStyle(
                                             color: Colors.white,
-                                            fontSize: 30,
+                                            fontSize: 23,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        Util.chageText(item.artArtist),
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.3),
+                                  BlendMode.darken),
                             ),
-                            colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.3),
-                                BlendMode.darken),
-                          ))
+                      ))
                       .toList(),
                   options: CarouselOptions(
                     autoPlay: true,
@@ -173,7 +181,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: 100,
+                      width: 110,
                       child: DropdownButton<ValueOptions>(
                         isExpanded: true,
                         //  menuMaxHeight: 300.0,
@@ -245,83 +253,88 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                 ? "가격문의"
                                 : "￦${Util.addComma(item.artPrice / 10000)}만원";
 
-                            return Container(
-                              // margin: EdgeInsets.only(left: 10, right: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CachedNetworkImage(
-                                    imageUrl: url,
-                                    // placeholder: (context, url) =>
-                                    //     const CircularProgressIndicator(),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          art_title,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold, fontSize: 13),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          art_artist,
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          art_dis,
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black.withOpacity(0.5)),
-                                        ),
-                                        const SizedBox(
-                                          height: 7,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              price,
-                                              style: const TextStyle(
-                                                  fontSize: 14, fontWeight: FontWeight.bold),
-                                            ),
-                                            const Row(
-                                              children: [
-                                                Icon(
-                                                  CustomIcons.icon_artwork_original,
-                                                  color: Colors.grey,
-                                                  size: 18,
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Icon(
-                                                  CustomIcons.icon_artwork_vr,
-                                                  color: Colors.grey,
-                                                  size: 18,
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ],
+                            return GestureDetector(
+                              onTap: (){
+                                Get.to(() => ArtDetailPage(dockey: item.artImgFilename), transition: Transition.fadeIn);
+                              },
+                              child: Container(
+                                // margin: EdgeInsets.only(left: 10, right: 10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CachedNetworkImage(
+                                      imageUrl: url,
+                                      // placeholder: (context, url) =>
+                                      //     const CircularProgressIndicator(),
+                                      fit: BoxFit.cover,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            art_title,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold, fontSize: 13),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            art_artist,
+                                            style: const TextStyle(fontSize: 12),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            art_dis,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.black.withOpacity(0.5)),
+                                          ),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                price,
+                                                style: const TextStyle(
+                                                    fontSize: 14, fontWeight: FontWeight.bold),
+                                              ),
+                                              const Row(
+                                                children: [
+                                                  Icon(
+                                                    CustomIcons.icon_artwork_original,
+                                                    color: Colors.grey,
+                                                    size: 18,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Icon(
+                                                    CustomIcons.icon_artwork_vr,
+                                                    color: Colors.grey,
+                                                    size: 18,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },

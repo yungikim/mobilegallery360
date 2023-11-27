@@ -1,7 +1,11 @@
 
+import 'dart:convert';
+import 'dart:ffi';
+
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
 
+import '../model/art_detail.dart';
 import '../model/art_list_model.dart';
 import '../model/art_monthly_list.dart';
 
@@ -17,6 +21,11 @@ class ArtInfoController extends GetxController{
   var page_art = 1.obs;
   var type = "".obs;
   var dataLoadingComplete_artlistInfo = false.obs;
+
+  //작품 클릭하고 들어가서 참조하는 변수들
+  var select_art_key = "".obs;
+  var artinfo = ArtInfo();
+  var dataLoadingComplete_artinfo = false.obs;
 
   //작품 메인 화면 Carousel 이미지 가져오기
   Future getArtMainMonly() async{
@@ -47,4 +56,19 @@ class ArtInfoController extends GetxController{
     artinfolist.value = <ArtList>[];
     await getArtList();
   }
+
+  //작품 클릭하고 들어가서 작품 정보 가져오기
+  Future getArtInfo() async{
+    dataLoadingComplete_artinfo.value = false;
+    var response = await _artRepository.SelectArtInfo(select_art_key.value);
+    artinfo = ArtInfo.fromJson(response);
+    dataLoadingComplete_artinfo.value = true;
+  }
+
+  //작품 클릭하고 들어가서 작가 정보 가져오기
+
+  //작품 클릭하고 들어가서 작가의 작품 정보 가져오기
+
+
+
 }

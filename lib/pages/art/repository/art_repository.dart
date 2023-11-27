@@ -47,11 +47,13 @@ class ArtRepository extends GetConnect{
 
    Future<dynamic> SelectArtInfo(String dockey) async {
      try {
+       https://www.gallery360.co.kr/select_art_info.mon?dockey=mjk228.artcenter@gmail.com_36b1ad63d576cd6fb441d0b9ead600c7.3394504
+       https://www.gallery360.co.kr/user_search.mon?email=mjk228.artcenter@gmail.com_36b1ad63d576cd6fb441d0b9ead600c7.3394504
+
        String url = "${base_url}/select_art_info.mon?dockey=$dockey";
        final response = await dio.get(url);
        print(Uri.parse(url));
-       List<dynamic> data = response.data;
-       return data;
+       return response.data;
      } catch (e) {
        e.printError();
      }
@@ -60,10 +62,9 @@ class ArtRepository extends GetConnect{
    Future<dynamic> ArtInArtInfo(String email) async {
      try {
        String url = "${base_url}/user_search.mon?email=$email";
+       print(url);
        final response = await dio.get(url);
-       print(Uri.parse(url));
-       List<dynamic> data = response.data;
-       return data;
+       return response.data;
      } catch (e) {
        e.printError();
      }
@@ -72,6 +73,8 @@ class ArtRepository extends GetConnect{
 
    Future<dynamic> loadImageListInnerArt(String email) async {
      try {
+
+
        String url = "${base_url}/load_image_for_artist.mon?start=0&perpage=30&email=$email";
        final response = await dio.get(url);
        print(Uri.parse(url));
