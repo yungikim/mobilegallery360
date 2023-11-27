@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/pages/MainPart/screen/main_page.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/art/art_main.dart';
 import 'package:gallery360/pages/artist/artist_main.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -53,6 +54,8 @@ class _DrawerScreenState extends State<DrawerScreen> {
         return const MainPage();
       case MenuItems.artist:
         return const ArtistMainPage();
+      case MenuItems.art:
+        return const ArtMainPage();
       default:
         return const ArtistMainPage();
     }
