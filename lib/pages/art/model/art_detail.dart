@@ -46,7 +46,7 @@ class ArtInfo {
   String? artMp4Filename;
   int? shippingFee;
   String? shippingType;
-  ShippingTypeEtc? shippingTypeEtc;
+ // ShippingTypeEtc? shippingTypeEtc;
   String? dockey;
   String? version;
   String? email;
@@ -101,7 +101,7 @@ class ArtInfo {
      this.artMp4Filename,
      this.shippingFee,
      this.shippingType,
-      this.shippingTypeEtc,
+   //   this.shippingTypeEtc,
      this.dockey,
      this.version,
      this.email,
@@ -149,7 +149,7 @@ class ArtInfo {
     fileDpi: json["file_dpi"],
     md5Value: json["MD5Value"],
     status: json["status"],
-    subfile: json["subfile"] == "" ? [] : List<Subfile>.from(json["subfile"].map((x) => Subfile.fromJson(x))),
+    subfile: json["subfile"] == "" ? []: List<Subfile>.from(json["subfile"] != null ? json["subfile"].map((x) => Subfile.fromJson(x)) : []),
     artImgFilename: json["art_img_filename"],
     mp3Md5: json["mp3_md5"],
     mp4Md5: json["mp4_md5"],
@@ -157,7 +157,7 @@ class ArtInfo {
     artMp4Filename: json["art_mp4_filename"],
     shippingFee: json["shipping_fee"],
     shippingType: json["shipping_type"],
-    shippingTypeEtc: ShippingTypeEtc.fromJson(json["shipping_type_etc"]),
+   // shippingTypeEtc: ShippingTypeEtc.fromJson(json["shipping_type_etc"] != null ? json["shipping_type_etc"] : []),
     dockey: json["dockey"],
     version: json["version"].toString(),
     email: json["email"],

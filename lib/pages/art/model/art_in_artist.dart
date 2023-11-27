@@ -5,28 +5,28 @@ ArtinArtist artInArtistFromJson(String str) => ArtinArtist.fromJson(json.decode(
 String artInArtistToJson(ArtinArtist data) => json.encode(data.toJson());
 
 class ArtinArtist {
-  String nickname;
-  String email;
-  String name;
-  String content;
-  String photoimage;
-  String photoimageList;
-  String photoimageProfile;
-  String birth;
-  String gubun;
-  String photoimageVersion;
+  String? nickname;
+  String? email;
+  String? name;
+  String? content;
+  String? photoimage;
+  String? photoimageList;
+  String? photoimageProfile;
+  String? birth;
+  String? gubun;
+  String? photoimageVersion;
 
   ArtinArtist({
-    required this.nickname,
-    required this.email,
-    required this.name,
-    required this.content,
-    required this.photoimage,
-    required this.photoimageList,
-    required this.photoimageProfile,
-    required this.birth,
-    required this.gubun,
-    required this.photoimageVersion,
+    this.nickname,
+    this.email,
+    this.name,
+    this.content,
+    this.photoimage,
+    this.photoimageList,
+    this.photoimageProfile,
+    this.birth,
+    this.gubun,
+    this.photoimageVersion,
   });
 
   factory ArtinArtist.fromJson(Map<String, dynamic> json) => ArtinArtist(

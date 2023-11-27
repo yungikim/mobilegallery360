@@ -1,11 +1,13 @@
 
 import 'dart:convert';
-import 'dart:ffi';
+
 
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
 
 import '../model/art_detail.dart';
+import '../model/art_in_artist.dart';
+import '../model/art_in_artlist.dart';
 import '../model/art_list_model.dart';
 import '../model/art_monthly_list.dart';
 
@@ -26,6 +28,14 @@ class ArtInfoController extends GetxController{
   var select_art_key = "".obs;
   var artinfo = ArtInfo();
   var dataLoadingComplete_artinfo = false.obs;
+
+  //작품 클릭하고 들어간 작가 정보 가져오기
+  var artinartist = ArtinArtist();
+  var dataLoadingComplete_artinartist = false.obs;
+
+  //작품 클릭하고 들어간 작가의 다른 작품 리스트 가져오기
+  var artinarts = <ArtInArt>[].obs;
+  var dataLoadingComplete_artinarts = false.obs;
 
   //작품 메인 화면 Carousel 이미지 가져오기
   Future getArtMainMonly() async{
@@ -65,10 +75,37 @@ class ArtInfoController extends GetxController{
     dataLoadingComplete_artinfo.value = true;
   }
 
+  Future getArtInfo2() async{
+    dataLoadingComplete_artinfo.value = false;
+    var response = await _artRepository.SelectArtInfo(select_art_key.value);
+    artinfo = ArtInfo.fromJson(response);
+    return artinfo;
+  }
+
   //작품 클릭하고 들어가서 작가 정보 가져오기
+  Future getArtInArtist(String email) async{
+    dataLoadingComplete_artinartist.value = false;
+    var response = await _artRepository.ArtInArtistInfo(email);
+    artinartist = ArtinArtist.fromJson(response);
+    dataLoadingComplete_artinartist.value = true;
+  }
 
   //작품 클릭하고 들어가서 작가의 작품 정보 가져오기
+  Future getArtInArts(String email) async{
+    try{
+      //dataLoadingComplete_artinarts.value = false;
+      List<dynamic> response = await _artRepository.loadImageListInnerArt(email);
+      List<ArtInArt> rx = response.map<ArtInArt>((json) => ArtInArt.fromJson(json)).toList();
+      //artinarts.addAll(rx);
+      print(rx.length);
+      return rx;  //FuterBuilder로 받아야 한다.
 
+      // dataLoadingComplete_artinarts.value = true;
+    }catch(e){
+      e.printError();
+    }
+
+  }
 
 
 }
