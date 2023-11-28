@@ -29,13 +29,21 @@ void ShowBottomSheet(BuildContext context) {
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       onPressed: () {
+                        if (_artInfoController.query_price.value.start != 0 &&
+                            _artInfoController.query_price.value.end != 0) {
+                          _artInfoController.query_dis.add("${Util.addComma2(
+                                      _artInfoController.query_price.value.start
+                                          .toInt())}만원 ~${Util.addComma2(_artInfoController.query_price.value.start
+                                  .toInt())}만원");
+                        }
+
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5.0))
-                        ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(5.0))),
                       ),
                       child: const Text(
                         "Apply",
@@ -207,7 +215,7 @@ void ShowBottomSheet(BuildContext context) {
                           width: 10,
                         ),
                         Obx(
-                            ()=> Text(
+                          () => Text(
                             "(${Util.addComma(_artInfoController.query_price.value.start)}만원 ~ ${Util.addComma(_artInfoController.query_price.value.end)}만원)",
                             style: const TextStyle(fontSize: 18),
                           ),
@@ -303,7 +311,7 @@ Widget squreBox_width_icon(List<String> item) {
     },
     child: Container(
       height: 50,
-      width: 130,
+      width: 140,
       alignment: Alignment.center,
       padding: EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(left: 10),
