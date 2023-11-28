@@ -14,7 +14,7 @@ void ShowBottomSheet(BuildContext context) {
       ),
       builder: (context) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.85,
+          height: MediaQuery.of(context).size.height * 0.80,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -32,14 +32,14 @@ void ShowBottomSheet(BuildContext context) {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Colors.black.withOpacity(0.7)
+                          color: Colors.black.withOpacity(0.5)
                         ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
@@ -73,7 +73,7 @@ void ShowBottomSheet(BuildContext context) {
                   height: 5,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left:15, top: 15.0),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
@@ -113,7 +113,7 @@ void ShowBottomSheet(BuildContext context) {
                   height: 5,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left: 15.0, top: 15.0),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
@@ -149,7 +149,7 @@ void ShowBottomSheet(BuildContext context) {
                   height: 5,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left: 15.0, top: 15.0),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
@@ -168,11 +168,11 @@ void ShowBottomSheet(BuildContext context) {
                     padding: const EdgeInsets.all(4.0),
                     child: Row(
                       children: [
-                        squreBox_width_icon(sizeData("1~10")),
-                        squreBox_width_icon(sizeData("11~30")),
-                        squreBox_width_icon(sizeData("31~60")),
-                        squreBox_width_icon(sizeData("61~80")),
-                        squreBox_width_icon(sizeData("100~500")),
+                        squreBox_width_icon2(sizeData("1~10")),
+                        squreBox_width_icon2(sizeData("11~30")),
+                        squreBox_width_icon2(sizeData("31~60")),
+                        squreBox_width_icon2(sizeData("61~80")),
+                        squreBox_width_icon2(sizeData("100~500")),
                       ],
                     ),
                   ),
@@ -212,7 +212,7 @@ void ShowBottomSheet(BuildContext context) {
                   ),
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
               ],
             ),
@@ -222,7 +222,7 @@ void ShowBottomSheet(BuildContext context) {
 }
 
 Widget squreBox(String text) {
-  return InkWell(
+  return GestureDetector(
     onTap: () {
       _artInfoController.query_thema.add(text);
       _artInfoController.query_dis.add(text);
@@ -256,41 +256,95 @@ Widget squreBox_width_icon(List<String> item) {
       _artInfoController.query_thema.add(bun);
       _artInfoController.query_dis.add(txt);
     },
-    child: Container(
-      height: 50,
-      width: 130,
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(10.0),
-      margin: const EdgeInsets.only(left: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(color: Colors.grey),
+    child: GestureDetector(
+      onTap: (){
+
+      },
+      child: Container(
+        height: 50,
+        width: 130,
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(10.0),
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              "assets/images/art/$img",
+              width: 40,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              txt,
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/art/" + img,
-            width: 40,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Text(
-            txt,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-        ],
+    ),
+  );
+}
+
+
+Widget squreBox_width_icon2(List<String> item) {
+  String bun = item[0];
+  String txt = item[1];
+  String img = item[2];
+
+  return InkWell(
+    onTap: () {
+      _artInfoController.query_thema.add(bun);
+      _artInfoController.query_dis.add(txt);
+    },
+    child: GestureDetector(
+      onTap: (){
+
+      },
+      child: Container(
+        height: 50,
+        width: 130,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/art/$img",
+              width: 40,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              txt,
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     ),
   );
 }
 
 Widget squreCircle(Color color, String text) {
-  return InkWell(
+  return GestureDetector(
     onTap: () {
       _artInfoController.query_color.add(text);
       _artInfoController.query_dis.add(text);
