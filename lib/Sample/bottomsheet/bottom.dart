@@ -79,6 +79,10 @@ class test2 extends StatelessWidget {
                             height: MediaQuery.of(context).size.height * 0.7,
                             child: Column(
                               children: [
+                                Container(
+                                  height: 80,
+                                  color: Colors.blue,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Container(
@@ -110,7 +114,7 @@ class test2 extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20,),
+                                const SizedBox(height: 20,),
                                 Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Container(
@@ -131,13 +135,12 @@ class test2 extends StatelessWidget {
                                     padding: const EdgeInsets.all(4.0),
                                     child: Row(
                                       children: [
-                                        squreBox("풍경"),
-                                        squreBox("인물"),
-                                        squreBox("정물"),
-                                        squreBox("동물"),
-                                        squreBox("추상"),
-                                        squreBox("팝아트"),
-                                        squreBox("오브제"),
+                                        squreCircle(Colors.red),
+                                        squreCircle(Colors.deepOrange),
+                                        squreCircle(Colors.amberAccent),
+                                        squreCircle(Colors.greenAccent),
+                                        squreCircle(Colors.green),
+                                        squreCircle(Colors.blueAccent),
                                       ],
                                     ),
                                   ),
@@ -172,20 +175,16 @@ Widget squreBox(String text) {
   );
 }
 
-Widget squreCircle(String text) {
+Widget squreCircle(Color color) {
   return Container(
     height: 80,
     width: 80,
     alignment: Alignment.center,
     margin: const EdgeInsets.only(left: 10),
     decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(5.0),
+      color: color,
+      shape: BoxShape.circle,
       border: Border.all(color: Colors.grey),
-    ),
-    child: Text(
-      text,
-      style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
     ),
   );
 }

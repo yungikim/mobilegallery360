@@ -11,6 +11,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../const/const.dart';
 import '../../icons/custom_icons_icons.dart';
 import '../../util/Util.dart';
+import 'bottom_sheet/bottom_sheet.dart';
 import 'model/art_list_model.dart';
 import 'model/art_monthly_list.dart';
 
@@ -200,18 +201,88 @@ class _ArtMainPageState extends State<ArtMainPage> {
                         },
                       ),
                     ),
-                    const Row(
-                      children: [
-                        Text("Filter"),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.filter_1_outlined)
-                      ],
+                    InkWell(
+                      onTap: (){
+                        ShowBottomSheet(context);
+                      },
+                      child: const Row(
+                        children: [
+                          Text("Filter"),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.filter_1_outlined)
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
+              Obx(
+                ()=> Visibility(
+                  visible: _artInfoController.query_dis.isNotEmpty,
+                  child: Container(
+                    height:60,
+                    width: double.infinity,
+
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.1),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: ListView.builder(
+                      itemCount: _artInfoController.query_dis.length,
+                      itemBuilder: (context, index) {
+                        String txt = _artInfoController.query_dis[index];
+                        bool iscircle = txt.contains("_");
+                        txt = txt.replaceAll("_", "");
+                        return iscircle ? GestureDetector(
+                          onTap: (){
+                            _artInfoController.query_dis.removeWhere((element) => element == "${txt}_");
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 5.0),
+                            height: 50,
+                            width:  50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: checkColor(txt),
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.grey)),
+                          ),
+                        ) : GestureDetector(
+                          onTap: (){
+                            _artInfoController.query_dis.removeWhere((element) => element == txt);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            padding:  const EdgeInsets.all(10.0),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(color: Colors.grey)),
+                            child: Row(
+                              children: [
+                                Text(
+                                 txt,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black.withOpacity(0.6)
+                                  ),
+                                ),
+                                const SizedBox(width: 5,),
+                                Image.asset("assets/images/art/btn-aw-filter-delete.png")
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
