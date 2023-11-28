@@ -37,6 +37,15 @@ void ShowBottomSheet(BuildContext context) {
                                   .toInt())}만원");
                         }
 
+                        print("===================================");
+                        print(_artInfoController.query_dis);
+                        print(_artInfoController.query_price);
+                        print(_artInfoController.query_shape);
+                        print(_artInfoController.query_color);
+                        print(_artInfoController.query_thema);
+                        print(_artInfoController.query_size);
+                        print("===================================");
+
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
