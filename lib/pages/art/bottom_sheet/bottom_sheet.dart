@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import '../../../util/Util.dart';
 import '../controller/art_controller.dart';
 
 final ArtInfoController _artInfoController = Get.put(ArtInfoController());
@@ -13,7 +14,8 @@ void ShowBottomSheet(BuildContext context) {
         borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
       ),
       builder: (context) {
-        return SizedBox(
+        return Container(
+          color: Colors.white,
           height: MediaQuery.of(context).size.height * 0.80,
           child: SingleChildScrollView(
             child: Column(
@@ -25,15 +27,22 @@ void ShowBottomSheet(BuildContext context) {
                     width: double.infinity,
                     //color: Colors.red,
                     alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))
+                        ),
+                      ),
+                      child: const Text(
                         "Apply",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.black.withOpacity(0.5)
-                        ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -73,7 +82,7 @@ void ShowBottomSheet(BuildContext context) {
                   height: 5,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left:15, top: 15.0),
+                  padding: const EdgeInsets.only(left: 15, top: 15.0),
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
@@ -185,12 +194,25 @@ void ShowBottomSheet(BuildContext context) {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 40,
-                    child: const Text(
-                      "가격",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "가격",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Obx(
+                            ()=> Text(
+                            "(${Util.addComma(_artInfoController.query_price.value.start)}만원 ~ ${Util.addComma(_artInfoController.query_price.value.end)}만원)",
+                            style: const TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -198,16 +220,39 @@ void ShowBottomSheet(BuildContext context) {
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Row(
-                      children: [
-                        squreBox("정방형"),
-                        squreBox("가로형"),
-                        squreBox("세로형"),
-                        squreBox("원형"),
-                        squreBox("셋트"),
-                        squreBox("입체/설치"),
-                        squreBox("미디어"),
-                      ],
+                    child: SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        showValueIndicator: ShowValueIndicator.always,
+                        thumbShape:
+                            const RoundSliderThumbShape(enabledThumbRadius: 15),
+                      ),
+                      child: Obx(
+                        () => SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.98,
+                          child: RangeSlider(
+                            min: 0,
+                            max: 10000.0,
+                            activeColor: Colors.black,
+                            inactiveColor: Colors.grey,
+                            divisions: 100,
+                            labels: RangeLabels(
+                              _artInfoController.query_price.value.start
+                                  .round()
+                                  .toString(),
+                              _artInfoController.query_price.value.end
+                                  .round()
+                                  .toString(),
+                            ),
+                            values: _artInfoController.query_price.value,
+                            onChanged: (RangeValues value) {
+                              int sVal = value.start.round();
+                              int sFal = value.end.round();
+                              _artInfoController.query_price.value = value;
+                              //facetPriceList.toggle(facet.value);
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -251,93 +296,82 @@ Widget squreBox_width_icon(List<String> item) {
   String txt = item[1];
   String img = item[2];
 
-  return InkWell(
+  return GestureDetector(
     onTap: () {
-      _artInfoController.query_thema.add(bun);
+      _artInfoController.query_shape.add(bun);
       _artInfoController.query_dis.add(txt);
     },
-    child: GestureDetector(
-      onTap: (){
-
-      },
-      child: Container(
-        height: 50,
-        width: 130,
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(10.0),
-        margin: const EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(color: Colors.grey),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(
-              "assets/images/art/$img",
-              width: 40,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              txt,
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+    child: Container(
+      height: 50,
+      width: 130,
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(10.0),
+      margin: const EdgeInsets.only(left: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5.0),
+        border: Border.all(color: Colors.grey),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image.asset(
+            "assets/images/art/$img",
+            width: 40,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(
+            txt,
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     ),
   );
 }
-
 
 Widget squreBox_width_icon2(List<String> item) {
   String bun = item[0];
   String txt = item[1];
   String img = item[2];
 
-  return InkWell(
+  return GestureDetector(
     onTap: () {
-      _artInfoController.query_thema.add(bun);
+      _artInfoController.query_size.add(bun);
       _artInfoController.query_dis.add(txt);
     },
-    child: GestureDetector(
-      onTap: (){
-
-      },
-      child: Container(
-        height: 50,
-        width: 130,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(10.0),
-        margin: const EdgeInsets.only(left: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(color: Colors.grey),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/images/art/$img",
-              width: 40,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              txt,
-              style: const TextStyle(
-                  color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+    child: Container(
+      height: 50,
+      width: 130,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.only(left: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5.0),
+        border: Border.all(color: Colors.grey),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/images/art/$img",
+            width: 40,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(
+            txt,
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     ),
   );

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
 import '../model/art_detail.dart';
@@ -35,6 +36,9 @@ class ArtInfoController extends GetxController{
   //필터 검색용 참고변수
   var query_thema = [].obs;
   var query_color = [].obs;
+  var query_shape = [].obs;
+  var query_size = [].obs;
+  var query_price = RangeValues(0, 0).obs;
   var query_dis = [].obs;
 
   //작품 메인 화면 Carousel 이미지 가져오기
