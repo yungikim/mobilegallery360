@@ -224,7 +224,6 @@ class _ArtMainPageState extends State<ArtMainPage> {
                   child: Container(
                     height:60,
                     width: double.infinity,
-
                     decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.1),
                       border: Border.all(color: Colors.grey),
@@ -237,6 +236,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                         txt = txt.replaceAll("_", "");
                         return iscircle ? GestureDetector(
                           onTap: (){
+                            _artInfoController.query_color.removeWhere((element) => element =="${txt}_");
                             _artInfoController.query_dis.removeWhere((element) => element == "${txt}_");
                           },
                           child: Container(
@@ -251,6 +251,12 @@ class _ArtMainPageState extends State<ArtMainPage> {
                           ),
                         ) : GestureDetector(
                           onTap: (){
+                            _artInfoController.query_thema.removeWhere((element) => element == txt);
+                            _artInfoController.query_shape.removeWhere((element) => element == checkBun(txt));
+                            _artInfoController.query_size.removeWhere((element) => element == checkSizeBun(txt));
+                            if (txt.contains("만원")){
+                              _artInfoController.query_price.value = const RangeValues(0, 0);
+                            }
                             _artInfoController.query_dis.removeWhere((element) => element == txt);
                           },
                           child: Container(
@@ -306,7 +312,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
                         ()=> MasonryGridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data.length,
+                        //  itemCount: snapshot.data.length,
+                          itemCount: _artInfoController.artinfolist.length,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
                           gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 2 : 3),

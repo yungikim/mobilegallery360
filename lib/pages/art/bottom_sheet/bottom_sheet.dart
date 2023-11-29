@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,7 +18,7 @@ void ShowBottomSheet(BuildContext context) {
       builder: (context) {
         return Container(
           color: Colors.white,
-          height: MediaQuery.of(context).size.height * 0.80,
+          height: MediaQuery.of(context).size.height * 0.83,
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -29,23 +31,7 @@ void ShowBottomSheet(BuildContext context) {
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_artInfoController.query_price.value.start != 0 &&
-                            _artInfoController.query_price.value.end != 0) {
-                          _artInfoController.query_dis.add("${Util.addComma2(
-                                      _artInfoController.query_price.value.start
-                                          .toInt())}만원 ~${Util.addComma2(_artInfoController.query_price.value.start
-                                  .toInt())}만원");
-                        }
-
-                        print("===================================");
-                        print(_artInfoController.query_dis);
-                        print(_artInfoController.query_price);
-                        print(_artInfoController.query_shape);
-                        print(_artInfoController.query_color);
-                        print(_artInfoController.query_thema);
-                        print(_artInfoController.query_size);
-                        print("===================================");
-
+                        //금액 기간을 설정하는 경우는 시트가 닫히는 이벤트에서 값을 설정한다.
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
@@ -280,29 +266,49 @@ void ShowBottomSheet(BuildContext context) {
             ),
           ),
         );
-      });
+      }).whenComplete((){
+        //sheet가 닫히는 이벤트를 잡아서 처리한다.
+        if (_artInfoController.query_price.value.start != 0 &&
+            _artInfoController.query_price.value.end != 0) {
+          _artInfoController.query_dis.removeWhere((element) => element.toString().contains("만원"));
+          _artInfoController.query_dis.add("${Util.addComma2(
+              _artInfoController.query_price.value.start
+                  .toInt())}만원 ~${Util.addComma2(_artInfoController.query_price.value.end
+              .toInt())}만원");
+        }
+        //설정된 값으로 다시 데이터를 쿼리해서 결과를 표시한다.
+        _artInfoController.getArtList();
+  });
 }
 
-Widget squreBox(String text) {
+
+Widget squreBox(String text){
   return GestureDetector(
     onTap: () {
-      _artInfoController.query_thema.add(text);
-      _artInfoController.query_dis.add(text);
+      if (_artInfoController.query_thema.contains(text)){
+        _artInfoController.query_thema.removeWhere((element) => element == text);
+        _artInfoController.query_dis.removeWhere((element) => element == text);
+      }else{
+        _artInfoController.query_thema.add(text);
+        _artInfoController.query_dis.add(text);
+      }
     },
-    child: Container(
-      height: 50,
-      width: 80,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(color: Colors.grey),
-      ),
-      child: Text(
-        text,
-        style:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+    child: Obx(
+      ()=> Container(
+        height: 50,
+        width: 80,
+        alignment: Alignment.center,
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: _artInfoController.query_thema.contains(text) ? Colors.blue : Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Text(
+          text,
+          style:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
       ),
     ),
   );
@@ -315,37 +321,45 @@ Widget squreBox_width_icon(List<String> item) {
 
   return GestureDetector(
     onTap: () {
-      _artInfoController.query_shape.add(bun);
-      _artInfoController.query_dis.add(txt);
+      if (_artInfoController.query_shape.contains(bun)){
+        _artInfoController.query_shape.removeWhere((element) => element ==bun);
+        _artInfoController.query_dis.removeWhere((element) => element == txt);
+      }else{
+        _artInfoController.query_shape.add(bun);
+        _artInfoController.query_dis.add(txt);
+      }
+
     },
-    child: Container(
-      height: 50,
-      width: 140,
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(10.0),
-      margin: const EdgeInsets.only(left: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(color: Colors.grey),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(
-            "assets/images/art/$img",
-            width: 40,
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Text(
-            txt,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-        ],
+    child: Obx(
+      ()=> Container(
+        height: 50,
+        width: 140,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: _artInfoController.query_shape.contains(bun) ? Colors.blue : Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              "assets/images/art/$img",
+              width: 40,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              txt,
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -358,37 +372,45 @@ Widget squreBox_width_icon2(List<String> item) {
 
   return GestureDetector(
     onTap: () {
-      _artInfoController.query_size.add(bun);
-      _artInfoController.query_dis.add(txt);
+      if (_artInfoController.query_size.contains(bun)){
+        _artInfoController.query_size.removeWhere((element) => element == bun);
+        _artInfoController.query_dis.removeWhere((element) => element == txt);
+      }else{
+        _artInfoController.query_size.add(bun);
+        _artInfoController.query_dis.add(txt);
+      }
+
     },
-    child: Container(
-      height: 50,
-      width: 130,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.only(left: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(color: Colors.grey),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/art/$img",
-            width: 40,
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Text(
-            txt,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-        ],
+    child: Obx(
+      ()=> Container(
+        height: 50,
+        width: 130,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: _artInfoController.query_size.contains(bun) ? Colors.blue :  Colors.white,
+          borderRadius: BorderRadius.circular(5.0),
+          border: Border.all(color: Colors.grey),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/art/$img",
+              width: 40,
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              txt,
+              style: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     ),
   );
@@ -397,18 +419,26 @@ Widget squreBox_width_icon2(List<String> item) {
 Widget squreCircle(Color color, String text) {
   return GestureDetector(
     onTap: () {
-      _artInfoController.query_color.add(text);
-      _artInfoController.query_dis.add(text);
+      if (_artInfoController.query_color.contains(text)){
+        _artInfoController.query_color.removeWhere((element) => element == text);
+        _artInfoController.query_dis.removeWhere((element) => element == text);
+      }else{
+        _artInfoController.query_color.add(text);
+        _artInfoController.query_dis.add(text);
+      }
+
     },
-    child: Container(
-      height: 80,
-      width: 80,
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 10),
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey),
+    child: Obx(
+      ()=> Container(
+        height: 80,
+        width: 80,
+        alignment: Alignment.center,
+        margin: const EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: _artInfoController.query_color.contains(text) ? Border.all(color: Colors.blue,width: 3) :  Border.all(color: Colors.grey),
+        ),
       ),
     ),
   );
@@ -445,6 +475,26 @@ Color checkColor(String txt) {
   return Colors.white;
 }
 
+String checkBun(String str){
+  String res = "";
+  if (str == "정방형"){
+    return "1";
+  }else if (str == "가로형"){
+    return "2";
+  }else if (str == "세로형"){
+    return "3";
+  }else if (str == "원형"){
+    return "4";
+  }else if (str == "셋트"){
+    return "5";
+  }else if (str == "입체/설치"){
+    return "6";
+  }else if (str == "미디어"){
+    return "7";
+  }
+  return res;
+}
+
 List<String> shapeData(String bun) {
   List<String> item = [];
   if (bun == "1") {
@@ -479,6 +529,16 @@ List<String> shapeData(String bun) {
   return item;
 }
 
+String checkSizeBun(String str){
+  String res = "";
+  if (str == "100+"){
+    return "100~500";
+  }else {
+    return str.replaceAll("호", "");
+  }
+  return res;
+}
+
 List<String> sizeData(String bun) {
   List<String> item = [];
   if (bun == "1~10") {
@@ -491,7 +551,7 @@ List<String> sizeData(String bun) {
     item.add("icon-aw-filter-30-normal.png");
   } else if (bun == "31~60") {
     item.add("31~60");
-    item.add("31~10호");
+    item.add("31~60호");
     item.add("icon-aw-filter-60-normal.png");
   } else if (bun == "61~80") {
     item.add("61~80");

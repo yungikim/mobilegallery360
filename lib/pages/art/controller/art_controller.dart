@@ -52,7 +52,8 @@ class ArtInfoController extends GetxController{
   //작품 메인 하단 작품 리스트 가져오기
   Future getArtList() async{
     String ty = type.toString();
-    List<dynamic> response = await _artRepository.loadImageList(page_art.value, _limit, ty);
+    String color = query_color.join("-spl-").replaceAll("_", "");
+    List<dynamic> response = await _artRepository.loadImageList(page_art.value, _limit, ty, color);
     List<ArtList> rx = response.map<ArtList>((json) => ArtList.fromJson(json)).toList();
     if (rx.length < _limit){
       hasMore_art.value = false;

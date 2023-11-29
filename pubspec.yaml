@@ -49,6 +49,7 @@ dependencies:
   linkify: ^5.0.0
   flutter_linkify: ^6.0.0
   url_launcher: ^6.2.1
+  form_data: ^1.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:
