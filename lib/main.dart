@@ -37,7 +37,7 @@ class Gallery360Main extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         fontFamily: "NotoSans",
-        useMaterial3: true
+       useMaterial3: true
       ),
       builder: (context, child){
         return ResponsiveBreakpoints(

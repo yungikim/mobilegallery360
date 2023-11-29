@@ -50,7 +50,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
       );
     }).toList();
 
-    _selectedValue = values[1];
+    _selectedValue = values[0];
     // TODO: implement initState
     super.initState();
   }
