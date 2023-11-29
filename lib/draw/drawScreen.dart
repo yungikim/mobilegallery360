@@ -8,6 +8,8 @@ import 'package:gallery360/pages/artist/artist_main.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:gallery360/util/Util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class DrawerScreen extends StatefulWidget {
@@ -21,6 +23,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
   final DataController _dataController = Get.put(DataController());
   final zoomDrawerController = ZoomDrawerController();
   MenuItem currentItem = MenuItems.home;
+
+  void op(_url) async{
+    if (!await launchUrl(Uri.parse(_url))) {
+    throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +44,21 @@ class _DrawerScreenState extends State<DrawerScreen> {
           builder: (context) => MenuScreen(
             currentItem: currentItem,
             onSelectedItem: (item){
-              setState(() {
-                currentItem = item;
 
-                ZoomDrawer.of(context)!.close();
-              });
+              print(item.title);
+              if (item.title == "VR 대관"){
+                op("https://exhibit.gallery360.co/");
+
+              }else{
+                setState(() {
+                  currentItem = item;
+
+                  ZoomDrawer.of(context)!.close();
+                });
+              }
+
+
+
             },
           ),
         ),
@@ -54,6 +72,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
         return const MainPage();
       case MenuItems.artist:
         return const ArtistMainPage();
+      case MenuItems.vrshow:
+
+        return SizedBox();
       case MenuItems.art:
         return const ArtMainPage();
       default:

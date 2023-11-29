@@ -5,6 +5,8 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
+import 'package:linkify/linkify.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../pages/search/search_main.dart';
 
@@ -16,6 +18,18 @@ class Util {
         .replaceAll("&#39;", "'")
         .replaceAll("&lt;", "<")
         .replaceAll("&gt;", ">");
+  }
+
+  Future<void> URLOpen(LinkableElement link) async {
+    if (!await launchUrl(Uri.parse(link.url))) {
+      throw Exception('Could not launch ${link.url}');
+    }
+  }
+
+  static void UrlOpen(String url) async{
+    if (!await launchUrl(Uri.parse(url))) {
+    throw Exception('Could not launch ${url}');
+    }
   }
 
   static String makeMainArtListURL(String email, String artImgFilename) {
