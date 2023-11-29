@@ -12,7 +12,7 @@ class ArtistController extends GetxController{
   int _page = 1;
   var hasMore = true.obs;
   var artists = <ArtistModel>[].obs;
-  var type = "1".obs;
+  var type = "0".obs;
   var artistInfo = ArtistDetail(nickname: "").obs;
   var artists_search = <ArtistModelSearch>[].obs;
   var dataLoadingComplete = false.obs;

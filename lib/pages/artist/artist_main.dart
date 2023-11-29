@@ -19,7 +19,7 @@ class ArtistMainPage extends StatefulWidget {
 }
 
 class _ArtistMainPageState extends State<ArtistMainPage> {
-  var selectkey = "1";
+  var selectkey = "0";
   late ScrollController _scrollController;
   final ArtistController _artistController = Get.put(ArtistController());
   final TextEditingController queryController = TextEditingController();
