@@ -22,7 +22,7 @@ void main() async{
 void inx() async{
   if (!kIsWeb){
    // print("웹 서버 시작한다.");
-   // await localhostServer.start();
+   await localhostServer.start();
   }
 }
 
@@ -65,7 +65,7 @@ class _wappState extends State<wapp> {
 
   @override
   void dispose(){
-   // localhostServer.close();
+    localhostServer.close();
     super.dispose();
   }
 
@@ -87,11 +87,11 @@ class _wappState extends State<wapp> {
           height: 500,
           color: Colors.red,
           child: InAppWebView(
-            initialFile: "assets/html/vr.html",
+            //initialFile: "assets/html/vr.html",
 
-            // initialUrlRequest: URLRequest(
-            //     url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
-            // ),
+             initialUrlRequest: URLRequest(
+                 url: Uri.parse('http://localhost:8080/html/vr.html?open&ver=1.0')
+             ),
 
             onReceivedServerTrustAuthRequest: (controller, challenge) async {
               print(challenge);
