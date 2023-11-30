@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../util/Util.dart';
 import '../controller/art_controller.dart';
+import '../model/art_list_model.dart';
 
 final ArtInfoController _artInfoController = Get.put(ArtInfoController());
 
@@ -277,7 +278,8 @@ void ShowBottomSheet(BuildContext context) {
               .toInt())}만원");
         }
         //설정된 값으로 다시 데이터를 쿼리해서 결과를 표시한다.
-        _artInfoController.getArtList();
+        _artInfoController.isSearch.value = true;
+        _artInfoController.getArtList_option("T");
   });
 }
 

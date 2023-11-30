@@ -13,6 +13,8 @@ class ArtInfoController extends GetxController{
   var loadComplete_monthlyart = false.obs;
   final int _limit = 15;
 
+  var isSearch = false.obs;
+
   //작품가져오기
   var artinfolist = <ArtList>[].obs;
   var hasMore_art = true.obs;
@@ -52,8 +54,34 @@ class ArtInfoController extends GetxController{
   //작품 메인 하단 작품 리스트 가져오기
   Future getArtList() async{
     String ty = type.toString();
+    List<dynamic> response = await _artRepository.loadImageList(page_art.value, _limit, ty);
+    List<ArtList> rx = response.map<ArtList>((json) => ArtList.fromJson(json)).toList();
+    if (rx.length < _limit){
+      hasMore_art.value = false;
+    }
+    artinfolist.addAll(rx);
+    page_art.value++;
+    dataLoadingComplete_artlistInfo.value = true;
+    return artinfolist;
+  }
+  //작품 메인 하단 작품 리스트 가져오기 카테고리 검색을 실행한 경우
+  Future getArtList_option(String opt) async{
+
+    if (opt == "T"){
+      artinfolist.value = <ArtList>[];
+    }
+
+    String ty = type.toString();
+    //옵션을 지정한다.
     String color = query_color.join("-spl-").replaceAll("_", "");
-    List<dynamic> response = await _artRepository.loadImageList(page_art.value, _limit, ty, color);
+    String theme = query_thema.join("-spl-");
+    String shape = query_shape.join("-spl-");
+    String size = query_size.join("-spl-");
+    String range = "";
+    if (query_price.value.start.toString() != "0.0" && query_price.value.end.toString() != "0.0"){
+      range = "${query_price.value.start}~${query_price.value.end}";
+    }
+    List<dynamic> response = await _artRepository.loadImageList_Option(page_art.value, _limit, ty, theme, color, shape, size, range);
     List<ArtList> rx = response.map<ArtList>((json) => ArtList.fromJson(json)).toList();
     if (rx.length < _limit){
       hasMore_art.value = false;

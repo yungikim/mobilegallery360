@@ -73,7 +73,12 @@ class _ArtMainPageState extends State<ArtMainPage> {
     double currentScroll = _scrollController.position.pixels;
 
     if (maxScroll == currentScroll && _artInfoController.hasMore_art.value) {
-      _artInfoController.getArtList();
+      if (_artInfoController.isSearch.value){
+        _artInfoController.getArtList_option("F");
+      }else{
+        _artInfoController.getArtList();
+      }
+
     }
   }
 
@@ -192,6 +197,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                         items: _valueItems,
                         onChanged: (newValue) {
                           // setState(() {
+                          _artInfoController.isSearch.value = false;
                           _selectedValue = newValue!;
                           _artInfoController.type.value = _selectedValue.key;
                           _artInfoController.refreshData();
@@ -238,6 +244,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                           onTap: (){
                             _artInfoController.query_color.removeWhere((element) => element =="${txt}_");
                             _artInfoController.query_dis.removeWhere((element) => element == "${txt}_");
+                            _artInfoController.getArtList_option("T");
                           },
                           child: Container(
                             margin: const EdgeInsets.only(left: 5.0),
@@ -258,6 +265,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
                               _artInfoController.query_price.value = const RangeValues(0, 0);
                             }
                             _artInfoController.query_dis.removeWhere((element) => element == txt);
+
+                            _artInfoController.getArtList_option("T");
                           },
                           child: Container(
                             margin: const EdgeInsets.all(5.0),
