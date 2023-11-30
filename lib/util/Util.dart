@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:gallery360/main.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -169,11 +170,17 @@ Widget customAppBar(BuildContext context) {
         color: Colors.white,
       ),
     ),
-    title: const Padding(
-      padding: EdgeInsets.only(top: 5.0),
-      child: Image(
-        image: AssetImage("assets/images/logo/logo.png"),
-        width: 130,
+    title: Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: GestureDetector(
+        onTap: (){
+          //에러 발생하네 다시 생각해 봐야 함
+         // Get.to(() => Gallery360Main(), transition: Transition.fade,  preventDuplicates: false);
+        },
+        child: const Image(
+          image: AssetImage("assets/images/logo/logo.png"),
+          width: 130,
+        ),
       ),
     ),
     actions: [

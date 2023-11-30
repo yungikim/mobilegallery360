@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class _VRList2State extends State<VRList2> {
           _dataController.emails.add(vr.email.toString());
           _dataController.dockeys.add(vr.dockey.toString());
           String url =
-              "https://www.gallery360.co.kr/vr/vr/vrgallery/${vr.email}/${vr.dockey}/pano_f.jpg";
+              "$base_url/vr/vr/vrgallery/${vr.email}/${vr.dockey}/pano_f.jpg";
           _dataController.imageURLs.add(url);
 
             if (i.isOdd) {
@@ -156,24 +157,24 @@ class CarouselMobile extends StatelessWidget {
           itemBuilder: (context, index, realIdx) {
             final e = _dataController.vrListData[index];
             return cacheImage(
-              url: "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg",
+              url: "${base_url}/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg",
               bordertext: Border.all(color: Colors.white),
             );
-          //   return Container(
-          //     decoration: BoxDecoration(
-          //         border: Border.all(color: Colors.white),
-          //         //  borderRadius: BorderRadius.circular(15.0),
-          //         image: DecorationImage(
-          //           colorFilter: ColorFilter.mode(
-          //               Colors.black.withOpacity(0.1), BlendMode.darken),
-          //           image: NetworkImage(
-          //               "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
-          //           fit: BoxFit.cover,
-          //         )),
-          //     child: CarouselInnerText(
-          //       e: e,
-          //     ),
-          //   );
+            return Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  //  borderRadius: BorderRadius.circular(15.0),
+                  image: DecorationImage(
+                    colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.1), BlendMode.darken),
+                    image: NetworkImage(
+                        "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
+                    fit: BoxFit.cover,
+                  )),
+              child: CarouselInnerText(
+                e: e,
+              ),
+            );
           },
           carouselController: _carouselController,
           options: CarouselOptions(

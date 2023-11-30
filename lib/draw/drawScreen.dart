@@ -7,6 +7,7 @@ import 'package:gallery360/pages/MainPart/screen/main_page.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/pages/art/art_main.dart';
 import 'package:gallery360/pages/artist/artist_main.dart';
+import 'package:gallery360/pages/vrgallery/vr_main.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -37,6 +38,10 @@ class _DrawerScreenState extends State<DrawerScreen> {
     Get.to(() => const WebViewPage(url: 'https://exhibit.gallery360.co/'), transition: Transition.fade);
   }
 
+  void cls2() async{
+    Get.off(() => VrMainPage(), transition: Transition.fade);
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -53,7 +58,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             onSelectedItem: (item){
 
               print(item.title);
-              if (item.title == "VR 대관"){
+              if (item.title == "VR 대관") {
                 //op("https://exhibit.gallery360.co/");
                 //draw메뉴를 닫고 URL로 이동한다.
                 ZoomDrawer.of(context)!.close()?.then((value) => cls());
@@ -78,12 +83,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
         return const ArtistMainPage();
       case MenuItems.vrshow:
       //  return const WebViewPage(url: 'https://exhibit.gallery360.co/');
+      case MenuItems.vrgallery:
+        return VrMainPage();
       case MenuItems.art:
         return const ArtMainPage();
       default:
         return const ArtistMainPage();
     }
   }
+
+
 }
 
 class MenuItem{

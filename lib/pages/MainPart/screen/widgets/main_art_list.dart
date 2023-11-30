@@ -51,7 +51,7 @@ class _MainArtListState extends State<MainArtList> {
   }
 
   void checkMainImage() {
-    print("checkMainImage");
+    //print("checkMainImage");
     //_dataController.firstPageArtData.value = <DataModel>[];
     _dataController.getFirstPageArtDataCallDio().then((value) {
       _dataController.firstPageArtData.value = value;

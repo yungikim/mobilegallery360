@@ -19,11 +19,13 @@ class MyHttpOverrides extends HttpOverrides{
 void main() {
 
   HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
-  runApp(const Gallery360Main());
+  runApp(Gallery360Main());
 }
 
 class Gallery360Main extends StatelessWidget {
-  const Gallery360Main({super.key});
+  Gallery360Main({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
