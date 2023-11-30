@@ -26,6 +26,12 @@ class ArtDetailPage extends StatefulWidget {
 class _ArtDetailPageState extends State<ArtDetailPage> {
   final ArtInfoController _artInfoController = Get.put(ArtInfoController());
 
+  var field1 = TextEditingController();
+  var field2 = TextEditingController();
+  var field3 = TextEditingController();
+  var field4 = TextEditingController();
+  var field5 = TextEditingController();
+
   late String email = "";
   static const double titlesize = 18;
 
@@ -39,6 +45,16 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
 
     // TODO: implement initState
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    field1.dispose();
+    field2.dispose();
+    field3.dispose();
+    field4.dispose();
+    field5.dispose();
+    super.dispose();
   }
 
   Future<void> _onOpen(LinkableElement link) async {
@@ -664,11 +680,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   }
 
   void showDialogWithRequest() {
-    var field1 = TextEditingController();
-    var field2 = TextEditingController();
-    var field3 = TextEditingController();
-    var field4 = TextEditingController();
-    var field5 = TextEditingController();
+
 
     showDialog(
       context: context,
@@ -697,18 +709,23 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                      //   Container(width: double.infinity, color: Colors.grey, height: 1,),
                      //   const SizedBox(height: 20,),
                         TextFormField(
+                          controller: field1,
                           decoration: const InputDecoration(hintText: "제목을 입력하세요"),
                         ),
                         TextFormField(
+                          controller: field2,
                           decoration: const InputDecoration(hintText: "이름을 입력하세요"),
                         ),
                         TextFormField(
+                          controller: field3,
                           decoration: const InputDecoration(hintText: "이메일을 입력하세요"),
                         ),
                         TextFormField(
+                          controller: field4,
                           decoration: const InputDecoration(hintText: "연락처를 입력하세요"),
                         ),
-                        const TextField(
+                        TextField(
+                          controller: field5,
                           keyboardType: TextInputType.multiline,
                           minLines: 5,
                           maxLines: 5,
@@ -724,59 +741,18 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
           actions: [
             OutlinedButton(
               onPressed: () {
+
+                _artInfoController.subject.value = field1.text;
+                _artInfoController.name.value = field2.text;
+                _artInfoController.email.value = field3.text;
+                _artInfoController.tel.value = field4.text;
+                _artInfoController.content.value = field5.text;
+                _artInfoController.art_code.value = _artInfoController.artinfo.dockey.toString();
+                _artInfoController.art_artist.value = _artInfoController.artinfo.artArtist.toString();
+                _artInfoController.art_title.value = _artInfoController.artinfo.artTitle.toString();
+                _artInfoController.SaveArtRequest();
+
                 Navigator.of(context, rootNavigator: true).pop('dialog');
-
-                // "art_qu_save" : function(){
-                //   //debugger;
-                //   var subject = $("#q_subject").val();
-                //   var name = $("#q_name").val();
-                //   var email = $("#q_email").val();
-                //   var tel = $("#q_tel").val();
-                //   var content = $("#q_content").val();
-                //
-                //   var art_code = $("#detail_art_artkey").text();
-                //   var art_artist = $("#detail_art_artist").text();
-                //   var art_title = $("#detail_art_title").text();
-                //
-                //
-                //   var data = JSON.stringify({
-                //     subjet : subject,
-                //     name : name,
-                //     email : email,
-                //     tel : tel,
-                //     art_code : art_code,
-                //     art_artist : art_artist,
-                //     art_title : art_title,
-                //     content : content
-                //   });
-                //
-                //
-                //   var url = contextpath + "/art_qu_save.mon";
-                //   $.ajax({
-                //     type : "POST",
-                //     dataType : "json",
-                //     contentType : "application/json; charset=utf-8",
-                //     data : data,
-                //     url : url,
-                //     success : function(data){
-                //       if (data.result == "OK"){
-                //         g360.gAlert("Info", "정상적으로 등록되었습니다.", "red", "left");
-                //         g360.close_popup("art_question");
-                //
-                //         $("#q_subject").val("");
-                //         $("#q_name").val("");
-                //         $("#q_email").val("");
-                //         $("#q_tel").val("");
-                //         $("#q_content").val("");
-                //       }
-                //     },
-                //     error : function(e){
-                //       g360.error_alert();
-                //     }
-                //   })
-                // },
-
-
               },
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.black,

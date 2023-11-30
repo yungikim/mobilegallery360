@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'dart:core';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:gallery360/pages/art/controller/art_controller.dart';
 import 'package:get/get.dart';
-
 import '../../../const/const.dart';
 
 class ArtRepository extends GetConnect {
@@ -43,7 +38,7 @@ class ArtRepository extends GetConnect {
           "${base_url}/all_image_list.mon?start=$px&perpage=$limit&sort=$sort";
 
       print(url);
-    //  print("query : ${color}");
+      //  print("query : ${color}");
 
       final response = await dio.get(url);
 
@@ -55,8 +50,8 @@ class ArtRepository extends GetConnect {
     }
   }
 
-
-  Future<dynamic> loadImageList_Option(int page, int limit, String sort, theme, color, shape, size, range) async {
+  Future<dynamic> loadImageList_Option(int page, int limit, String sort, theme,
+      color, shape, size, range) async {
     try {
       int px = page - 1;
       if (page > 1) {
@@ -65,38 +60,57 @@ class ArtRepository extends GetConnect {
       if (sort == "") {
         sort = "random";
       }
-      String url =
-          //"${base_url}/all_image_list.mon?start=$px&perpage=$limit&sort=$sort&color=$color";
-      "https://svn.gallery360.co.kr:8443/load_image_select_option.mon";
+      String url = "$base_url/load_image_select_option.mon";
       print(url);
-      //  print("query : ${color}");
-
       final response = await dio.post(url,
           data: {
-            'start' : px,
-            'perpage' : limit,
-            'sort' : sort,
+            'start': px,
+            'perpage': limit,
+            'sort': sort,
             'color': color,
-            'hosu' : size,
-            'price' : range,
-            'thema' : theme,
-            "type" : shape
+            'hosu': size,
+            'price': range,
+            'thema': theme,
+            "type": shape
           },
           options: Options(
             contentType: 'application/json; charset=UTF-8',
-          )
-        // queryParameters: {
-        //   "color" : color,
-        // //   // "hosu" : _artInfoController.query_size.value.join(","),
-        // //   // "price" : _artInfoController.query_price.value.start.toString() + "~" + _artInfoController.query_price.value.end.toString(),
-        // //   // "thema" : _artInfoController.query_thema.value.join(","),
-        // //   // "type" : _artInfoController.query_shape.value.join(","),
-        // },
-      );
+          ));
 
       List<dynamic> data = response.data;
       data = data.sublist(1, data.length); //첫번째 totalcount json데이터를 제거한다.
       return data;
+    } catch (e) {
+      e.printError();
+    }
+  }
+
+  Future<dynamic> ArtRequestSave(
+      String subject,
+      String name,
+      String email,
+      String tel,
+      String art_code,
+      String art_artist,
+      String art_title,
+      String content) async {
+    try {
+      String url = "$base_url/art_qu_save.mon";
+      final response = await dio.post(url,
+          data: {
+            'subjet': subject,
+            'name': name,
+            'email': email,
+            'tel': tel,
+            'art_code': art_code,
+            'art_artist': art_artist,
+            'art_title': art_title,
+            "content": content
+          },
+          options: Options(
+            contentType: 'application/json; charset=UTF-8',
+          ));
+      return "OK";
     } catch (e) {
       e.printError();
     }
