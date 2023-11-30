@@ -83,6 +83,11 @@ flutter:
     - assets/images/art/
     - assets/images/mainPage/banner/
     - assets/images/drawer/
+    - assets/html/
+    - assets/html/js/
+    - assets/html/img/
+    - assets/html/img/rental/
+    - assets/html/css/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

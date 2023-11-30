@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mobile Coding</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        var isAppReady = false;
+        window.addEventListener("flutterInAppWebViewPlatformReady", function (event) {
+            isAppReady = true;
+        });
+
+       function buttonClick() {
+            if (isAppReady) {
+                console.log("333333");
+                var sum = add(1,2);
+                console.log(sum);
+                //window.flutter_inappwebview.callHandler('handlerFoo', 'result');
+            }
+       }
+    </script>
+
+</head>
+<body>
+    <h1>여기에 한글을 입력합니다.1</h1>
+    <div id="dis">dis position</div><button id='btn' value='addddddddddd' onClick="buttonClick()">addddddddddddddddddddddd</button>
+    <button id='btn2' value='addddddddddd' >11111111111</button>
+</body>
+</html>
