@@ -106,7 +106,7 @@ class _VrMainPageState extends State<VrMainPage> {
                                   alignment: Alignment.center,
                                   children: [
                                     Positioned(
-                                      top: 140,
+                                      top: 120,
                                       //  left: 30,
                                       child: Column(
                                         crossAxisAlignment:
@@ -118,18 +118,18 @@ class _VrMainPageState extends State<VrMainPage> {
                                             Util.chageText(item.space),
                                             style: const TextStyle(
                                               color: Colors.white,
-                                              fontSize: 15,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           const SizedBox(
-                                            height: 10,
+                                            height: 5,
                                           ),
                                           Text(
                                             Util.chageText(item.title),
                                             style: const TextStyle(
                                               color: Colors.white,
-                                              fontSize: 23,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
@@ -228,7 +228,7 @@ class _VrMainPageState extends State<VrMainPage> {
                               },
                               options: CarouselOptions(
                                 viewportFraction: 1.0,
-                                aspectRatio: 4/3,
+                                aspectRatio: 5/3,
                                 autoPlay: true,
                                 autoPlayInterval: const Duration(seconds: 8),
                                 onPageChanged: (index, reason){
