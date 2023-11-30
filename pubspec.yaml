@@ -50,6 +50,8 @@ dependencies:
   flutter_linkify: ^6.0.0
   url_launcher: ^6.2.1
   form_data: ^1.0.0-nullsafety.1
+  webview_flutter_plus: ^0.3.0+2
+  flutter_inappwebview: ^5.8.0
 
 dev_dependencies:
   flutter_test:

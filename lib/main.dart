@@ -2,13 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-
-import 'pages/MainPart/screen/main_page.dart';
-import 'draw/sample/DrawController.dart';
 import 'draw/drawScreen.dart';
 
 
