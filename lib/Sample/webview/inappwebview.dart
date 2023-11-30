@@ -6,9 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Permission.camera.request();
+  await Permission.microphone.request();
   // if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android){
   //     await InAppWebViewController.
   // }
@@ -92,7 +96,6 @@ class _wappState extends State<wapp> {
                 child: Expanded(
                   child: InAppWebView(
                    //initialFile: "assets/html/index.html",
-
                     initialUrlRequest: URLRequest(
                      //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
                         url: Uri.parse('https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW')
@@ -101,18 +104,30 @@ class _wappState extends State<wapp> {
                       print(challenge);
                       return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
                     },
+
+                    androidOnPermissionRequest: (controller, origin, resources) async {
+                      return PermissionRequestResponse(
+                          resources: resources,
+                          action: PermissionRequestResponseAction.GRANT);
+                    },
+
+
+
                     initialOptions: InAppWebViewGroupOptions(
                         android: AndroidInAppWebViewOptions(useHybridComposition: true),
                         ios: IOSInAppWebViewOptions(
                           allowsInlineMediaPlayback: true,
                         ),
                         crossPlatform: InAppWebViewOptions(
+                            supportZoom: true,
                             useShouldOverrideUrlLoading: true,
-                            mediaPlaybackRequiresUserGesture: false
+                            mediaPlaybackRequiresUserGesture: true
                         )
                     ),
 
                     onWebViewCreated: (controller) {
+
+
                       controller.addJavaScriptHandler(handlerName: 'handlerFoo', callback: (args) {
                         // return data to the JavaScript side!
                         return {

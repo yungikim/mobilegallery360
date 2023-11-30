@@ -52,6 +52,7 @@ dependencies:
   form_data: ^1.0.0-nullsafety.1
   webview_flutter_plus: ^0.3.0+2
   flutter_inappwebview: ^5.8.0
+  permission_handler: ^11.0.1
 
 dev_dependencies:
   flutter_test:
