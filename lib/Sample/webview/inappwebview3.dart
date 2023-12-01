@@ -96,12 +96,12 @@ class _wappState extends State<wapp> {
                 onPressed: (){
                   Get.back();
                 },
-                icon: Icon(Icons.arrow_back_ios, color: Colors.grey.withOpacity(0.8),),
+                icon: Icon(Icons.arrow_back_ios, weight: 10, color: Colors.grey.withOpacity(0.8),),
               ),
              // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
               floating: true,
               pinned: false,
-              expandedHeight:470,
+              expandedHeight:550,
               flexibleSpace: FlexibleSpaceBar(
                 background: InAppWebView(
                   //initialFile: "assets/html/index.html",

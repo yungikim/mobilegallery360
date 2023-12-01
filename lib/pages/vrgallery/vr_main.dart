@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
+import 'package:gallery360/pages/vrgallery/vr_detail.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -98,50 +99,55 @@ class _VrMainPageState extends State<VrMainPage> {
                           carouselController: _carouselController,
                             items: _vrController.mainvrs
                                 .map(
-                                  (item) => cacheImage(
+                                  (item) => GestureDetector(
+                                    onTap: (){
+                                      Get.to(() => VrDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
+                                    },
+                                    child: cacheImage(
                                 url: item.url,
                                 width: double.infinity,
                                 height: 600,
                                 childtext: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Positioned(
-                                      top: 120,
-                                      //  left: 30,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            Util.chageText(item.space),
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Positioned(
+                                        top: 120,
+                                        //  left: 30,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              Util.chageText(item.space),
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            height: 5,
-                                          ),
-                                          Text(
-                                            Util.chageText(item.title),
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
+                                            const SizedBox(
+                                              height: 5,
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
+                                            Text(
+                                              Util.chageText(item.title),
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                 ),
                                 colorFilter: ColorFilter.mode(
-                                    Colors.black.withOpacity(0.3),
-                                    BlendMode.darken),
+                                      Colors.black.withOpacity(0.3),
+                                      BlendMode.darken),
                               ),
+                                  ),
                             )
                                 .toList(),
                             options: CarouselOptions(
@@ -215,14 +221,19 @@ class _VrMainPageState extends State<VrMainPage> {
                                 VRModel item = list[index];
                                 String url =
                                     "$base_url/vr/vr/vrgallery/${item.email}/${item.dockey}/pano_f.jpg";
-                                return Container(
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                    image: NetworkImage(url),
-                                    fit: BoxFit.cover,
-                                  )),
-                                  child: CarouselInnerText(
-                                    e: item,
+                                return GestureDetector(
+                                  onTap: (){
+                                    Get.to(() => VrDetailPage(dockey: '${item.dockey}'), transition: Transition.rightToLeft);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: NetworkImage(url),
+                                      fit: BoxFit.cover,
+                                    )),
+                                    child: CarouselInnerText(
+                                      e: item,
+                                    ),
                                   ),
                                 );
                               },
