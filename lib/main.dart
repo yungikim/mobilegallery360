@@ -19,6 +19,7 @@ class MyHttpOverrides extends HttpOverrides{
 
 
 
+
 void main() {
 
   HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
