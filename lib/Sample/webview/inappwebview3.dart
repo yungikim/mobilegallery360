@@ -79,31 +79,37 @@ class _wappState extends State<wapp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: (){
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios),
-          ),
-          title: const Text("Local Web"),
-        ),
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     onPressed: (){
+        //       Get.back();
+        //     },
+        //     icon: const Icon(Icons.arrow_back_ios),
+        //   ),
+        //   title: const Text("Local Web"),
+        // ),
         //  appBar: AppBar(title: Text("In App Webview"),),
         body: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                height: 500,
-                child: InAppWebView(
+            SliverAppBar(
+              leading: IconButton(
+                onPressed: (){
+                  Get.back();
+                },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.grey.withOpacity(0.8),),
+              ),
+             // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
+              floating: true,
+              pinned: false,
+              expandedHeight:470,
+              flexibleSpace: FlexibleSpaceBar(
+                background: InAppWebView(
                   //initialFile: "assets/html/index.html",
-                  //gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
-
                   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                     Factory<OneSequenceGestureRecognizer>(
                           () => CustomGestureWidget(),
                     ),
                   },
-
                   initialUrlRequest: URLRequest(
                     //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
                       url: Uri.parse('https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW')
@@ -129,6 +135,46 @@ class _wappState extends State<wapp> {
                   ),
                 ),
               ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 900,
+                color: Colors.blue,
+              ),
+              // child: Container(
+              //   height: 500,
+              //   child: InAppWebView(
+              //     //initialFile: "assets/html/index.html",
+              //     gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+              //       Factory<OneSequenceGestureRecognizer>(
+              //             () => CustomGestureWidget(),
+              //       ),
+              //     },
+              //     initialUrlRequest: URLRequest(
+              //       //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
+              //         url: Uri.parse('https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW')
+              //       //  url: Uri.parse("https://www.google.com")
+              //     ),
+              //
+              //     onReceivedServerTrustAuthRequest: (controller, challenge) async {
+              //       print(challenge);
+              //       return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
+              //     },
+              //
+              //     initialOptions: InAppWebViewGroupOptions(
+              //         android: AndroidInAppWebViewOptions(useHybridComposition: true),
+              //         ios: IOSInAppWebViewOptions(
+              //           allowsInlineMediaPlayback: true,
+              //         ),
+              //         crossPlatform: InAppWebViewOptions(
+              //             supportZoom: true,
+              //             preferredContentMode: UserPreferredContentMode.MOBILE,
+              //             useShouldOverrideUrlLoading: true,
+              //             mediaPlaybackRequiresUserGesture: true
+              //         )
+              //     ),
+              //   ),
+              // ),
             ),
 
             SliverToBoxAdapter(
