@@ -28,7 +28,7 @@ class VrDetailPage extends StatelessWidget {
               // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
               floating: true,
               pinned: false,
-              expandedHeight:550,
+              expandedHeight:520,
               flexibleSpace: FlexibleSpaceBar(
                 background: InAppWebView(
                   //initialFile: "assets/html/index.html",
