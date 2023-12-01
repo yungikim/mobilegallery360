@@ -98,11 +98,11 @@ class _wappState extends State<wapp> {
                   //initialFile: "assets/html/index.html",
                   //gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
 
-                  gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-                    new Factory<OneSequenceGestureRecognizer>(
+                  gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                    Factory<OneSequenceGestureRecognizer>(
                           () => CustomGestureWidget(),
                     ),
-                  ].toSet(),
+                  },
 
                   initialUrlRequest: URLRequest(
                     //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
