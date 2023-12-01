@@ -20,46 +20,61 @@ class VrDetailPage extends StatelessWidget {
             SliverAppBar(
               elevation: 0,
               leading: IconButton(
-                onPressed: (){
+                onPressed: () {
                   Get.back();
                 },
-                icon: Icon(Icons.arrow_back_ios, weight: 10, color: Colors.grey.withOpacity(0.8),),
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  weight: 10,
+                  color: Colors.grey.withOpacity(0.8),
+                ),
               ),
               // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
               floating: true,
               pinned: false,
-              expandedHeight:520,
+              expandedHeight: 520,
               flexibleSpace: FlexibleSpaceBar(
                 background: InAppWebView(
                   //initialFile: "assets/html/index.html",
                   gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                     Factory<OneSequenceGestureRecognizer>(
-                          () => CustomGestureWidget(),
+                      () => CustomGestureWidget(),
                     ),
                   },
                   initialUrlRequest: URLRequest(
-                    //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
-                      url: Uri.parse('$base_url/main/vr_gallery/gallery360_vr_pfizer.jsp?key=${dockey}')
-                    //  url: Uri.parse("https://www.google.com")
-                  ),
+                      //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
+                      url: Uri.parse(
+                          '$base_url/main/vr_gallery/gallery360_vr_pfizer.jsp?key=${dockey}')
+                      //  url: Uri.parse("https://www.google.com")
+                      ),
 
-                  onReceivedServerTrustAuthRequest: (controller, challenge) async {
+                  onReceivedServerTrustAuthRequest:
+                      (controller, challenge) async {
                     print(challenge);
-                    return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
+                    return ServerTrustAuthResponse(
+                        action: ServerTrustAuthResponseAction.PROCEED);
                   },
 
                   initialOptions: InAppWebViewGroupOptions(
-                      android: AndroidInAppWebViewOptions(useHybridComposition: true),
+                      android: AndroidInAppWebViewOptions(
+                        useHybridComposition: true,
+                        mixedContentMode: AndroidMixedContentMode.MIXED_CONTENT_ALWAYS_ALLOW,
+                      ),
                       ios: IOSInAppWebViewOptions(
                         allowsInlineMediaPlayback: true,
+                        useOnNavigationResponse: true,
+                        scrollsToTop: false,
                       ),
                       crossPlatform: InAppWebViewOptions(
-                          supportZoom: true,
-                          preferredContentMode: UserPreferredContentMode.MOBILE,
-                          useShouldOverrideUrlLoading: true,
-                          mediaPlaybackRequiresUserGesture: true
-                      )
-                  ),
+                        supportZoom: true,
+                        preferredContentMode: UserPreferredContentMode.MOBILE,
+                        useShouldOverrideUrlLoading: true,
+                        mediaPlaybackRequiresUserGesture: true,
+                        cacheEnabled: true,
+                        clearCache: true,
+                        transparentBackground: true,
+                        javaScriptEnabled: true,
+                      )),
                 ),
               ),
             ),
@@ -75,7 +90,6 @@ class VrDetailPage extends StatelessWidget {
     );
   }
 }
-
 
 class CustomGestureWidget extends OneSequenceGestureRecognizer {
   CustomGestureWidget();
