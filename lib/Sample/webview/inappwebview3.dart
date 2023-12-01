@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
@@ -88,22 +89,30 @@ class _wappState extends State<wapp> {
           title: const Text("Local Web"),
         ),
         //  appBar: AppBar(title: Text("In App Webview"),),
-        body:  InAppWebView(
+        body: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Container(
+                height: 500,
+                child: InAppWebView(
                   //initialFile: "assets/html/index.html",
+                  //gestureRecognizers: Set()..add(Factory<VerticalDragGestureRecognizer>(() => VerticalDragGestureRecognizer())),
+
+                  gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+                    new Factory<OneSequenceGestureRecognizer>(
+                          () => CustomGestureWidget(),
+                    ),
+                  ].toSet(),
+
                   initialUrlRequest: URLRequest(
                     //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
                       url: Uri.parse('https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW')
+                    //  url: Uri.parse("https://www.google.com")
                   ),
 
                   onReceivedServerTrustAuthRequest: (controller, challenge) async {
                     print(challenge);
                     return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
-                  },
-
-                  androidOnPermissionRequest: (controller, origin, resources) async {
-                    return PermissionRequestResponse(
-                        resources: resources,
-                        action: PermissionRequestResponseAction.GRANT);
                   },
 
                   initialOptions: InAppWebViewGroupOptions(
@@ -112,35 +121,91 @@ class _wappState extends State<wapp> {
                         allowsInlineMediaPlayback: true,
                       ),
                       crossPlatform: InAppWebViewOptions(
-                          supportZoom: false,
+                          supportZoom: true,
                           preferredContentMode: UserPreferredContentMode.MOBILE,
                           useShouldOverrideUrlLoading: true,
-                          mediaPlaybackRequiresUserGesture: false
+                          mediaPlaybackRequiresUserGesture: true
                       )
                   ),
-
-                  onWebViewCreated: (controller) {
-                    controller.addJavaScriptHandler(handlerName: 'handlerFoo', callback: (args) {
-                      // return data to the JavaScript side!
-                      return {
-                        'bar': 'bar_value', 'baz': 'baz_value'
-                      };
-                    });
-
-                    controller.addJavaScriptHandler(handlerName: 'handlerFooWithArgs', callback: (args) {
-                      print(args[0]);
-                      return {"name" : "김윤기"};
-                      // it will print: [1, true, [bar, 5], {foo: baz}, {bar: bar_value, baz: baz_value}]
-                    });
-                  },
-                  onConsoleMessage: (controller, consoleMessage) {
-                    print(consoleMessage.message);
-                    // it will print: {message: {"bar":"bar_value","baz":"baz_value"}, messageLevel: 1}
-                  },
                 ),
+              ),
+            ),
 
-
+            SliverToBoxAdapter(
+              child: Container(
+                height: 700,
+                color: Colors.black,
+              ),
+            )
+          ],
+        )
       ),
     );
   }
 }
+
+
+class CustomGestureWidget extends OneSequenceGestureRecognizer {
+  CustomGestureWidget();
+
+  @override
+  void addAllowedPointer(PointerDownEvent event) {
+    print("PointerDownEvent: $event");
+    startTrackingPointer(event.pointer, event.transform);
+    resolve(GestureDisposition.accepted);
+    stopTrackingPointer(event.pointer);
+  }
+
+  @override
+  String get debugDescription => 'eager';
+
+  @override
+  void didStopTrackingLastPointer(int pointer) {
+    print("pointer: $pointer");
+  }
+
+  @override
+  void handleEvent(PointerEvent event) {
+    print("event: $event");
+  }
+}
+
+
+// class PlatformViewVerticalGestureRecognizer
+//     extends VerticalDragGestureRecognizer {
+//   PlatformViewVerticalGestureRecognizer({PointerDeviceKind kind})
+//       : super(kind: kind);
+//
+//   Offset _dragDistance = Offset.zero;
+//
+//   @override
+//   void addPointer(PointerEvent event) {
+//     startTrackingPointer(event.pointer);
+//   }
+//
+//   @override
+//   void handleEvent(PointerEvent event) {
+//     _dragDistance = _dragDistance + event.delta;
+//     if (event is PointerMoveEvent) {
+//       final double dy = _dragDistance.dy.abs();
+//       final double dx = _dragDistance.dx.abs();
+//
+//       if (dy > dx && dy > kTouchSlop) {
+//         // vertical drag - accept
+//         resolve(GestureDisposition.accepted);
+//         _dragDistance = Offset.zero;
+//       } else if (dx > kTouchSlop && dx > dy) {
+//         resolve(GestureDisposition.accepted);
+//         // horizontal drag - stop tracking
+//         stopTrackingPointer(event.pointer);
+//         _dragDistance = Offset.zero;
+//       }
+//     }
+//   }
+//
+//   @override
+//   String get debugDescription => 'horizontal drag (platform view)';
+//
+//   @override
+//   void didStopTrackingLastPointer(int pointer) {}
+// }

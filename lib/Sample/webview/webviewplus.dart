@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:webview_flutter_plus/webview_flutter_plus.dart';
@@ -62,48 +63,31 @@ class _ImageEditorState extends State<ImageEditor> {
       body: Container(
         height:MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SingleChildScrollView(
-                child: SizedBox(
-                  height:500,
-                  child: WebViewPlus(
-                    onWebViewCreated: (controller) {
-                      this._controller = controller;
-                     // controller.loadUrl('https://pub.dev/packages/webview_flutter_plus');
-                     // controller.loadUrl("http://localhost:8080/html/index.html?open&ver=1.0");
-                     // controller.loadUrl("https://www.gallery360.co.kr");
-                      controller.loadUrl("https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW");
-                    },
-                    // onPageFinished: (url) {
-                    //   _controller!.getHeight().then((double height) {
-                    //     print("Height:  " + height.toString());
-                    //     setState(() {
-                    //       _height = height;
-                    //     });
-                    //   });
-                    // },
-                    javascriptMode: JavascriptMode.unrestricted,
-                  ),
-                ),
-              ),
-              Container(
-                height:200,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.red,
-              ),
-              Container(
-                height:200,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.black,
-              ),
-              Container(
-                height:200,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.green,
-              ),
-            ],
+        child: SizedBox(
+          height:200,
+          child: WebViewPlus(
+
+            onWebViewCreated: (controller) {
+             // this._controller = controller;
+             // controller.loadUrl('https://pub.dev/packages/webview_flutter_plus');
+             // controller.loadUrl("http://localhost:8080/html/index.html?open&ver=1.0");
+             // controller.loadUrl("https://www.gallery360.co.kr");
+             // controller.loadUrl("https://www.google.com");
+              controller.loadUrl("https://www.gallery360.co.kr/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20191205095123_H2JHELW");
+            },
+            debuggingEnabled: true,
+            // onPageFinished: (url) {
+            //   _controller!.getHeight().then((double height) {
+            //     print("Height:  " + height.toString());
+            //     setState(() {
+            //       _height = height;
+            //     });
+            //   });
+            // },
+            gestureRecognizers: Set()..add(Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer())),
+            javascriptMode: JavascriptMode.unrestricted,
+
+
           ),
         ),
       ),
