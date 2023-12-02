@@ -84,7 +84,7 @@ class _VrMainPageState extends State<VrMainPage> {
         ),
         body: CustomScrollView(
           slivers: [
-            //최상단 케러셀 보기
+           // 최상단 케러셀 보기
             SliverToBoxAdapter(
               child: FutureBuilder(
                 future: _vrController.MakeMainVrs(),
@@ -292,6 +292,7 @@ class _VrMainPageState extends State<VrMainPage> {
                       snapshot.hasData) {
                     return MasonryGridView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: _vrController.svrslist.length,
                       gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
                       itemBuilder: (context, index){
