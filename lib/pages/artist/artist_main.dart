@@ -25,8 +25,8 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
   final TextEditingController queryController = TextEditingController();
 
   //콤보박스 설정하기
-  late List<DropdownMenuItem<ValueOptions>> _valueItems;
-  late ValueOptions _selectedValue;
+  late List<DropdownMenuItem<ValueOptions_Artist>> _valueItems;
+//  late ValueOptions _selectedValue;
 
   // void fetch() async {
   //   await _artistController.getArtist();
@@ -41,16 +41,17 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
     _artistController.getArtist();
 
     //콤보 박스 설정하기
-    List<ValueOptions> values = ValueOptions.allValuesOptions;
+    List<ValueOptions_Artist> values = ValueOptions_Artist.allValuesOptions;
     _valueItems =
-        values.map<DropdownMenuItem<ValueOptions>>((ValueOptions valueOption) {
-      return DropdownMenuItem<ValueOptions>(
+        values.map<DropdownMenuItem<ValueOptions_Artist>>((ValueOptions_Artist valueOption) {
+      return DropdownMenuItem<ValueOptions_Artist>(
         value: valueOption,
         child: Text(valueOption.title),
       );
     }).toList();
 
-    _selectedValue = values[0];
+      _artistController.selectedValue.value = values[0];
+  //  _selectedValue = values[0];
 
     // TODO: implement initState
     super.initState();
@@ -158,24 +159,25 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                               decoration: const BoxDecoration(
                                 // border: Border.all(color: Colors.grey)
                               ),
-                              child: DropdownButton<ValueOptions>(
-                                isExpanded: true,
-                                //  menuMaxHeight: 300.0,
-                                //  itemHeight: null,
-                                underline: const SizedBox(),
-                                value: _selectedValue,
-                                items: _valueItems,
-                                onChanged: (newValue) {
-                                   //setState(() {
-                                     print(_selectedValue.key);
-                                     print(newValue!.key);
-                                  _selectedValue = newValue!;
-                                  _artistController.type.value = _selectedValue.key;
-                                  _artistController.refreshData();
-                                  // state2.getUser();
-                                  // print(_selectedValue.key);
-                                    //});
-                                },
+                              child: Obx(
+                                  ()=> DropdownButton<ValueOptions_Artist>(
+                                  isExpanded: true,
+                                  //  menuMaxHeight: 300.0,
+                                  //  itemHeight: null,
+                                  underline: const SizedBox(),
+                                //  value: _selectedValue,
+                                  value: _artistController.selectedValue.value,
+                                  items: _valueItems,
+                                  onChanged: (newValue) {
+                                     //setState(() {
+                                    _artistController.selectedValue.value = newValue!;
+                                    _artistController.type.value = _artistController.selectedValue.value.key;
+                                    _artistController.refreshData();
+                                    // state2.getUser();
+                                    // print(_selectedValue.key);
+                                      //});
+                                  },
+                                ),
                               ),
                             ),
                             Positioned(
@@ -273,17 +275,17 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
   }
 }
 
-class ValueOptions {
+class ValueOptions_Artist {
   final String key;
   final String title;
 
-  ValueOptions(this.key, this.title);
+  ValueOptions_Artist(this.key, this.title);
 
-  static List<ValueOptions> get allValuesOptions => [
-        ValueOptions("0", "랜덤정렬"),
-        ValueOptions("1", "최신순"),
-        ValueOptions("2", "이름순"),
-      ];
+  static List<ValueOptions_Artist> get allValuesOptions => [
+    ValueOptions_Artist("0", "랜덤정렬"),
+    ValueOptions_Artist("1", "최신순"),
+    ValueOptions_Artist("2", "이름순"),
+  ];
 }
 
 class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {

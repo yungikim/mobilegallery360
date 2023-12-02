@@ -1,9 +1,12 @@
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/vr_list.dart';
+import 'package:gallery360/pages/art/art_main.dart';
 import 'package:gallery360/pages/vrgallery/model/vrmodel.dart';
 import 'package:gallery360/pages/vrgallery/repository/vrrepository.dart';
 import 'package:get/get.dart';
+
+import '../vr_main.dart';
 
 class VrController extends GetxController {
   var mainvrs = <MainVR>[].obs;
@@ -20,6 +23,8 @@ class VrController extends GetxController {
   final int limit = 12;
   var totalcount = 0.obs;
   var currentcount = 0.obs;
+
+  var selectedValue =  ValueOptions_VR("0", "랜덤정렬").obs;
 
   Future MakeMainVrs() async {
     mainvrs.value = <MainVR>[];

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
+import '../art_main.dart';
 import '../model/art_detail.dart';
 import '../model/art_in_artist.dart';
 import '../model/art_in_artlist.dart';
@@ -54,6 +55,8 @@ class ArtInfoController extends GetxController {
   var content = "".obs;
 
   var persistenHeight = 70.obs;
+
+  var selectedValue = ValueOptions_Art("random", "랜덤정렬").obs;
 
   //작품 메인 화면 Carousel 이미지 가져오기
   Future getArtMainMonly() async {

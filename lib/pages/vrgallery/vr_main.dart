@@ -7,15 +7,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../const/const.dart';
 import '../../icons/custom_icons_icons.dart';
 import '../../util/Util.dart';
 import '../MainPart/screen/widgets/models/vr_model.dart';
 import '../MainPart/screen/widgets/vr_list2.dart';
 
 class VrMainPage extends StatefulWidget {
-  VrMainPage({super.key});
+  const VrMainPage({super.key});
 
   @override
   State<VrMainPage> createState() => _VrMainPageState();
@@ -29,8 +27,8 @@ class _VrMainPageState extends State<VrMainPage> {
   int activeIndex = 0;
 
   //콤보박스 설정하기
-  late List<DropdownMenuItem<ValueOptions>> _valueItems;
-  late ValueOptions _selectedValue;
+  late List<DropdownMenuItem<ValueOptions_VR>> _valueItems;
+  //late ValueOptions_VR _selectedValue;
 
   //무한 스크롤 설정
   late ScrollController _scrollController;
@@ -41,13 +39,13 @@ class _VrMainPageState extends State<VrMainPage> {
     _carouselController2 = CarouselController();
 
     //콤보 박스 설정하기
-    List<ValueOptions> values = ValueOptions.allValuesOptions;
+    List<ValueOptions_VR> values = ValueOptions_VR.allValuesOptions;
     _scrollController = ScrollController();
     _scrollController.addListener(onScroll);
 
     _valueItems =
-        values.map<DropdownMenuItem<ValueOptions>>((ValueOptions valueOption) {
-      return DropdownMenuItem<ValueOptions>(
+        values.map<DropdownMenuItem<ValueOptions_VR>>((ValueOptions_VR valueOption) {
+      return DropdownMenuItem<ValueOptions_VR>(
         value: valueOption,
         child: Text(valueOption.title),
       );
@@ -57,7 +55,8 @@ class _VrMainPageState extends State<VrMainPage> {
     _vrController.page_vr.value = 1;
     _vrController.svrslist.value = [];
     _vrController.sort_vr.value = "0";
-    _selectedValue = values[0];
+   // _selectedValue = values[0];
+    _vrController.selectedValue.value = values[0];
 
     // TODO: implement initState
     super.initState();
@@ -444,28 +443,30 @@ class _VrMainPageState extends State<VrMainPage> {
                     children: [
                       SizedBox(
                         width: 110,
-                        child: DropdownButton<ValueOptions>(
-                          isExpanded: true,
-                          //  menuMaxHeight: 300.0,
-                          //  itemHeight: null,
-                          underline: const SizedBox(),
-                          value: _selectedValue,
-                          items: _valueItems,
-                          onChanged: (newValue) {
-                            // setState(() {
-                            _selectedValue = newValue!;
-                            _vrController.sort_vr.value = _selectedValue.key;
-                            _vrController.refreshData();
-                            // state2.getUser();
-                            // print(_selectedValue.key);
-                            //  });
-                          },
+                        child: Obx(
+                        ()=> DropdownButton<ValueOptions_VR>(
+                            isExpanded: true,
+                            //  menuMaxHeight: 300.0,
+                            //  itemHeight: null,
+                            underline: const SizedBox(),
+                             value: _vrController.selectedValue.value,
+                            items: _valueItems,
+                            onChanged: (newValue) {
+                               //setState(() {
+                              _vrController.selectedValue.value = newValue!;
+                              _vrController.sort_vr.value = _vrController.selectedValue.value.key;
+                              _vrController.refreshData();
+                              // state2.getUser();
+                              // print(_selectedValue.key);
+                               //});
+                            },
+                          ),
                         ),
                       ),
                       Obx(
                         () => Text(
                           "${Util.addComma2(_vrController.currentcount.value)}/${Util.addComma2(_vrController.totalcount.value)}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -588,37 +589,30 @@ class _VrMainPageState extends State<VrMainPage> {
 
 
 
-class ValueOptions {
+class ValueOptions_VR {
   final String key;
   final String title;
-
-  ValueOptions(this.key, this.title);
-
-  static List<ValueOptions> get allValuesOptions => [
-        ValueOptions("0", "랜덤정렬"),
-        ValueOptions("1", "최신순"),
-        ValueOptions("2", "닉네임순"),
-      ];
+  ValueOptions_VR(this.key, this.title);
+  static List<ValueOptions_VR> get allValuesOptions => [
+    ValueOptions_VR("0", "랜덤정렬"),
+    ValueOptions_VR("1", "최신순"),
+    ValueOptions_VR("2", "닉네임순"),
+  ];
 }
 
 
 class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {
   SampleHeaderDelegate({required this.widget});
-
   Widget widget;
-
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return widget;
   }
-
   @override
   double get maxExtent => 50;
-
   @override
   double get minExtent => 50;
-
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;

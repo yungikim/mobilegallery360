@@ -2,6 +2,7 @@ import 'package:gallery360/pages/artist/model/artist_detail.dart';
 import 'package:gallery360/pages/artist/model/detail_art.dart';
 import 'package:gallery360/pages/artist/repository/artist_repository.dart';
 import 'package:get/get.dart';
+import '../artist_main.dart';
 import '../model/artist_model_search.dart';
 import '../model/artist_model.dart';
 import '../model/detail_vr.dart';
@@ -30,6 +31,8 @@ class ArtistController extends GetxController{
   var page_vr = 1.obs;
   var hasMore_vr = true.obs;
   var dataLoadingComplete_vr = false.obs;
+
+  var selectedValue = ValueOptions_Artist("0", "랜덤정렬").obs;
 
 
   Future getArtist() async{

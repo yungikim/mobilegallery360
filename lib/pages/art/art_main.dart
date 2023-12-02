@@ -26,8 +26,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
   final ArtInfoController _artInfoController = Get.put(ArtInfoController());
 
   //콤보박스 설정하기
-  late List<DropdownMenuItem<ValueOptions>> _valueItems;
-  late ValueOptions _selectedValue;
+  late List<DropdownMenuItem<ValueOptions_Art>> _valueItems;
+ // late ValueOptions_Art _selectedValue;
 
   //무한 스크롤 설정
   late ScrollController _scrollController;
@@ -35,13 +35,13 @@ class _ArtMainPageState extends State<ArtMainPage> {
   @override
   void initState() {
     //콤보 박스 설정하기
-    List<ValueOptions> values = ValueOptions.allValuesOptions;
+    List<ValueOptions_Art> values = ValueOptions_Art.allValuesOptions;
     _scrollController = ScrollController();
     _scrollController.addListener(onScroll);
 
     _valueItems =
-        values.map<DropdownMenuItem<ValueOptions>>((ValueOptions valueOption) {
-      return DropdownMenuItem<ValueOptions>(
+        values.map<DropdownMenuItem<ValueOptions_Art>>((ValueOptions_Art valueOption) {
+      return DropdownMenuItem<ValueOptions_Art>(
         value: valueOption,
         child: Text(valueOption.title),
       );
@@ -51,7 +51,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _artInfoController.page_art.value = 1;
     _artInfoController.artinfolist.value = [];
     _artInfoController.type.value = "random";
-    _selectedValue = values[0];
+  //  _selectedValue = values[0];
+    _artInfoController.selectedValue.value = values[0];
 
     print("11111111");
 
@@ -200,23 +201,24 @@ class _ArtMainPageState extends State<ArtMainPage> {
                             children: [
                               SizedBox(
                                 width: 110,
-                                child: DropdownButton<ValueOptions>(
+                                child: DropdownButton<ValueOptions_Art>(
                                   isExpanded: true,
                                   //  menuMaxHeight: 300.0,
                                   //  itemHeight: null,
                                   underline: const SizedBox(),
-                                  value: _selectedValue,
+                                //  value: _selectedValue,
+                                  value: _artInfoController.selectedValue.value,
                                   items: _valueItems,
-                                  onChanged: (newValue) {
-                                    // setState(() {
-                                    _artInfoController.isSearch.value = false;
-                                    _selectedValue = newValue!;
-                                    _artInfoController.type.value =
-                                        _selectedValue.key;
-                                    _artInfoController.refreshData();
-                                    // state2.getUser();
-                                    // print(_selectedValue.key);
+                                  onChanged: (newValue2) {
+                                     // setState(() {
+                                           _artInfoController.isSearch.value = false;
+                                       // _selectedValue = newValue2!;
+                                        _artInfoController.selectedValue.value = newValue2!;
+                                          _artInfoController.type.value =  _artInfoController.selectedValue.value.key;
+                                          _artInfoController.refreshData();
                                     //  });
+
+
                                   },
                                 ),
                               ),
@@ -354,7 +356,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
             //           children: [
             //             SizedBox(
             //               width: 110,
-            //               child: DropdownButton<ValueOptions>(
+            //               child: DropdownButton<ValueOptions_Art>(
             //                 isExpanded: true,
             //                 //  menuMaxHeight: 300.0,
             //                 //  itemHeight: null,
@@ -362,7 +364,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
             //                 value: _selectedValue,
             //                 items: _valueItems,
             //                 onChanged: (newValue) {
-            //                   // setState(() {
+            //                    //setState(() {
             //                   _artInfoController.isSearch.value = false;
             //                   _selectedValue = newValue!;
             //                   _artInfoController.type.value =
@@ -370,7 +372,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
             //                   _artInfoController.refreshData();
             //                   // state2.getUser();
             //                   // print(_selectedValue.key);
-            //                   //  });
+            //                  //  });
             //                 },
             //               ),
             //             ),
@@ -646,17 +648,17 @@ class _ArtMainPageState extends State<ArtMainPage> {
   }
 }
 
-class ValueOptions {
+class ValueOptions_Art {
   final String key;
   final String title;
 
-  ValueOptions(this.key, this.title);
+  ValueOptions_Art(this.key, this.title);
 
-  static List<ValueOptions> get allValuesOptions => [
-        ValueOptions("random", "랜덤정렬"),
-        ValueOptions("date", "최신순"),
-        ValueOptions("priceu", "높은 가격순"),
-        ValueOptions("priced", "낮은 가격순"),
+  static List<ValueOptions_Art> get allValuesOptions => [
+    ValueOptions_Art("random", "랜덤정렬"),
+    ValueOptions_Art("date", "최신순"),
+    ValueOptions_Art("priceu", "높은 가격순"),
+    ValueOptions_Art("priced", "낮은 가격순"),
       ];
 }
 
