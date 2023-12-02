@@ -98,11 +98,10 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                           height: 250,
                           decoration: const BoxDecoration(
                               color: Colors.black,
-                            image: DecorationImage(
-                              image: AssetImage("assets/images/logo/main-visual.jpg"),
-                              fit: BoxFit.cover
-                            )
-                          ),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      "assets/images/logo/main-visual.jpg"),
+                                  fit: BoxFit.cover)),
                           // child: const Image(
                           //   image: AssetImage(
                           //       "assets/images/logo/main-visual.jpg"),
@@ -140,85 +139,180 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                     //centerTitle: true,
                   ),
                 ),
-                SliverToBoxAdapter(
-                    child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 100,
-                        decoration: const BoxDecoration(
-                            // border: Border.all(color: Colors.grey)
+                SliverPersistentHeader(
+                  pinned: true,
+                 // floating: false,
+                  delegate: SampleHeaderDelegate(
+                    widget: Container(
+                      height: 50,
+                      decoration: const BoxDecoration(
+                        color: Colors.white
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 100,
+                              decoration: const BoxDecoration(
+                                // border: Border.all(color: Colors.grey)
+                              ),
+                              child: DropdownButton<ValueOptions>(
+                                isExpanded: true,
+                                //  menuMaxHeight: 300.0,
+                                //  itemHeight: null,
+                                underline: const SizedBox(),
+                                value: _selectedValue,
+                                items: _valueItems,
+                                onChanged: (newValue) {
+                                  // setState(() {
+                                  _selectedValue = newValue!;
+                                  _artistController.type.value = _selectedValue.key;
+                                  _artistController.refreshData();
+                                  // state2.getUser();
+                                  // print(_selectedValue.key);
+                                  //  });
+                                },
+                              ),
                             ),
-                        child: DropdownButton<ValueOptions>(
-                          isExpanded: true,
-                          //  menuMaxHeight: 300.0,
-                          //  itemHeight: null,
-                          underline: const SizedBox(),
-                          value: _selectedValue,
-                          items: _valueItems,
-                          onChanged: (newValue) {
-                            // setState(() {
-                            _selectedValue = newValue!;
-                            _artistController.type.value = _selectedValue.key;
-                            _artistController.refreshData();
-                            // state2.getUser();
-                            // print(_selectedValue.key);
-                            //  });
-                          },
-                        ),
-                      ),
-                      Positioned(
-                        right: 5,
-                        top: 5,
-                        bottom: 1,
-                        child: SizedBox(
-                          height: 10,
-                          width: 150,
-                          // color: Colors.red,
-                          child: TextField(
-                            textInputAction: TextInputAction.search,
-                            onSubmitted: (value) {
-                              // print("search query : $value");
-                              // _artistController.dataLoadingComplete.value =
-                              //     false;
-                              _artistController.artists.value = <ArtistModel>[];
-                              _artistController.searchUser(value);
-                            },
-                            controller: queryController,
-                            decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              contentPadding: const EdgeInsets.only(
-                                  top: 10.0, left: 6.0, bottom: 10.0),
-                              hintText: '작가 검색',
-                              hintStyle: TextStyle(
-                                  fontSize: 17.0, color: Colors.grey[500]),
-                              focusedBorder: const UnderlineInputBorder(),
+                            Positioned(
+                              right: 5,
+                              top: 5,
+                              bottom: 1,
+                              child: SizedBox(
+                                height: 10,
+                                width: 150,
+                                // color: Colors.red,
+                                child: TextField(
+                                  textInputAction: TextInputAction.search,
+                                  onSubmitted: (value) {
+                                    // print("search query : $value");
+                                    // _artistController.dataLoadingComplete.value =
+                                    //     false;
+                                    _artistController.artists.value = <ArtistModel>[];
+                                    _artistController.searchUser(value);
+                                  },
+                                  controller: queryController,
+                                  decoration: InputDecoration(
+                                    border: const UnderlineInputBorder(),
+                                    contentPadding: const EdgeInsets.only(
+                                        top: 10.0, left: 6.0, bottom: 10.0),
+                                    hintText: '작가 검색',
+                                    hintStyle: TextStyle(
+                                        fontSize: 17.0, color: Colors.grey[500]),
+                                    focusedBorder: const UnderlineInputBorder(),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            Positioned(
+                              right: 5,
+                              top: 17,
+                              child: GestureDetector(
+                                onTap: () {
+                                  // _artistController.dataLoadingComplete.value =
+                                  // false;
+                                  _artistController.artists.value = <ArtistModel>[];
+                                  _artistController.searchUser(queryController.text);
+                                },
+                                child: Icon(
+                                  Icons.search,
+                                  size: 20.0,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Positioned(
-                        right: 5,
-                        top: 17,
-                        child: GestureDetector(
-                          onTap: (){
-                            // _artistController.dataLoadingComplete.value =
-                            // false;
-                            _artistController.artists.value = <ArtistModel>[];
-                            _artistController.searchUser(queryController.text);
-                          },
-                          child: Icon(
-                            Icons.search,
-                            size: 20.0,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                )),
+                ),
+
+
+                // SliverToBoxAdapter(
+                //     child: Padding(
+                //   padding: const EdgeInsets.only(left: 8.0),
+                //   child: Stack(
+                //     children: [
+                //       Container(
+                //         width: 100,
+                //         decoration: const BoxDecoration(
+                //             // border: Border.all(color: Colors.grey)
+                //             ),
+                //         child: DropdownButton<ValueOptions>(
+                //           isExpanded: true,
+                //           //  menuMaxHeight: 300.0,
+                //           //  itemHeight: null,
+                //           underline: const SizedBox(),
+                //           value: _selectedValue,
+                //           items: _valueItems,
+                //           onChanged: (newValue) {
+                //             // setState(() {
+                //             _selectedValue = newValue!;
+                //             _artistController.type.value = _selectedValue.key;
+                //             _artistController.refreshData();
+                //             // state2.getUser();
+                //             // print(_selectedValue.key);
+                //             //  });
+                //           },
+                //         ),
+                //       ),
+                //       Positioned(
+                //         right: 5,
+                //         top: 5,
+                //         bottom: 1,
+                //         child: SizedBox(
+                //           height: 10,
+                //           width: 150,
+                //           // color: Colors.red,
+                //           child: TextField(
+                //             textInputAction: TextInputAction.search,
+                //             onSubmitted: (value) {
+                //               // print("search query : $value");
+                //               // _artistController.dataLoadingComplete.value =
+                //               //     false;
+                //               _artistController.artists.value = <ArtistModel>[];
+                //               _artistController.searchUser(value);
+                //             },
+                //             controller: queryController,
+                //             decoration: InputDecoration(
+                //               border: const UnderlineInputBorder(),
+                //               contentPadding: const EdgeInsets.only(
+                //                   top: 10.0, left: 6.0, bottom: 10.0),
+                //               hintText: '작가 검색',
+                //               hintStyle: TextStyle(
+                //                   fontSize: 17.0, color: Colors.grey[500]),
+                //               focusedBorder: const UnderlineInputBorder(),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       Positioned(
+                //         right: 5,
+                //         top: 17,
+                //         child: GestureDetector(
+                //           onTap: () {
+                //             // _artistController.dataLoadingComplete.value =
+                //             // false;
+                //             _artistController.artists.value = <ArtistModel>[];
+                //             _artistController.searchUser(queryController.text);
+                //           },
+                //           child: Icon(
+                //             Icons.search,
+                //             size: 20.0,
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // )
+                // ),
+
+
                 const SliverToBoxAdapter(
-                  child: SizedBox(height: 10,),
+                  child: SizedBox(
+                    height: 10,
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: MasonryGridView.builder(
@@ -236,7 +330,8 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                       ArtistModel item = _artistController.artists[index];
                       return GestureDetector(
                           onTap: () {
-                            Get.to(() => ArtistDetailPage(email: item.email), transition: Transition.fadeIn);
+                            Get.to(() => ArtistDetailPage(email: item.email),
+                                transition: Transition.fadeIn);
                           },
                           child: ResponsiveBreakpoints.of(context).isMobile
                               ? ImageCard(index: index)
@@ -266,4 +361,27 @@ class ValueOptions {
         ValueOptions("1", "최신순"),
         ValueOptions("2", "이름순"),
       ];
+}
+
+class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {
+  SampleHeaderDelegate({required this.widget});
+
+  Widget widget;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return widget;
+  }
+
+  @override
+  double get maxExtent => 50;
+
+  @override
+  double get minExtent => 50;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
 }

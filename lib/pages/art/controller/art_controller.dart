@@ -53,6 +53,8 @@ class ArtInfoController extends GetxController {
   var art_title = "".obs;
   var content = "".obs;
 
+  var persistenHeight = 70.obs;
+
   //작품 메인 화면 Carousel 이미지 가져오기
   Future getArtMainMonly() async {
     List<dynamic> response = await _artRepository.loadMonthlyArt();
@@ -108,6 +110,11 @@ class ArtInfoController extends GetxController {
     artinfolist.addAll(rx);
     page_art.value++;
     dataLoadingComplete_artlistInfo.value = true;
+
+    if (query_dis.isEmpty){
+      persistenHeight.value = 70;
+    }
+
     return artinfolist;
   }
 

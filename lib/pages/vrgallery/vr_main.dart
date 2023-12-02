@@ -586,6 +586,22 @@ class _VrMainPageState extends State<VrMainPage> {
   }
 }
 
+
+
+class ValueOptions {
+  final String key;
+  final String title;
+
+  ValueOptions(this.key, this.title);
+
+  static List<ValueOptions> get allValuesOptions => [
+        ValueOptions("0", "랜덤정렬"),
+        ValueOptions("1", "최신순"),
+        ValueOptions("2", "닉네임순"),
+      ];
+}
+
+
 class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {
   SampleHeaderDelegate({required this.widget});
 
@@ -607,17 +623,4 @@ class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
   }
-}
-
-class ValueOptions {
-  final String key;
-  final String title;
-
-  ValueOptions(this.key, this.title);
-
-  static List<ValueOptions> get allValuesOptions => [
-        ValueOptions("0", "랜덤정렬"),
-        ValueOptions("1", "최신순"),
-        ValueOptions("2", "닉네임순"),
-      ];
 }

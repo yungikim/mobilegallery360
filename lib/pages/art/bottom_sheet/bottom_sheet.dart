@@ -280,6 +280,8 @@ void ShowBottomSheet(BuildContext context) {
         //설정된 값으로 다시 데이터를 쿼리해서 결과를 표시한다.
         _artInfoController.isSearch.value = true;
         _artInfoController.getArtList_option("T");
+
+        _artInfoController.persistenHeight.value = 140;
   });
 }
 
