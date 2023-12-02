@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:linkify/linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../const/const.dart';
 import '../pages/search/search_main.dart';
 
 class Util {
@@ -49,6 +50,15 @@ class Util {
 
   static void WLine() {
     print("=============================================================");
+  }
+
+  static String VrUrl(String dockey){
+    //glass_y@naver.com_20200709134801_8TOWJSK
+    String id = dockey.split("@")[0];
+    String sub = dockey.split("@")[1];
+    String email = id + "@" + sub.split("_")[0];
+    var url = "${base_url}/vr/vr/vrgallery/${email}/${dockey}/pano_f.jpg";
+    return url;
   }
 }
 

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
@@ -59,7 +60,7 @@ class _VrShowListState extends State<VrShowList> {
                 carouselController: _carouselController,
                   items: items
                           .map((item) => cacheImage(
-                              url: "https://www.gallery360.co.kr/artimage/lending/${item.image}",
+                              url: "${base_url}/artimage/lending/${item.image}",
                               childtext: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [

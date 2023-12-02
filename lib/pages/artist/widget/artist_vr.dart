@@ -43,9 +43,7 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
           ),
           itemBuilder: (context, index) {
             var item = _artistController.detailvrs[index];
-            String email = item.dockey.split("_")[0];
-            var url =
-                "${base_url}/vr/vr/vrgallery/${email}/${item.dockey}/pano_f.jpg";
+            var url = Util.VrUrl(item.dockey.toString());
             return Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey.withOpacity(0.4)),
