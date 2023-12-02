@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:gallery360/main.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -59,6 +58,20 @@ class Util {
     String email = id + "@" + sub.split("_")[0];
     var url = "${base_url}/vr/vr/vrgallery/${email}/${dockey}/pano_f.jpg";
     return url;
+  }
+
+  static String extractEmail(String dockey){
+    String id = dockey.split("@")[0];
+    String sub = dockey.split("@")[1];
+    String email = id + "@" + sub.split("_")[0];
+    return email;
+  }
+
+  static String changeDate(String str){
+    DateTime dt = DateTime.parse(str);
+    final DateFormat formatter = DateFormat("yyyy-MM-dd");
+    final String formatted = formatter.format(dt);
+    return formatted;
   }
 }
 

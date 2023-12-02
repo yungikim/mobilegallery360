@@ -2,6 +2,9 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/vr_list.dart';
 import 'package:gallery360/pages/art/art_main.dart';
+import 'package:gallery360/pages/vrgallery/model/vr_detail_first.dart';
+import 'package:gallery360/pages/vrgallery/model/vr_detail_second.dart';
+import 'package:gallery360/pages/vrgallery/model/vr_detail_third.dart';
 import 'package:gallery360/pages/vrgallery/model/vrmodel.dart';
 import 'package:gallery360/pages/vrgallery/repository/vrrepository.dart';
 import 'package:get/get.dart';
@@ -108,6 +111,62 @@ class VrController extends GetxController {
     hasMore_vr.value = true;
     svrslist.value = <VRListModel>[];
     await getMainVRList();
+  }
+
+  //VR Detail Page Refenence
+
+  var selectKey = "".obs;
+  var selectEmail = "".obs;
+
+  var vrfirst = VrDetailFirst();
+  var vrsecond = <VrDetailSecond>[];
+  var vrthird = <VrDetailThird>[];
+
+  // Future getAllLoad() async{
+  //   getVrDetailFirst(selectKey.value.toString());
+  //   getVrDetailSecond(email)
+  //   getVrDetailThird(email);
+  //   getVrRead();
+  // }
+
+  Future getVrDetailFirst() async{
+    try{
+      var response = await VrRepository().Load_VR_Detail_First(selectKey.value.toString());
+      vrfirst = VrDetailFirst.fromJson(response);
+      return vrfirst;
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future getVrDetailSecond(String email) async{
+    try{
+      var response = await VrRepository().Load_VR_Detail_Second(selectEmail.value.toString());
+      List<VrDetailSecond> rx = response.map<VrDetailSecond>((json) => VrDetailSecond.fromJson(json)).toList();
+      vrsecond.addAll(rx);
+      return vrsecond;
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future getVrDetailThird(String email) async{
+    try{
+      var response = await VrRepository().Load_VR_Detail_Thrid(selectEmail.value.toString());
+      List<VrDetailThird> rx = response.map((json) => VrDetailThird.fromJson(json)).toList();
+      vrthird.addAll(rx);
+      return vrthird;
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future getVrRead(String key) async{
+    try{
+      var response = await VrRepository().Load_VR_Read(selectKey.value.toString());
+    }catch(e){
+      e.printError();
+    }
   }
 }
 

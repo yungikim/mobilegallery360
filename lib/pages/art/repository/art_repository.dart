@@ -130,7 +130,6 @@ class ArtRepository extends GetConnect {
   Future<dynamic> ArtInArtistInfo(String email) async {
     try {
       String url = "${base_url}/user_search.mon?email=$email";
-      print(url);
       final response = await dio.get(url);
       return response.data;
     } catch (e) {
