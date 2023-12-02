@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/icons/custom_icons_icons.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
 import 'package:gallery360/pages/vrgallery/model/vr_detail_first.dart';
+import 'package:gallery360/pages/vrgallery/model/vr_detail_second.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -147,8 +149,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "${item.read}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                               const SizedBox(
                                 width: 15,
@@ -160,8 +161,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "${item.like}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                               const SizedBox(
                                 width: 30,
@@ -169,8 +169,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "게시일 ${Util.changeDate(item.date.toString())}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
                             ],
                           ),
@@ -212,8 +211,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "${item.nickname} 작가",
                                 style: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+                                    fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -221,8 +219,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               OutlinedButton(
                                 style: OutlinedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(5.0),
+                                      borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     side: const BorderSide(
                                       color: Colors.grey,
@@ -264,7 +261,47 @@ class _VrDetailPageState extends State<VrDetailPage> {
                 color: Colors.blue,
                 child: Column(
                   children: [
-                   // Text(artistname)
+                    FutureBuilder(
+                      future: _vrController.getVrDetailSecond(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done &&
+                            snapshot.hasData) {
+                          VrDetailSecond item = snapshot.data[0];
+                          return Column(
+                            children: [
+                              Text(
+                                "${item.nickname}의 VR갤러리",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              CarouselSlider(
+                                items: _vrController.vrsecond.map((item) => Container(
+                                  child: Text(item.dockey),
+                                )).toList(),
+                                options: CarouselOptions(
+
+                                ),
+                              ),
+                            ],
+                          );
+                        } else {
+                          if (snapshot.hasError) {
+                            return const Center(
+                              child: Text("Connection Error"),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -277,7 +314,6 @@ class _VrDetailPageState extends State<VrDetailPage> {
                 color: Colors.red,
               ),
             ),
-
           ],
         ),
       ),

@@ -119,8 +119,8 @@ class VrController extends GetxController {
   var selectEmail = "".obs;
 
   var vrfirst = VrDetailFirst();
-  var vrsecond = <VrDetailSecond>[];
-  var vrthird = <VrDetailThird>[];
+  var vrsecond = <VrDetailSecond>[].obs;
+  var vrthird = <VrDetailThird>[].obs;
 
   // Future getAllLoad() async{
   //   getVrDetailFirst(selectKey.value.toString());
@@ -139,7 +139,7 @@ class VrController extends GetxController {
     }
   }
 
-  Future getVrDetailSecond(String email) async{
+  Future getVrDetailSecond() async{
     try{
       var response = await VrRepository().Load_VR_Detail_Second(selectEmail.value.toString());
       List<VrDetailSecond> rx = response.map<VrDetailSecond>((json) => VrDetailSecond.fromJson(json)).toList();
@@ -150,7 +150,7 @@ class VrController extends GetxController {
     }
   }
 
-  Future getVrDetailThird(String email) async{
+  Future getVrDetailThird() async{
     try{
       var response = await VrRepository().Load_VR_Detail_Thrid(selectEmail.value.toString());
       List<VrDetailThird> rx = response.map((json) => VrDetailThird.fromJson(json)).toList();
@@ -161,7 +161,7 @@ class VrController extends GetxController {
     }
   }
 
-  Future getVrRead(String key) async{
+  Future getVrRead() async{
     try{
       var response = await VrRepository().Load_VR_Read(selectKey.value.toString());
     }catch(e){
