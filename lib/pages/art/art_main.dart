@@ -120,7 +120,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                 onTap: () {
                                   Get.to(
                                       () => ArtDetailPage(dockey: item.dockey),
-                                      transition: Transition.fadeIn);
+                                      transition: Transition.rightToLeft);
                                 },
                                 child: cacheImage(
                                   url:
@@ -538,7 +538,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                   Get.to(
                                       () => ArtDetailPage(
                                           dockey: item.artImgFilename),
-                                      transition: Transition.fadeIn);
+                                      transition: Transition.rightToLeft);
                                 },
                                 child: Container(
                                   // margin: EdgeInsets.only(left: 10, right: 10),

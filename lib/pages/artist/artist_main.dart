@@ -331,7 +331,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                       return GestureDetector(
                           onTap: () {
                             Get.to(() => ArtistDetailPage(email: item.email),
-                                transition: Transition.fadeIn);
+                                transition: Transition.rightToLeft);
                           },
                           child: ResponsiveBreakpoints.of(context).isMobile
                               ? ImageCard(index: index)
