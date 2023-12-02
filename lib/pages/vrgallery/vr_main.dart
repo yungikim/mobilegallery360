@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
 import 'package:gallery360/pages/vrgallery/vr_detail.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,6 @@ class _VrMainPageState extends State<VrMainPage> {
 
   @override
   void initState() {
-
     _carouselController = CarouselController();
     _carouselController2 = CarouselController();
     // TODO: implement initState
@@ -35,44 +35,44 @@ class _VrMainPageState extends State<VrMainPage> {
   }
 
   Widget indicator() => Container(
-    margin: const EdgeInsets.only(bottom: 20.0),
-    alignment: Alignment.bottomCenter,
-    child: Obx(
-      ()=> AnimatedSmoothIndicator(
-        activeIndex: _vrController.activeIndex.value,
-        count : _vrController.mainvrs.length,
-        onDotClicked: (index){
-          _carouselController.animateToPage(index);
-        } ,
-        effect: JumpingDotEffect(
-          dotHeight: 12,
-          dotWidth: 12,
-          activeDotColor: Colors.white,
-          dotColor: Colors.white.withOpacity(0.4),
+        margin: const EdgeInsets.only(bottom: 20.0),
+        alignment: Alignment.bottomCenter,
+        child: Obx(
+          () => AnimatedSmoothIndicator(
+            activeIndex: _vrController.activeIndex.value,
+            count: _vrController.mainvrs.length,
+            onDotClicked: (index) {
+              _carouselController.animateToPage(index);
+            },
+            effect: JumpingDotEffect(
+              dotHeight: 12,
+              dotWidth: 12,
+              activeDotColor: Colors.white,
+              dotColor: Colors.white.withOpacity(0.4),
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
 
   Widget indicator2() => Container(
-    margin: const EdgeInsets.only(bottom: 20.0),
-    alignment: Alignment.bottomCenter,
-    child: Obx(
-          ()=> AnimatedSmoothIndicator(
-        activeIndex: _vrController.activeIndex2.value,
-        count : _vrController.svrs.length,
-        onDotClicked: (index){
-          _carouselController2.animateToPage(index);
-        } ,
-        effect: JumpingDotEffect(
-          dotHeight: 12,
-          dotWidth: 12,
-          activeDotColor: Colors.grey.withOpacity(0.9),
-          dotColor: Colors.grey.withOpacity(0.4),
+        margin: const EdgeInsets.only(bottom: 20.0),
+        alignment: Alignment.bottomCenter,
+        child: Obx(
+          () => AnimatedSmoothIndicator(
+            activeIndex: _vrController.activeIndex2.value,
+            count: _vrController.svrs.length,
+            onDotClicked: (index) {
+              _carouselController2.animateToPage(index);
+            },
+            effect: JumpingDotEffect(
+              dotHeight: 12,
+              dotWidth: 12,
+              activeDotColor: Colors.grey.withOpacity(0.9),
+              dotColor: Colors.grey.withOpacity(0.4),
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -270,8 +270,72 @@ class _VrMainPageState extends State<VrMainPage> {
                   }
                 },
               ),
+            ),
+
+            SliverPersistentHeader(
+              pinned: true,
+              delegate: SampleHeaderDelegate(
+                widget: Container(
+                  height: 50,
+                  alignment: Alignment.center,
+                  color: Colors.blue,
+                  child: const Text("SliverPer", style: TextStyle(fontSize: 20, color: Colors.white),),
+                )
+              ),
+            ),
+
+            SliverToBoxAdapter(
+              child: FutureBuilder(
+                future: _vrController.getMainVRList(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return MasonryGridView.builder(
+                      shrinkWrap: true,
+                      itemCount: _vrController.svrslist.length,
+                      gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+                      itemBuilder: (context, index){
+                        return Container(
+                          margin: EdgeInsets.all(10),
+                          height: 100,
+                          color: Colors.blue,
+                        );
+                      },
+                    );
+                  } else {
+                    if (snapshot.hasError) {
+                      return const Center(
+                        child: Text("Connection Error"),
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }
+                },
+              ),
             )
           ],
         ));
+  }
+}
+
+
+class SampleHeaderDelegate extends SliverPersistentHeaderDelegate {
+  SampleHeaderDelegate({required this.widget});
+  Widget widget;
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return widget;
+  }
+  @override
+  double get maxExtent => 50;
+  @override
+  double get minExtent => 50;
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }

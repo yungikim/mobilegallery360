@@ -1,6 +1,8 @@
 
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/vr_list.dart';
+import 'package:gallery360/pages/vrgallery/model/vrmodel.dart';
 import 'package:gallery360/pages/vrgallery/repository/vrrepository.dart';
 import 'package:get/get.dart';
 
@@ -8,8 +10,17 @@ class VrController extends GetxController{
   var mainvrs = <MainVR>[].obs;
   var svrs = <VRModel>[].obs;
 
+
   var activeIndex = 0.obs;
   var activeIndex2 = 0.obs;
+
+  //VR Gallery Main List
+  var svrslist = <VRListModel>[].obs;
+  var hasMore_vr = true.obs;
+  var page_vr = 1.obs;
+  var sort_vr = "".obs;
+  final int limit = 12;
+
   
   Future MakeMainVrs() async{
 
@@ -32,6 +43,28 @@ class VrController extends GetxController{
     }catch(e){
       e.printError();
     }
+  }
+
+  Future getMainVRList() async{
+    try{
+      List<dynamic> response = await VrRepository().Load_Main_VR_List(page_vr.value, sort_vr.value, limit);
+      List<VRListModel> rx = response.map<VRListModel>((json) => VRListModel.fromJson(json)).toList();
+      if (rx.length < limit){
+        hasMore_vr.value = false;
+      }
+      svrslist.addAll(rx);
+      page_vr.value++;
+      return svrslist;
+    }catch(e){
+      e.printError();
+    }
+  }
+
+  Future refreshData() async {
+    page_vr.value = 1;
+    hasMore_vr.value = true;
+    svrslist.value = <VRListModel>[];
+    await getMainVRList();
   }
 }
 
