@@ -19,7 +19,7 @@ class ArtistMainPage extends StatefulWidget {
 }
 
 class _ArtistMainPageState extends State<ArtistMainPage> {
-  var selectkey = "0";
+ // var selectkey = "0";
   late ScrollController _scrollController;
   final ArtistController _artistController = Get.put(ArtistController());
   final TextEditingController queryController = TextEditingController();
@@ -28,9 +28,9 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
   late List<DropdownMenuItem<ValueOptions>> _valueItems;
   late ValueOptions _selectedValue;
 
-  void fetch() async {
-    await _artistController.getArtist();
-  }
+  // void fetch() async {
+  //   await _artistController.getArtist();
+  // }
 
   @override
   void initState() {
@@ -51,6 +51,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
     }).toList();
 
     _selectedValue = values[0];
+
     // TODO: implement initState
     super.initState();
   }
@@ -165,13 +166,15 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                 value: _selectedValue,
                                 items: _valueItems,
                                 onChanged: (newValue) {
-                                  // setState(() {
+                                   //setState(() {
+                                     print(_selectedValue.key);
+                                     print(newValue!.key);
                                   _selectedValue = newValue!;
                                   _artistController.type.value = _selectedValue.key;
                                   _artistController.refreshData();
                                   // state2.getUser();
                                   // print(_selectedValue.key);
-                                  //  });
+                                    //});
                                 },
                               ),
                             ),
@@ -227,86 +230,6 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                     ),
                   ),
                 ),
-
-
-                // SliverToBoxAdapter(
-                //     child: Padding(
-                //   padding: const EdgeInsets.only(left: 8.0),
-                //   child: Stack(
-                //     children: [
-                //       Container(
-                //         width: 100,
-                //         decoration: const BoxDecoration(
-                //             // border: Border.all(color: Colors.grey)
-                //             ),
-                //         child: DropdownButton<ValueOptions>(
-                //           isExpanded: true,
-                //           //  menuMaxHeight: 300.0,
-                //           //  itemHeight: null,
-                //           underline: const SizedBox(),
-                //           value: _selectedValue,
-                //           items: _valueItems,
-                //           onChanged: (newValue) {
-                //             // setState(() {
-                //             _selectedValue = newValue!;
-                //             _artistController.type.value = _selectedValue.key;
-                //             _artistController.refreshData();
-                //             // state2.getUser();
-                //             // print(_selectedValue.key);
-                //             //  });
-                //           },
-                //         ),
-                //       ),
-                //       Positioned(
-                //         right: 5,
-                //         top: 5,
-                //         bottom: 1,
-                //         child: SizedBox(
-                //           height: 10,
-                //           width: 150,
-                //           // color: Colors.red,
-                //           child: TextField(
-                //             textInputAction: TextInputAction.search,
-                //             onSubmitted: (value) {
-                //               // print("search query : $value");
-                //               // _artistController.dataLoadingComplete.value =
-                //               //     false;
-                //               _artistController.artists.value = <ArtistModel>[];
-                //               _artistController.searchUser(value);
-                //             },
-                //             controller: queryController,
-                //             decoration: InputDecoration(
-                //               border: const UnderlineInputBorder(),
-                //               contentPadding: const EdgeInsets.only(
-                //                   top: 10.0, left: 6.0, bottom: 10.0),
-                //               hintText: '작가 검색',
-                //               hintStyle: TextStyle(
-                //                   fontSize: 17.0, color: Colors.grey[500]),
-                //               focusedBorder: const UnderlineInputBorder(),
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       Positioned(
-                //         right: 5,
-                //         top: 17,
-                //         child: GestureDetector(
-                //           onTap: () {
-                //             // _artistController.dataLoadingComplete.value =
-                //             // false;
-                //             _artistController.artists.value = <ArtistModel>[];
-                //             _artistController.searchUser(queryController.text);
-                //           },
-                //           child: Icon(
-                //             Icons.search,
-                //             size: 20.0,
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // )
-                // ),
 
 
                 const SliverToBoxAdapter(
