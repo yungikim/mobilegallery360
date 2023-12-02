@@ -57,7 +57,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
               ),
               // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
               floating: true,
-              pinned: false,
+              pinned: true,
               expandedHeight: 520,
               flexibleSpace: FlexibleSpaceBar(
                 background: InAppWebView(
@@ -139,7 +139,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${item.title}",
+                            "${Util.chageText(item.title.toString())}",
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
