@@ -3,15 +3,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/icons/custom_icons_icons.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
 import 'package:gallery360/pages/vrgallery/model/vr_detail_first.dart';
 import 'package:gallery360/pages/vrgallery/model/vr_detail_second.dart';
+import 'package:gallery360/pages/vrgallery/model/vr_detail_third.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../util/Util.dart';
+import '../MainPart/screen/widgets/vr_list2.dart';
 
 class VrDetailPage extends StatefulWidget {
   const VrDetailPage({super.key, required this.dockey});
@@ -101,17 +105,19 @@ class _VrDetailPageState extends State<VrDetailPage> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
                 child: const Column(
                   children: [
                     Text(
                       "VR갤러리 이미지에 대한 활용 및 재배포시 출처를 반드시 남겨주세요.",
-                      style: TextStyle(fontSize: 13, color: Colors.grey),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 12, color: Colors.grey,),
                     ),
                     Text(
                       "Copyright © 2018-2023 Gallery360. All Rights Reserved.",
-                      style: TextStyle(fontSize: 13, color: Colors.grey),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
                     ),
                     Text(""),
                   ],
@@ -128,7 +134,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                       snapshot.hasData) {
                     VrDetailFirst item = snapshot.data;
                     return Padding(
-                      padding: const EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -149,7 +155,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "${item.read}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 14),
                               ),
                               const SizedBox(
                                 width: 15,
@@ -161,7 +167,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "${item.like}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 14),
                               ),
                               const SizedBox(
                                 width: 30,
@@ -169,7 +175,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               Text(
                                 "게시일 ${Util.changeDate(item.date.toString())}",
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16),
+                                    fontWeight: FontWeight.bold, fontSize: 14),
                               ),
                             ],
                           ),
@@ -197,8 +203,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
                           Row(
                             children: [
                               SizedBox(
-                                width: 60,
-                                height: 60,
+                                width: 50,
+                                height: 50,
                                 child: CircleAvatar(
                                   backgroundImage: NetworkImage(
                                     "$base_url/artimage/${item.email}/photo/${item.email}?open",
@@ -209,9 +215,9 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                 width: 20,
                               ),
                               Text(
-                                "${item.nickname} 작가",
+                                "${item.nickname}",
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -230,7 +236,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ),
@@ -256,9 +262,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
 
             //작가의 VR갤러리 리스트 케러셀로 표시하기
             SliverToBoxAdapter(
-              child: Container(
-                height: 300,
-                color: Colors.blue,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   children: [
                     FutureBuilder(
@@ -266,11 +271,12 @@ class _VrDetailPageState extends State<VrDetailPage> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.done &&
                             snapshot.hasData) {
-                          VrDetailSecond item = snapshot.data[0];
+                          VrDetailSecond xitem = snapshot.data[0];
+                          List<VrDetailSecond> list = snapshot.data;
                           return Column(
                             children: [
                               Text(
-                                "${item.nickname}의 VR갤러리",
+                                "${xitem.nickname}의 VR갤러리",
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -279,12 +285,140 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              CarouselSlider(
-                                items: _vrController.vrsecond.map((item) => Container(
-                                  child: Text(item.dockey),
-                                )).toList(),
+                              CarouselSlider.builder(
+                                itemCount: _vrController.vrsecond.length,
+                                itemBuilder: (context, index, realidx) {
+                                  VrDetailSecond item = list[index];
+                                  String url =
+                                      Util.VrUrl(item.dockey.toString());
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                      image: NetworkImage(url),
+                                      fit: BoxFit.cover,
+                                    )),
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          bottom: 20.0,
+                                          left: 15.0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                Util.chageText(
+                                                    item.title.toString()),
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                    shadows: [
+                                                      Shadow(
+                                                        offset:
+                                                            Offset(1.0, 0.0),
+                                                        blurRadius: 3,
+                                                        color: Colors.black,
+                                                      )
+                                                    ]),
+                                              ),
+                                              const SizedBox(
+                                                height: 2,
+                                              ),
+                                              Text(
+                                                item.nickname,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 13,
+                                                    shadows: [
+                                                      Shadow(
+                                                        offset:
+                                                            Offset(1.0, 0.0),
+                                                        blurRadius: 3.0,
+                                                        color: Colors.black,
+                                                      )
+                                                    ]),
+                                              ),
+                                              const SizedBox(
+                                                height: 5.0,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.dataset_linked,
+                                                    color: Colors.white,
+                                                    shadows: [
+                                                      Shadow(
+                                                        offset:
+                                                            Offset(1.0, 0.0),
+                                                        blurRadius: 3,
+                                                        color: Colors.black,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    "${item.read}",
+                                                    style: const TextStyle(
+                                                        color: Colors.white,
+                                                        shadows: [
+                                                          Shadow(
+                                                            offset:
+                                                                Offset(1, 0),
+                                                            blurRadius: 3,
+                                                            color: Colors.black,
+                                                          )
+                                                        ]),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  const Icon(
+                                                    Icons
+                                                        .favorite_border_outlined,
+                                                    color: Colors.white,
+                                                    shadows: [
+                                                      Shadow(
+                                                        offset:
+                                                            Offset(1.0, 0.0),
+                                                        blurRadius: 3,
+                                                        color: Colors.black,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Text(
+                                                    "${item.like}",
+                                                    style: const TextStyle(
+                                                        color: Colors.white,
+                                                        shadows: [
+                                                          Shadow(
+                                                            offset: Offset(
+                                                                1.0, 0.0),
+                                                            blurRadius: 3,
+                                                            color: Colors.black,
+                                                          )
+                                                        ]),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
                                 options: CarouselOptions(
-
+                                  viewportFraction: 1.0,
+                                  autoPlay: true,
+                                  enableInfiniteScroll: false,
                                 ),
                               ),
                             ],
@@ -309,9 +443,49 @@ class _VrDetailPageState extends State<VrDetailPage> {
 
             //작가의 기타 작품 리스트 표시하기
             SliverToBoxAdapter(
-              child: Container(
-                height: 800,
-                color: Colors.red,
+              child: FutureBuilder(
+                future: _vrController.getVrDetailThird(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    return Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: _vrController.vrthird.length,
+
+                        //  gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 3 : 4),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              ResponsiveBreakpoints.of(context).isMobile ? 3 : 4,
+                          mainAxisSpacing: 5,
+                          crossAxisSpacing: 5,
+                        ),
+                        itemBuilder: (context, index) {
+                          VrDetailThird item = _vrController.vrthird.value[index];
+                          String url =
+                              "${base_url}/artimage/${item.email}/art/preview/${item.dockey}.jpg";
+                          // return Image.network(
+                          //   url,
+                          //   fit: BoxFit.cover,
+                          // );
+                          return cacheImageOnly(url: url);
+                        },
+                      ),
+                    );
+                  } else {
+                    if (snapshot.hasError) {
+                      return const Center(
+                        child: Text("Connection Error"),
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  }
+                },
               ),
             ),
           ],

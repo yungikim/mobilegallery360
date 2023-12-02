@@ -41,7 +41,6 @@ class VrRepository extends GetConnect {
 
   Future Load_VR_Detail_First(String key) async {
     String url = "${base_url}/load_VRRoom_public_one.mon?dockey=${key}";
-    print(url);
     var response = await dio.get(url);
    // List<dynamic> rbody = response.data;
     return response.data;
@@ -49,6 +48,7 @@ class VrRepository extends GetConnect {
 
   Future<List<dynamic>> Load_VR_Detail_Second(String email) async{
     String url = "${base_url}/load_VRRoom_public.mon?start=0&perpage=10&ty=artist&artist=${email}";
+    print(url);
     var response = await dio.get(url);
     List<dynamic> rbody = response.data;
     return rbody.sublist(1);
