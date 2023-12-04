@@ -3,6 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gallery360/pages/aboutUs/controller/about_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../util/Util.dart';
 
 class AboutUs extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AboutUsState extends State<AboutUs> {
                     return Container(
                       height: 500,
                       decoration: const BoxDecoration(
-                          color: Colors.red,
+
                           image: DecorationImage(
                               image: AssetImage(
                                   "assets/images/mainPage/company_brief_visual.jpg"),
@@ -65,18 +66,20 @@ class _AboutUsState extends State<AboutUs> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Art Technology Company",
                             style: TextStyle(fontSize: 28, color: Colors.white),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
-                          Text(
+                          const Text(
                             "Gallery360 Company Brief",
                             style: TextStyle(fontSize: 20, color: Colors.white),
+                            textAlign: TextAlign.center,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Container(
@@ -84,7 +87,7 @@ class _AboutUsState extends State<AboutUs> {
                             width: 50,
                             color: Colors.white,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 50,
                           ),
                           Row(
@@ -92,10 +95,10 @@ class _AboutUsState extends State<AboutUs> {
                             children: [
                               Text(
                                 Util.addComma2(vrsum),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16, color: Color(0xff9b3fe3)),
                               ),
-                              Text(
+                              const Text(
                                 "회의 온라인 VR대관 전시",
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
@@ -107,10 +110,10 @@ class _AboutUsState extends State<AboutUs> {
                             children: [
                               Text(
                                 Util.addComma2(client),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16, color: Color(0xff9b3fe3)),
                               ),
-                              Text(
+                              const Text(
                                 "명의 클라이언트",
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
@@ -122,10 +125,10 @@ class _AboutUsState extends State<AboutUs> {
                             children: [
                               Text(
                                 Util.addComma2(tsum),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16, color: Color(0xff9b3fe3)),
                               ),
-                              Text(
+                              const Text(
                                 "명의 작가,아트컨설턴트,전시기획자",
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
@@ -137,17 +140,17 @@ class _AboutUsState extends State<AboutUs> {
                             children: [
                               Text(
                                 Util.addComma2(art),
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 16, color: Color(0xff9b3fe3)),
                               ),
-                              Text(
+                              const Text(
                                 "점의 작품이",
                                 style: TextStyle(
                                     fontSize: 16, color: Colors.white),
                               ),
                             ],
                           ),
-                          Text(
+                          const Text(
                             "함께합니다.",
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           )
@@ -178,7 +181,7 @@ class _AboutUsState extends State<AboutUs> {
                       fit: BoxFit.cover,
                     ),
                     Container(
-                      height: 600,
+                      height: ResponsiveBreakpoints.of(context).isMobile ?  700 : 550,
                       width: double.infinity,
                       color: const Color(0xffb3adb0),
                       child: Padding(
@@ -274,7 +277,7 @@ class _AboutUsState extends State<AboutUs> {
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Container(
-                  height: 700,
+                  height: ResponsiveBreakpoints.of(context).isMobile ? 750 : 650,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -428,7 +431,8 @@ class _AboutUsState extends State<AboutUs> {
                         "대관서비스 소개서 PDF 다운로드",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 40,),
                   ],
                 ),
               ),
