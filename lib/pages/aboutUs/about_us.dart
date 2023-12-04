@@ -14,6 +14,14 @@ class AboutUs extends StatefulWidget {
 class _AboutUsState extends State<AboutUs> {
   final AboutController _aboutController = Get.put(AboutController());
 
+  final images = [
+    "ci_visual_acon.jpg",
+    "ci_visual_acol.jpg",
+    "ci_visual_ap.jpg",
+    "ci_visual_vr.jpg",
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -235,12 +243,14 @@ class _AboutUsState extends State<AboutUs> {
                                       fontSize: 20,
                                     ),
                                   ),
-                                  Text("신 효 미",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 25,
-                                  ),),
+                                  Text(
+                                    "신 효 미",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 25,
+                                    ),
+                                  ),
                                 ],
                               ),
                             )
@@ -250,6 +260,192 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Container(
+                  height: 700,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(children: [
+                          TextSpan(
+                              text: "갤러리360(주)은",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  letterSpacing: 1.2)),
+                          TextSpan(
+                              text: "아트 테크놀로지",
+                              style: TextStyle(
+                                  color: Color(0xff9b3fe4),
+                                  fontSize: 18,
+                                  letterSpacing: 1.2)),
+                          TextSpan(
+                              text: " 분야의",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  letterSpacing: 1.2)),
+                          TextSpan(
+                              text: "선도기업",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.2)),
+                          TextSpan(
+                              text:
+                                  "으로서 작가 지원, 온택트 전시 솔루션 VR갤러리 대관, 디지털 출판 솔루션 D-BOOK 연구개발 등의 서비스를 제공합니다.",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1.2))
+                        ]),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 100,
+                        //padding: EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Colors.grey.withOpacity(0.3),
+                            image: const DecorationImage(
+                              scale: 1,
+                              image: AssetImage(
+                                  "assets/images/mainPage/ci_mission.png"),
+                              //fit: BoxFit.contain
+                            )),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "MISSION",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "IT기술을 기반으로 미술 작품과 소비자를 연결하고 창작자들의 삶을 지원하는 일상적인 예술문화를 주도합니다.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        width: 100,
+                        height: 100,
+                        //padding: EdgeInsets.all(20.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50.0),
+                            color: Colors.grey.withOpacity(0.3),
+                            image: const DecorationImage(
+                              scale: 1,
+                              image: AssetImage(
+                                  "assets/images/mainPage/ci_vision.png"),
+                              //fit: BoxFit.contain
+                            )),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "VISION",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "예술이 당신의 일상에 다가갈 수 있는 IT서비스로 모두를 위한 다채로운 변화와 울림을 이끌어냅니다.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      color: Colors.black,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        "회사소개서 PDF 다운로드",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      color: Colors.black,
+                      alignment: Alignment.center,
+                      child: const Text(
+                        "대관서비스 소개서 PDF 다운로드",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                ),
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/mainPage/${images[index]}"),
+                        fit: BoxFit.cover
+                      )
+                    ),
+                  );
+                },
               ),
             ),
           ],
