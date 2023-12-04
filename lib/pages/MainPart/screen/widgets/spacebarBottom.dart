@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gallery360/util/Util.dart';
 
 class SpacebarBottom extends StatelessWidget {
   const SpacebarBottom({super.key});
@@ -69,30 +70,113 @@ class SpacebarBottom extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                "assets/images/mainPage/btn-footer-instagram.svg",
-                width: 55,
+              OutlinedButton(
+                onPressed: () {
+                  Util.UrlOpen("http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=8288801007");
+                },
+                style: OutlinedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                child: const Text("사업자정보확인", style: TextStyle(color: Colors.white),),
+              ),
+              const SizedBox(width: 10,),
+              OutlinedButton(
+                onPressed: () {
+                  Util.UrlOpen("https://www.gallery360.co.kr/admin_new/privacy.jsp");
+                },
+                style: OutlinedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                child: const Text("개인정보 취급방침", style: TextStyle(color: Colors.white),),
+              ),
+              const SizedBox(width: 10,),
+              OutlinedButton(
+                onPressed: () {
+                  Util.UrlOpen("https://www.gallery360.co.kr/admin_new/terms.jsp");
+                },
+                style: OutlinedButton.styleFrom(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  side: const BorderSide(color: Colors.white),
+                ),
+                child: const Text("이용약관", style: TextStyle(color: Colors.white),),
+              ),
+              // const SizedBox(width: 10,),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     Util.UrlOpen("http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=8288801007");
+              //   },
+              //   style: OutlinedButton.styleFrom(
+              //     shape: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.zero,
+              //     ),
+              //     padding: const EdgeInsets.all(5),
+              //     side: const BorderSide(color: Colors.white),
+              //   ),
+              //   child: const Text("헬프센터", style: TextStyle(color: Colors.white),),
+              // ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: (){
+                  Util.UrlOpen("https://www.instagram.com/gallery360.inc/");
+                },
+                child: SvgPicture.asset(
+                  "assets/images/mainPage/btn-footer-instagram.svg",
+                  width: 55,
+                ),
               ),
               const SizedBox(
                 width: 10,
               ),
-              SvgPicture.asset(
-                "assets/images/mainPage/btn-footer-facebook.svg",
-                width: 55,
+              GestureDetector(
+                onTap: (){
+                  Util.UrlOpen("https://www.facebook.com/gallery360.Inc/");
+                },
+                child: SvgPicture.asset(
+                  "assets/images/mainPage/btn-footer-facebook.svg",
+                  width: 55,
+                ),
               ),
               const SizedBox(
                 width: 10,
               ),
-              SvgPicture.asset(
-                "assets/images/mainPage/btn-footer-naver-blog.svg",
-                width: 55,
+              GestureDetector(
+                onTap: (){
+                  Util.UrlOpen("https://blog.naver.com/vrgallery360");
+                },
+                child: SvgPicture.asset(
+                  "assets/images/mainPage/btn-footer-naver-blog.svg",
+                  width: 55,
+                ),
               ),
               const SizedBox(
                 width: 8,
               ),
-              Image.asset(
-                "assets/images/mainPage/btn-youtube2.png",
-                width: 59,
+              GestureDetector(
+                onTap: (){
+                  Util.UrlOpen("https://www.youtube.com/channel/UCIkKP_U4KWbe0zbmwIUsOxw?view_as=subscriber");
+                },
+                child: Image.asset(
+                  "assets/images/mainPage/btn-youtube2.png",
+                  width: 59,
+                ),
               ),
             ],
           )

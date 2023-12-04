@@ -263,9 +263,6 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                       element == "${txt}_");
                                       _artInfoController.query_dis.removeWhere(
                                               (element) => element == "${txt}_");
-
-
-
                                       _artInfoController.getArtList_option("T");
                                     },
                                     child: Container(

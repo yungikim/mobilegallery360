@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../../../search/search_main.dart';
 
 class Spacebar2 extends StatelessWidget {
   const Spacebar2({super.key});
@@ -42,7 +46,9 @@ class Spacebar2 extends StatelessWidget {
             bottom: 10.0,
             right: 10.0,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(() => const SearchBarScreen(), transition: Transition.fadeIn);
+              },
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.white,
                 shape: const RoundedRectangleBorder(

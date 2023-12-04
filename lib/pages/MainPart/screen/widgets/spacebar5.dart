@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gallery360/pages/MainPart/screen/widgets/show_myroom.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SpaceBar5 extends StatelessWidget {
   const SpaceBar5({super.key});
@@ -42,7 +45,9 @@ class SpaceBar5 extends StatelessWidget {
               height: 20,
             ),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(()=> const ShowMyRoom(), transition: Transition.fadeIn);
+              },
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0.0)),

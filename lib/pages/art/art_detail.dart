@@ -612,7 +612,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                           const NeverScrollableScrollPhysics(),
                                       itemCount: snapshot.data.length,
                                       gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 4),
                                       itemBuilder: (context, index) {
                                         ArtInArt item = snapshot.data[index];

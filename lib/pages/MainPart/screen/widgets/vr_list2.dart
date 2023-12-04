@@ -4,9 +4,8 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import '../../../../util/Util.dart';
+import '../../../vrgallery/vr_detail.dart';
 
 class VRList2 extends StatefulWidget {
   const VRList2({super.key});
@@ -47,7 +46,6 @@ class _VRList2State extends State<VRList2> {
             if (i.isOdd) {
               _dataController.half_list.add(url);
             }
-
         }
       }
       _dataController.vrListInit.value = true;
@@ -156,23 +154,14 @@ class CarouselMobile extends StatelessWidget {
           itemCount: _dataController.vrListData.length,
           itemBuilder: (context, index, realIdx) {
             final e = _dataController.vrListData[index];
-            return cacheImage(
-              url: "${base_url}/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg",
-              bordertext: Border.all(color: Colors.white),
-            );
-            return Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                  //  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.1), BlendMode.darken),
-                    image: NetworkImage(
-                        "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
-                    fit: BoxFit.cover,
-                  )),
-              child: CarouselInnerText(
-                e: e,
+            return GestureDetector(
+              onTap: (){
+                Get.to(() =>
+                        VrDetailPage(dockey: '${e.dockey}'), transition: Transition.rightToLeft);
+              },
+              child: cacheImage(
+                url: "$base_url/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg",
+                bordertext: Border.all(color: Colors.white),
               ),
             );
           },

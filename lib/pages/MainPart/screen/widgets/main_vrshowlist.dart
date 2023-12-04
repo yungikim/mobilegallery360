@@ -59,33 +59,38 @@ class _VrShowListState extends State<VrShowList> {
               CarouselSlider(
                 carouselController: _carouselController,
                   items: items
-                          .map((item) => cacheImage(
-                              url: "${base_url}/artimage/lending/${item.image}",
-                              childtext: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    alignment: Alignment.centerLeft,
-                                    width: double.infinity,
-                                    height: 70.0,
-                                    color: Colors.black.withOpacity(0.5),
-                                    child: Text(
-                                      "${item.lendingName} / ${item.organizerName}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 17,
-                                          color: Colors.white.withOpacity(0.7),
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              boxshadow:  const BoxShadow(
-                                offset: Offset(0,13),
-                                blurRadius: 15.0,
-                                color: Colors.black,
-                              ),
+                          .map((item) => GestureDetector(
+                            onTap: (){
+                              Util.UrlOpen(item.shortUrl);
+                            },
+                            child: cacheImage(
+                                url: "${base_url}/artimage/lending/${item.image}",
+                                childtext: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      alignment: Alignment.centerLeft,
+                                      width: double.infinity,
+                                      height: 70.0,
+                                      color: Colors.black.withOpacity(0.5),
+                                      child: Text(
+                                        "${item.lendingName} / ${item.organizerName}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 17,
+                                            color: Colors.white.withOpacity(0.7),
+                                            overflow: TextOverflow.ellipsis),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                boxshadow:  const BoxShadow(
+                                  offset: Offset(5,13),
+                                  blurRadius: 15.0,
+                                  color: Colors.black,
+                                ),
+                            ),
                           )).toList(),
                       // .map((item) => Container(
                       //     width: double.infinity,
@@ -160,12 +165,12 @@ class _VrShowListState extends State<VrShowList> {
         },
         style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
-            side: index == _dataController.currentItem.value ? BorderSide(color: Color(0xff9b3de4)) : BorderSide(color: Colors.transparent),
+            side: index == _dataController.currentItem.value ? const BorderSide(color: Color(0xff9b3de4)) : BorderSide(color: Colors.transparent),
         ),
         child: Text(
           "#$title",
           style: TextStyle(
-            color: index == _dataController.currentItem.value ? Color(0xff9b3de4) : Colors.black,
+            color: index == _dataController.currentItem.value ? const Color(0xff9b3de4) : Colors.black,
           ),
         ),
       ),
