@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class WebViewPage extends StatefulWidget {
   const WebViewPage({super.key, required this.url});
@@ -15,11 +17,17 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("VR 대관"),
-        //   centerTitle: true,
-        //   backgroundColor: Colors.black,
-        // ),
+        appBar: AppBar(
+          //title: const Text("LinkView", style: TextStyle(color: Colors.white),),
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          leading: IconButton(
+            onPressed: (){
+              Get.back();
+            },
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.white,),
+          ),
+        ),
         body: InAppWebView(
           initialUrlRequest: URLRequest(
               url: Uri.parse(widget.url),

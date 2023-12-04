@@ -127,8 +127,8 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                     indicatorColor: Colors.red,
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white,
-                    labelStyle: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    unselectedLabelStyle: TextStyle(fontSize: 15.0),
+                    labelStyle: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    unselectedLabelStyle: const TextStyle(fontSize: 15.0),
                     tabs: const [
                       Tab(
                         text: "작가 소개",
@@ -148,8 +148,8 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                 controller: _tabController,
                 children: [
                   ArtistExpressWidget(),
-                  ArtistArtWidget(),
-                  ArtistVRWidget(),
+                  const ArtistArtWidget(),
+                  const ArtistVRWidget(),
                 ],
               ),
             ),

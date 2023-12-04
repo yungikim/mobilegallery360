@@ -3,6 +3,7 @@ import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:get/get.dart';
 import '../../../const/const.dart';
 import '../../../util/Util.dart';
+import '../../artist/artist_detail.dart';
 import '../model/artist_model.dart';
 
 class TotalSearchArtist extends StatelessWidget {
@@ -55,51 +56,56 @@ class TotalSearchArtist extends StatelessWidget {
                 ArtistModel item =
                     _searchResultController.SearchArtistResult[index];
                 String purl =
-                    "${base_url}/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
-                return Container(
-                  padding: const EdgeInsets.all(0.0),
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.withOpacity(0.2)),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(purl), fit: BoxFit.cover)),
+                    "$base_url/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
+                return GestureDetector(
+                  onTap: (){
+                    Get.to(() => ArtistDetailPage(email: item.source.email),  transition: Transition.rightToLeft);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(0.0),
+                    margin: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.withOpacity(0.2)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(purl), fit: BoxFit.cover)),
 
-                        width: 80,
-                        height: 80,
+                          width: 80,
+                          height: 80,
 
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: width - 110,
-                              child: Text(
-                                "${Util.chageText(item.source.nickname)} | ${Util.chageText(item.source.nameEng)}",
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: width - 110,
+                                child: Text(
+                                  "${Util.chageText(item.source.nickname)} | ${Util.chageText(item.source.nameEng)}",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            const Text(
-                              "작가정보 더보기 >",
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              const Text(
+                                "작가정보 더보기 >",
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               }),

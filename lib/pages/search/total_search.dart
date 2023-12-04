@@ -17,7 +17,7 @@ class TotalSeachPage extends StatefulWidget {
 }
 
 class _TotalSeachPageState extends State<TotalSeachPage> {
-  SearchResultController _searchResultController = Get.put(SearchResultController());
+  final SearchResultController _searchResultController = Get.put(SearchResultController());
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _TotalSeachPageState extends State<TotalSeachPage> {
                 const SizedBox(height: 20,),
                 TotalSearchArt(),
                 const SizedBox(height: 30,),
-                TotalSearchVR(),
+                const TotalSearchVR(),
                 const SizedBox(height: 30,),
                 TotalSearchNews(),
               ]),

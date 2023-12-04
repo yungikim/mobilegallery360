@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/icons/custom_icons_icons.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
@@ -11,11 +10,10 @@ import 'package:gallery360/pages/vrgallery/model/vr_detail_first.dart';
 import 'package:gallery360/pages/vrgallery/model/vr_detail_second.dart';
 import 'package:gallery360/pages/vrgallery/model/vr_detail_third.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-
 import '../../util/Util.dart';
-import '../MainPart/screen/widgets/vr_list2.dart';
+import '../art/art_detail.dart';
+import '../artist/artist_detail.dart';
 
 class VrDetailPage extends StatefulWidget {
   const VrDetailPage({super.key, required this.dockey});
@@ -112,7 +110,10 @@ class _VrDetailPageState extends State<VrDetailPage> {
                     Text(
                       "VR갤러리 이미지에 대한 활용 및 재배포시 출처를 반드시 남겨주세요.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12, color: Colors.grey,),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
                     ),
                     Text(
                       "Copyright © 2018-2023 Gallery360. All Rights Reserved.",
@@ -139,7 +140,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${Util.chageText(item.title.toString())}",
+                            Util.chageText(item.title.toString()),
                             style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.bold),
                           ),
@@ -230,7 +231,13 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                     side: const BorderSide(
                                       color: Colors.grey,
                                     )),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(
+                                      () => ArtistDetailPage(
+                                          email: item.email.toString()),
+                                      transition: Transition.rightToLeft,
+                                      preventDuplicates: false);
+                                },
                                 child: const Text(
                                   "작가",
                                   style: TextStyle(
@@ -291,127 +298,139 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                   VrDetailSecond item = list[index];
                                   String url =
                                       Util.VrUrl(item.dockey.toString());
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                      image: NetworkImage(url),
-                                      fit: BoxFit.cover,
-                                    )),
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          bottom: 20.0,
-                                          left: 15.0,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                Util.chageText(
-                                                    item.title.toString()),
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
-                                                    shadows: [
-                                                      Shadow(
-                                                        offset:
-                                                            Offset(1.0, 0.0),
-                                                        blurRadius: 3,
-                                                        color: Colors.black,
-                                                      )
-                                                    ]),
-                                              ),
-                                              const SizedBox(
-                                                height: 2,
-                                              ),
-                                              Text(
-                                                item.nickname,
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 13,
-                                                    shadows: [
-                                                      Shadow(
-                                                        offset:
-                                                            Offset(1.0, 0.0),
-                                                        blurRadius: 3.0,
-                                                        color: Colors.black,
-                                                      )
-                                                    ]),
-                                              ),
-                                              const SizedBox(
-                                                height: 5.0,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  const Icon(
-                                                    Icons.dataset_linked,
-                                                    color: Colors.white,
-                                                    shadows: [
-                                                      Shadow(
-                                                        offset:
-                                                            Offset(1.0, 0.0),
-                                                        blurRadius: 3,
-                                                        color: Colors.black,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    "${item.read}",
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        shadows: [
-                                                          Shadow(
-                                                            offset:
-                                                                Offset(1, 0),
-                                                            blurRadius: 3,
-                                                            color: Colors.black,
-                                                          )
-                                                        ]),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  const Icon(
-                                                    Icons
-                                                        .favorite_border_outlined,
-                                                    color: Colors.white,
-                                                    shadows: [
-                                                      Shadow(
-                                                        offset:
-                                                            Offset(1.0, 0.0),
-                                                        blurRadius: 3,
-                                                        color: Colors.black,
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    "${item.like}",
-                                                    style: const TextStyle(
-                                                        color: Colors.white,
-                                                        shadows: [
-                                                          Shadow(
-                                                            offset: Offset(
-                                                                1.0, 0.0),
-                                                            blurRadius: 3,
-                                                            color: Colors.black,
-                                                          )
-                                                        ]),
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                          () =>
+                                              VrDetailPage(dockey: item.dockey),
+                                          transition: Transition.rightToLeft,
+                                          preventDuplicates: false);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                        image: NetworkImage(url),
+                                        fit: BoxFit.cover,
+                                      )),
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            bottom: 20.0,
+                                            left: 15.0,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  Util.chageText(
+                                                      item.title.toString()),
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 15,
+                                                      shadows: [
+                                                        Shadow(
+                                                          offset:
+                                                              Offset(1.0, 0.0),
+                                                          blurRadius: 3,
+                                                          color: Colors.black,
+                                                        )
+                                                      ]),
+                                                ),
+                                                const SizedBox(
+                                                  height: 2,
+                                                ),
+                                                Text(
+                                                  item.nickname,
+                                                  style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 13,
+                                                      shadows: [
+                                                        Shadow(
+                                                          offset:
+                                                              Offset(1.0, 0.0),
+                                                          blurRadius: 3.0,
+                                                          color: Colors.black,
+                                                        )
+                                                      ]),
+                                                ),
+                                                const SizedBox(
+                                                  height: 5.0,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.dataset_linked,
+                                                      color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          offset:
+                                                              Offset(1.0, 0.0),
+                                                          blurRadius: 3,
+                                                          color: Colors.black,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      "${item.read}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          shadows: [
+                                                            Shadow(
+                                                              offset:
+                                                                  Offset(1, 0),
+                                                              blurRadius: 3,
+                                                              color:
+                                                                  Colors.black,
+                                                            )
+                                                          ]),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    const Icon(
+                                                      Icons
+                                                          .favorite_border_outlined,
+                                                      color: Colors.white,
+                                                      shadows: [
+                                                        Shadow(
+                                                          offset:
+                                                              Offset(1.0, 0.0),
+                                                          blurRadius: 3,
+                                                          color: Colors.black,
+                                                        )
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                    Text(
+                                                      "${item.like}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          shadows: [
+                                                            Shadow(
+                                                              offset: Offset(
+                                                                  1.0, 0.0),
+                                                              blurRadius: 3,
+                                                              color:
+                                                                  Colors.black,
+                                                            )
+                                                          ]),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
@@ -458,19 +477,29 @@ class _VrDetailPageState extends State<VrDetailPage> {
                         //  gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 3 : 4),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount:
-                              ResponsiveBreakpoints.of(context).isMobile ? 3 : 4,
+                              ResponsiveBreakpoints.of(context).isMobile
+                                  ? 3
+                                  : 4,
                           mainAxisSpacing: 5,
                           crossAxisSpacing: 5,
                         ),
                         itemBuilder: (context, index) {
-                          VrDetailThird item = _vrController.vrthird.value[index];
+                          VrDetailThird item =
+                              _vrController.vrthird.value[index];
                           String url =
-                              "${base_url}/artimage/${item.email}/art/preview/${item.dockey}.jpg";
+                              "$base_url/artimage/${item.email}/art/preview/${item.dockey}.jpg";
                           // return Image.network(
                           //   url,
                           //   fit: BoxFit.cover,
                           // );
-                          return cacheImageOnly(url: url);
+                          return GestureDetector(
+                            onTap: (){
+                              Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
+                            },
+                            child: cacheImageOnly(
+                              url: url,
+                            ),
+                          );
                         },
                       ),
                     );

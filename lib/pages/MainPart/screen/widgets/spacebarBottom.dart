@@ -8,7 +8,7 @@ class SpacebarBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: 450,
       color: Colors.black,
       child: Column(
         children: [
@@ -81,7 +81,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("사업자정보확인", style: TextStyle(color: Colors.white),),
+                child: const Text("사업자정보확인", style: TextStyle(color: Colors.white, fontSize: 10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -95,7 +95,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("개인정보 취급방침", style: TextStyle(color: Colors.white),),
+                child: const Text("개인정보 취급방침", style: TextStyle(color: Colors.white, fontSize: 10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -109,7 +109,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("이용약관", style: TextStyle(color: Colors.white),),
+                child: const Text("이용약관", style: TextStyle(color: Colors.white, fontSize: 10),),
               ),
               // const SizedBox(width: 10,),
               // OutlinedButton(

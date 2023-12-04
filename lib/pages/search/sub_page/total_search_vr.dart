@@ -11,6 +11,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../icons/custom_icons.dart';
 import '../../../util/Util.dart';
+import '../../vrgallery/vr_detail.dart';
 
 class TotalSearchVR extends StatefulWidget {
   const TotalSearchVR({super.key});
@@ -86,15 +87,21 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 270,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
-                        ),
-                      ), //child:
+                    GestureDetector(
+                      onTap: (){
+                        print(item.source.id);
+                        Get.to(() => VrDetailPage(dockey: id), transition: Transition.rightToLeft);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 270,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(url),
+                            fit: BoxFit.cover,
+                          ),
+                        ), //child:
+                      ),
                     ),
                     const SizedBox(
                       height: 10,

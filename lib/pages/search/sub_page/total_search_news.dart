@@ -70,12 +70,19 @@ class TotalSearchNews extends StatelessWidget {
               "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
               return Column(
                 children: [
-                  Container(
-                    height: 300,
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(url), fit: BoxFit.cover)),
+                  GestureDetector(
+                    onTap:(){
+                      //https://www.gallery360.co.kr/index.jsp?ty=link_news&id=155
+                      String url = "${base_url}/index.jsp?ty=link_news&id=${item.source.bun}";
+                      Util.UrlOpenWebview(url);
+                    },
+                    child: Container(
+                      height: 300,
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(url), fit: BoxFit.cover)),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12),

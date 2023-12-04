@@ -1,18 +1,15 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/pages/MainPart/screen/main_page.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
+import 'package:gallery360/pages/aboutUs/about_us.dart';
 import 'package:gallery360/pages/art/art_main.dart';
 import 'package:gallery360/pages/artist/artist_main.dart';
+import 'package:gallery360/pages/tech/tech.dart';
 import 'package:gallery360/pages/vrgallery/vr_main.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-import 'package:gallery360/util/Util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -84,15 +81,17 @@ class _DrawerScreenState extends State<DrawerScreen> {
       case MenuItems.vrshow:
       //  return const WebViewPage(url: 'https://exhibit.gallery360.co/');
       case MenuItems.vrgallery:
-        return VrMainPage();
+        return const VrMainPage();
       case MenuItems.art:
         return const ArtMainPage();
+      case MenuItems.tech:
+        return const Tech();
+      case MenuItems.aboutus:
+        return const AboutUs();
       default:
         return const ArtistMainPage();
     }
   }
-
-
 }
 
 class MenuItem{
@@ -100,7 +99,6 @@ class MenuItem{
   final IconData icon;
   const MenuItem({required this.title, required this.icon});
 }
-
 
 class MenuItems{
   static const home = MenuItem(title: 'Home', icon: Icons.home);
@@ -156,7 +154,6 @@ class MenuScreen extends StatelessWidget {
         return onSelectedItem(item);
       },
     ),
-
   );
 }
 

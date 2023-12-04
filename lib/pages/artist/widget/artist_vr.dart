@@ -10,6 +10,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../const/const.dart';
 import '../../../util/Util.dart';
+import '../../vrgallery/vr_detail.dart';
 
 class ArtistVRWidget extends StatefulWidget {
   const ArtistVRWidget({super.key});
@@ -53,15 +54,20 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 270,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(url),
-                          fit: BoxFit.cover,
-                        ),
-                      ), //child:
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => VrDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 270,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(url),
+                            fit: BoxFit.cover,
+                          ),
+                        ), //child:
+                      ),
                     ),
                     const SizedBox(
                       height: 10,

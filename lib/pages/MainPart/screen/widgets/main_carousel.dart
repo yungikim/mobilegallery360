@@ -41,111 +41,108 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
       children: [
         CarouselSlider(
           items: imageList
-              .map((item) => Container(
-                    //   margin: const EdgeInsets.only(top: 3.0),
-                    child: ClipRRect(
-                      //   borderRadius: BorderRadius.circular(5.0),
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: _slideController.firstCarouselHeight.value,
-                            width: _slideController.firstCarouselWidth.value,
-                            decoration: BoxDecoration(
-                                color: Colors.grey,
-                                image: DecorationImage(
-                                //  image: NetworkImage(item),
-                                  image: AssetImage(item),
-                                  fit: BoxFit.cover,
-                                )),
-                          ),
-                          Positioned.fill(
-                            child: Align(
-                              alignment:
-                                  ResponsiveBreakpoints.of(context).isMobile
-                                      ? Alignment.center
-                                      : Alignment.centerLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Column(
-                                  crossAxisAlignment:
-                                      ResponsiveBreakpoints.of(context).isMobile
-                                          ? CrossAxisAlignment.center
-                                          : CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                        ResponsiveBreakpoints.of(context)
-                                            .isMobile ? mainMessage[imageList.indexOf(item)]
-                                            : mainMessage[imageList.indexOf(item)].replaceFirst("\n", " ")
-                                        ,
-                                        textAlign:
-                                            ResponsiveBreakpoints.of(context)
-                                                    .isMobile
-                                                ? TextAlign.center
-                                                : TextAlign.left,
-                                        style: const TextStyle(
-                                            shadows: [
-                                              Shadow(
-                                                offset: Offset(3.0, 0.0),
-                                                blurRadius: 30.0,
-                                                color: Colors.black,
-                                              ),
-                                            ],
-                                            color: Colors.white,
-                                            fontSize: 30.0,
-                                            fontWeight: FontWeight.bold)),
-                                    const SizedBox(
-                                      height: 20.0,
-                                    ),
-                                    Text(
-                                        mainMessage_sub[
-                                            imageList.indexOf(item)],
-                                        textAlign: ResponsiveBreakpoints.of(context).isMobile ? TextAlign.center : TextAlign.left,
-                                        style: const TextStyle(
-                                            shadows: [
-                                              Shadow(
-                                                offset: Offset(3.0, 0.0),
-                                                blurRadius: 30,
-                                                color: Colors.black,
-                                              )
-                                            ],
-                                            color: Colors.white,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.bold)),
-                                    const SizedBox(
-                                      height: 50.0,
-                                    ),
-                                    main_btn_widget[_current],
-                                    // OutlinedButton(
-                                    //   onPressed: () {},
-                                    //   style: OutlinedButton.styleFrom(
-                                    //     backgroundColor: _current == 6 ? Colors.black : Colors.transparent,
-                                    //       shape: RoundedRectangleBorder(
-                                    //         borderRadius:
-                                    //             BorderRadius.circular(0.0),
-                                    //       ),
-                                    //       side: BorderSide(
-                                    //         color:
-                                    //             mainMessage_btn_color[_current],
-                                    //         width: 1.0,
-                                    //       )),
-                                    //   child: Text(
-                                    //     mainMessage_btn_title[
-                                    //         imageList.indexOf(item)],
-                                    //     style: TextStyle(
-                                    //         color: mainMessage_btn_color[
-                                    //             _current]),
-                                    //   ),
-                                    // ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+              .map((item) => ClipRRect(
+                //   borderRadius: BorderRadius.circular(5.0),
+                child: Stack(
+                  children: [
+                    Container(
+                      height: _slideController.firstCarouselHeight.value,
+                      width: _slideController.firstCarouselWidth.value,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          image: DecorationImage(
+                          //  image: NetworkImage(item),
+                            image: AssetImage(item),
+                            fit: BoxFit.cover,
+                          )),
                     ),
-                  ))
+                    Positioned.fill(
+                      child: Align(
+                        alignment:
+                            ResponsiveBreakpoints.of(context).isMobile
+                                ? Alignment.center
+                                : Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Column(
+                            crossAxisAlignment:
+                                ResponsiveBreakpoints.of(context).isMobile
+                                    ? CrossAxisAlignment.center
+                                    : CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  ResponsiveBreakpoints.of(context)
+                                      .isMobile ? mainMessage[imageList.indexOf(item)]
+                                      : mainMessage[imageList.indexOf(item)].replaceFirst("\n", " ")
+                                  ,
+                                  textAlign:
+                                      ResponsiveBreakpoints.of(context)
+                                              .isMobile
+                                          ? TextAlign.center
+                                          : TextAlign.left,
+                                  style: const TextStyle(
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(3.0, 0.0),
+                                          blurRadius: 30.0,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      fontSize: 30.0,
+                                      fontWeight: FontWeight.bold)),
+                              const SizedBox(
+                                height: 20.0,
+                              ),
+                              Text(
+                                  mainMessage_sub[
+                                      imageList.indexOf(item)],
+                                  textAlign: ResponsiveBreakpoints.of(context).isMobile ? TextAlign.center : TextAlign.left,
+                                  style: const TextStyle(
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(3.0, 0.0),
+                                          blurRadius: 30,
+                                          color: Colors.black,
+                                        )
+                                      ],
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.bold)),
+                              const SizedBox(
+                                height: 50.0,
+                              ),
+                              main_btn_widget[_current],
+                              // OutlinedButton(
+                              //   onPressed: () {},
+                              //   style: OutlinedButton.styleFrom(
+                              //     backgroundColor: _current == 6 ? Colors.black : Colors.transparent,
+                              //       shape: RoundedRectangleBorder(
+                              //         borderRadius:
+                              //             BorderRadius.circular(0.0),
+                              //       ),
+                              //       side: BorderSide(
+                              //         color:
+                              //             mainMessage_btn_color[_current],
+                              //         width: 1.0,
+                              //       )),
+                              //   child: Text(
+                              //     mainMessage_btn_title[
+                              //         imageList.indexOf(item)],
+                              //     style: TextStyle(
+                              //         color: mainMessage_btn_color[
+                              //             _current]),
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ))
               .toList(),
           carouselController: _carouselController,
           options: CarouselOptions(

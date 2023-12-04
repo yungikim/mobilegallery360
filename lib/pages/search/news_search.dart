@@ -94,12 +94,18 @@ class _NewSearchPageState extends State<NewSearchPage> {
                         ),
                         child: Column(
                           children: [
-                            Container(
-                              height: 300,
-                              margin: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(url), fit: BoxFit.cover)),
+                            GestureDetector(
+                              onTap: (){
+                                var url = "$base_url/index.jsp?ty=link_news&id=${item.source.bun}";
+                                Util.UrlOpenWebview(url);
+                              },
+                              child: Container(
+                                height: 300,
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(url), fit: BoxFit.cover)),
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(12),

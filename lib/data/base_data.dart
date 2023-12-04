@@ -56,6 +56,18 @@ final List<String> mainMessage_btn_title =[
   '작품 걸어보기',
 ];
 
+final List<String> mainMessage_btn_url =[
+  'video',
+  'regart',
+  'vrshow',
+  'aipainter',
+  'detail',
+  'free',
+  'dbook',
+  'show_myroom',
+];
+
+
 final List<Color> mainMessage_btn_color =[
   Colors.white,
   Colors.white,
@@ -70,7 +82,9 @@ final List<Color> mainMessage_btn_color =[
 final List<Widget> main_btn_widget = [
 
   OutlinedButton(
-    onPressed: () {},
+    onPressed: () {
+      print("소개영상 보기");
+    },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(

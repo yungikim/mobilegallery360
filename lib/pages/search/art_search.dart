@@ -1,13 +1,12 @@
 import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:gallery360/pages/search/model/art_category_model.dart';
 import 'package:get/get.dart';
-
 import '../../util/Util.dart';
+import '../art/art_detail.dart';
 
 class ArtSearchPage extends StatefulWidget {
   const ArtSearchPage({super.key});
@@ -64,7 +63,7 @@ class _ArtSearchPageState extends State<ArtSearchPage> {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )
-                      : Text(""),
+                      : const Text(""),
                 ),
               ),
               SliverToBoxAdapter(
@@ -90,35 +89,40 @@ class _ArtSearchPageState extends State<ArtSearchPage> {
                       String art_dis = "${height}x$width($hosu호)";
                       String opt = item.source.opt;
                       String price = opt == "none" ? "가격문의" : "￦${Util.addComma(tx['art_price'] / 10000)}만원";
-                      return Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: url,
-                              placeholder: (context, url) => const CircularProgressIndicator(),
-                              fit: BoxFit.cover,
-                            ),
-                            const SizedBox(height: 5,),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(art_title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
-                                  const SizedBox(height: 5,),
-                                  Text(art_artist, style: TextStyle(fontSize: 12),),
-                                  const SizedBox(height: 5,),
-                                  Text(art_dis, style: TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.5)),),
-                                  const SizedBox(height: 7,),
-                                  Text(price, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-                                ],
+                      return GestureDetector(
+                        onTap: (){
+                          Get.to(() => ArtDetailPage(dockey: item.id), transition: Transition.rightToLeft);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: url,
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                fit: BoxFit.cover,
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 5,),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(art_title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
+                                    const SizedBox(height: 5,),
+                                    Text(art_artist, style: TextStyle(fontSize: 12),),
+                                    const SizedBox(height: 5,),
+                                    Text(art_dis, style: TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.5)),),
+                                    const SizedBox(height: 7,),
+                                    Text(price, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

@@ -1,15 +1,11 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:gallery360/pages/search/model/artist_category_model.dart';
-import 'package:gallery360/pages/search/model/artist_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../const/const.dart';
 import '../../util/Util.dart';
+import '../artist/artist_detail.dart';
 
 class ArtistSearchPage extends StatefulWidget {
   const ArtistSearchPage({super.key});
@@ -61,12 +57,15 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
-                  child: _searchResultController.SearchArtistCategory.isNotEmpty ? Text(
-                    "검색결과 ${_searchResultController.totalSearchCount.value}개",
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
-                  ) : const Text(""),
+                  padding: const EdgeInsets.only(
+                      top: 10, left: 8, right: 8, bottom: 20),
+                  child: _searchResultController.SearchArtistCategory.isNotEmpty
+                      ? Text(
+                          "검색결과 ${_searchResultController.totalSearchCount.value}개",
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        )
+                      : const Text(""),
                 ),
               ),
               SliverToBoxAdapter(
@@ -74,7 +73,8 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   //   controller: scrollController,
-                  itemCount: _searchResultController.SearchArtistCategory.length,
+                  itemCount:
+                      _searchResultController.SearchArtistCategory.length,
                   gridDelegate:
                       const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1),
@@ -82,13 +82,14 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                     ArtistCategoryModel item =
                         _searchResultController.SearchArtistCategory[index];
                     String purl =
-                        "${base_url}/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
+                        "$base_url/artimage/${item.source.email}/photo_list/${item.source.email}_gray.jpg";
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1),
+                            border: Border.all(
+                                color: Colors.grey.withOpacity(0.3), width: 1),
                           ),
                           //height:  100,
                           //color: Colors.blue,
@@ -108,22 +109,30 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                                 child: SizedBox(
                                   width: width - 150,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(
                                         child: Text(
                                           "${Util.chageText(item.source.name)} | ${Util.chageText(item.source.nameEng)}",
                                           style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                            overflow: TextOverflow.clip
-                                          ),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              overflow: TextOverflow.clip),
                                         ),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      const Text("작가정보 더보기 >", style: TextStyle(fontSize: 14),)
+                                      GestureDetector(
+                                        onTap: (){
+                                          Get.to(() => ArtistDetailPage(email: item.source.email),  transition: Transition.rightToLeft);
+                                        },
+                                        child: const Text(
+                                          "작가정보 더보기 >",
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

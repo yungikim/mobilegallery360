@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../util/Util.dart';
+import '../../art/art_detail.dart';
 import '../model/art_model.dart';
 
 class TotalSearchArt extends StatelessWidget {
@@ -91,10 +92,15 @@ class TotalSearchArt extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: url,
-                      placeholder: (context, url) => const CircularProgressIndicator(),
-                      fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: (){
+                        Get.to(() => ArtDetailPage(dockey: item.source.id), transition: Transition.rightToLeft);
+                      },
+                      child: CachedNetworkImage(
+                        imageUrl: url,
+                        placeholder: (context, url) => const CircularProgressIndicator(),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     const SizedBox(height: 5,),
                     Padding(

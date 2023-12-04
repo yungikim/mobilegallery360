@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -31,6 +32,13 @@ class Util {
     if (!await launchUrl(Uri.parse(url))) {
     throw Exception('Could not launch ${url}');
     }
+  }
+
+  static void UrlOpenWebview(String url)async{
+    Get.to(() => WebViewPage(url: url,), transition: Transition.rightToLeft);
+    // if (!await launchUrl(Uri.parse(url))) {
+    //   throw Exception('Could not launch ${url}');
+    // }
   }
 
   static String makeMainArtListURL(String email, String artImgFilename) {

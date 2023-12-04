@@ -39,8 +39,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   void initState() {
     _artInfoController.select_art_key.value = widget.dockey;
     email = widget.dockey.split("_")[0];
-    _artInfoController.getArtInfo();
-    _artInfoController.getArtInArtist(email);
+     _artInfoController.getArtInfo();
+     _artInfoController.getArtInArtist(email);
     _artInfoController.artinarts.value = <ArtInArt>[];
 
     // TODO: implement initState
@@ -563,7 +563,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                       () => ArtistDetailPage(
                                                           email: item.email!),
                                                       transition:
-                                                          Transition.fadeIn);
+                                                          Transition.fadeIn, preventDuplicates: false);
                                                 },
                                                 style: OutlinedButton.styleFrom(
                                                     backgroundColor:
@@ -575,7 +575,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                       borderRadius:
                                                           BorderRadius.zero,
                                                     )),
-                                                child: Text("작가정보 더보기"),
+                                                child: const Text("작가정보 더보기"),
                                               ),
                                             ],
                                           ),

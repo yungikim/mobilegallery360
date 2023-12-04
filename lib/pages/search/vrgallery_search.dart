@@ -1,15 +1,13 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/search/controller/search_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-
 import '../../const/const.dart';
 import '../../icons/custom_icons.dart';
 import '../../util/Util.dart';
+import '../vrgallery/vr_detail.dart';
 
 class VrGallerySearchPage extends StatefulWidget {
   const VrGallerySearchPage({super.key});
@@ -67,7 +65,7 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )
-                      : Text(""),
+                      : const Text(""),
                 ),
               ),
               SliverToBoxAdapter(
@@ -86,63 +84,68 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                     Map<String, dynamic> etc = jsonDecode(item.source.etc);
                     String id = item.source.id.split("-=spl=-")[0];
                     var url =
-                        "${base_url}/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              height: 270,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(url),
-                                  fit: BoxFit.cover,
-                                ),
-                              ), //child:
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              Util.chageText(etc['title']),
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              item.source.nickname,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(MyFlutterApp.icon_vr_view_count_b),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text(Util.addComma2(etc['read'])),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                const Icon(MyFlutterApp.icon_vr_collect_count_b),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                Text("${etc['like']}"),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                        "$base_url/vr/vr/vrgallery/${item.source.email}/${id}/pano_f.jpg";
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(() => VrDetailPage(dockey: '${id}'), transition: Transition.rightToLeft);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                height: 270,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(url),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ), //child:
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                Util.chageText(etc['title']),
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                item.source.nickname,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(MyFlutterApp.icon_vr_view_count_b),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(Util.addComma2(etc['read'])),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Icon(MyFlutterApp.icon_vr_collect_count_b),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text("${etc['like']}"),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
