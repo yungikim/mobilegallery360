@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gallery360/pages/aboutUs/controller/about_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -13,6 +14,10 @@ class AboutUs extends StatefulWidget {
 
 class _AboutUsState extends State<AboutUs> {
   final AboutController _aboutController = Get.put(AboutController());
+
+  bool expand1 = true;
+  bool expand2 = false;
+  bool expand3 = false;
 
   final images = [
     "ci_visual_acon.jpg",
@@ -447,6 +452,10 @@ class _AboutUsState extends State<AboutUs> {
                   );
                 },
               ),
+            ),
+
+            SliverToBoxAdapter(
+
             ),
           ],
         ));
