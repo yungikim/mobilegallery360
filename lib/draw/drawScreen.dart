@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../icons/custom_icons_icons.dart';
+
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -101,8 +103,8 @@ class MenuItem{
 }
 
 class MenuItems{
-  static const home = MenuItem(title: 'Home', icon: Icons.home);
-  static const vrgallery = MenuItem(title: 'VR 갤러리', icon: Icons.vrpano);
+  static const home = MenuItem(title: 'Home', icon: CustomIcons.icon_menu_home_over_press);
+  static const vrgallery = MenuItem(title: 'VR 갤러리', icon: CustomIcons.icon_menu_vrgallery_over_press);
   static const art = MenuItem(title: '작품', icon: Icons.art_track);
   static const artist = MenuItem(title: '작가', icon: Icons.article_sharp);
   static const vrshow = MenuItem(title: 'VR 대관', icon: Icons.shop);

@@ -16,10 +16,29 @@ class _AboutUsState extends State<AboutUs> {
         preferredSize: const Size.fromHeight(60),
         child: customAppBar(context),
       ),
-      body: Container(
-        height: 500,
-        color: Colors.red,
-      ),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child:  Container(
+              height: 500,
+              decoration: const BoxDecoration(
+                  color: Colors.red,
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/mainPage/company_brief_visual.jpg"),
+                      fit: BoxFit.cover
+                  )
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("1111"),
+                  Text("22222")
+                ],
+              ),
+            ),
+          )
+        ],
+      )
     );
   }
 }
