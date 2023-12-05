@@ -42,27 +42,18 @@ class _MainPageState extends State<MainPage> {
     _dataController.isMobile.value = ResponsiveBreakpoints.of(context).isMobile;
 
     return Scaffold(
-        floatingActionButton: Container(
-          height: 80,
-          width: 80,
-          decoration: const BoxDecoration(
-              color: Colors.transparent,
-            image: DecorationImage(
-              image: AssetImage("assets/images/mainPage/btn_circle_deco.png"),
-              fit: BoxFit.cover,
-            )
-          ),
-        ),
-        // floatingActionButton: FloatingActionButton(
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 0,
-        //   hoverElevation: 0,
-        //   focusElevation: 0,
-        //   highlightElevation: 0,
-        //   onPressed: (){},
-        //   child:Container(width: 100, height:100, child: Image.asset("assets/images/mainPage/btn_circle_deco.png"))
+        // floatingActionButton: Container(
+        //   height: 80,
+        //   width: 80,
+        //   decoration: const BoxDecoration(
+        //       color: Colors.transparent,
+        //     image: DecorationImage(
+        //       image: AssetImage("assets/images/mainPage/btn_circle_deco.png"),
+        //       fit: BoxFit.cover,
+        //     )
+        //   ),
         // ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black,
