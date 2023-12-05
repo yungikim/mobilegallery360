@@ -95,17 +95,18 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                       children: [
                         GestureDetector(
                           onTap: (){
-                            //artimage/mblue4444@gmail.com-spl-1560342398964/art/watermark/mblue4444@gmail.com-spl-1560342398964_9e9d575e7189d4b5388c355899688514.958188.jpg";
-                            String url = "$base_url/artimage/${item.email}/art/watermark/${widget.dockey}.jpg";
-                            Get.to(() => PhotoDisplay(url: url,), transition: Transition.rightToLeft);
+                            Get.to(() => PhotoDisplay(dockey: widget.dockey, email: item.email,), transition: Transition.rightToLeft);
                           },
-                          child: Container(
-                            height: 450,
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        "${base_url}/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
-                                    fit: BoxFit.fitHeight)),
+                          child: Hero(
+                            tag: widget.dockey,
+                            child: Container(
+                              height: 450,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          "$base_url/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
+                                      fit: BoxFit.fitHeight)),
+                            ),
                           ),
                         ),
                         const SizedBox(

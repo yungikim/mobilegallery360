@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:photo_view/photo_view.dart';
 
+import '../../const/const.dart';
+
 class PhotoDisplay extends StatefulWidget {
-  const PhotoDisplay({super.key, required this.url});
-  final String url;
+  const PhotoDisplay({super.key, required this.dockey, required this.email});
+  final String dockey;
+  final String email;
   @override
   State<PhotoDisplay> createState() => _PhotoViewState();
 }
@@ -14,6 +17,8 @@ class _PhotoViewState extends State<PhotoDisplay> {
   @override
   Widget build(BuildContext context) {
     //String url = "https://www.gallery360.co.kr/artimage/mblue4444@gmail.com-spl-1560342398964/art/watermark/mblue4444@gmail.com-spl-1560342398964_9e9d575e7189d4b5388c355899688514.958188.jpg";
+
+    String url = "$base_url/artimage/${widget.email}/art/watermark/${widget.dockey}.jpg";
     return Scaffold(
       appBar: AppBar(
         title: const Text("확대보기",style: TextStyle(color: Colors.white, fontSize: 18),),
@@ -27,7 +32,11 @@ class _PhotoViewState extends State<PhotoDisplay> {
         ),
       ),
       body: PhotoView(
-        imageProvider: NetworkImage(widget.url),
+        imageProvider: NetworkImage(url),
+        initialScale: PhotoViewComputedScale.contained * 0.8,
+        minScale: PhotoViewComputedScale.contained * 0.8,
+        maxScale: PhotoViewComputedScale.contained * 3.0,
+        heroAttributes: PhotoViewHeroAttributes(tag: widget.dockey),
       ),
     );
   }

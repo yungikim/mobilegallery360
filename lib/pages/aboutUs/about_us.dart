@@ -512,7 +512,7 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: 780,
+                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 680,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -643,7 +643,7 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: 780,
+                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 660,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -765,7 +765,7 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: 820,
+                        height: ResponsiveBreakpoints.of(context).isMobile ? 820 : 710,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -897,7 +897,7 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: 780,
+                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 640,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -1019,7 +1019,7 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: 780,
+                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 630,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -1129,7 +1129,7 @@ class _AboutUsState extends State<AboutUs> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                  height: 1000,
+                  height: ResponsiveBreakpoints.of(context).isMobile ? 1000 : 1600,
 
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.1),
