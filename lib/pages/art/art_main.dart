@@ -86,6 +86,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+        floatingActionButton: actionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: customAppBar(context),

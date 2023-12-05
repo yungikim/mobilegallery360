@@ -230,4 +230,16 @@ Widget customAppBar(BuildContext context) {
   );
 }
 
-
+Widget actionButton(){
+  return Container(
+    height: 80,
+    width: 80,
+    decoration: const BoxDecoration(
+        color: Colors.transparent,
+        image: DecorationImage(
+          image: AssetImage("assets/images/mainPage/btn_circle_deco.png"),
+          fit: BoxFit.cover,
+        )
+    ),
+  );
+}

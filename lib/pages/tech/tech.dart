@@ -8,6 +8,8 @@ class Tech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: actionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: customAppBar(context),

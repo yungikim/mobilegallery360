@@ -17,6 +17,7 @@ import 'package:gallery360/pages/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
+import '../../../util/Util.dart';
 import '../../search/search_main.dart';
 
 class MainPage extends StatefulWidget {
@@ -42,18 +43,8 @@ class _MainPageState extends State<MainPage> {
     _dataController.isMobile.value = ResponsiveBreakpoints.of(context).isMobile;
 
     return Scaffold(
-        // floatingActionButton: Container(
-        //   height: 80,
-        //   width: 80,
-        //   decoration: const BoxDecoration(
-        //       color: Colors.transparent,
-        //     image: DecorationImage(
-        //       image: AssetImage("assets/images/mainPage/btn_circle_deco.png"),
-        //       fit: BoxFit.cover,
-        //     )
-        //   ),
-        // ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButton: actionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black,

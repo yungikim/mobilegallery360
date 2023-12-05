@@ -91,7 +91,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       case MenuItems.aboutus:
         return const AboutUs();
       default:
-        return const ArtistMainPage();
+        return const SizedBox();
     }
   }
 }
