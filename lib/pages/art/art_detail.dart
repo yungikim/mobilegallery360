@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/art/controller/art_controller.dart';
+import 'package:gallery360/pages/art/photo_view.dart';
 import 'package:gallery360/pages/artist/model/artist_detail.dart';
 import 'package:get/get.dart';
 import 'package:linkify/linkify.dart';
@@ -92,13 +93,20 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                     padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
-                        Container(
-                          height: 450,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "${base_url}/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
-                                  fit: BoxFit.fitHeight)),
+                        GestureDetector(
+                          onTap: (){
+                            //artimage/mblue4444@gmail.com-spl-1560342398964/art/watermark/mblue4444@gmail.com-spl-1560342398964_9e9d575e7189d4b5388c355899688514.958188.jpg";
+                            String url = "$base_url/artimage/${item.email}/art/watermark/${widget.dockey}.jpg";
+                            Get.to(() => PhotoDisplay(url: url,), transition: Transition.rightToLeft);
+                          },
+                          child: Container(
+                            height: 450,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "${base_url}/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
+                                    fit: BoxFit.fitHeight)),
+                          ),
                         ),
                         const SizedBox(
                           height: 15,

@@ -55,6 +55,8 @@ dependencies:
   permission_handler: ^11.0.1
   smooth_page_indicator: ^1.1.0
   accordion: ^2.6.0
+  flutter_file_downloader: ^1.1.4
+  photo_view: ^0.14.0
 
 dev_dependencies:
   flutter_test:

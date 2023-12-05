@@ -19,7 +19,9 @@ class Util {
         .replaceAll("&#41;", ")")
         .replaceAll("&#39;", "'")
         .replaceAll("&lt;", "<")
-        .replaceAll("&gt;", ">");
+        .replaceAll("&gt;", ">")
+        .replaceAll("<br />", "\n")
+    ;
   }
 
   Future<void> URLOpen(LinkableElement link) async {
