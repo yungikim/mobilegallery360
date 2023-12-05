@@ -18,10 +18,11 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   final SearchResultController _searchController = Get.put(SearchResultController());
   late TabController _tabController;
 
+
+
   void TotalSearchFnc(String query){
     // print("###############################################################");
     // print("_tabController.index : ${_tabController.index}");
-
     _searchController.searchcomplete.value = false;
     if (_tabController.index == 0){
       _searchController.getSearchResult(query);
@@ -53,6 +54,48 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
     }
   }
 
+  void _chageTab(){
+    print(_tabController.index);
+    switch (_tabController.index) {
+      case 0:
+        if (_searchController.SearchArtTotalCount.value != 0){
+         // _searchController.getSearchResult(query);
+        }
+      case 1:
+        if (!_searchController.isLoadingComplete.value){
+          _searchController.page.value = 1;
+          _searchController.isLoadingComplete.value = false;
+          _searchController.hasMore.value = true;
+          _searchController.SearchArtistCategory.clear();
+          _searchController.getSearchCategory("user");
+        }
+      case 2:
+        if (!_searchController.isLoadingComplete_art.value){
+          _searchController.page_art.value = 1;
+          _searchController.isLoadingComplete_art.value = false;
+          _searchController.hasMore_art.value = true;
+          _searchController.SearchArtCategory.clear();
+          _searchController.getSearchCategory("art");
+        }
+      case 3:
+        if (!_searchController.isLoadingComplete_vr.value ){
+          _searchController.page_vr.value = 1;
+          _searchController.isLoadingComplete_vr.value = false;
+          _searchController.hasMore_vr.value = true;
+          _searchController.SearchVRCategory.clear();
+          _searchController.getSearchCategory("vr");
+        }
+      case 4:
+        if (!_searchController.isLoadingComplete_news.value){
+          _searchController.page_news.value = 1;
+          _searchController.isLoadingComplete_news.value = false;
+          _searchController.hasMore_news.value = true;
+          _searchController.SearchNewsCategory.clear();
+          _searchController.getSearchCategory("news");
+        }
+    }
+  }
+
   void CloseBtn(){
     _searchController.searchquery.text = "";
 
@@ -77,9 +120,11 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
   void initState() {
     // TODO: implement initState
     _searchController.searchquery = TextEditingController();
+
     //print("시작한다....... : ${_searchController.searchquery.text}");
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
+    _tabController.addListener(_chageTab);
   }
 
   @override
@@ -87,6 +132,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
     //_searchTextController.dispose();
     _searchController.searchquery.dispose();
     _tabController.dispose();
+    _tabController.removeListener(_chageTab);
     // TODO: implement dispose
     super.dispose();
   }
