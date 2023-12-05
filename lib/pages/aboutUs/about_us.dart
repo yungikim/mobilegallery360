@@ -1,3 +1,4 @@
+import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gallery360/pages/aboutUs/controller/about_controller.dart';
@@ -16,12 +17,6 @@ class AboutUs extends StatefulWidget {
 class _AboutUsState extends State<AboutUs> {
   final AboutController _aboutController = Get.put(AboutController());
 
-  bool expand1 = true;
-  bool expand2 = false;
-  bool expand3 = false;
-
-  final List<Step> _steps = getSteps();
-
   final images = [
     "ci_visual_acon.jpg",
     "ci_visual_acol.jpg",
@@ -29,10 +24,8 @@ class _AboutUsState extends State<AboutUs> {
     "ci_visual_vr.jpg",
   ];
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -58,7 +51,6 @@ class _AboutUsState extends State<AboutUs> {
                     return Container(
                       height: 500,
                       decoration: const BoxDecoration(
-
                           image: DecorationImage(
                               image: AssetImage(
                                   "assets/images/mainPage/company_brief_visual.jpg"),
@@ -181,7 +173,9 @@ class _AboutUsState extends State<AboutUs> {
                       fit: BoxFit.cover,
                     ),
                     Container(
-                      height: ResponsiveBreakpoints.of(context).isMobile ?  700 : 550,
+                      height: ResponsiveBreakpoints.of(context).isMobile
+                          ? 700
+                          : 550,
                       width: double.infinity,
                       color: const Color(0xffb3adb0),
                       child: Padding(
@@ -277,7 +271,8 @@ class _AboutUsState extends State<AboutUs> {
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Container(
-                  height: ResponsiveBreakpoints.of(context).isMobile ? 750 : 650,
+                  height:
+                      ResponsiveBreakpoints.of(context).isMobile ? 750 : 650,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -432,7 +427,9 @@ class _AboutUsState extends State<AboutUs> {
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
-                    const SizedBox(height: 40,),
+                    const SizedBox(
+                      height: 40,
+                    ),
                   ],
                 ),
               ),
@@ -451,63 +448,29 @@ class _AboutUsState extends State<AboutUs> {
                   return Container(
                     height: 100,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/mainPage/${images[index]}"),
-                        fit: BoxFit.cover
-                      )
-                    ),
+                        image: DecorationImage(
+                            image: AssetImage(
+                                "assets/images/mainPage/${images[index]}"),
+                            fit: BoxFit.cover)),
                   );
                 },
               ),
             ),
-
             SliverToBoxAdapter(
-              child: ExpansionPanelList(
-                expansionCallback: (int index, bool isExpanded){
-
-                  isExpanded = !isExpanded;
-                  setState(() {
-                    _steps[index].isExpanded = !isExpanded;
-                  });
-                },
-                children: _steps.map((Step step) {
-                  return ExpansionPanel(
-                    headerBuilder: (BuildContext context, bool isExpanded){
-                      return ListTile(
-                        title: Text(step.title),
-                      );
-                    },
-                    body: ListTile(
-                      title: Text(step.body),
+                child: Accordion(
+                  children: [
+                    AccordionSection(
+                      header: Text("VR갤러리 대관"),
+                      headerBackgroundColor: Colors.grey,
+                      headerPadding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      content: Container(
+                        height: 300,
+                        color: Colors.red,
+                      ),
                     ),
-                    isExpanded: step.isExpanded,
-                  );
-                }).toList(),
-              ),
-            ),
+                  ],
+            )),
           ],
         ));
   }
 }
-
-
-class Step {
-  Step(
-      this.title,
-      this.body,
-      [this.isExpanded = false]
-      );
-  String title;
-  String body;
-  bool isExpanded;
-}
-
-List<Step> getSteps() {
-  return [
-    Step('Step 0: Install Flutter', 'Install Flutter development tools according to the official documentation.'),
-    Step('Step 1: Create a project', 'Open your terminal, run `flutter create <project_name>` to create a new project.'),
-    Step('Step 2: Run the app', 'Change your terminal directory to the project directory, enter `flutter run`.'),
-  ];
-}
-
-
