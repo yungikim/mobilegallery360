@@ -73,7 +73,6 @@ class _VrDetailPageState extends State<VrDetailPage> {
 
                   onReceivedServerTrustAuthRequest:
                       (controller, challenge) async {
-                    print(challenge);
                     return ServerTrustAuthResponse(
                         action: ServerTrustAuthResponseAction.PROCEED);
                   },

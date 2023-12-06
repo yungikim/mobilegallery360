@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import '../../../core/const.dart';
+import '../util/video_player.dart';
 
 final List<String> imageList2 =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
@@ -84,6 +87,7 @@ final List<Widget> main_btn_widget = [
   OutlinedButton(
     onPressed: () {
       print("소개영상 보기");
+      Get.to(() => const VideoPlayerShow());
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
