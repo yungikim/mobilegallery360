@@ -35,7 +35,7 @@ class _PhotoViewState extends State<PhotoDisplay> {
         imageProvider: NetworkImage(url),
         initialScale: PhotoViewComputedScale.contained * 0.8,
         minScale: PhotoViewComputedScale.contained * 0.8,
-        maxScale: PhotoViewComputedScale.contained * 3.0,
+        maxScale: PhotoViewComputedScale.contained * 5.0,
         heroAttributes: PhotoViewHeroAttributes(tag: widget.dockey),
       ),
     );

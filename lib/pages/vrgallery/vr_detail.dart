@@ -43,6 +43,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
           slivers: [
             SliverAppBar(
               elevation: 0,
+              backgroundColor: Colors.black,
               leading: IconButton(
                 onPressed: () {
                   Get.back();
