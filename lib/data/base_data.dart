@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../core/const.dart';
-import '../util/video_player.dart';
+import '../util/video_show.dart';
 
 final List<String> imageList2 =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
@@ -87,8 +87,9 @@ final List<Widget> main_btn_widget = [
   OutlinedButton(
     onPressed: () {
       print("소개영상 보기");
-      String url = "https://www.gallery360.co.kr/intro/gallery360_kr_web.mp4";
-      Get.to(() => VideoPlayerShow(videoUrl: url,));
+      String url = "https://www.gallery360.co.kr/intro/gallery360_kr_web.mp4";  //x-frame-options Gallery360서버가 막아 놓았음
+      String url2 = "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=6571cd8c7be62549e657347c&ty=1";
+      Get.to(() => VideoShow(url: url2, title: "갤러리360 소개 영상",), transition: Transition.fadeIn);
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
