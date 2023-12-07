@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'draw/drawScreen.dart';
@@ -20,9 +21,13 @@ class MyHttpOverrides extends HttpOverrides{
 
 
 
-void main() {
+void main() async{
 
   HttpOverrides.global = MyHttpOverrides();  //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Permission.microphone.request();
+
   runApp(Gallery360Main());
 }
 
