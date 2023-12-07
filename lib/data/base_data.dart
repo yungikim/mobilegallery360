@@ -87,7 +87,8 @@ final List<Widget> main_btn_widget = [
   OutlinedButton(
     onPressed: () {
       print("소개영상 보기");
-      Get.to(() => const VideoPlayerShow());
+      String url = "https://www.gallery360.co.kr/intro/gallery360_kr_web.mp4";
+      Get.to(() => VideoPlayerShow(videoUrl: url,));
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,

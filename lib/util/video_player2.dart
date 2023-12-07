@@ -26,15 +26,15 @@ class mm extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VideoPlayerShow(videoUrl: "https://www.gallery360.co.kr/intro/gallery360_kr_web.mp4",),
+      home: VideoPlayerShow(),
     );
   }
 }
 
 
 class VideoPlayerShow extends StatefulWidget {
-  const VideoPlayerShow( {super.key, required this.videoUrl});
-  final String videoUrl;
+  const VideoPlayerShow( {super.key});
+
 
   @override
   State<VideoPlayerShow> createState() => _VideoPlayerState();
@@ -47,8 +47,8 @@ class _VideoPlayerState extends State<VideoPlayerShow> {
   @override
   void initState() {
 
-    _controller = VideoPlayerController.networkUrl(
-        Uri.parse(widget.videoUrl));
+    // _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+    _controller = VideoPlayerController.asset("assets/movie/gallery360_kr_web.mp4");
         _initializeVideoPlayerFuture = _controller.initialize().then((_) {
           _controller.play();
           _controller.setLooping(true);
