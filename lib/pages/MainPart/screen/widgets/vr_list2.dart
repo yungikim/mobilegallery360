@@ -99,15 +99,21 @@ class CarouselTablet extends StatelessWidget {
                 var e = _dataController.vrListData[idx];
                 return Expanded(
                   flex: 1,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: NetworkImage(_dataController.imageURLs[idx]),
-                      fit: BoxFit.cover,
-                    )),
-                    child: CarouselInnerText(
-                      e: e,
+                  child: GestureDetector(
+                    onTap: (){
+                        Get.to(() =>
+                            VrDetailPage(dockey: '${e.dockey}'), transition: Transition.rightToLeft);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: NetworkImage(_dataController.imageURLs[idx]),
+                        fit: BoxFit.cover,
+                      )),
+                      child: CarouselInnerText(
+                        e: e,
+                      ),
                     ),
                   ),
                 );
