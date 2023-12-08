@@ -58,6 +58,7 @@ class ArtInfo {
   int? viewcount;
   Vrinfo? vrinfo;
   String? myfavorite;
+  String? opt;
 
   ArtInfo({
      this.id,
@@ -113,6 +114,7 @@ class ArtInfo {
      this.viewcount,
      this.vrinfo,
      this.myfavorite,
+     this.opt,
   });
 
   factory ArtInfo.fromJson(Map<String, dynamic> json) => ArtInfo(
@@ -169,6 +171,7 @@ class ArtInfo {
     viewcount: json["viewcount"],
     vrinfo: Vrinfo.fromJson(json["vrinfo"] ?? {}),
     myfavorite: json["myfavorite"],
+    opt : json['opt'] ?? "",
   );
 
   // Map<String, dynamic> toJson() => {

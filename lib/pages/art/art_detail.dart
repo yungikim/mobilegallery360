@@ -89,13 +89,13 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
               snapshot.hasData) {
             var item = snapshot.data;
 
-            print(jsonDecode(item));
-            String opt = item.artPrice;
-            print(opt.toString());
-            String price = "1000";
-            // String price = opt == "none"
-            //     ? "가격문의"
-            //     : "￦${Util.addComma(item.artPrice / 10000)}만원";
+            String opt = "";
+            if (item.opt != null){
+              opt = item.opt;
+            }
+            String price = opt == "none"
+                ? "가격문의"
+                : "￦${Util.addComma(item.artPrice / 10000)}만원";
             return CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
