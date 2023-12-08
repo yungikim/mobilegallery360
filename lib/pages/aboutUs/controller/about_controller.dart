@@ -1,18 +1,15 @@
 import 'package:get/get.dart';
 import '../repository/about_repository.dart';
 
-class AboutController extends GetxController{
-
+class AboutController extends GetxController {
   final AboutRepository _aboutRepository = AboutRepository();
 
-  Future getAboutUs() async{
-    try{
-      Map<String, dynamic>  res = await _aboutRepository.loadAboutUs();
-      print(res);
+  Future getAboutUs() async {
+    try {
+      Map<String, dynamic> res = await _aboutRepository.loadAboutUs();
       return res;
-    }catch(e){
+    } catch (e) {
       e.printError();
     }
-
   }
 }

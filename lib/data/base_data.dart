@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
+import 'package:gallery360/util/Util.dart';
+import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import '../../../core/const.dart';
 import '../util/video_show.dart';
 
-final List<String> imageList2 =[
+final List<String> imageList2 = [
   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_artist.jpg',
   'https://www.gallery360.co.kr/img/main_banner/main_banner_rental_01.jpg',
@@ -15,7 +18,7 @@ final List<String> imageList2 =[
   'https://www.gallery360.co.kr/img/main_banner/main_banner_mypalce.jpg',
 ];
 
-final List<String> imageList =[
+final List<String> imageList = [
   'assets/images/mainPage/banner/main_banner_welcome.jpg',
   'assets/images/mainPage/banner/main_banner_artist.jpg',
   'assets/images/mainPage/banner/main_banner_rental_01.jpg',
@@ -26,7 +29,7 @@ final List<String> imageList =[
   'assets/images/mainPage/banner/main_banner_mypalce.jpg',
 ];
 
-final List<String> mainMessage =[
+final List<String> mainMessage = [
   '전시에 대한\n새로운 생각',
   '갤러리360\n작가 모집',
   'VR갤러리도\n빌려쓰세요',
@@ -37,7 +40,7 @@ final List<String> mainMessage =[
   '내 공간에 작품 걸기',
 ];
 
-final List<String> mainMessage_sub =[
+final List<String> mainMessage_sub = [
   '디지털 전시의 기획자와 관람객\n모두를 위한 새로운 경험을 제공합니다.',
   '갤러리360와 함께 새로운 전시 문화를\n선도해 나갈 작가님을 모십니다.',
   '세상에서 가장 쉽고, 직관적인 방법으로\nVR전시를 대관할 수 있습니다.',
@@ -48,7 +51,7 @@ final List<String> mainMessage_sub =[
   '상상만 하지 마세요!\n당신의 공간에 작품을 미리 걸어 보세요',
 ];
 
-final List<String> mainMessage_btn_title =[
+final List<String> mainMessage_btn_title = [
   '소개 영상 보기',
   '작가 등록 하기',
   '자세히 알아보기',
@@ -59,7 +62,7 @@ final List<String> mainMessage_btn_title =[
   '작품 걸어보기',
 ];
 
-final List<String> mainMessage_btn_url =[
+final List<String> mainMessage_btn_url = [
   'video',
   'regart',
   'vrshow',
@@ -70,8 +73,7 @@ final List<String> mainMessage_btn_url =[
   'show_myroom',
 ];
 
-
-final List<Color> mainMessage_btn_color =[
+final List<Color> mainMessage_btn_color = [
   Colors.white,
   Colors.white,
   const Color(0xff4af5d4),
@@ -83,193 +85,233 @@ final List<Color> mainMessage_btn_color =[
 ];
 
 final List<Widget> main_btn_widget = [
-
   OutlinedButton(
     onPressed: () {
       print("소개영상 보기");
-      String url = "https://www.gallery360.co.kr/intro/gallery360_kr_web.mp4";  //x-frame-options Gallery360서버가 막아 놓았음
-      String url2 = "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=6571cd8c7be62549e657347c&ty=1";
-      Get.to(() => VideoShow(url: url2, title: "갤러리360 소개 영상",), transition: Transition.fadeIn);
+      String url =
+          "${base_url}/intro/gallery360_kr_web.mp4"; //x-frame-options Gallery360서버가 막아 놓았음
+      String url2 =
+          "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=6571cd8c7be62549e657347c&ty=1";
+      Get.to(
+          () => VideoShow(
+                url: url2,
+                title: "갤러리360 소개 영상",
+              ),
+          transition: Transition.fadeIn);
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text("소개 영상 보기", style: TextStyle(color: Colors.white),),
+    child: const Text(
+      "소개 영상 보기",
+      style: TextStyle(color: Colors.white),
     ),
-
-  OutlinedButton(
-    onPressed: () {},
-    style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
-        ),
-        side: const BorderSide(
-          color: Colors.white,
-          width: 1.0,
-        )),
-    child: const Text("작가 등록 하기", style: TextStyle(color: Colors.white),),
   ),
+  SizedBox(),
+  // OutlinedButton(
+  //     // onPressed: () {
+  //     //   Get.to(
+  //     //       () => const WebViewPage(
+  //     //             url: 'https://exhibit.gallery360.co/',
+  //     //             title: "",
+  //     //           ),
+  //     //       transition: Transition.fade);
+  //     // },
+  //     // style: OutlinedButton.styleFrom(
+  //     //     backgroundColor: Colors.transparent,
+  //     //     shape: RoundedRectangleBorder(
+  //     //       borderRadius: BorderRadius.circular(0.0),
+  //     //     ),
+  //     //     side: const BorderSide(
+  //     //       color: Colors.white,
+  //     //       width: 1.0,
+  //     //     )),
+  //     // child: const Text(
+  //     //   "작가 등록 하기",
+  //     //   style: TextStyle(color: Colors.white),
+  //     // ),
+  //     ),
 
   OutlinedButton(
-    onPressed: () {},
+    onPressed: () {
+      Get.to(
+          () => const WebViewPage(
+                url: 'https://exhibit.gallery360.co/',
+                title: "",
+              ),
+          transition: Transition.fade);
+    },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         side: const BorderSide(
           color: Color(0xff4af5d4),
           width: 1.0,
         )),
-    child: const Text("자세히 알아보기", style: TextStyle(color: Color(0xff4af5d4)),),
+    child: const Text(
+      "자세히 알아보기",
+      style: TextStyle(color: Color(0xff4af5d4)),
+    ),
   ),
-
+  SizedBox(),
+  // OutlinedButton(
+  //   onPressed: () {},
+  //   style: OutlinedButton.styleFrom(
+  //       backgroundColor: Colors.transparent,
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(0.0),
+  //       ),
+  //       side: const BorderSide(
+  //         color: Colors.white,
+  //         width: 1.0,
+  //       )),
+  //   child: const Text(
+  //     "AI페인터로 그려보기",
+  //     style: TextStyle(color: Colors.white),
+  //   ),
+  // ),
   OutlinedButton(
-    onPressed: () {},
+    onPressed: () {
+      String url = "${base_url}/main/news/main_news_mobile.jsp?bun=150";
+      Util.UrlOpenWebview(url, "VR전시 서비스 소개");
+    },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text("AI페인터로 그려보기", style: TextStyle(color: Colors.white),),
+    child: const Text(
+      "자세히 알아보기",
+      style: TextStyle(color: Colors.white),
+    ),
   ),
-
+  SizedBox(),
+  // OutlinedButton(
+  //   onPressed: () {},
+  //   style: OutlinedButton.styleFrom(
+  //       backgroundColor: Colors.transparent,
+  //       shape: RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.circular(0.0),
+  //       ),
+  //       side: const BorderSide(
+  //         color: Colors.white,
+  //         width: 1.0,
+  //       )),
+  //   child: const Text(
+  //     "무료체험 신청하기",
+  //     style: TextStyle(color: Colors.white),
+  //   ),
+  // ),
   OutlinedButton(
-    onPressed: () {},
-    style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
-        ),
-        side: const BorderSide(
-          color: Colors.white,
-          width: 1.0,
-        )),
-    child: const Text("자세히 알아보기", style: TextStyle(color: Colors.white),),
-  ),
-
-  OutlinedButton(
-    onPressed: () {},
-    style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
-        ),
-        side: const BorderSide(
-          color: Colors.white,
-          width: 1.0,
-        )),
-    child: const Text("무료체험 신청하기", style: TextStyle(color: Colors.white),),
-  ),
-
-  OutlinedButton(
-    onPressed: () {},
+    onPressed: () {
+      String url = "${base_url}/main/news/main_news_mobile.jsp?bun=65";
+      Util.UrlOpenWebview(url, "D-BOOK 서비스 소개");
+    },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         side: const BorderSide(
           color: Colors.black,
           width: 1.0,
         )),
-    child: const Text("D-Book 알아보기", style: TextStyle(color: Colors.white),),
+    child: const Text(
+      "D-Book 알아보기",
+      style: TextStyle(color: Colors.white),
+    ),
   ),
-
   OutlinedButton(
     onPressed: () {},
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius:
-          BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(0.0),
         ),
         side: const BorderSide(
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text("작품 걸어보기", style: TextStyle(color: Colors.white),),
+    child: const Text(
+      "작품 걸어보기",
+      style: TextStyle(color: Colors.white),
+    ),
   ),
 ];
 
-
-
 final SlideController _slideController = SlideController();
 
-final List<Widget> imageSliders = imageList.map(
-        (item) => Container(
-      margin: const EdgeInsets.all(5.0),
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-        child: Stack(
-          children: [
-            Container(
-              height: 500,
-              width: 600,
-              decoration: BoxDecoration(
-                  color: Colors.grey,
-                  image: DecorationImage(
-                    image: NetworkImage(item),
-                    fit: BoxFit.cover,
-                  )
-              ),
-            ),
-            // Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("${mainMessage[imageList.indexOf(item)]}",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold)),
-                    //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
-                  ],
+final List<Widget> imageSliders = imageList
+    .map((item) => Container(
+          margin: const EdgeInsets.all(5.0),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+            child: Stack(
+              children: [
+                Container(
+                  height: 500,
+                  width: 600,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      image: DecorationImage(
+                        image: NetworkImage(item),
+                        fit: BoxFit.cover,
+                      )),
                 ),
-              ),
-            )
-            // Positioned(
-            //   bottom: 0.0,
-            //   left: 0.0,
-            //   right: 0.0,
-            //   child: Container(
-            //     decoration: const BoxDecoration(
-            //         gradient: LinearGradient(
-            //           colors: [
-            //             Color.fromARGB(200,0,0,0),
-            //             Color.fromARGB(0, 0, 0, 0),
-            //           ],
-            //           begin: Alignment.bottomCenter,
-            //           end: Alignment.topCenter,
-            //         )
-            //     ),
-            //     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-            //     child: Text(
-            //       //'No. ${imageList.indexOf(item)} image',
-            //       "${mainMessage[imageList.indexOf(item)]}",
-            //       style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold),
-            //     ),
-            //   ),
-            // )
-          ],
-        ),
-      ),
-    )
-).toList();
+                // Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("${mainMessage[imageList.indexOf(item)]}",
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.bold)),
+                        //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
+                )
+                // Positioned(
+                //   bottom: 0.0,
+                //   left: 0.0,
+                //   right: 0.0,
+                //   child: Container(
+                //     decoration: const BoxDecoration(
+                //         gradient: LinearGradient(
+                //           colors: [
+                //             Color.fromARGB(200,0,0,0),
+                //             Color.fromARGB(0, 0, 0, 0),
+                //           ],
+                //           begin: Alignment.bottomCenter,
+                //           end: Alignment.topCenter,
+                //         )
+                //     ),
+                //     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                //     child: Text(
+                //       //'No. ${imageList.indexOf(item)} image',
+                //       "${mainMessage[imageList.indexOf(item)]}",
+                //       style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold),
+                //     ),
+                //   ),
+                // )
+              ],
+            ),
+          ),
+        ))
+    .toList();

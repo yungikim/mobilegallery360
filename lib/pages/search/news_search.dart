@@ -60,7 +60,8 @@ class _NewSearchPageState extends State<NewSearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 8, right: 8, bottom: 20),
+                  padding: const EdgeInsets.only(
+                      top: 10, left: 8, right: 8, bottom: 20),
                   child: _searchResultController.SearchNewsCategory.isNotEmpty
                       ? Text(
                           "검색결과 ${_searchResultController.totalSearchCount_news.value}개",
@@ -78,7 +79,8 @@ class _NewSearchPageState extends State<NewSearchPage> {
                   crossAxisSpacing: 10,
                   itemCount: _searchResultController.SearchNewsCategory.length,
                   gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
+                    crossAxisCount:
+                        ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
                   ),
                   itemBuilder: (context, index) {
                     NewsCategory item =
@@ -90,21 +92,24 @@ class _NewSearchPageState extends State<NewSearchPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                          border:
+                              Border.all(color: Colors.grey.withOpacity(0.4)),
                         ),
                         child: Column(
                           children: [
                             GestureDetector(
-                              onTap: (){
-                                var url = "$base_url/index.jsp?ty=link_news&id=${item.source.bun}";
-                                Util.UrlOpenWebview(url);
+                              onTap: () {
+                                var url =
+                                    "$base_url/index.jsp?ty=link_news&id=${item.source.bun}";
+                                Util.UrlOpenWebview(url, "");
                               },
                               child: Container(
                                 height: 300,
                                 margin: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: NetworkImage(url), fit: BoxFit.cover)),
+                                        image: NetworkImage(url),
+                                        fit: BoxFit.cover)),
                               ),
                             ),
                             Padding(
@@ -115,7 +120,8 @@ class _NewSearchPageState extends State<NewSearchPage> {
                                   Text(
                                     Util.chageText(etc['title']),
                                     style: const TextStyle(
-                                        fontSize: 16, fontWeight: FontWeight.bold),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(
                                     height: 10,

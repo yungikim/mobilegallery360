@@ -30,7 +30,9 @@ class TotalSearchNews extends StatelessWidget {
             height: 1,
             color: Colors.grey.withOpacity(0.3),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             child: Row(
@@ -40,7 +42,8 @@ class TotalSearchNews extends StatelessWidget {
                   children: [
                     const Text(
                       "소식",
-                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       "(${_searchResultController.SearchNewsTotalCount.value})",
@@ -63,18 +66,19 @@ class TotalSearchNews extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _searchResultController.SearchNewsResult.length,
             crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
-            itemBuilder: (context, index){
+            itemBuilder: (context, index) {
               NewsModel item = _searchResultController.SearchNewsResult[index];
               Map<String, dynamic> etc = jsonDecode(item.source.etc);
               String url =
-              "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
+                  "${base_url}/artimage/${item.source.email}/news/preview/${etc['filename']}.jpg";
               return Column(
                 children: [
                   GestureDetector(
-                    onTap:(){
+                    onTap: () {
                       //https://www.gallery360.co.kr/index.jsp?ty=link_news&id=155
-                      String url = "${base_url}/index.jsp?ty=link_news&id=${item.source.bun}";
-                      Util.UrlOpenWebview(url);
+                      String url =
+                          "${base_url}/index.jsp?ty=link_news&id=${item.source.bun}";
+                      Util.UrlOpenWebview(url, "");
                     },
                     child: Container(
                       height: 300,
@@ -107,9 +111,11 @@ class TotalSearchNews extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30,),
+                  const SizedBox(
+                    height: 30,
+                  ),
                 ],
-               );
+              );
             },
           ),
         ],

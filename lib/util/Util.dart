@@ -20,8 +20,7 @@ class Util {
         .replaceAll("&#39;", "'")
         .replaceAll("&lt;", "<")
         .replaceAll("&gt;", ">")
-        .replaceAll("<br />", "\n")
-    ;
+        .replaceAll("<br />", "\n");
   }
 
   Future<void> URLOpen(LinkableElement link) async {
@@ -30,14 +29,19 @@ class Util {
     }
   }
 
-  static void UrlOpen(String url) async{
+  static void UrlOpen(String url) async {
     if (!await launchUrl(Uri.parse(url))) {
-    throw Exception('Could not launch ${url}');
+      throw Exception('Could not launch ${url}');
     }
   }
 
-  static void UrlOpenWebview(String url)async{
-    Get.to(() => WebViewPage(url: url,), transition: Transition.rightToLeft);
+  static void UrlOpenWebview(String url, String title) async {
+    Get.to(
+        () => WebViewPage(
+              url: url,
+              title: title,
+            ),
+        transition: Transition.rightToLeft);
     // if (!await launchUrl(Uri.parse(url))) {
     //   throw Exception('Could not launch ${url}');
     // }
@@ -61,7 +65,7 @@ class Util {
     print("=============================================================");
   }
 
-  static String VrUrl(String dockey){
+  static String VrUrl(String dockey) {
     //glass_y@naver.com_20200709134801_8TOWJSK
     String id = dockey.split("@")[0];
     String sub = dockey.split("@")[1];
@@ -70,14 +74,14 @@ class Util {
     return url;
   }
 
-  static String extractEmail(String dockey){
+  static String extractEmail(String dockey) {
     String id = dockey.split("@")[0];
     String sub = dockey.split("@")[1];
     String email = id + "@" + sub.split("_")[0];
     return email;
   }
 
-  static String changeDate(String str){
+  static String changeDate(String str) {
     DateTime dt = DateTime.parse(str);
     final DateFormat formatter = DateFormat("yyyy-MM-dd");
     final String formatted = formatter.format(dt);
@@ -87,15 +91,16 @@ class Util {
 
 //이미지 캐쉬를 활용하여 컨테인에 표시하는 경우에 사용한다.
 class cacheImage extends StatelessWidget {
-  cacheImage({
-    super.key,
-    required this.url,
-    this.width,
-    this.height,
-    this.childtext,
-    this.bordertext,
-    this.boxshadow, this.colorFilter, this.margin
-  });
+  cacheImage(
+      {super.key,
+      required this.url,
+      this.width,
+      this.height,
+      this.childtext,
+      this.bordertext,
+      this.boxshadow,
+      this.colorFilter,
+      this.margin});
 
   final String url;
   final double? width;
@@ -105,7 +110,6 @@ class cacheImage extends StatelessWidget {
   final BoxShadow? boxshadow;
   final ColorFilter? colorFilter;
   final EdgeInsets? margin;
-
 
   final CacheManager cacheManager = CacheManager(Config('images_Key',
       maxNrOfCacheObjects: 100, stalePeriod: const Duration(days: 7)));
@@ -206,9 +210,9 @@ Widget customAppBar(BuildContext context) {
     title: Padding(
       padding: const EdgeInsets.only(top: 5.0),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           //에러 발생하네 다시 생각해 봐야 함
-         // Get.to(() => Gallery360Main(), transition: Transition.fade,  preventDuplicates: false);
+          // Get.to(() => Gallery360Main(), transition: Transition.fade,  preventDuplicates: false);
         },
         child: const Image(
           image: AssetImage("assets/images/logo/logo.png"),
@@ -230,7 +234,7 @@ Widget customAppBar(BuildContext context) {
   );
 }
 
-Widget actionButton(){
+Widget actionButton() {
   return Container(
     height: 80,
     width: 80,
@@ -239,7 +243,6 @@ Widget actionButton(){
         image: DecorationImage(
           image: AssetImage("assets/images/mainPage/btn_circle_deco.png"),
           fit: BoxFit.cover,
-        )
-    ),
+        )),
   );
 }

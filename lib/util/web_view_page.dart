@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class WebViewPage extends StatefulWidget {
-  const WebViewPage({super.key, required this.url});
+  const WebViewPage({super.key, required this.url, required this.title});
 
   final String url;
+  final String title;
 
   @override
   State<WebViewPage> createState() => _WebViewPageState();
@@ -18,24 +19,30 @@ class _WebViewPageState extends State<WebViewPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          //title: const Text("LinkView", style: TextStyle(color: Colors.white),),
+          title: Text(
+            widget.title,
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
           backgroundColor: Colors.black,
           leading: IconButton(
-            onPressed: (){
+            onPressed: () {
               Get.back();
             },
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.white,),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
           ),
         ),
         body: InAppWebView(
           initialUrlRequest: URLRequest(
-              url: Uri.parse(widget.url),
+            url: Uri.parse(widget.url),
           ),
           onReceivedServerTrustAuthRequest: (controller, challenge) async {
-            return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
+            return ServerTrustAuthResponse(
+                action: ServerTrustAuthResponseAction.PROCEED);
           },
-
           androidOnPermissionRequest: (controller, origin, resources) async {
             return PermissionRequestResponse(
                 resources: resources,
@@ -49,10 +56,7 @@ class _WebViewPageState extends State<WebViewPage> {
               crossPlatform: InAppWebViewOptions(
                   supportZoom: true,
                   useShouldOverrideUrlLoading: true,
-                  mediaPlaybackRequiresUserGesture: true
-              )
-          ),
-
+                  mediaPlaybackRequiresUserGesture: true)),
           onWebViewCreated: (controller) {
             // controller.addJavaScriptHandler(handlerName: 'handlerFoo', callback: (args) {
             //   // return data to the JavaScript side!
