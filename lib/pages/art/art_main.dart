@@ -27,7 +27,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
 
   //콤보박스 설정하기
   late List<DropdownMenuItem<ValueOptions_Art>> _valueItems;
- // late ValueOptions_Art _selectedValue;
+  // late ValueOptions_Art _selectedValue;
 
   //무한 스크롤 설정
   late ScrollController _scrollController;
@@ -39,8 +39,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _scrollController = ScrollController();
     _scrollController.addListener(onScroll);
 
-    _valueItems =
-        values.map<DropdownMenuItem<ValueOptions_Art>>((ValueOptions_Art valueOption) {
+    _valueItems = values.map<DropdownMenuItem<ValueOptions_Art>>(
+        (ValueOptions_Art valueOption) {
       return DropdownMenuItem<ValueOptions_Art>(
         value: valueOption,
         child: Text(valueOption.title),
@@ -51,10 +51,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _artInfoController.page_art.value = 1;
     _artInfoController.artinfolist.value = [];
     _artInfoController.type.value = "random";
-  //  _selectedValue = values[0];
+    //  _selectedValue = values[0];
     _artInfoController.selectedValue.value = values[0];
-
-    print("11111111");
 
     // TODO: implement initState
     super.initState();
@@ -189,11 +187,9 @@ class _ArtMainPageState extends State<ArtMainPage> {
               floating: true,
               delegate: SampleHeaderDelegate(
                 widget: Obx(
-                      ()=> Container(
+                  () => Container(
                     height: _artInfoController.persistenHeight.value.toDouble(),
-                    decoration: const BoxDecoration(
-                      color: Colors.white
-                    ),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: Column(
                       children: [
                         Padding(
@@ -208,19 +204,20 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                   //  menuMaxHeight: 300.0,
                                   //  itemHeight: null,
                                   underline: const SizedBox(),
-                                //  value: _selectedValue,
+                                  //  value: _selectedValue,
                                   value: _artInfoController.selectedValue.value,
                                   items: _valueItems,
                                   onChanged: (newValue2) {
-                                     // setState(() {
-                                           _artInfoController.isSearch.value = false;
-                                       // _selectedValue = newValue2!;
-                                        _artInfoController.selectedValue.value = newValue2!;
-                                          _artInfoController.type.value =  _artInfoController.selectedValue.value.key;
-                                          _artInfoController.refreshData();
+                                    // setState(() {
+                                    _artInfoController.isSearch.value = false;
+                                    // _selectedValue = newValue2!;
+                                    _artInfoController.selectedValue.value =
+                                        newValue2!;
+                                    _artInfoController.type.value =
+                                        _artInfoController
+                                            .selectedValue.value.key;
+                                    _artInfoController.refreshData();
                                     //  });
-
-
                                   },
                                 ),
                               ),
@@ -242,7 +239,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                           ),
                         ),
                         Obx(
-                              () => Visibility(
+                          () => Visibility(
                             visible: _artInfoController.query_dis.isNotEmpty,
                             child: Container(
                               height: 60,
@@ -254,84 +251,94 @@ class _ArtMainPageState extends State<ArtMainPage> {
                               child: ListView.builder(
                                 itemCount: _artInfoController.query_dis.length,
                                 itemBuilder: (context, index) {
-                                  String txt = _artInfoController.query_dis[index];
+                                  String txt =
+                                      _artInfoController.query_dis[index];
                                   bool iscircle = txt.contains("_");
                                   txt = txt.replaceAll("_", "");
                                   return iscircle
                                       ? GestureDetector(
-                                    onTap: () {
-                                      _artInfoController.query_color
-                                          .removeWhere((element) =>
-                                      element == "${txt}_");
-                                      _artInfoController.query_dis.removeWhere(
-                                              (element) => element == "${txt}_");
-                                      _artInfoController.getArtList_option("T");
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.only(left: 5.0),
-                                      height: 50,
-                                      width: 50,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          color: checkColor(txt),
-                                          shape: BoxShape.circle,
-                                          border:
-                                          Border.all(color: Colors.grey)),
-                                    ),
-                                  )
+                                          onTap: () {
+                                            _artInfoController.query_color
+                                                .removeWhere((element) =>
+                                                    element == "${txt}_");
+                                            _artInfoController.query_dis
+                                                .removeWhere((element) =>
+                                                    element == "${txt}_");
+                                            _artInfoController
+                                                .getArtList_option("T");
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.only(
+                                                left: 5.0),
+                                            height: 50,
+                                            width: 50,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: checkColor(txt),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                    color: Colors.grey)),
+                                          ),
+                                        )
                                       : GestureDetector(
-                                    onTap: () {
-                                      _artInfoController.query_thema
-                                          .removeWhere(
-                                              (element) => element == txt);
-                                      _artInfoController.query_shape
-                                          .removeWhere((element) =>
-                                      element == checkBun(txt));
-                                      _artInfoController.query_size.removeWhere(
-                                              (element) =>
-                                          element == checkSizeBun(txt));
-                                      if (txt.contains("만원")) {
-                                        _artInfoController.query_price.value =
-                                        const RangeValues(0, 0);
-                                      }
-                                      _artInfoController.query_dis.removeWhere(
-                                              (element) => element == txt);
+                                          onTap: () {
+                                            _artInfoController.query_thema
+                                                .removeWhere((element) =>
+                                                    element == txt);
+                                            _artInfoController.query_shape
+                                                .removeWhere((element) =>
+                                                    element == checkBun(txt));
+                                            _artInfoController.query_size
+                                                .removeWhere((element) =>
+                                                    element ==
+                                                    checkSizeBun(txt));
+                                            if (txt.contains("만원")) {
+                                              _artInfoController
+                                                      .query_price.value =
+                                                  const RangeValues(0, 0);
+                                            }
+                                            _artInfoController.query_dis
+                                                .removeWhere((element) =>
+                                                    element == txt);
 
-                                      // if (_artInfoController.query_dis.isEmpty){
-                                      //   _artInfoController.persistenHeight.value = 70;
-                                      // }
+                                            // if (_artInfoController.query_dis.isEmpty){
+                                            //   _artInfoController.persistenHeight.value = 70;
+                                            // }
 
-                                      _artInfoController.getArtList_option("T");
-                                    },
-                                    child: Container(
-                                      margin: const EdgeInsets.all(5.0),
-                                      padding: const EdgeInsets.all(10.0),
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey.withOpacity(0.2),
-                                          borderRadius:
-                                          BorderRadius.circular(8.0),
-                                          border:
-                                          Border.all(color: Colors.grey)),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            txt,
-                                            style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black
-                                                    .withOpacity(0.6)),
+                                            _artInfoController
+                                                .getArtList_option("T");
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(10.0),
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey
+                                                    .withOpacity(0.2),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                border: Border.all(
+                                                    color: Colors.grey)),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  txt,
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.black
+                                                          .withOpacity(0.6)),
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Image.asset(
+                                                    "assets/images/art/btn-aw-filter-delete.png")
+                                              ],
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            width: 5,
-                                          ),
-                                          Image.asset(
-                                              "assets/images/art/btn-aw-filter-delete.png")
-                                        ],
-                                      ),
-                                    ),
-                                  );
+                                        );
                                 },
                                 scrollDirection: Axis.horizontal,
                               ),
@@ -342,152 +349,8 @@ class _ArtMainPageState extends State<ArtMainPage> {
                     ),
                   ),
                 ),
-
               ),
             ),
-            // SliverToBoxAdapter(
-            //   child: Column(
-            //     children: [
-            //       Padding(
-            //         padding: const EdgeInsets.all(8.0),
-            //         child: Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //           children: [
-            //             SizedBox(
-            //               width: 110,
-            //               child: DropdownButton<ValueOptions_Art>(
-            //                 isExpanded: true,
-            //                 //  menuMaxHeight: 300.0,
-            //                 //  itemHeight: null,
-            //                 underline: const SizedBox(),
-            //                 value: _selectedValue,
-            //                 items: _valueItems,
-            //                 onChanged: (newValue) {
-            //                    //setState(() {
-            //                   _artInfoController.isSearch.value = false;
-            //                   _selectedValue = newValue!;
-            //                   _artInfoController.type.value =
-            //                       _selectedValue.key;
-            //                   _artInfoController.refreshData();
-            //                   // state2.getUser();
-            //                   // print(_selectedValue.key);
-            //                  //  });
-            //                 },
-            //               ),
-            //             ),
-            //             InkWell(
-            //               onTap: () {
-            //                 ShowBottomSheet(context);
-            //               },
-            //               child: const Row(
-            //                 children: [
-            //                   Text("Filter"),
-            //                   SizedBox(
-            //                     width: 10,
-            //                   ),
-            //                   Icon(Icons.filter_1_outlined)
-            //                 ],
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       Obx(
-            //         () => Visibility(
-            //           visible: _artInfoController.query_dis.isNotEmpty,
-            //           child: Container(
-            //             height: 60,
-            //             width: double.infinity,
-            //             decoration: BoxDecoration(
-            //               color: Colors.grey.withOpacity(0.1),
-            //               border: Border.all(color: Colors.grey),
-            //             ),
-            //             child: ListView.builder(
-            //               itemCount: _artInfoController.query_dis.length,
-            //               itemBuilder: (context, index) {
-            //                 String txt = _artInfoController.query_dis[index];
-            //                 bool iscircle = txt.contains("_");
-            //                 txt = txt.replaceAll("_", "");
-            //                 return iscircle
-            //                     ? GestureDetector(
-            //                         onTap: () {
-            //                           _artInfoController.query_color
-            //                               .removeWhere((element) =>
-            //                                   element == "${txt}_");
-            //                           _artInfoController.query_dis.removeWhere(
-            //                               (element) => element == "${txt}_");
-            //                           _artInfoController.getArtList_option("T");
-            //                         },
-            //                         child: Container(
-            //                           margin: const EdgeInsets.only(left: 5.0),
-            //                           height: 50,
-            //                           width: 50,
-            //                           alignment: Alignment.center,
-            //                           decoration: BoxDecoration(
-            //                               color: checkColor(txt),
-            //                               shape: BoxShape.circle,
-            //                               border:
-            //                                   Border.all(color: Colors.grey)),
-            //                         ),
-            //                       )
-            //                     : GestureDetector(
-            //                         onTap: () {
-            //                           _artInfoController.query_thema
-            //                               .removeWhere(
-            //                                   (element) => element == txt);
-            //                           _artInfoController.query_shape
-            //                               .removeWhere((element) =>
-            //                                   element == checkBun(txt));
-            //                           _artInfoController.query_size.removeWhere(
-            //                               (element) =>
-            //                                   element == checkSizeBun(txt));
-            //                           if (txt.contains("만원")) {
-            //                             _artInfoController.query_price.value =
-            //                                 const RangeValues(0, 0);
-            //                           }
-            //                           _artInfoController.query_dis.removeWhere(
-            //                               (element) => element == txt);
-            //
-            //                           _artInfoController.getArtList_option("T");
-            //                         },
-            //                         child: Container(
-            //                           margin: const EdgeInsets.all(5.0),
-            //                           padding: const EdgeInsets.all(10.0),
-            //                           alignment: Alignment.center,
-            //                           decoration: BoxDecoration(
-            //                               color: Colors.grey.withOpacity(0.2),
-            //                               borderRadius:
-            //                                   BorderRadius.circular(8.0),
-            //                               border:
-            //                                   Border.all(color: Colors.grey)),
-            //                           child: Row(
-            //                             children: [
-            //                               Text(
-            //                                 txt,
-            //                                 style: TextStyle(
-            //                                     fontSize: 16,
-            //                                     fontWeight: FontWeight.bold,
-            //                                     color: Colors.black
-            //                                         .withOpacity(0.6)),
-            //                               ),
-            //                               const SizedBox(
-            //                                 width: 5,
-            //                               ),
-            //                               Image.asset(
-            //                                   "assets/images/art/btn-aw-filter-delete.png")
-            //                             ],
-            //                           ),
-            //                         ),
-            //                       );
-            //               },
-            //               scrollDirection: Axis.horizontal,
-            //             ),
-            //           ),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -654,10 +517,10 @@ class ValueOptions_Art {
   ValueOptions_Art(this.key, this.title);
 
   static List<ValueOptions_Art> get allValuesOptions => [
-    ValueOptions_Art("random", "랜덤정렬"),
-    ValueOptions_Art("date", "최신순"),
-    ValueOptions_Art("priceu", "높은 가격순"),
-    ValueOptions_Art("priced", "낮은 가격순"),
+        ValueOptions_Art("random", "랜덤정렬"),
+        ValueOptions_Art("date", "최신순"),
+        ValueOptions_Art("priceu", "높은 가격순"),
+        ValueOptions_Art("priced", "낮은 가격순"),
       ];
 }
 
