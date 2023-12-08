@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -40,8 +42,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   void initState() {
     _artInfoController.select_art_key.value = widget.dockey;
     email = widget.dockey.split("_")[0];
-     _artInfoController.getArtInfo();
-     _artInfoController.getArtInArtist(email);
+    _artInfoController.getArtInfo();
+    _artInfoController.getArtInArtist(email);
     _artInfoController.artinarts.value = <ArtInArt>[];
 
     // TODO: implement initState
@@ -86,6 +88,14 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
             var item = snapshot.data;
+
+            print(jsonDecode(item));
+            String opt = item.artPrice;
+            print(opt.toString());
+            String price = "1000";
+            // String price = opt == "none"
+            //     ? "가격문의"
+            //     : "￦${Util.addComma(item.artPrice / 10000)}만원";
             return CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
@@ -94,8 +104,13 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: (){
-                            Get.to(() => PhotoDisplay(dockey: widget.dockey, email: item.email,), transition: Transition.rightToLeft);
+                          onTap: () {
+                            Get.to(
+                                () => PhotoDisplay(
+                                      dockey: widget.dockey,
+                                      email: item.email,
+                                    ),
+                                transition: Transition.rightToLeft);
                           },
                           child: Hero(
                             tag: widget.dockey,
@@ -297,7 +312,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                             width: 5,
                                           ),
                                           Text(
-                                            Util.addComma2(item.artPrice!),
+                                            //Util.addComma2(item.artPrice!),
+                                            price,
                                             style: const TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
@@ -572,7 +588,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                       () => ArtistDetailPage(
                                                           email: item.email!),
                                                       transition:
-                                                          Transition.fadeIn, preventDuplicates: false);
+                                                          Transition.fadeIn,
+                                                      preventDuplicates: false);
                                                 },
                                                 style: OutlinedButton.styleFrom(
                                                     backgroundColor:
@@ -689,8 +706,6 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   }
 
   void showDialogWithRequest() {
-
-
     showDialog(
       context: context,
       builder: (context) {
@@ -703,35 +718,44 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
           //팝업의 높이를 적당히 맞춰주는 설정
           title: const Text("작품 문의"),
           content: Builder(
-            builder: (context){
+            builder: (context) {
               final width = MediaQuery.of(context).size.width;
               return SizedBox(
-                width: ResponsiveBreakpoints.of(context).isMobile ? 600 : width - 100,
+                width: ResponsiveBreakpoints.of(context).isMobile
+                    ? 600
+                    : width - 100,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Form(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text("해당 작품에 대한 문의사항이 있을 경우 문의사항 남겨주시면 담당 큐레이터가 확인 후 빠르게 답변드리겠습니다."),
-                        const SizedBox(height: 30,),
-                     //   Container(width: double.infinity, color: Colors.grey, height: 1,),
-                     //   const SizedBox(height: 20,),
+                        const Text(
+                            "해당 작품에 대한 문의사항이 있을 경우 문의사항 남겨주시면 담당 큐레이터가 확인 후 빠르게 답변드리겠습니다."),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        //   Container(width: double.infinity, color: Colors.grey, height: 1,),
+                        //   const SizedBox(height: 20,),
                         TextFormField(
                           controller: field1,
-                          decoration: const InputDecoration(hintText: "제목을 입력하세요"),
+                          decoration:
+                              const InputDecoration(hintText: "제목을 입력하세요"),
                         ),
                         TextFormField(
                           controller: field2,
-                          decoration: const InputDecoration(hintText: "이름을 입력하세요"),
+                          decoration:
+                              const InputDecoration(hintText: "이름을 입력하세요"),
                         ),
                         TextFormField(
                           controller: field3,
-                          decoration: const InputDecoration(hintText: "이메일을 입력하세요"),
+                          decoration:
+                              const InputDecoration(hintText: "이메일을 입력하세요"),
                         ),
                         TextFormField(
                           controller: field4,
-                          decoration: const InputDecoration(hintText: "연락처를 입력하세요"),
+                          decoration:
+                              const InputDecoration(hintText: "연락처를 입력하세요"),
                         ),
                         TextField(
                           controller: field5,
@@ -750,26 +774,27 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
           actions: [
             OutlinedButton(
               onPressed: () {
-
                 _artInfoController.subject.value = field1.text;
                 _artInfoController.name.value = field2.text;
                 _artInfoController.email.value = field3.text;
                 _artInfoController.tel.value = field4.text;
                 _artInfoController.content.value = field5.text;
-                _artInfoController.art_code.value = _artInfoController.artinfo.dockey.toString();
-                _artInfoController.art_artist.value = _artInfoController.artinfo.artArtist.toString();
-                _artInfoController.art_title.value = _artInfoController.artinfo.artTitle.toString();
+                _artInfoController.art_code.value =
+                    _artInfoController.artinfo.dockey.toString();
+                _artInfoController.art_artist.value =
+                    _artInfoController.artinfo.artArtist.toString();
+                _artInfoController.art_title.value =
+                    _artInfoController.artinfo.artTitle.toString();
                 _artInfoController.SaveArtRequest();
 
                 Navigator.of(context, rootNavigator: true).pop('dialog');
               },
               style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                )
-              ),
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  )),
               child: const Text("문의하기"),
             ),
             OutlinedButton(
@@ -778,9 +803,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
               },
               style: OutlinedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  )
-              ),
+                borderRadius: BorderRadius.circular(10.0),
+              )),
               child: const Text("취소"),
             ),
           ],

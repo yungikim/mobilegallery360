@@ -34,6 +34,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
 
   @override
   void initState() {
+    print("initState..........");
     //콤보 박스 설정하기
     List<ValueOptions_Art> values = ValueOptions_Art.allValuesOptions;
     _scrollController = ScrollController();
@@ -68,6 +69,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
   }
 
   void onScroll() {
+    print("onScroll............");
     double maxScroll = _scrollController.position.maxScrollExtent;
     double currentScroll = _scrollController.position.pixels;
 
@@ -383,7 +385,11 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                             ? 2
                                             : 3),
                             itemBuilder: (context, index) {
-                              ArtList item = snapshot.data[index];
+                              //ArtList item = snapshot.data[index];
+                              print(
+                                  "_artInfoController.artinfolist.length, : ${_artInfoController.artinfolist.length}");
+                              ArtList item =
+                                  _artInfoController.artinfolist.value[index];
                               String url = Util.makeMainArtListURL(
                                   item.email, item.artImgFilename);
                               String art_title = Util.chageText(item.artTitle);
@@ -464,7 +470,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                                 Text(
                                                   price,
                                                   style: const TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
@@ -474,7 +480,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                                       CustomIcons
                                                           .icon_artwork_original,
                                                       color: Colors.grey,
-                                                      size: 18,
+                                                      size: 15,
                                                     ),
                                                     SizedBox(
                                                       width: 10,
@@ -483,7 +489,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                                       CustomIcons
                                                           .icon_artwork_vr,
                                                       color: Colors.grey,
-                                                      size: 18,
+                                                      size: 15,
                                                     ),
                                                   ],
                                                 )

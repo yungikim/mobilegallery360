@@ -114,7 +114,7 @@ class ArtInfoController extends GetxController {
     page_art.value++;
     dataLoadingComplete_artlistInfo.value = true;
 
-    if (query_dis.isEmpty){
+    if (query_dis.isEmpty) {
       persistenHeight.value = 70;
     }
 
@@ -181,8 +181,15 @@ class ArtInfoController extends GetxController {
       // String art_title = "";
       // String content = "";
 
-      var response = await _artRepository.ArtRequestSave(subject.value, name.value,
-          email.value, tel.value, art_code.value, art_artist.value, art_title.value, content.value);
+      var response = await _artRepository.ArtRequestSave(
+          subject.value,
+          name.value,
+          email.value,
+          tel.value,
+          art_code.value,
+          art_artist.value,
+          art_title.value,
+          content.value);
       print(response);
     } catch (e) {
       e.printError();
