@@ -89,7 +89,7 @@ class _wappState extends State<wapp> {
           initialUrlRequest: URLRequest(
               //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
               url: Uri.parse(
-                  '$base_url/main/vr_gallery/gallery360_vr_pfizer.jsp?key=gallery360@gallery360.co.kr_20200828111648_QI2UPLR')),
+                  '$base_url/main/vr_gallery/gallery360_vr_mobile.jsp?key=gallery360@gallery360.co.kr_20200828111648_QI2UPLR')),
 
           onReceivedServerTrustAuthRequest: (controller, challenge) async {
             print(challenge);

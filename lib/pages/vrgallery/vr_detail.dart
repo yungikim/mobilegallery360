@@ -69,7 +69,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                   initialUrlRequest: URLRequest(
                       //   url: Uri.parse('http://localhost:8080/html/index.html?open&ver=1.0')
                       url: Uri.parse(
-                          '$base_url/main/vr_gallery/gallery360_vr_pfizer.jsp?key=${widget.dockey}')),
+                          '$base_url/main/vr_gallery/gallery360_vr_mobile.jsp?key=${widget.dockey}')),
 
                   onReceivedServerTrustAuthRequest:
                       (controller, challenge) async {
