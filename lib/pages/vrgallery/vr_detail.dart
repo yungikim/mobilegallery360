@@ -92,7 +92,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
                         supportZoom: true,
                         preferredContentMode: UserPreferredContentMode.MOBILE,
                         useShouldOverrideUrlLoading: true,
-                        mediaPlaybackRequiresUserGesture: true,
+                        mediaPlaybackRequiresUserGesture: false,
                         cacheEnabled: true,
                         clearCache: true,
                         transparentBackground: true,
@@ -493,8 +493,9 @@ class _VrDetailPageState extends State<VrDetailPage> {
                           //   fit: BoxFit.cover,
                           // );
                           return GestureDetector(
-                            onTap: (){
-                              Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
+                            onTap: () {
+                              Get.to(() => ArtDetailPage(dockey: item.dockey),
+                                  transition: Transition.rightToLeft);
                             },
                             child: cacheImageOnly(
                               url: url,
