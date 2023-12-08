@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
+import '../../../util/Util.dart';
 import '../art_main.dart';
 import '../model/art_detail.dart';
 import '../model/art_in_artist.dart';
@@ -58,6 +59,12 @@ class ArtInfoController extends GetxController {
 
   var selectedValue = ValueOptions_Art("random", "랜덤정렬").obs;
 
+  var scrollPosition = 0.0.obs;
+  void saveScrollPosition(double position){
+   // print("saveScrollPosition : ${position}");
+    scrollPosition.value = position;
+  }
+
   //작품 메인 화면 Carousel 이미지 가져오기
   Future getArtMainMonly() async {
     List<dynamic> response = await _artRepository.loadMonthlyArt();
@@ -68,15 +75,30 @@ class ArtInfoController extends GetxController {
   }
 
   //작품 메인 하단 작품 리스트 가져오기
+  final RxList<String> images = <String>[].obs;
+
   Future getArtList() async {
     String ty = type.toString();
     List<dynamic> response =
         await _artRepository.loadImageList(page_art.value, _limit, ty);
+    // List<ArtList> rx =
+    //     response.map<ArtList>((json) => ArtList.fromJson(json)).toList();
     List<ArtList> rx =
-        response.map<ArtList>((json) => ArtList.fromJson(json)).toList();
+      response.map<ArtList>((json) {
+        return ArtList.fromJson(json);
+      }).toList();
+
     if (rx.length < _limit) {
       hasMore_art.value = false;
     }
+
+    // for (int i = 0 ; i < rx.length; i++){
+    //   String email = rx[i].email;
+    //   String art = rx[i].artImgFilename;
+    //   images.add(Util.makeMainArtListURL(email, art));
+    // }
+
+
     artinfolist.addAll(rx);
     page_art.value++;
     dataLoadingComplete_artlistInfo.value = true;

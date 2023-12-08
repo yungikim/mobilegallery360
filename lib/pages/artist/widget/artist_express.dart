@@ -22,14 +22,14 @@ class ArtistExpressWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              _artistController.artistInfo.value.nickname,
+              Util.chageText(_artistController.artistInfo.value.nickname),
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              _artistController.artistInfo.value.nameEng ?? '',
+              Util.chageText(_artistController.artistInfo.value.nameEng.toString()) ?? '',
               style: const TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,

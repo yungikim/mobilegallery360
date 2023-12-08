@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class ArtMainPage extends StatefulWidget {
   State<ArtMainPage> createState() => _ArtMainPageState();
 }
 
-class _ArtMainPageState extends State<ArtMainPage> {
+class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
   final ArtInfoController _artInfoController = Get.put(ArtInfoController());
 
   //콤보박스 설정하기
@@ -56,6 +58,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _artInfoController.selectedValue.value = values[0];
 
     // TODO: implement initState
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
@@ -64,12 +67,15 @@ class _ArtMainPageState extends State<ArtMainPage> {
     _scrollController.dispose();
     _scrollController.removeListener(onScroll);
 
+    WidgetsBinding.instance.removeObserver(this);
     // TODO: implement dispose
     super.dispose();
   }
 
   void onScroll() {
-    print("onScroll............");
+    //print("onScroll............");
+    _artInfoController.saveScrollPosition(_scrollController.offset);
+
     double maxScroll = _scrollController.position.maxScrollExtent;
     double currentScroll = _scrollController.position.pixels;
 
@@ -80,6 +86,17 @@ class _ArtMainPageState extends State<ArtMainPage> {
         _artInfoController.getArtList();
       }
     }
+  }
+
+
+  void changePosition() {
+
+      // 앱이 다시 활성화될 때 스크롤 위치 복원
+      if (_scrollController.hasClients) {
+        print(_artInfoController.scrollPosition.value);
+        _scrollController.jumpTo(_artInfoController.scrollPosition.value);
+      }
+
   }
 
   @override
@@ -384,10 +401,25 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                                 .isMobile
                                             ? 2
                                             : 3),
+                            //   () => GridView.builder(
+                            // shrinkWrap: true,
+                            // physics: const NeverScrollableScrollPhysics(),
+                            // //  itemCount: snapshot.data.length,
+                            // itemCount: _artInfoController.artinfolist.length,
+                            //
+                            // gridDelegate:
+                            // SliverGridDelegateWithFixedCrossAxisCount(
+                            //     mainAxisSpacing: 10,
+                            //     crossAxisSpacing: 10,
+                            //     crossAxisCount:
+                            //     ResponsiveBreakpoints.of(context)
+                            //         .isMobile
+                            //         ? 2
+                            //         : 3),
                             itemBuilder: (context, index) {
                               //ArtList item = snapshot.data[index];
-                              print(
-                                  "_artInfoController.artinfolist.length, : ${_artInfoController.artinfolist.length}");
+                              // print(
+                              //     "_artInfoController.artinfolist.length, : ${_artInfoController.artinfolist.length}");
                               ArtList item =
                                   _artInfoController.artinfolist.value[index];
                               String url = Util.makeMainArtListURL(
@@ -404,11 +436,33 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                   : "￦${Util.addComma(item.artPrice / 10000)}만원";
 
                               return GestureDetector(
-                                onTap: () {
-                                  Get.to(
+                                onTap: () async{
+                                  //print("111  =>: ${_artInfoController.artinfolist.length}");
+                                  final result = await Get.to(
                                       () => ArtDetailPage(
                                           dockey: item.artImgFilename),
                                       transition: Transition.rightToLeft);
+                                  //print("result : ${result}");
+                                  if (result != null){
+                                   // print("1123123123123123123123123123");
+                                    print("222  =>: ${_artInfoController.artinfolist.length}");
+                                    int cnt = _artInfoController.artinfolist.length;
+                                    int du = 800;
+                                    if (cnt > 150){
+                                      du = 1200;
+                                    }else if (cnt > 200){
+                                      du = 2000;
+                                    }else if (cnt > 250){
+                                      du = 3000;
+                                    }else if (cnt > 300){
+                                      du = 5000;
+                                    }
+                                    Timer(Duration(milliseconds: du), (){
+
+                                      changePosition();
+                                    });
+
+                                  }
                                 },
                                 child: Container(
                                   // margin: EdgeInsets.only(left: 10, right: 10),
@@ -425,7 +479,21 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                         // placeholder: (context, url) =>
                                         //     const CircularProgressIndicator(),
                                         fit: BoxFit.cover,
+                                        imageBuilder: (context, imageProvider) => Image(image: imageProvider),
+                                        // progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                        //     CircularProgressIndicator(value: downloadProgress.progress),
+                                        errorWidget: (context, url, error) => Icon(Icons.error),
+
+                                        // // 이미지가 완전히 로드될 때 호출됩니다.
+                                        // loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        //   if (loadingProgress == null) {
+                                        //     // 이미지 로드 완료
+                                        //     controller.imageLoaded();
+                                        //   }
+                                        //   return child;
+                                        // },
                                       ),
+                                     // cacheImageOnly(url: url,),
                                       const SizedBox(
                                         height: 5,
                                       ),
@@ -436,7 +504,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              art_title,
+                                              Util.chageText(art_title),
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 13),
@@ -445,7 +513,7 @@ class _ArtMainPageState extends State<ArtMainPage> {
                                               height: 5,
                                             ),
                                             Text(
-                                              art_artist,
+                                              Util.chageText(art_artist),
                                               style:
                                                   const TextStyle(fontSize: 12),
                                             ),
