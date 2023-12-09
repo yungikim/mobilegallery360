@@ -6,7 +6,7 @@ String vrDetailThirdToJson(List<VrDetailThird> data) => json.encode(List<dynamic
 
 class VrDetailThird {
   String dockey;
-  int version;
+  String version;
   String email;
 
   VrDetailThird({
@@ -17,7 +17,7 @@ class VrDetailThird {
 
   factory VrDetailThird.fromJson(Map<String, dynamic> json) => VrDetailThird(
     dockey: json["dockey"],
-    version: json["version"],
+    version: json["version"].toString(),
     email: json["email"],
 
   );
