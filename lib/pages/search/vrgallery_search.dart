@@ -79,8 +79,11 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                     crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
                   ),
                   itemBuilder: (context, index) {
+                    // var item =
+                    //     _searchResultController.SearchVrGallyResult[index];
                     var item =
-                        _searchResultController.SearchVrGallyResult[index];
+                    _searchResultController.SearchVRCategory[index];
+
                     Map<String, dynamic> etc = jsonDecode(item.source.etc);
                     String id = item.source.id.split("-=spl=-")[0];
                     var url =
