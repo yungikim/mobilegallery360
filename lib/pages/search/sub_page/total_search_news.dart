@@ -12,7 +12,8 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../util/Util.dart';
 
 class TotalSearchNews extends StatelessWidget {
-  TotalSearchNews({super.key});
+  TotalSearchNews({required this.tab,super.key});
+  TabController tab;
 
   final SearchResultController _searchResultController =
       Get.put(SearchResultController());
@@ -52,10 +53,15 @@ class TotalSearchNews extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text(
-                  "뉴스 더 보기 >",
-                  style: TextStyle(
-                    fontSize: 12,
+                GestureDetector(
+                  onTap: (){
+                    tab.animateTo(4);
+                  },
+                  child: const Text(
+                    "뉴스 더 보기 >",
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],
@@ -76,9 +82,14 @@ class TotalSearchNews extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       //https://www.gallery360.co.kr/index.jsp?ty=link_news&id=155
+                      // String url =
+                      //     "${base_url}/index.jsp?ty=link_news&id=${item.source.bun}";
+                      Map<String, dynamic> jj = jsonDecode(item.source.etc);
                       String url =
-                          "${base_url}/index.jsp?ty=link_news&id=${item.source.bun}";
-                      Util.UrlOpenWebview(url, "");
+                          "${base_url}/main/news/main_news_mobile.jsp?bun=${item.source.bun}";
+                     // print(url);
+                      Util.UrlOpenWebview(url, jj['title']);
+
                     },
                     child: Container(
                       height: 300,

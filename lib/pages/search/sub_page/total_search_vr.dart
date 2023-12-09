@@ -14,8 +14,8 @@ import '../../../util/Util.dart';
 import '../../vrgallery/vr_detail.dart';
 
 class TotalSearchVR extends StatefulWidget {
-  const TotalSearchVR({super.key});
-
+  TotalSearchVR({required this.tab,super.key});
+  TabController tab;
   @override
   State<TotalSearchVR> createState() => _TotalSearchVRState();
 }
@@ -62,10 +62,15 @@ class _TotalSearchVRState extends State<TotalSearchVR> {
                     ),
                   ],
                 ),
-                const Text(
-                  "VR갤러리 더 보기 >",
-                  style: TextStyle(
-                    fontSize: 12,
+                GestureDetector(
+                  onTap: (){
+                    widget.tab.animateTo(3);
+                  },
+                  child: const Text(
+                    "VR갤러리 더 보기 >",
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],

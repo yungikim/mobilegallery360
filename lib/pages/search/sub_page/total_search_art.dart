@@ -13,7 +13,8 @@ import '../../art/art_detail.dart';
 import '../model/art_model.dart';
 
 class TotalSearchArt extends StatelessWidget {
-  TotalSearchArt({super.key});
+  TotalSearchArt({required this.tab, super.key});
+  TabController tab;
 
   final SearchResultController _searchResultController =
       Get.put(SearchResultController());
@@ -52,10 +53,15 @@ class TotalSearchArt extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text(
-                  "작품 더 보기 >",
-                  style: TextStyle(
-                    fontSize: 12,
+                GestureDetector(
+                  onTap: (){
+                    tab.animateTo(2);
+                  },
+                  child: const Text(
+                    "작품 더 보기 >",
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],

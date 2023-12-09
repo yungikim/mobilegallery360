@@ -99,9 +99,14 @@ class _NewSearchPageState extends State<NewSearchPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                var url =
-                                    "$base_url/index.jsp?ty=link_news&id=${item.source.bun}";
-                                Util.UrlOpenWebview(url, "");
+                                // var url =
+                                //     "$base_url/index.jsp?ty=link_news&id=${item.source.bun}";
+                                // Util.UrlOpenWebview(url, "");
+                                Map<String, dynamic> jj = jsonDecode(item.source.etc);
+                                String url =
+                                    "${base_url}/main/news/main_news_mobile.jsp?bun=${item.source.bun}";
+                                // print(url);
+                                Util.UrlOpenWebview(url, jj['title']);
                               },
                               child: Container(
                                 height: 300,

@@ -271,7 +271,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    TotalSeachPage(),
+                    TotalSeachPage(tab: _tabController,),
                     ArtistSearchPage(),
                     ArtSearchPage(),
                     VrGallerySearchPage(),

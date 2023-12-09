@@ -7,7 +7,8 @@ import '../../artist/artist_detail.dart';
 import '../model/artist_model.dart';
 
 class TotalSearchArtist extends StatelessWidget {
-  TotalSearchArtist({super.key});
+  TotalSearchArtist({required this.tab, super.key});
+  TabController tab;
 
   final SearchResultController _searchResultController =
       Get.put(SearchResultController());
@@ -38,10 +39,15 @@ class TotalSearchArtist extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Text(
-                  "작가 더 보기 >",
-                  style: TextStyle(
-                    fontSize: 12,
+                GestureDetector(
+                  onTap: (){
+                    tab.animateTo(1);
+                  },
+                  child: const Text(
+                    "작가 더 보기 >",
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
                   ),
                 ),
               ],

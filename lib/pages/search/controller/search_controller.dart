@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:gallery360/draw/drawScreen.dart';
 import 'package:gallery360/pages/search/model/art_category_model.dart';
 import 'package:gallery360/pages/search/model/artist_category_model.dart';
@@ -63,6 +64,7 @@ class SearchResultController extends GetxController{
 
 
   late final TextEditingController searchquery;
+
 
 
   Future<void> getSearchResult(String query) async{
@@ -172,4 +174,26 @@ class SearchResultController extends GetxController{
     }
   }
 
+}
+
+
+class MyTabController extends GetxController with GetSingleTickerProviderStateMixin {
+  final List<Tab> myTabs = <Tab>[
+    Tab(text: 'LEFT'),
+    Tab(text: 'RIGHT'),
+  ];
+
+  late TabController controller;
+
+  @override
+  void onInit() {
+    super.onInit();
+    controller = TabController(vsync: this, length: myTabs.length);
+  }
+
+  @override
+  void onClose() {
+    controller.dispose();
+    super.onClose();
+  }
 }

@@ -10,7 +10,8 @@ import 'package:gallery360/pages/search/sub_page/total_search_vr.dart';
 import 'package:get/get.dart';
 
 class TotalSeachPage extends StatefulWidget {
-  TotalSeachPage({super.key});
+  TotalSeachPage({required this.tab, super.key});
+  TabController tab;
 
   @override
   State<TotalSeachPage> createState() => _TotalSeachPageState();
@@ -51,13 +52,13 @@ class _TotalSeachPageState extends State<TotalSeachPage> {
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
-                TotalSearchArtist(),
+                TotalSearchArtist(tab: widget.tab,),
                 const SizedBox(height: 20,),
-                TotalSearchArt(),
+                TotalSearchArt(tab: widget.tab,),
                 const SizedBox(height: 30,),
-                const TotalSearchVR(),
+                TotalSearchVR(tab: widget.tab,),
                 const SizedBox(height: 30,),
-                TotalSearchNews(),
+                TotalSearchNews(tab: widget.tab,),
               ]),
             )
           ],
