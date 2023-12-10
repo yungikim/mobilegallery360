@@ -65,7 +65,9 @@ class _ArtistSearchPageState extends State<ArtistSearchPage> {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )
-                      : const Text(""),
+                      : const Center(
+                    child: Text("검색결과가 존재하지 않습니다."),
+                  ),
                 ),
               ),
               SliverToBoxAdapter(

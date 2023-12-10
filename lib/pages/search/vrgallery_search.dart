@@ -65,7 +65,9 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )
-                      : const Text(""),
+                      : const Center(
+                    child: Text("검색결과가 존재하지 않습니다."),
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
@@ -81,6 +83,8 @@ class _VrGallerySearchPageState extends State<VrGallerySearchPage> {
                   itemBuilder: (context, index) {
                     // var item =
                     //     _searchResultController.SearchVrGallyResult[index];
+
+
                     var item =
                     _searchResultController.SearchVRCategory[index];
 

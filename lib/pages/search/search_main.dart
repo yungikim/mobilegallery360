@@ -217,35 +217,35 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
                 indicatorColor: Colors.grey,
                 onTap: (index){
                 //  print("Tab Click ${index}");
-                  if (index == 1){
-                    //작가 탭 클릭
-                    _searchController.page.value = 1;
-                    _searchController.isLoadingComplete.value = false;
-                    _searchController.hasMore.value = true;
-                    _searchController.SearchArtistCategory.clear();
-                    _searchController.getSearchCategory("user");
-                  }else if (index == 2){
-                    //작품 탭 클릭
-                    _searchController.page_art.value = 1;
-                    _searchController.isLoadingComplete_art.value = false;
-                    _searchController.hasMore_art.value = true;
-                    _searchController.SearchArtCategory.clear();
-                    _searchController.getSearchCategory("art");
-                  }else if (index == 3){
-                    //VR 갤러리 탭 클릭
-                    _searchController.page_vr.value = 1;
-                    _searchController.isLoadingComplete_vr.value = false;
-                    _searchController.hasMore_vr.value = true;
-                    _searchController.SearchVRCategory.clear();
-                    _searchController.getSearchCategory("vr");
-                  }else if (index == 4){
-                    //News 탭 클릭
-                    _searchController.page_news.value = 1;
-                    _searchController.isLoadingComplete_news.value = false;
-                    _searchController.hasMore_news.value = true;
-                    _searchController.SearchNewsCategory.clear();
-                    _searchController.getSearchCategory("news");
-                  }
+                //   if (index == 1){
+                //     //작가 탭 클릭
+                //     _searchController.page.value = 1;
+                //     _searchController.isLoadingComplete.value = false;
+                //     _searchController.hasMore.value = true;
+                //     _searchController.SearchArtistCategory.clear();
+                //     _searchController.getSearchCategory("user");
+                //   }else if (index == 2){
+                //     //작품 탭 클릭
+                //     _searchController.page_art.value = 1;
+                //     _searchController.isLoadingComplete_art.value = false;
+                //     _searchController.hasMore_art.value = true;
+                //     _searchController.SearchArtCategory.clear();
+                //     _searchController.getSearchCategory("art");
+                //   }else if (index == 3){
+                //     //VR 갤러리 탭 클릭
+                //     _searchController.page_vr.value = 1;
+                //     _searchController.isLoadingComplete_vr.value = false;
+                //     _searchController.hasMore_vr.value = true;
+                //     _searchController.SearchVRCategory.clear();
+                //     _searchController.getSearchCategory("vr");
+                //   }else if (index == 4){
+                //     //News 탭 클릭
+                //     _searchController.page_news.value = 1;
+                //     _searchController.isLoadingComplete_news.value = false;
+                //     _searchController.hasMore_news.value = true;
+                //     _searchController.SearchNewsCategory.clear();
+                //     _searchController.getSearchCategory("news");
+                //   }
                 },
 
                 tabs: const [

@@ -68,7 +68,9 @@ class _NewSearchPageState extends State<NewSearchPage> {
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         )
-                      : Text(""),
+                      : const Center(
+                    child: Text("검색결과가 존재하지 않습니다."),
+                  ),
                 ),
               ),
               SliverToBoxAdapter(
