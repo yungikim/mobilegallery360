@@ -61,7 +61,7 @@ class SearchResultController extends GetxController{
   var isLoadingComplete_news = false.obs;
   var totalSearchCount_news = 0.obs;
 
-
+  var totalSearch = 0.obs;
 
   late final TextEditingController searchquery;
 
@@ -82,36 +82,51 @@ class SearchResultController extends GetxController{
       var res = await _searchRepository.LoadSearch(query);
       List<dynamic> keys = res['aggregations']['by_district']['buckets'];
       int tcount = res['hits']['total'];
+      totalSearch.value = tcount;
 
-      if (tcount > 0){
-        for (int k = 0; k < keys.length; k++){
+      if (tcount > 0) {
+        for (int k = 0; k < keys.length; k++) {
           String key = keys[k]['key'];
-          if (key == "art"){
+          if (key == "art") {
             //작품 검색 결과를 리스트업 한다.
-            List<dynamic> artlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-            List<ArtModel> rx1 = artlist.map<ArtModel>((json) => ArtModel.fromJson(json)).toList();
+            List<
+                dynamic> artlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<ArtModel> rx1 = artlist.map<ArtModel>((json) =>
+                ArtModel.fromJson(json)).toList();
             SearchArtResult.addAll(rx1);
-            SearchArtTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-          }else if (key == "user"){
+            SearchArtTotalCount.value =
+            res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          } else if (key == "user") {
             //작가 검색 결과 리스트업 한다.
-            List<dynamic> artistlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-            List<ArtistModel> rx3 = artistlist.map<ArtistModel>((json) => ArtistModel.fromJson(json)).toList();
+            List<
+                dynamic> artistlist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<ArtistModel> rx3 = artistlist.map<ArtistModel>((json) =>
+                ArtistModel.fromJson(json)).toList();
             SearchArtistResult.addAll(rx3);
-            SearchArtistTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-          }else if (key == "news"){
+            SearchArtistTotalCount.value =
+            res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          } else if (key == "news") {
             //뉴스관련 검색 결과 리스트업 한다.
-            List<dynamic> newslist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-            List<NewsModel> rx2 = newslist.map<NewsModel>((json) => NewsModel.fromJson(json)).toList();
+            List<
+                dynamic> newslist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<NewsModel> rx2 = newslist.map<NewsModel>((json) =>
+                NewsModel.fromJson(json)).toList();
             SearchNewsResult.addAll(rx2);
-            SearchNewsTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
-          }else if (key == "vr"){
+            SearchNewsTotalCount.value =
+            res['aggregations']['by_district']['buckets'][k]['doc_count'];
+          } else if (key == "vr") {
             //VR갤러리 검색 결과 리스트업 한다.
-            List<dynamic> vrgallerylist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
-            List<VrGalleryModel> rx4 = vrgallerylist.map<VrGalleryModel>((json) => VrGalleryModel.fromJson(json)).toList();
+            List<
+                dynamic> vrgallerylist = res['aggregations']['by_district']['buckets'][k]['tops']['hits']['hits'];
+            List<VrGalleryModel> rx4 = vrgallerylist.map<VrGalleryModel>((
+                json) => VrGalleryModel.fromJson(json)).toList();
             SearchVrGallyResult.addAll(rx4);
-            SearchVrGalleryTotalCount.value = res['aggregations']['by_district']['buckets'][k]['doc_count'];
+            SearchVrGalleryTotalCount.value =
+            res['aggregations']['by_district']['buckets'][k]['doc_count'];
           }
         }
+      }else{
+        print("검색결과가 존재하지 않습니다.");
       }
       searchcomplete.value = true;
     }catch(e){

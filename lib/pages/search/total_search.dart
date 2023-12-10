@@ -48,7 +48,7 @@ class _TotalSeachPageState extends State<TotalSeachPage> {
 
     return Obx(() {
       if (_searchResultController.searchcomplete.value) {
-        return CustomScrollView(
+        return _searchResultController.totalSearch.value == 0 ? const Center(child: Text("검색결과가 존재하지 않습니다."),) : CustomScrollView(
           slivers: [
             SliverList(
               delegate: SliverChildListDelegate([
