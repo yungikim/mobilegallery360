@@ -126,7 +126,7 @@ class SearchResultController extends GetxController{
           }
         }
       }else{
-        print("검색결과가 존재하지 않습니다.");
+        //print("검색결과가 존재하지 않습니다.");
       }
       searchcomplete.value = true;
     }catch(e){
