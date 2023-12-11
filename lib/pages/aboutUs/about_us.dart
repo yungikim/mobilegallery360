@@ -414,8 +414,8 @@ class _AboutUsState extends State<AboutUs> {
                         FileDownloader.downloadFile(
                             //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
                             url:
-                                "https://meet.kmslab.com:8444/WMeet/FileDownload.do?em=jykim@kmslab.com&fd=20231211095819_LWZGDDMTKBKQLB1&ty=1&m5=b46ff6c9d5bc87707935643d671852e2.382085&fn=06-3.%20%EB%A9%94%ED%83%80%EB%B2%84%EC%8A%A4%20%ED%98%84%ED%99%A9%20%EB%B0%8F%20%ED%8A%B8%EB%A0%8C%EB%93%9C.pdf",
-                            name: "111.pdf",
+                                "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573488&ty=1",
+                            name: "갤러리360_회사소개서.pdf",
                             onProgress: (name, progress) {
                               print(progress);
                             },
@@ -423,8 +423,8 @@ class _AboutUsState extends State<AboutUs> {
                               print("완료 되었습니다");
                               Get.snackbar(
                                 "FileDownload",
-                                "파일 다운로드가 완료되었습니다.",
-                                backgroundColor: Colors.green,
+                                "파일 다운로드가 완료 되었습니다.",
+                                backgroundColor: Colors.blue,
                                 snackPosition: SnackPosition.BOTTOM,
                            //     forwardAnimationCurve: Curves.elasticInOut,
                                 reverseAnimationCurve: Curves.easeOut,
@@ -448,14 +448,40 @@ class _AboutUsState extends State<AboutUs> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
-                      height: 70,
-                      width: double.infinity,
-                      color: Colors.black,
-                      alignment: Alignment.center,
-                      child: const Text(
-                        "대관서비스 소개서 PDF 다운로드",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                    GestureDetector(
+                      onTap: (){
+                        FileDownloader.downloadFile(
+                          //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
+                            url:
+                            "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573487&ty=1",
+                            name: "갤러리360_대관서비스_소개서.pdf",
+                            onProgress: (name, progress) {
+                              print(progress);
+                            },
+                            onDownloadCompleted: (String path) {
+                              print("완료 되었습니다");
+                              Get.snackbar(
+                                "FileDownload",
+                                "파일 다운로드가 완료 되었습니다.",
+                                backgroundColor: Colors.blue,
+                                snackPosition: SnackPosition.BOTTOM,
+                                //     forwardAnimationCurve: Curves.elasticInOut,
+                                reverseAnimationCurve: Curves.easeOut,
+                              );
+                            },
+                            onDownloadError: (String error) {
+                              print('DOWNLOAD ERROR: $error');
+                            });
+                      },
+                      child: Container(
+                        height: 70,
+                        width: double.infinity,
+                        color: Colors.black,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          "대관서비스 소개서 PDF 다운로드",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
                       ),
                     ),
                     const SizedBox(
