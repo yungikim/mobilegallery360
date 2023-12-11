@@ -408,19 +408,28 @@ class _AboutUsState extends State<AboutUs> {
                 child: Column(
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         print("openfile");
                         //OpenFile.open("https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
                         //FileDownloader.downloadFile(url: "https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
                         FileDownloader.downloadFile(
-                          //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
-                            url: "https://www.gallery360.co.kr/artimage/gallery360@gallery360.co.kr-spl-1571280795143/art/watermark/gallery360@gallery360.co.kr-spl-1571280795143_8f2eda58dea53a24e0163e7ac1042d99.39546.jpg",
-                            name: "111.jpg",
-                            onProgress: (name, progress){
+                            //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
+                            url:
+                                "https://meet.kmslab.com:8444/WMeet/FileDownload.do?em=jykim@kmslab.com&fd=20231211095819_LWZGDDMTKBKQLB1&ty=1&m5=b46ff6c9d5bc87707935643d671852e2.382085&fn=06-3.%20%EB%A9%94%ED%83%80%EB%B2%84%EC%8A%A4%20%ED%98%84%ED%99%A9%20%EB%B0%8F%20%ED%8A%B8%EB%A0%8C%EB%93%9C.pdf",
+                            name: "111.pdf",
+                            onProgress: (name, progress) {
                               print(progress);
                             },
                             onDownloadCompleted: (String path) {
-                              print('FILE DOWNLOADED TO PATH: $path');
+                              print("완료 되었습니다");
+                              Get.snackbar(
+                                "FileDownload",
+                                "파일 다운로드가 완료되었습니다.",
+                                backgroundColor: Colors.green,
+                                snackPosition: SnackPosition.BOTTOM,
+                           //     forwardAnimationCurve: Curves.elasticInOut,
+                                reverseAnimationCurve: Curves.easeOut,
+                              );
                             },
                             onDownloadError: (String error) {
                               print('DOWNLOAD ERROR: $error');
@@ -517,7 +526,9 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 680,
+                        height: ResponsiveBreakpoints.of(context).isMobile
+                            ? 780
+                            : 680,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -648,7 +659,9 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 660,
+                        height: ResponsiveBreakpoints.of(context).isMobile
+                            ? 780
+                            : 660,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -770,7 +783,9 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: ResponsiveBreakpoints.of(context).isMobile ? 820 : 710,
+                        height: ResponsiveBreakpoints.of(context).isMobile
+                            ? 820
+                            : 710,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -902,7 +917,9 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 640,
+                        height: ResponsiveBreakpoints.of(context).isMobile
+                            ? 780
+                            : 640,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -1024,7 +1041,9 @@ class _AboutUsState extends State<AboutUs> {
                       headerPadding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
-                        height: ResponsiveBreakpoints.of(context).isMobile ? 780 : 630,
+                        height: ResponsiveBreakpoints.of(context).isMobile
+                            ? 780
+                            : 630,
                         width: double.infinity,
                         //   color: Colors.red,
                         child: Padding(
@@ -1134,12 +1153,11 @@ class _AboutUsState extends State<AboutUs> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                  height: ResponsiveBreakpoints.of(context).isMobile ? 1000 : 1800,
-
+                  height:
+                      ResponsiveBreakpoints.of(context).isMobile ? 1000 : 1800,
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(10)
-                  ),
+                      borderRadius: BorderRadius.circular(10)),
                   child: Column(
                     children: [
                       const SizedBox(
@@ -1164,9 +1182,17 @@ class _AboutUsState extends State<AboutUs> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SizedBox(height: 30,),
-                      SizedBox(width: width * 0.75,  child: Image.asset("assets/images/mainPage/ci_symbol_g.jpg")),
-                      SizedBox(width: width * 0.75,  child: Image.asset("assets/images/mainPage/ci_symbol_colour.jpg")),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      SizedBox(
+                          width: width * 0.75,
+                          child: Image.asset(
+                              "assets/images/mainPage/ci_symbol_g.jpg")),
+                      SizedBox(
+                          width: width * 0.75,
+                          child: Image.asset(
+                              "assets/images/mainPage/ci_symbol_colour.jpg")),
                     ],
                   ),
                 ),
