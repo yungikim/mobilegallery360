@@ -4,8 +4,6 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import 'models/vr_showmodel.dart';
 
 class VrShowList extends StatefulWidget {
@@ -61,6 +59,7 @@ class _VrShowListState extends State<VrShowList> {
                   items: items
                           .map((item) => GestureDetector(
                             onTap: (){
+                             // Util.UrlOpenWebview(item.shortUrl, item.lendingName);
                               Util.UrlOpen(item.shortUrl);
                             },
                             child: cacheImage(
@@ -92,43 +91,7 @@ class _VrShowListState extends State<VrShowList> {
                                 ),
                             ),
                           )).toList(),
-                      // .map((item) => Container(
-                      //     width: double.infinity,
-                      //     decoration: BoxDecoration(
-                      //   //    color: Colors.red,
-                      //       boxShadow: const [
-                      //         BoxShadow(
-                      //           offset: Offset(0,13),
-                      //           blurRadius: 15.0,
-                      //           color: Colors.black,
-                      //         )
-                      //       ],
-                      //         image: DecorationImage(
-                      //       image: NetworkImage(
-                      //           "https://www.gallery360.co.kr/artimage/lending/${item.image}"),
-                      //       fit: BoxFit.cover,
-                      //     )),
-                      //     child: Column(
-                      //       mainAxisAlignment: MainAxisAlignment.end,
-                      //       children: [
-                      //         Container(
-                      //           padding: const EdgeInsets.only(left: 10),
-                      //           alignment: Alignment.centerLeft,
-                      //           width: double.infinity,
-                      //           height: 70.0,
-                      //           color: Colors.black.withOpacity(0.5),
-                      //           child: Text(
-                      //             "${item.lendingName} / ${item.organizerName}",
-                      //             style: TextStyle(
-                      //                 fontWeight: FontWeight.w600,
-                      //                 fontSize: 17,
-                      //                 color: Colors.white.withOpacity(0.7),
-                      //                 overflow: TextOverflow.ellipsis),
-                      //           ),
-                      //         )
-                      //       ],
-                      //     )))
-                      // .toList(),
+
                   options: CarouselOptions(
                     onPageChanged: (index, reaseon){
                         _dataController.currentItem.value = index;
@@ -165,7 +128,7 @@ class _VrShowListState extends State<VrShowList> {
         },
         style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
-            side: index == _dataController.currentItem.value ? const BorderSide(color: Color(0xff9b3de4)) : BorderSide(color: Colors.transparent),
+            side: index == _dataController.currentItem.value ? const BorderSide(color: Color(0xff9b3de4)) : const BorderSide(color: Colors.transparent),
         ),
         child: Text(
           "#$title",

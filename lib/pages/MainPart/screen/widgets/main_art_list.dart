@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../../main.dart';
@@ -80,13 +78,18 @@ class _MainArtListState extends State<MainArtList> {
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: InkWell(
-                onTap: (){
-                  Get.to(() => ArtDetailPage(dockey: _dataController.mainPageRecommandImageDockey.value), transition: Transition.fadeIn);
+                onTap: () {
+                  Get.to(
+                    () => ArtDetailPage(
+                        dockey:
+                            _dataController.mainPageRecommandImageDockey.value),
+                    transition: Transition.rightToLeft,
+                  );
                 },
                 child: CachedNetworkImage(
                   width: width * 0.70,
-                  imageUrl:
-                      _dataController.mainPageRecommandImageURL.value.toString(),
+                  imageUrl: _dataController.mainPageRecommandImageURL.value
+                      .toString(),
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
                 ),
@@ -95,7 +98,7 @@ class _MainArtListState extends State<MainArtList> {
             SizedBox(
               height: 250,
               width: width,
-           //   color: Colors.green,
+              //   color: Colors.green,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -108,35 +111,45 @@ class _MainArtListState extends State<MainArtList> {
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Text(
                       _dataController.mainPageRecommandImageArtist.value,
                       style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500
-                      ),
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     OutlinedButton(
                       onPressed: () {
-                        Get.to(() => ArtDetailPage(dockey: _dataController.mainPageRecommandImageDockey.value), transition: Transition.fadeIn);
+                        Get.to(
+                            () => ArtDetailPage(
+                                dockey: _dataController
+                                    .mainPageRecommandImageDockey.value),
+                            transition: Transition.fadeIn);
                       },
                       style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0.0),
                           ),
                           side: const BorderSide(color: Colors.black)),
-                      child: const Text("작품보기", style: TextStyle(color: Colors.black),),
+                      child: const Text(
+                        "작품보기",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              width: ResponsiveBreakpoints.of(context).isMobile ? width : width * 0.9,
+              width: ResponsiveBreakpoints.of(context).isMobile
+                  ? width
+                  : width * 0.9,
               child: MasonryGridView.count(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -152,23 +165,27 @@ class _MainArtListState extends State<MainArtList> {
                   String url =
                       Util.makeMainArtListURL(dm.email, dm.artImgFilename);
                   return GestureDetector(
-                    onTap: (){
-                      Get.to(() => ArtDetailPage(dockey: dm.dockey), transition: Transition.fadeIn);
+                    onTap: () {
+                      Get.to(() => ArtDetailPage(dockey: dm.dockey),
+                          transition: Transition.rightToLeft);
                     },
                     child: Container(
-                        margin:
-                            const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 5),
                         child: Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: const Color(0xffe0e0e0)),
                           ),
                           child: Column(
                             children: [
-                              cacheImageOnly(url: url,),
+                              cacheImageOnly(
+                                url: url,
+                              ),
                               Container(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
@@ -222,7 +239,8 @@ class _MainArtListState extends State<MainArtList> {
                                     bottom: 10.0,
                                     right: 10.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "₩ ${f.format(dm.artPrice)}",

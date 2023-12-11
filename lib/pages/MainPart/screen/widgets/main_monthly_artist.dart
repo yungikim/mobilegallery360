@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../Sample/carousel/sub/base_carousel.dart';
 import '../../../artist/artist_detail.dart';
 
@@ -30,7 +29,7 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
     return CarouselSlider(
       items: _dataController.monthlyArtist
           .map((item) => cacheImage(
-                url: "https://www.gallery360.co.kr/artimage/${item.email}/photo_list/${item.email}_gray.jpg",
+                url: "$base_url/artimage/${item.email}/photo_list/${item.email}_gray.jpg",
                 childtext: Stack(
                         children: [
                           Positioned(
@@ -49,7 +48,7 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                             left: 10.0,
                             child: InkWell(
                               onTap: (){
-                                Get.to(() => ArtistDetailPage(email: item.email), transition: Transition.fadeIn);
+                                Get.to(() => ArtistDetailPage(email: item.email), transition: Transition.rightToLeft);
                               },
                               child: Container(
                                 alignment: Alignment.center,

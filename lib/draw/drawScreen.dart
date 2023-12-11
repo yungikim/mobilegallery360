@@ -66,7 +66,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               //op("https://exhibit.gallery360.co/");
               //draw메뉴를 닫고 URL로 이동한다.
               ZoomDrawer.of(context)!.close()?.then((value) => cls());
-            } else if (item.title == "Tech") {
+            } else if (item.title == "D-Book 서비스") {
               String url =
                   "${base_url}/main/news/main_news_mobile.jsp?bun=65&111";
               ZoomDrawer.of(context)!
@@ -123,7 +123,7 @@ class MenuItems {
   static const art = MenuItem(title: '작품', icon: Icons.art_track);
   static const artist = MenuItem(title: '작가', icon: Icons.article_sharp);
   static const vrshow = MenuItem(title: 'VR 대관', icon: Icons.shop);
-  static const tech = MenuItem(title: 'Tech', icon: Icons.biotech);
+  static const tech = MenuItem(title: 'D-Book 서비스', icon: Icons.biotech);
   static const aboutus = MenuItem(title: 'About Us', icon: Icons.abc_outlined);
   static const all = <MenuItem>[
     home,
