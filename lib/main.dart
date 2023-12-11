@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
@@ -18,6 +17,7 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+
 void main() async {
   HttpOverrides.global =
       MyHttpOverrides(); //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
@@ -27,11 +27,11 @@ void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
   //await Permission.microphone.request();
 
-  runApp(Gallery360Main());
+  runApp(const Gallery360Main());
 }
 
 class Gallery360Main extends StatelessWidget {
-  Gallery360Main({super.key});
+  const Gallery360Main({super.key});
 
   @override
   Widget build(BuildContext context) {

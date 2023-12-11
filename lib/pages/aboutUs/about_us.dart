@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
@@ -415,12 +414,16 @@ class _AboutUsState extends State<AboutUs> {
                         //FileDownloader.downloadFile(url: "https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
                         FileDownloader.downloadFile(
                           //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
-                            url: "https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company",
-                            name: "갤러리360_회사소개서.pdf",
-                            onDownloadCompleted: (path) {
-                              final File file = File(path);
-                              print(path);
-                              //This will be the path of the downloaded file
+                            url: "https://www.gallery360.co.kr/artimage/gallery360@gallery360.co.kr-spl-1571280795143/art/watermark/gallery360@gallery360.co.kr-spl-1571280795143_8f2eda58dea53a24e0163e7ac1042d99.39546.jpg",
+                            name: "111.jpg",
+                            onProgress: (name, progress){
+                              print(progress);
+                            },
+                            onDownloadCompleted: (String path) {
+                              print('FILE DOWNLOADED TO PATH: $path');
+                            },
+                            onDownloadError: (String error) {
+                              print('DOWNLOAD ERROR: $error');
                             });
                       },
                       child: Container(
@@ -1131,7 +1134,7 @@ class _AboutUsState extends State<AboutUs> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                  height: ResponsiveBreakpoints.of(context).isMobile ? 1000 : 1600,
+                  height: ResponsiveBreakpoints.of(context).isMobile ? 1000 : 1800,
 
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.1),
