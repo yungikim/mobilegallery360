@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:gallery360/pages/splash/splash_screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -54,7 +55,7 @@ class Gallery360Main extends StatelessWidget {
           child: child!,
         );
       },
-      home: const DrawerScreen(),
+      home: const SplashScreen(),
     );
   }
 }
