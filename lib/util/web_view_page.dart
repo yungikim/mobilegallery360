@@ -21,7 +21,7 @@ class _WebViewPageState extends State<WebViewPage> {
         appBar: AppBar(
           title: Text(
             widget.title,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white, fontSize: 18),
           ),
           centerTitle: true,
           backgroundColor: Colors.black,
