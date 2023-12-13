@@ -144,6 +144,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
       child: DefaultTabController(
         length: 5,
         child: Scaffold(
+
           // floatingActionButton: actionButton(),
           // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
           backgroundColor: Colors.white,
