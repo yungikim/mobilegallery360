@@ -5,6 +5,7 @@ import 'package:gallery360/pages/search/news_search.dart';
 import 'package:gallery360/pages/search/total_search.dart';
 import 'package:gallery360/pages/search/vrgallery_search.dart';
 import 'package:get/get.dart';
+import '../../util/Util.dart';
 import 'art_search.dart';
 
 class SearchBarScreen extends StatefulWidget {
@@ -143,6 +144,8 @@ class _SearchBarScreenState extends State<SearchBarScreen>  with TickerProviderS
       child: DefaultTabController(
         length: 5,
         child: Scaffold(
+          floatingActionButton: actionButton(),
+          floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.black,
