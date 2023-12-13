@@ -48,7 +48,7 @@ class Util {
   }
 
   static String makeMainArtListURL(String email, String artImgFilename) {
-    return "https://www.gallery360.co.kr/artimage/${email}/art/preview/${artImgFilename}.jpg";
+    return "$base_url/artimage/${email}/art/preview/${artImgFilename}.jpg";
   }
 
   static String addComma(double price) {
