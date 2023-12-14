@@ -3,6 +3,9 @@ import 'package:gallery360/pages/MainPart/screen/widgets/show_myroom.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../const/const.dart';
+import '../../../../util/Util.dart';
+
 class SpaceBar5 extends StatelessWidget {
   const SpaceBar5({super.key});
 
@@ -46,7 +49,9 @@ class SpaceBar5 extends StatelessWidget {
             ),
             OutlinedButton(
               onPressed: () {
-                Get.to(()=> const ShowMyRoom(), transition: Transition.fadeIn);
+               // Get.to(()=> const ShowMyRoom(), transition: Transition.fadeIn);
+                String url = "$base_url/main/myspace.jsp";
+                Util.UrlOpenWebview(url, "내공간에 작품 걸어보기");
               },
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
