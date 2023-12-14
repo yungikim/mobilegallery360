@@ -289,6 +289,7 @@ void ShowBottomSheet(BuildContext context) {
 Widget squreBox(String text){
   return GestureDetector(
     onTap: () {
+      _artInfoController.persistenHeight.value = 140;
       if (_artInfoController.query_thema.contains(text)){
         _artInfoController.query_thema.removeWhere((element) => element == text);
         _artInfoController.query_dis.removeWhere((element) => element == text);
@@ -325,6 +326,7 @@ Widget squreBox_width_icon(List<String> item) {
 
   return GestureDetector(
     onTap: () {
+      _artInfoController.persistenHeight.value = 140;
       if (_artInfoController.query_shape.contains(bun)){
         _artInfoController.query_shape.removeWhere((element) => element ==bun);
         _artInfoController.query_dis.removeWhere((element) => element == txt);
@@ -375,7 +377,9 @@ Widget squreBox_width_icon2(List<String> item) {
   String img = item[2];
 
   return GestureDetector(
+
     onTap: () {
+      _artInfoController.persistenHeight.value = 140;
       if (_artInfoController.query_size.contains(bun)){
         _artInfoController.query_size.removeWhere((element) => element == bun);
         _artInfoController.query_dis.removeWhere((element) => element == txt);
@@ -423,6 +427,7 @@ Widget squreBox_width_icon2(List<String> item) {
 Widget squreCircle(Color color, String text) {
   return GestureDetector(
     onTap: () {
+      _artInfoController.persistenHeight.value = 140;
       if (_artInfoController.query_color.contains(text)){
         _artInfoController.query_color.removeWhere((element) => element == text);
         _artInfoController.query_dis.removeWhere((element) => element == text);

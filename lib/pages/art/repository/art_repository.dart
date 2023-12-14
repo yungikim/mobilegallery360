@@ -62,6 +62,9 @@ class ArtRepository extends GetConnect {
       }
       String url = "$base_url/load_image_select_option.mon";
       print(url);
+      // print(px);
+      // print(limit);
+      // print(sort);
       final response = await dio.post(url,
           data: {
             'start': px,

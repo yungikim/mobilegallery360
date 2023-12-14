@@ -109,6 +109,7 @@ class ArtInfoController extends GetxController {
   Future getArtList_option(String opt) async {
     if (opt == "T") {
       artinfolist.value = <ArtList>[];
+      page_art.value = 1;
     }
 
     String ty = type.toString();

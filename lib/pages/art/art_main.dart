@@ -243,6 +243,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                               InkWell(
                                 onTap: () {
                                   ShowBottomSheet(context);
+                                 // _artInfoController.query_dis.value = ["11111"];
                                 },
                                 child: const Row(
                                   children: [
