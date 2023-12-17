@@ -1,13 +1,17 @@
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gallery360/pages/splash/splash_screen.dart';
+import 'package:gallery360/push/firebase_api.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'draw/drawScreen.dart';
+import 'firebase_options.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -18,12 +22,28 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
+Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  if (message.notification != null){
+    print('Title : ${message.notification?.title}');
+    print('Body : ${message.notification?.body}');
+    print('Payload : ${message.data}');
+    FirebaseApi().handleMessage(message);
+  }
+}
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   HttpOverrides.global =
       MyHttpOverrides(); //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  //Push Notification Setting
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseApi().initNotifications();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  /////////////////////////////////////////////////
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //WidgetsFlutterBinding.ensureInitialized();
   //await Permission.microphone.request();

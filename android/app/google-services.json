@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "404117809652",
+    "project_id": "push-notification-gallery360",
+    "storage_bucket": "push-notification-gallery360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404117809652:android:f33b9a739f22d79f80b1a1",
+        "android_client_info": {
+          "package_name": "com.gallery360.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6BhkrxkCJqQPnZMLLEYpFEyXQKpqmlC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
