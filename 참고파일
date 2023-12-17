@@ -5,4 +5,4 @@
 
 iOS 배포파일 만들기
 flutter build ipa
-
+flutter build appbundle
