@@ -1,8 +1,11 @@
 
 안드로이드 upload키 생서
  keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
-
+패스워드 : gallery360
 
 iOS 배포파일 만들기
 flutter build ipa
 flutter build appbundle
+
+패키지명 변경하기
+ flutter pub run change_app_package_name:main com.gallery360.mobile
