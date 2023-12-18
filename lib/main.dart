@@ -23,7 +23,7 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  //await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   if (message.notification != null){
     print('Title : ${message.notification?.title}');
