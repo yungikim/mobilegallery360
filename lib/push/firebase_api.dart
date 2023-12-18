@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:gallery360/push/page/notification_screen.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../main.dart';
 
@@ -49,10 +51,12 @@ class FirebaseApi{
 
   void handleMessage(RemoteMessage? message){
     if (message == null) return;
-      navigatorKey.currentState?.pushNamed(
-        NotificationScreen.route,
-        arguments: message,
-    );
+      print("1111111111");
+      Get.to(() => NotificationScreen(message: message,));
+    //   navigatorKey.currentState?.pushNamed(
+    //     NotificationScreen.route,
+    //     arguments: message,
+    // );
   }
 
   Future initPushNotifications() async{
