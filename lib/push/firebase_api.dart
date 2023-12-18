@@ -1,8 +1,10 @@
 
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/push/page/notification_screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,6 +14,7 @@ import '../main.dart';
 
 class FirebaseApi{
   final _firebaseMessaging = FirebaseMessaging.instance;
+  Dio dio = Dio();
 
   //로컬 푸쉬 알림에서 안드로이드 채널을 활용한다...
   final _androidChannel = const AndroidNotificationChannel(
@@ -51,7 +54,6 @@ class FirebaseApi{
 
   void handleMessage(RemoteMessage? message){
     if (message == null) return;
-      print("1111111111");
       Get.to(() => NotificationScreen(message: message,));
     //   navigatorKey.currentState?.pushNamed(
     //     NotificationScreen.route,
@@ -95,7 +97,26 @@ class FirebaseApi{
     print('Token : $fCMToken');
     print("############################################");
 
+    if (fCMToken != null){
+      print("ID 저장하러 간다.");
+      await saveNotificationID(fCMToken);
+    }
+
+
     initPushNotifications();
     initLocalNotificaions();
+  }
+
+  Future<void> saveNotificationID(String id) async{
+    String url = "https://svn.gallery360.co.kr:8443/flutterServer/saveNotification";
+    //String url = "https://www.gallery360.co.kr/flutterServer/saveNotification";
+    final response = await dio.post(url,
+        data: {
+          'id': id,
+        },
+        options: Options(
+          contentType: 'application/json; charset=UTF-8',
+        ));
+    print(response);
   }
 }
