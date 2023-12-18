@@ -77,6 +77,7 @@ class Gallery360Main extends StatelessWidget {
           child: child!,
         );
       },
+      navigatorKey: navigatorKey,
       home: const DrawerScreen(),
     );
   }
