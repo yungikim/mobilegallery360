@@ -3,7 +3,6 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
-import 'image_cache.dart';
 
 class ImageCard extends StatelessWidget {
   final int index;
@@ -31,7 +30,7 @@ class ImageCard extends StatelessWidget {
             // ),
             child: cacheImage(
               url:
-                  "${base_url}/artimage/${state2.artists[index].email}/art/preview/${state2.artists[index].avatar}.jpg",
+                  "$base_url/artimage/${state2.artists[index].email}/art/preview/${state2.artists[index].avatar}.jpg",
               width: width * 0.49,
               height: 200,
             ),
@@ -49,14 +48,14 @@ class ImageCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "${state2.artists[index].nickname}",
+                    Util.chageText(state2.artists[index].nickname.toString()),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "${state2.artists[index].ename}",
+                    Util.chageText(state2.artists[index].ename.toString()),
                     style: const TextStyle(color: Colors.white),
                   ),
                   const SizedBox(

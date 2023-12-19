@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/pages/artist/artist_detail.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:gallery360/pages/artist/model/artist_model.dart';
@@ -8,7 +7,6 @@ import 'package:gallery360/pages/artist/util/image_card.dart';
 import 'package:gallery360/pages/artist/util/image_card2.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class ArtistMainPage extends StatefulWidget {
@@ -222,7 +220,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                   _artistController.artists.value = <ArtistModel>[];
                                   _artistController.searchUser(queryController.text);
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.search,
                                   size: 20.0,
                                 ),
