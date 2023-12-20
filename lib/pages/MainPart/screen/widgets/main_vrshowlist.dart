@@ -59,11 +59,11 @@ class _VrShowListState extends State<VrShowList> {
                   items: items
                           .map((item) => GestureDetector(
                             onTap: (){
-                             // Util.UrlOpenWebview(item.shortUrl, item.lendingName);
-                              Util.UrlOpen(item.shortUrl);
+                              Util.UrlOpenWebview(item.shortUrl, item.lendingName);
+                              //Util.UrlOpen(item.shortUrl);
                             },
                             child: cacheImage(
-                                url: "${base_url}/artimage/lending/${item.image}",
+                                url: "$base_url/artimage/lending/${item.image}",
                                 childtext: Column(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [

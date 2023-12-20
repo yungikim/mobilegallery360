@@ -53,7 +53,7 @@ class ArtistRepository extends GetConnect{
       if (page > 1) {
         px = (page - 1) * limit;
       }
-      String url = "${base_url}/load_artist_public.mon?start=$px&perpage=$limit&ty=$type";
+      String url = "$base_url/load_artist_public.mon?start=$px&perpage=$limit&ty=$type";
       final response = await dio.get(url);
       print(Uri.parse(url));
       List<dynamic> data = response.data;
@@ -72,7 +72,7 @@ class ArtistRepository extends GetConnect{
         px = (page - 1) * limit;
       }
       px = 0;
-      String url = "${base_url}/search_artist_public.mon?q=$query&start=$px&perpage=$limit&ty=0";
+      String url = "$base_url/search_artist_public.mon?q=$query&start=$px&perpage=$limit&ty=0";
       print(Uri.parse(url));
       final response = await dio.get(url);
       List<dynamic> data = response.data;
@@ -85,7 +85,7 @@ class ArtistRepository extends GetConnect{
 
   Future<dynamic> artistDetail(String email) async {
     //try {
-    String url = "${base_url}/load_artist_detail_public.mon?email=$email";
+    String url = "$base_url/load_artist_detail_public.mon?email=$email";
     var response2 = await dio.get(url);
     return response2.data;
   }
@@ -98,7 +98,7 @@ class ArtistRepository extends GetConnect{
       if (page > 1) {
         px = (page - 1) * limit;
       }
-      String url = "${base_url}/load_image_for_artist.mon?start=$px&perpage=$limit&email=$email";
+      String url = "$base_url/load_image_for_artist.mon?start=$px&perpage=$limit&email=$email";
       final response = await dio.get(url);
       print(Uri.parse(url));
       List<dynamic> data = response.data;
@@ -115,7 +115,7 @@ class ArtistRepository extends GetConnect{
       if (page > 1) {
         px = (page - 1) * limit;
       }
-      String url = "${base_url}/load_VRRoom_public.mon?start=$px&perpage=$limit&ty=artist&artist=$email";
+      String url = "$base_url/load_VRRoom_public.mon?start=$px&perpage=$limit&ty=artist&artist=$email";
       final response = await dio.get(url);
       List<dynamic> data = response.data;
       data = data.sublist(1,data.length);   //첫번째 totalcount json데이터를 제거한다.

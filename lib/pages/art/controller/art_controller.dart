@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/art/repository/art_repository.dart';
 import 'package:get/get.dart';
-import '../../../util/Util.dart';
 import '../art_main.dart';
 import '../model/art_detail.dart';
 import '../model/art_in_artist.dart';

@@ -15,7 +15,7 @@ class ArtRepository extends GetConnect {
 
   Future<dynamic> loadMonthlyArt() async {
     try {
-      String url = "${base_url}/monthly_image_list.mon";
+      String url = "$base_url/monthly_image_list.mon";
       final response = await dio.get(url);
       print(Uri.parse(url));
       List<dynamic> data = response.data;
@@ -35,7 +35,7 @@ class ArtRepository extends GetConnect {
         sort = "random";
       }
       String url =
-          "${base_url}/all_image_list.mon?start=$px&perpage=$limit&sort=$sort";
+          "$base_url/all_image_list.mon?start=$px&perpage=$limit&sort=$sort";
 
       print(url);
       //  print("query : ${color}");
@@ -121,7 +121,7 @@ class ArtRepository extends GetConnect {
 
   Future<dynamic> SelectArtInfo(String dockey) async {
     try {
-      String url = "${base_url}/select_art_info.mon?dockey=$dockey";
+      String url = "$base_url/select_art_info.mon?dockey=$dockey";
       final response = await dio.get(url);
       print(Uri.parse(url));
       return response.data;
@@ -143,7 +143,7 @@ class ArtRepository extends GetConnect {
   Future<dynamic> loadImageListInnerArt(String email) async {
     try {
       String url =
-          "${base_url}/load_image_for_artist.mon?start=0&perpage=20&email=$email";
+          "$base_url/load_image_for_artist.mon?start=0&perpage=20&email=$email";
       final response = await dio.get(url);
       List<dynamic> data = response.data;
       return data.sublist(1, data.length); //첫번째 totalcount json데이터를 제거한다.

@@ -216,7 +216,7 @@ class _MainArtListState extends State<MainArtList> {
                                         ],
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: 30.0,
                                       height: 20.0,
                                       //  padding: EdgeInsets.zero,

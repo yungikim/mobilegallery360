@@ -31,9 +31,7 @@ class _TechState extends State<Tech> {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
               String title = snapshot.data["title"];
-              String content2 = "<html>" +
-                  Util.chageText(snapshot.data["content"]) +
-                  "</html>";
+              String content2 = "<html>${Util.chageText(snapshot.data["content"])}</html>";
               String content = snapshot.data['content'];
               print(content2);
               return Html(data: content2);

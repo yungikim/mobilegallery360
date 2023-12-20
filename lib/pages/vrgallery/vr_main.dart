@@ -4,7 +4,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/vrgallery/controller/vrcontroller.dart';
 import 'package:gallery360/pages/vrgallery/vr_detail.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../icons/custom_icons_icons.dart';

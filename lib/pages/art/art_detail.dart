@@ -1,17 +1,12 @@
-import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/art/controller/art_controller.dart';
 import 'package:gallery360/pages/art/photo_view.dart';
-import 'package:gallery360/pages/artist/model/artist_detail.dart';
 import 'package:get/get.dart';
 import 'package:linkify/linkify.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../util/Util.dart';
 import '../artist/artist_detail.dart';
 import 'model/art_detail.dart';
@@ -379,7 +374,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                         .artinfo.subfile![index];
                                     String email = item.filename.split("_")[0];
                                     String url =
-                                        "${base_url}/artimage/${email}/art/${item.filename}";
+                                        "$base_url/artimage/$email/art/${item.filename}";
                                     return cacheImage(
                                       url: url,
                                       margin: const EdgeInsets.only(bottom: 10.0),
@@ -649,7 +644,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                         itemBuilder: (context, index) {
                                           ArtInArt item = snapshot.data[index];
                                           String url =
-                                              "${base_url}/artimage/${item.email}/art/preview/${item.dockey}.jpg";
+                                              "$base_url/artimage/${item.email}/art/preview/${item.dockey}.jpg";
                                           return InkWell(
                                             onTap: () {
                                               Get.to(
@@ -769,7 +764,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                           keyboardType: TextInputType.multiline,
                           minLines: 5,
                           maxLines: 5,
-                          decoration: InputDecoration(hintText: "문의 내용을 입력하세요"),
+                          decoration: const InputDecoration(hintText: "문의 내용을 입력하세요"),
                         ),
                       ],
                     ),

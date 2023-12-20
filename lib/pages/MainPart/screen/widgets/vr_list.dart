@@ -1,10 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/models/vr_model.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../../util/Util.dart';
@@ -68,7 +67,7 @@ class _VRListState extends State<VRList> {
                             image: DecorationImage(
                               colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.darken),
                               image: NetworkImage(
-                                  "https://www.gallery360.co.kr/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
+                                  "$base_url/vr/vr/vrgallery/${e.email}/${e.dockey}/pano_f.jpg"),
                               fit: BoxFit.cover,
                             )),
                         child: Stack(

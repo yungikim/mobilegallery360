@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../const/const.dart';
 
 class PhotoDisplay extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../../util/Util.dart';
 import 'models/data_model.dart';
 
@@ -62,7 +61,7 @@ class _MainRecommandImageState extends State<MainRecommandImage> {
 
       return Obx(
           () => Container(
-          margin: EdgeInsets.all(10.0),
+          margin: const EdgeInsets.all(10.0),
           child: Column(
             children: [
               Padding(
@@ -77,8 +76,8 @@ class _MainRecommandImageState extends State<MainRecommandImage> {
               const SizedBox(
                 height: 0.0,
               ),
-              Text("붉은 자작나무 숲", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
-              Text("Zinnakim"),
+              const Text("붉은 자작나무 숲", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.0),),
+              const Text("Zinnakim"),
               const SizedBox(
                 height: 30.0,
               ),

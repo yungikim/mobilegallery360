@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/art/art_detail.dart';
 import 'package:gallery360/pages/art/controller/art_controller.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-
 import '../../const/const.dart';
 import '../../icons/custom_icons_icons.dart';
 import '../../util/Util.dart';
@@ -36,7 +33,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
 
   @override
   void initState() {
-    print("initState..........");
+    //print("initState..........");
     //콤보 박스 설정하기
     List<ValueOptions_Art> values = ValueOptions_Art.allValuesOptions;
     _scrollController = ScrollController();
@@ -93,7 +90,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
 
       // 앱이 다시 활성화될 때 스크롤 위치 복원
       if (_scrollController.hasClients) {
-        print(_artInfoController.scrollPosition.value);
+       // print(_artInfoController.scrollPosition.value);
         _scrollController.jumpTo(_artInfoController.scrollPosition.value);
       }
 
@@ -144,7 +141,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                 },
                                 child: cacheImage(
                                   url:
-                                      "${base_url}/artimage/${item.email}/art/expand/${item.dockey}.jpg",
+                                      "$base_url/artimage/${item.email}/art/expand/${item.dockey}.jpg",
                                   width: double.infinity,
                                   height: 600,
                                   childtext: Stack(
@@ -444,8 +441,6 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                       transition: Transition.rightToLeft);
                                   //print("result : ${result}");
                                   if (result != null){
-                                   // print("1123123123123123123123123123");
-                                    print("222  =>: ${_artInfoController.artinfolist.length}");
                                     int cnt = _artInfoController.artinfolist.length;
                                     int du = 800;
                                     if (cnt > 150){

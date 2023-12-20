@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
@@ -6,9 +5,7 @@ import 'package:gallery360/pages/artist/widget/artist_art.dart';
 import 'package:gallery360/pages/artist/widget/artist_express.dart';
 import 'package:gallery360/pages/artist/widget/artist_vr.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
-
 import '../../util/Util.dart';
 
 class ArtistDetailPage extends StatefulWidget {
@@ -116,7 +113,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                         //   ),
                         // ),
                        cacheImage(
-                         url: "${base_url}/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg",
+                         url: "$base_url/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg",
                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
                        ),
                       ],

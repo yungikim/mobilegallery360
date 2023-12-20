@@ -36,7 +36,7 @@ class ImageCard extends StatelessWidget {
             ),
           ),
           cacheImage(
-            url: "${base_url}/artimage/${state2.artists[index].email}/photo_list/${state2.artists[index].email}_gray.jpg",
+            url: "$base_url/artimage/${state2.artists[index].email}/photo_list/${state2.artists[index].email}_gray.jpg",
             width: width * 0.49,
             height: 200,
             colorFilter: ColorFilter.mode(
