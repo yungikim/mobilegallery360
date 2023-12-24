@@ -157,6 +157,76 @@ class cacheImage extends StatelessWidget {
   }
 }
 
+
+class cacheImage_artist extends StatelessWidget {
+  cacheImage_artist(
+      {super.key,
+        required this.url,
+        this.width,
+        this.height,
+        this.childtext,
+        this.bordertext,
+        this.boxshadow,
+        this.colorFilter,
+        this.margin});
+
+  final String url;
+  final double? width;
+  final double? height;
+  final Widget? childtext;
+  final Border? bordertext;
+  final BoxShadow? boxshadow;
+  final ColorFilter? colorFilter;
+  final EdgeInsets? margin;
+
+  final CacheManager cacheManager = CacheManager(Config('images_Key',
+      maxNrOfCacheObjects: 100, stalePeriod: const Duration(days: 7)));
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      cacheManager: cacheManager,
+      fadeInDuration: const Duration(milliseconds: 1),
+      key: UniqueKey(),
+      imageUrl: url,
+      imageBuilder: (context, imageProvider) => Container(
+        width: width,
+        height: height,
+        margin: margin,
+        decoration: BoxDecoration(
+            border: bordertext,
+            boxShadow: boxshadow != null ? [boxshadow!] : null,
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+              colorFilter: colorFilter,
+            )),
+        child: childtext,
+      ),
+      //아래를 돌리면 더 느려 보여서 주석처리한다.
+      // placeholder: (context, url) => const Center(
+      //   child: CircularProgressIndicator(),
+      // ),
+      placeholder: (context, url) => Container(
+        height: height ?? 300,
+      ),
+      errorWidget: (context, url, error) => Container(
+        width: width,
+        height: height,
+        margin: margin,
+        decoration: BoxDecoration(
+            border: bordertext,
+            boxShadow: boxshadow != null ? [boxshadow!] : null,
+            image: DecorationImage(
+              image: NetworkImage(url.replaceAll("photo_profile", "photo_list")),
+              fit: BoxFit.cover,
+              colorFilter: colorFilter,
+            )),
+      ),
+    );
+  }
+}
+
 //캐쉬이미지만 단독으로 사용한다.
 class cacheImageOnly extends StatelessWidget {
   cacheImageOnly({

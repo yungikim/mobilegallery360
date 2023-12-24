@@ -134,7 +134,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                         //       )
                         //   ),
                         // ),
-                       cacheImage(
+                       cacheImage_artist(
                          url: "$base_url/artimage/${widget.email}/photo_profile/${widget.email}_gray.jpg",
                          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
                        ),
