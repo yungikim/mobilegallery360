@@ -257,6 +257,11 @@ Widget actionButton() {
   );
 }
 
+void myspace(){
+  String url = "$base_url/main/myspace.jsp";
+  Util.UrlOpenWebview(url, "내공간에 작품 걸어보기");
+}
+
 
 Future openFile({required String url, String? fileName}) async{
   final file = await downloadFile(url, fileName!);

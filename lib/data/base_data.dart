@@ -197,7 +197,7 @@ final List<Widget> main_btn_widget = [
       style: TextStyle(color: Colors.white),
     ),
   ),
-  SizedBox(),
+  const SizedBox(),
   // OutlinedButton(
   //   onPressed: () {},
   //   style: OutlinedButton.styleFrom(
@@ -234,7 +234,9 @@ final List<Widget> main_btn_widget = [
     ),
   ),
   OutlinedButton(
-    onPressed: () {},
+    onPressed: () {
+      myspace();
+    },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
         shape: RoundedRectangleBorder(
