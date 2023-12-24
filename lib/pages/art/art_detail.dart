@@ -589,7 +589,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                         () => ArtistDetailPage(
                                                             email: item.email!),
                                                         transition:
-                                                            Transition.fadeIn,
+                                                            Transition.rightToLeft,
                                                         preventDuplicates: false);
                                                   },
                                                   style: OutlinedButton.styleFrom(

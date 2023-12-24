@@ -45,68 +45,63 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
           itemBuilder: (context, index) {
             var item = _artistController.detailvrs[index];
             var url = Util.VrUrl(item.dockey.toString());
-            return Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.withOpacity(0.4)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        Get.to(() => VrDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 270,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(url),
-                            fit: BoxFit.cover,
-                          ),
-                        ), //child:
+            return Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(() => VrDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 270,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(url),
+                          fit: BoxFit.cover,
+                        ),
+                      ), //child:
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    Util.chageText(item.title),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    item.nickname,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      const Icon(CustomIcons.icon_vr_view_count_b),
+                      const SizedBox(
+                        width: 5,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      Util.chageText(item.title),
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      item.nickname,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 14),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(CustomIcons.icon_vr_view_count_b),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text(Util.addComma2(item.read)),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Icon(CustomIcons.icon_vr_collect_count_b),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Text("${item.like}"),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
+                      Text(Util.addComma2(item.read)),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(CustomIcons.icon_vr_collect_count_b),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text("${item.like}"),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
               ),
             );
           },

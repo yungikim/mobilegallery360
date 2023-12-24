@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:gallery360/pages/artist/widget/artist_art.dart';
@@ -21,17 +22,38 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
   final ArtistController _artistController = Get.put(ArtistController());
   late TabController _tabController;
 
+
   @override
   void initState() {
-    callDetail();
-    _artistController.current_email.value = widget.email;
-    _artistController.dataLoadingComplete_art.value = false;
-    _artistController.dataLoadingComplete_vr.value = false;
+    // callDetail();
+    // _artistController.current_email.value = widget.email;
+    // _artistController.dataLoadingComplete_art.value = false;
+    // _artistController.dataLoadingComplete_vr.value = false;
 
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(_chageTab);
+
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+        callDetail();
+        _artistController.current_email.value = widget.email;
+        _artistController.dataLoadingComplete_art.value = false;
+        _artistController.dataLoadingComplete_vr.value = false;
+
+        // _tabController = TabController(length: 3, vsync: this);
+        // _tabController.addListener(_chageTab);
+    });
+
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   callDetail();
+    //   _artistController.current_email.value = widget.email;
+    //   _artistController.dataLoadingComplete_art.value = false;
+    //   _artistController.dataLoadingComplete_vr.value = false;
+    //
+    //   _tabController = TabController(length: 3, vsync: this);
+    //   _tabController.addListener(_chageTab);
+    // });
   }
 
   @override

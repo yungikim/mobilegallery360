@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:get/get.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
+import '../../../util/Util.dart';
 import 'image_cache.dart';
 
 class ImageCard2 extends StatelessWidget {
@@ -47,14 +48,14 @@ class ImageCard2 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "${state2.artists[index].nickname}",
+                      Util.chageText(state2.artists[index].nickname.toString()),
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "${state2.artists[index].ename}",
+                      Util.chageText(state2.artists[index].ename.toString()),
                       style:
                       const TextStyle(color: Colors.white),
                     ),
