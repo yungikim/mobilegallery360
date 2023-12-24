@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +10,7 @@ class ShowMyRoom extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("내 공간에 작품 걸어보기", style: TextStyle(fontSize: 22, color: Colors.white),),
+        title: Text(tr('main_8'), style: const TextStyle(fontSize: 22, color: Colors.white),),
         centerTitle: true,
         leading: IconButton(
           onPressed: (){

@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
@@ -43,13 +44,13 @@ class _VrShowListState extends State<VrShowList> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      customOutlineButton("기업홍보", 0),
+                      customOutlineButton(tr('main_33'), 0),
                       const SizedBox(width: 10.0,),
-                      customOutlineButton("개인전", 1),
+                      customOutlineButton(tr('main_34'), 1),
                       const SizedBox(width: 10.0,),
-                      customOutlineButton("공모전", 2),
+                      customOutlineButton(tr('main_35'), 2),
                       const SizedBox(width: 10.0,),
-                      customOutlineButton("페스티벌", 3),
+                      customOutlineButton(tr('main_36'), 3),
                     ],
                   ),
                 ),
@@ -141,45 +142,3 @@ class _VrShowListState extends State<VrShowList> {
   }
 
 }
-//
-// Widget customOutlineButton(Future<void> fun, String title){
-//   return OutlinedButton(
-//     onPressed : () async{
-//       await fun;
-//     },
-//     style: OutlinedButton.styleFrom(
-//         padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
-//         side: const BorderSide(color: Color(0xff9b3de4))
-//     ),
-//     child: Text(
-//       "#$title",
-//       style: const TextStyle(
-//         color: Color(0xff9b3de4),
-//       ),
-//     ),
-//   );
-// }
-//
-// class RButton extends StatelessWidget{
-//   final String title;
-//   final Future Function callback;
-//   RButton({super.key, required this.title, required this.Function});
-//
-//   @override
-//   Widget build(BuildContext context){
-//     return OutlinedButton(
-//       onPressed: onPressed,
-//       style: OutlinedButton.styleFrom(
-//           padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal:15.0),
-//           side: const BorderSide(color: Color(0xff9b3de4))
-//       ),
-//       child: Text(
-//         "#$title",
-//         style: const TextStyle(
-//           color: Color(0xff9b3de4),
-//         ),
-//       ),
-//     );
-//   }
-//
-// }

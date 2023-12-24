@@ -25,23 +25,6 @@ class _MainRecommandImageState extends State<MainRecommandImage> {
 
       DataModel dm = value[0];
       _dataController.mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
-
-      // print(value.length);
-      // for (int i = 0 ; i < _dataController.firstPageArtData.value.length; i++){
-      //   DataModel dm = _dataController.firstPageArtData.value[i];
-      //   if (i == 0){
-      //     print("처음이다......");
-      //     _dataController.mainPageRecommandImageURL.value = Util.makeMainArtListURL(dm.email, dm.artImgFilename);
-      //     _dataController.mainPageRecommandImageTitle.value = dm.artTitle;
-      //     _dataController.mainPageRecommandImageDockey.value = dm.dockey;
-      //     _dataController.mainPageRecommandImageArtist.value = dm.artArtist;
-      //   //  print(Util.makeMainArtListURL(dm.email, dm.artImgFilename));
-      //   }else{
-      //    // print("나머지......");
-      //    // print(Util.makeMainArtListURL(dm.email, dm.artImgFilename));
-      //     _dataController.firstPageArtData.add(dm);
-      //   }
-      // }
     });
   }
 

@@ -1,7 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../search/search_main.dart';
 
 class Spacebar2 extends StatelessWidget {
@@ -26,14 +25,14 @@ class Spacebar2 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "대화하듯 마음속 작품을",
+                  tr('main_38'),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.6),
                     fontSize: 15.0,
                   ),
                 ),
                 Text(
-                  "적어보세요.",
+                  tr('main_39'),
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.6),
                     fontSize: 15.0,
@@ -56,7 +55,7 @@ class Spacebar2 extends StatelessWidget {
                 side: BorderSide(color: Colors.white.withOpacity(0.8)),
               ),
               child: Text(
-                "통합검색 사용하기",
+                tr('main_40'),
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.white.withOpacity(0.8),

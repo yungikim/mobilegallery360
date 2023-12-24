@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
@@ -84,17 +85,17 @@ class _MainPageState extends State<MainPage> {
             const SliverToBoxAdapter(
               child: MainCarouselWidget(),
             ),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30.0,
                     ),
                     CenterText1(
-                      title1: "당신이 만나는 새로운 전시",
-                      title2: "VR 갤러리",
+                      title1: tr('main_27'),
+                      title2: tr('main_28'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30.0,
                     ),
                   ],
@@ -107,9 +108,9 @@ class _MainPageState extends State<MainPage> {
                 const SizedBox(
                   height: 30.0,
                 ),
-                const CenterText1(
-                  title1: "당신이 만나는 새로운 작품",
-                  title2: "추천 작품",
+                CenterText1(
+                  title1: tr('main_29'),
+                  title2: tr('main_30'),
                 ),
                 const SizedBox(
                   height: 30.0,
@@ -145,9 +146,6 @@ class _MainPageState extends State<MainPage> {
         ),
       );
     }
-
-
-  // }
  }
 
 

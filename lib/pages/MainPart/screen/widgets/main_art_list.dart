@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
@@ -137,8 +138,8 @@ class _MainArtListState extends State<MainArtList> {
                             borderRadius: BorderRadius.circular(0.0),
                           ),
                           side: const BorderSide(color: Colors.black)),
-                      child: const Text(
-                        "작품보기",
+                      child: Text(
+                        tr('main_30'),
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

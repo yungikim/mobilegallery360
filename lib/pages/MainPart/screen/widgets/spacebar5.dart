@@ -1,8 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery360/pages/MainPart/screen/widgets/show_myroom.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../../const/const.dart';
 import '../../../../util/Util.dart';
 
@@ -29,16 +26,16 @@ class SpaceBar5 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              "당신의 공간에 다양한 작품을 미리 걸어보세요",
-              style: TextStyle(
+            Text(
+              tr('main_45'),
+              style: const TextStyle(
                 fontSize: 14,
                 color: Colors.white,
               ),
             ),
-            const Text(
-              "내 공간에 작품 걸어보기 서비스는 당신의 가장 소중한 공간을 풍요롭게 채워드립니다.",
-              style: TextStyle(
+            Text(
+              tr('main_46'),
+              style: const TextStyle(
                 fontSize: 14,
                 color: Colors.white,
               ),
@@ -51,16 +48,16 @@ class SpaceBar5 extends StatelessWidget {
               onPressed: () {
                // Get.to(()=> const ShowMyRoom(), transition: Transition.fadeIn);
                 String url = "$base_url/main/myspace.jsp";
-                Util.UrlOpenWebview(url, "내공간에 작품 걸어보기");
+                Util.UrlOpenWebview(url, tr('main_8'));
               },
               style: OutlinedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0.0)),
                 backgroundColor: Colors.black,
               ),
-              child: const Text(
-                "시작하기",
-                style: TextStyle(color: Colors.white, fontSize: 14),
+              child: Text(
+                tr('main_47'),
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
           ],

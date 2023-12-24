@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gallery360/util/Util.dart';
@@ -15,24 +16,24 @@ class SpacebarBottom extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const Text(
-            "상호 : 갤러리360(주) | 대표 : 신효미",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+          Text(
+            tr('main_54'),
+            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
             textAlign: TextAlign.center,
           ),
-          const Text(
-            "사업자등록번호 : 828-88-01007 | 호스팅 제공자 : Google Cloud Platform",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+          Text(
+            tr('main_55'),
+            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
             textAlign: TextAlign.center,
           ),
-          const Text(
-            "통신판매업신고 : 제2019-경기파주-0223호",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 2),
+          Text(
+            tr('main_56'),
+            style: const TextStyle(color: Colors.white, fontSize: 13, height: 2),
             textAlign: TextAlign.center,
           ),
-          const Text(
-            "주소 : 경기도 파주시 소리천로25, 916호(유은타워 7차)",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+          Text(
+            tr('main_57'),
+            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
             textAlign: TextAlign.center,
           ),
           const Text(
@@ -56,9 +57,9 @@ class SpacebarBottom extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const Text(
-            "평일 10:00 ~ 17:00",
-            style: TextStyle(
+          Text(
+            tr('main_58'),
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
               color: Colors.white,
@@ -81,7 +82,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("사업자정보확인", style: TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_59'), style: const TextStyle(color: Colors.white, fontSize: 10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -95,7 +96,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("개인정보 취급방침", style: TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_60'), style: const TextStyle(color: Colors.white, fontSize: 10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -109,7 +110,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: const Text("이용약관", style: TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_61'), style: const TextStyle(color: Colors.white, fontSize: 10),),
               ),
               // const SizedBox(width: 10,),
               // OutlinedButton(

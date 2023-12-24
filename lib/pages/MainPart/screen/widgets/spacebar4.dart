@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,7 @@ class _SpaceBar4State extends State<SpaceBar4> {
                   text: TextSpan(
                     children: [
                       TextSpan(text: "${snapshot.data} ", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                      const TextSpan(text: "명의 작가와 아트 컨설턴트가", style: TextStyle(fontSize: 17)),
+                      TextSpan(text: tr('main_43'), style: const TextStyle(fontSize: 17)),
                     ]
                   ),
                 );
@@ -57,7 +58,7 @@ class _SpaceBar4State extends State<SpaceBar4> {
           ),
 
           Text(
-            "당신과 함께 합니다.",
+            tr('main_44'),
             style: TextStyle(
               color: Colors.white.withOpacity(0.9),
               fontSize: 17,

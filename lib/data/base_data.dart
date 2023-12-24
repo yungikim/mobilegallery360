@@ -41,18 +41,18 @@ final List<String> mainMessage = [
 ];
 
 final List<String> mainMessage_sub = [
-  '디지털 전시의 기획자와 관람객\n모두를 위한 새로운 경험을 제공합니다.',
-  '갤러리360와 함께 새로운 전시 문화를\n선도해 나갈 작가님을 모십니다.',
-  '세상에서 가장 쉽고, 직관적인 방법으로\nVR전시를 대관할 수 있습니다.',
-  '인공지능화가 큐리는 대가의 화풍을 학습\n세상 하나 뿐인 작품을 그려줍니다.',
-  '더 다양한 기능을 더 풍부한 전시를\nVR전시 서비스 리뉴얼 사이트에서\n경헝해 보세요',
-  '앞서 나가는 온라인 전시 솔루션\nVR갤러리 하루 동안 경험해 보고\n선택하세요',
-  '효과적인 디지털 마케팅\nD-Book으로 고민은 그만',
-  '상상만 하지 마세요!\n당신의 공간에 작품을 미리 걸어 보세요',
+  tr('main_9'),
+  tr('main_10'),
+  tr('main_11'),
+  tr('main_12'),
+  tr('main_13'),
+  tr('main_14'),
+  tr('main_15'),
+  tr('main_16'),
 ];
 
 final List<String> mainMessage_btn_title = [
-  '소개 영상 보기',
+  tr('main_17'),
   '작가 등록 하기',
   '자세히 알아보기',
   'AI페인터로 그려보기',
@@ -95,7 +95,7 @@ final List<Widget> main_btn_widget = [
       Get.to(
           () => VideoShow(
                 url: url2,
-                title: "갤러리360 소개 영상",
+                title: tr('main_25'),
               ),
           transition: Transition.fadeIn);
     },
@@ -108,36 +108,12 @@ final List<Widget> main_btn_widget = [
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text(
-      "소개 영상 보기",
-      style: TextStyle(color: Colors.white),
+    child: Text(
+      tr('main_17'),
+      style: const TextStyle(color: Colors.white),
     ),
   ),
-  SizedBox(),
-  // OutlinedButton(
-  //     // onPressed: () {
-  //     //   Get.to(
-  //     //       () => const WebViewPage(
-  //     //             url: 'https://exhibit.gallery360.co/',
-  //     //             title: "",
-  //     //           ),
-  //     //       transition: Transition.fade);
-  //     // },
-  //     // style: OutlinedButton.styleFrom(
-  //     //     backgroundColor: Colors.transparent,
-  //     //     shape: RoundedRectangleBorder(
-  //     //       borderRadius: BorderRadius.circular(0.0),
-  //     //     ),
-  //     //     side: const BorderSide(
-  //     //       color: Colors.white,
-  //     //       width: 1.0,
-  //     //     )),
-  //     // child: const Text(
-  //     //   "작가 등록 하기",
-  //     //   style: TextStyle(color: Colors.white),
-  //     // ),
-  //     ),
-
+  const SizedBox(),
   OutlinedButton(
     onPressed: () {
       Get.to(
@@ -156,32 +132,16 @@ final List<Widget> main_btn_widget = [
           color: Color(0xff4af5d4),
           width: 1.0,
         )),
-    child: const Text(
-      "자세히 알아보기",
-      style: TextStyle(color: Color(0xff4af5d4)),
+    child: Text(
+      tr('main_19'),
+      style: const TextStyle(color: Color(0xff4af5d4)),
     ),
   ),
-  SizedBox(),
-  // OutlinedButton(
-  //   onPressed: () {},
-  //   style: OutlinedButton.styleFrom(
-  //       backgroundColor: Colors.transparent,
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(0.0),
-  //       ),
-  //       side: const BorderSide(
-  //         color: Colors.white,
-  //         width: 1.0,
-  //       )),
-  //   child: const Text(
-  //     "AI페인터로 그려보기",
-  //     style: TextStyle(color: Colors.white),
-  //   ),
-  // ),
+  const SizedBox(),
   OutlinedButton(
     onPressed: () {
-      String url = "${base_url}/main/news/main_news_mobile.jsp?bun=150";
-      Util.UrlOpenWebview(url, "VR전시 서비스 소개");
+      String url = "$base_url/main/news/main_news_mobile.jsp?bun=150";
+      Util.UrlOpenWebview(url, tr('main_26'));
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
@@ -192,28 +152,12 @@ final List<Widget> main_btn_widget = [
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text(
-      "자세히 알아보기",
-      style: TextStyle(color: Colors.white),
+    child: Text(
+      tr('main_19'),
+      style: const TextStyle(color: Colors.white),
     ),
   ),
   const SizedBox(),
-  // OutlinedButton(
-  //   onPressed: () {},
-  //   style: OutlinedButton.styleFrom(
-  //       backgroundColor: Colors.transparent,
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(0.0),
-  //       ),
-  //       side: const BorderSide(
-  //         color: Colors.white,
-  //         width: 1.0,
-  //       )),
-  //   child: const Text(
-  //     "무료체험 신청하기",
-  //     style: TextStyle(color: Colors.white),
-  //   ),
-  // ),
   OutlinedButton(
     onPressed: () {
       String url = "$base_url/main/news/main_news_mobile.jsp?bun=65";
@@ -228,9 +172,9 @@ final List<Widget> main_btn_widget = [
           color: Colors.black,
           width: 1.0,
         )),
-    child: const Text(
-      "D-Book 알아보기",
-      style: TextStyle(color: Colors.white),
+    child: Text(
+      tr('main_23'),
+      style: const TextStyle(color: Colors.white),
     ),
   ),
   OutlinedButton(
@@ -246,9 +190,9 @@ final List<Widget> main_btn_widget = [
           color: Colors.white,
           width: 1.0,
         )),
-    child: const Text(
-      "작품 걸어보기",
-      style: TextStyle(color: Colors.white),
+    child: Text(
+      tr('main_24'),
+      style: const TextStyle(color: Colors.white),
     ),
   ),
 ];
@@ -289,29 +233,7 @@ final List<Widget> imageSliders = imageList
                     ),
                   ),
                 )
-                // Positioned(
-                //   bottom: 0.0,
-                //   left: 0.0,
-                //   right: 0.0,
-                //   child: Container(
-                //     decoration: const BoxDecoration(
-                //         gradient: LinearGradient(
-                //           colors: [
-                //             Color.fromARGB(200,0,0,0),
-                //             Color.fromARGB(0, 0, 0, 0),
-                //           ],
-                //           begin: Alignment.bottomCenter,
-                //           end: Alignment.topCenter,
-                //         )
-                //     ),
-                //     padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-                //     child: Text(
-                //       //'No. ${imageList.indexOf(item)} image',
-                //       "${mainMessage[imageList.indexOf(item)]}",
-                //       style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold),
-                //     ),
-                //   ),
-                // )
+
               ],
             ),
           ),

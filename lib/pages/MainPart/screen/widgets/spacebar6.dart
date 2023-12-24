@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SpaceBar6 extends StatelessWidget {
@@ -22,18 +23,18 @@ class SpaceBar6 extends StatelessWidget {
                 const SizedBox(
                   width: 30,
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "아트 쇼핑매거진 신청하기",
-                      style: TextStyle(
+                      tr('main_48'),
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),
                     Text(
-                      "신청하기",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      tr('main_49'),
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -59,16 +60,16 @@ class SpaceBar6 extends StatelessWidget {
                 const SizedBox(
                   width: 30,
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "실시간으로 문의하기",
-                      style: TextStyle(fontSize: 15),
+                      tr('main_50'),
+                      style: const TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "카카오톡 채널 친구추가",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      tr('main_51'),
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -82,7 +83,7 @@ class SpaceBar6 extends StatelessWidget {
               width: double.infinity,
               color: Colors.black.withOpacity(0.1),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               children: [
                 Image.asset(
@@ -92,22 +93,21 @@ class SpaceBar6 extends StatelessWidget {
                 const SizedBox(
                   width: 30,
                 ),
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "인공지능이 그려주는 그림",
-                      style: TextStyle(fontSize: 15),
+                      tr('main_52'),
+                      style: const TextStyle(fontSize: 15),
                     ),
                     Text(
-                      "AI Painter 무료 체험하기",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      tr('main_53'),
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )
               ],
             ),
-           
           ],
         ),
       ),

@@ -59,7 +59,7 @@ void main() async {
   runApp(EasyLocalization(
     supportedLocales: supportedLocales,
     path: "assets/translations",
-    fallbackLocale: const Locale('ko','KR'),  //설정언어가 없는 경우 기본 언어셋
+    fallbackLocale: const Locale('en','US'),  //설정언어가 없는 경우 기본 언어셋
     //startLocale: const Locale('ko','KR'),  //이설정을 하지 않으면 기기의 기본 언어 셋으로 설정됨
     child: const Gallery360Main(),
   ));

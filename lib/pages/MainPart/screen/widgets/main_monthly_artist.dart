@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
@@ -57,9 +58,9 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.white),
                                 ),
-                                child: const Text(
-                                  "작가 만나러 가기",
-                                  style: TextStyle(
+                                child: Text(
+                                  tr('main_32'),
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -68,53 +69,7 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                           ),
                       ],),
       )).toList(),
-      // .map((item) => Container(
-      //     width: double.infinity,
-      //     decoration: BoxDecoration(
-      //         border: Border.all(color: Colors.grey),
-      //         image: DecorationImage(
-      //           colorFilter: ColorFilter.mode(
-      //             Colors.black.withOpacity(0.3),
-      //             BlendMode.darken,
-      //           ),
-      //           image: NetworkImage(
-      //               "https://www.gallery360.co.kr/artimage/${item.email}/photo_list/${item.email}_gray.jpg"),
-      //           fit: BoxFit.cover,
-      //         )),
-      //     child: Stack(
-      //       children: [
-      //         Positioned(
-      //           bottom: 48.0,
-      //           left: 10.0,
-      //           child: Text(
-      //             "${item.nickname} | ${item.nameEng}",
-      //             style: const TextStyle(
-      //               fontWeight: FontWeight.w400,
-      //               color: Colors.white,
-      //             ),
-      //           ),
-      //         ),
-      //         Positioned(
-      //           bottom: 10.0,
-      //           left: 10.0,
-      //           child: Container(
-      //             alignment: Alignment.center,
-      //             width: 120,
-      //             height: 30,
-      //             decoration: BoxDecoration(
-      //               border: Border.all(color: Colors.white),
-      //             ),
-      //             child: const Text(
-      //               "작가 만나러 가기",
-      //               style: TextStyle(
-      //                 color: Colors.white,
-      //               ),
-      //             ),
-      //           ),
-      //         )
-      //       ],
-      //     )))
-      // .toList(),
+
       options: CarouselOptions(
       autoPlay: true,
       autoPlayInterval: const Duration(seconds: 10),

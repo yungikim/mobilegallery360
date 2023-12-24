@@ -113,27 +113,6 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                 height: 50.0,
                               ),
                               main_btn_widget[_current],
-                              // OutlinedButton(
-                              //   onPressed: () {},
-                              //   style: OutlinedButton.styleFrom(
-                              //     backgroundColor: _current == 6 ? Colors.black : Colors.transparent,
-                              //       shape: RoundedRectangleBorder(
-                              //         borderRadius:
-                              //             BorderRadius.circular(0.0),
-                              //       ),
-                              //       side: BorderSide(
-                              //         color:
-                              //             mainMessage_btn_color[_current],
-                              //         width: 1.0,
-                              //       )),
-                              //   child: Text(
-                              //     mainMessage_btn_title[
-                              //         imageList.indexOf(item)],
-                              //     style: TextStyle(
-                              //         color: mainMessage_btn_color[
-                              //             _current]),
-                              //   ),
-                              // ),
                             ],
                           ),
                         ),
@@ -159,28 +138,6 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                 });
               }),
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: imageSliders.asMap().entries.map((entry) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         _carouselController.animateToPage(entry.key);
-        //       },
-        //       child: Container(
-        //         width: 12.0,
-        //         height: 12.0,
-        //         margin: const EdgeInsets.symmetric(
-        //             vertical: 8.0, horizontal: 4.0),
-        //         decoration: BoxDecoration(
-        //             shape: BoxShape.circle,
-        //             color: (Theme.of(context).brightness == Brightness.dark
-        //                 ? Colors.white
-        //                 : Colors.black)
-        //                 .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-        //       ),
-        //     );
-        //   }).toList(),
-        // )
       ],
     );
   }

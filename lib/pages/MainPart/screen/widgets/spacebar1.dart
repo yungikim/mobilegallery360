@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Spacebar1 extends StatelessWidget {
@@ -16,12 +17,12 @@ class Spacebar1 extends StatelessWidget {
             fit: BoxFit.cover,
           )),
         ),
-        const Positioned.fill(
+        Positioned.fill(
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "좋은 작품을 만나는 현명한 방법!",
-              style: TextStyle(
+              tr('main_37'),
+              style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
                 color: Colors.white,

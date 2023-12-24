@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Spacebar3 extends StatelessWidget {
@@ -9,18 +10,18 @@ class Spacebar3 extends StatelessWidget {
       height: 100.0,
     //  color: Colors.blue,
       alignment: Alignment.center,
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "당신이 기획한 전시와 아이디어",
-            style: TextStyle(
+            tr('main_41'),
+            style: const TextStyle(
               fontSize: 18.0,
             ),
           ),
           Text(
-            "대관 서비스",
-            style: TextStyle(
+            tr('main_42'),
+            style: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),

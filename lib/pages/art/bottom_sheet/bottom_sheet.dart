@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../../util/Util.dart';
 import '../controller/art_controller.dart';
-import '../model/art_list_model.dart';
 
 final ArtInfoController _artInfoController = Get.put(ArtInfoController());
 
