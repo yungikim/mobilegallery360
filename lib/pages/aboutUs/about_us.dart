@@ -408,31 +408,35 @@ class _AboutUsState extends State<AboutUs> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        print("openfile");
-                        //OpenFile.open("https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
-                        //FileDownloader.downloadFile(url: "https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
-                        FileDownloader.downloadFile(
-                            //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
-                            url:
-                                "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573488&ty=1",
-                            name: "갤러리360_회사소개서.pdf",
-                            onProgress: (name, progress) {
-                              print(progress);
-                            },
-                            onDownloadCompleted: (String path) {
-                              print("완료 되었습니다");
-                              Get.snackbar(
-                                "FileDownload",
-                                "파일 다운로드가 완료 되었습니다.",
-                                backgroundColor: Colors.blue,
-                                snackPosition: SnackPosition.BOTTOM,
-                           //     forwardAnimationCurve: Curves.elasticInOut,
-                                reverseAnimationCurve: Curves.easeOut,
-                              );
-                            },
-                            onDownloadError: (String error) {
-                              print('DOWNLOAD ERROR: $error');
-                            });
+                        openFile(
+                          url: "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573488&ty=1",
+                          fileName: "갤러리360_회사소개서.pdf"
+                        );
+                        // print("openfile");
+                        // //OpenFile.open("https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
+                        // //FileDownloader.downloadFile(url: "https://www.gallery360.co.kr/cp_downloadFile.gu?type=Company");
+                        // FileDownloader.downloadFile(
+                        //     //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
+                        //     url:
+                        //         "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573488&ty=1",
+                        //     name: "갤러리360_회사소개서.pdf",
+                        //     onProgress: (name, progress) {
+                        //       print(progress);
+                        //     },
+                        //     onDownloadCompleted: (String path) {
+                        //       print("완료 되었습니다");
+                        //       Get.snackbar(
+                        //         "FileDownload",
+                        //         "파일 다운로드가 완료 되었습니다.",
+                        //         backgroundColor: Colors.blue,
+                        //         snackPosition: SnackPosition.BOTTOM,
+                        //    //     forwardAnimationCurve: Curves.elasticInOut,
+                        //         reverseAnimationCurve: Curves.easeOut,
+                        //       );
+                        //     },
+                        //     onDownloadError: (String error) {
+                        //       print('DOWNLOAD ERROR: $error');
+                        //     });
                       },
                       child: Container(
                         height: 70,
@@ -450,28 +454,32 @@ class _AboutUsState extends State<AboutUs> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        FileDownloader.downloadFile(
-                          //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
-                            url:
-                            "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573487&ty=1",
-                            name: "갤러리360_대관서비스_소개서.pdf",
-                            onProgress: (name, progress) {
-                              print(progress);
-                            },
-                            onDownloadCompleted: (String path) {
-                              print("완료 되었습니다");
-                              Get.snackbar(
-                                "FileDownload",
-                                "파일 다운로드가 완료 되었습니다.",
-                                backgroundColor: Colors.blue,
-                                snackPosition: SnackPosition.BOTTOM,
-                                //     forwardAnimationCurve: Curves.elasticInOut,
-                                reverseAnimationCurve: Curves.easeOut,
-                              );
-                            },
-                            onDownloadError: (String error) {
-                              print('DOWNLOAD ERROR: $error');
-                            });
+                        openFile(
+                            url: "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573487&ty=1",
+                            fileName: "갤러리360_대관서비스_소개서.pdf"
+                        );
+                        // FileDownloader.downloadFile(
+                        //   //https://exhibit.gallery360.co/book/dbook.jsp?key=/artimage/contest@gallery360.co.kr-spl-1611884022207/art_portfolio/contest@gallery360.co.kr-spl-1611884022207_3caac8eb5e9372b007de526e7b1d8b48.5365773-1611884679299.pdf
+                        //     url:
+                        //     "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573487&ty=1",
+                        //     name: "갤러리360_대관서비스_소개서.pdf",
+                        //     onProgress: (name, progress) {
+                        //       print(progress);
+                        //     },
+                        //     onDownloadCompleted: (String path) {
+                        //       print("완료 되었습니다");
+                        //       Get.snackbar(
+                        //         "FileDownload",
+                        //         "파일 다운로드가 완료 되었습니다.",
+                        //         backgroundColor: Colors.blue,
+                        //         snackPosition: SnackPosition.BOTTOM,
+                        //         //     forwardAnimationCurve: Curves.elasticInOut,
+                        //         reverseAnimationCurve: Curves.easeOut,
+                        //       );
+                        //     },
+                        //     onDownloadError: (String error) {
+                        //       print('DOWNLOAD ERROR: $error');
+                        //     });
                       },
                       child: Container(
                         height: 70,

@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 import 'package:linkify/linkify.dart';
+import 'package:open_file_plus/open_file_plus.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../const/const.dart';
@@ -251,4 +255,40 @@ Widget actionButton() {
           )),
     ),
   );
+}
+
+
+Future openFile({required String url, String? fileName}) async{
+  final file = await downloadFile(url, fileName!);
+  if (file == null){
+    return;
+  }
+  print('Path : ${file.path}');
+  final result = await OpenFile.open(file.path);
+  print("${result.type} / ${result.message}");
+
+}
+
+//Download file into private folder not visible to user
+Future<File?> downloadFile(String url, String name) async{
+  try{
+    final appStorage = await getApplicationDocumentsDirectory();
+    final file = File('${appStorage.path}/$name');
+    final response = await Dio().get(
+        url,
+        options: Options(
+          responseType: ResponseType.bytes,
+          followRedirects: false,
+          receiveTimeout: const Duration(minutes: 100000),
+        )
+    );
+
+    final raf = file.openSync(mode: FileMode.write);
+    raf.writeFromSync(response.data);
+    await raf.close();
+    return file;
+  }catch(e){
+    return null;
+  }
+
 }
