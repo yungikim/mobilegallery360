@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -33,7 +34,7 @@ class cc extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: Text("Download & Open"),
+                child: Text(tr('a1')),
                 onPressed: () =>
                 // openFile(
                 //   url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4",

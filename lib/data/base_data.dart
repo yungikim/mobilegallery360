@@ -1,9 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import '../../../core/const.dart';
 import '../util/video_show.dart';
 
@@ -30,14 +30,14 @@ final List<String> imageList = [
 ];
 
 final List<String> mainMessage = [
-  '전시에 대한\n새로운 생각',
-  '갤러리360\n작가 모집',
-  'VR갤러리도\n빌려쓰세요',
-  '큐리야~~\n그림을 부탁해!',
-  'VR 전시 서비스\n\n리뉴얼사이트 오픈',
-  '대관서비스\n궁금하시죠?',
-  '디지털 출판\nD-Book',
-  '내 공간에 작품 걸기',
+  tr('main_1'),
+  tr('main_2'),
+  tr('main_3'),
+  tr('main_4'),
+  tr('main_5'),
+  tr('main_6'),
+  tr('main_7'),
+  tr('main_8'),
 ];
 
 final List<String> mainMessage_sub = [
@@ -216,7 +216,7 @@ final List<Widget> main_btn_widget = [
   // ),
   OutlinedButton(
     onPressed: () {
-      String url = "${base_url}/main/news/main_news_mobile.jsp?bun=65";
+      String url = "$base_url/main/news/main_news_mobile.jsp?bun=65";
       Util.UrlOpenWebview(url, "D-BOOK 서비스 소개");
     },
     style: OutlinedButton.styleFrom(
@@ -279,7 +279,7 @@ final List<Widget> imageSliders = imageList
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("${mainMessage[imageList.indexOf(item)]}",
+                        Text(mainMessage[imageList.indexOf(item)],
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15.0,

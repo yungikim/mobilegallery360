@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class MyHttpOverrides extends HttpOverrides {
 Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  if (message.notification != null){
+  if (message.notification != null) {
     print('Title : ${message.notification?.title}');
     print('Body : ${message.notification?.body}');
     print('Payload : ${message.data}');
@@ -46,12 +47,29 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   /////////////////////////////////////////////////
 
+  //다국어 처리를 위한 기능 초기화
+  await EasyLocalization.ensureInitialized();
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //WidgetsFlutterBinding.ensureInitialized();
   //await Permission.microphone.request();
 
-  runApp(const Gallery360Main());
+  //runApp(const Gallery360Main());
+
+  runApp(EasyLocalization(
+    supportedLocales: supportedLocales,
+    path: "assets/translations",
+    fallbackLocale: const Locale('ko','KR'),  //설정언어가 없는 경우 기본 언어셋
+    //startLocale: const Locale('ko','KR'),  //이설정을 하지 않으면 기기의 기본 언어 셋으로 설정됨
+    child: const Gallery360Main(),
+  ));
 }
+//앱에서 지원하는 언어 리스트 변수1
+final supportedLocales =[
+  const Locale('en','US'),
+  const Locale('ko','KR'),
+];
+
 
 class Gallery360Main extends StatelessWidget {
   const Gallery360Main({super.key});
@@ -60,6 +78,11 @@ class Gallery360Main extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     return GetMaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+
+
       title: "Gallery360 Mobile",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
