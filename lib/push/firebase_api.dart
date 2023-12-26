@@ -110,7 +110,7 @@ class FirebaseApi{
 
   Future<void> saveNotificationID(String id) async{
     //String url = "https://svn.gallery360.co.kr:8443/flutterServer/saveNotification";
-    String url = "https://www.gallery360.co.kr/flutterServer/saveNotification.gm";
+    String url = "${base_url}/flutterServer/saveNotification.gm";
     final response = await dio.post(url,
         data: {
           'id': id,
@@ -118,7 +118,8 @@ class FirebaseApi{
         options: Options(
           contentType: 'application/json; charset=UTF-8',
         ));
-    print(response);
+    // print("=================================");
+    // print(response);
 
   }
 }
