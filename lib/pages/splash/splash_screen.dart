@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:video_player/video_player.dart';
-
 import '../../draw/drawScreen.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../main.dart';
+import '../util/Util.dart';
 
 
 class FirebaseApi{
@@ -54,8 +55,12 @@ class FirebaseApi{
 
   void handleMessage(RemoteMessage? message){
     if (message == null) return;
-      print(message);
-      Get.to(() => NotificationScreen(message: message,));
+      //print(message);
+      //Get.to(() => NotificationScreen(message: message,));
+
+      String url = "$base_url/push.jsp?id="+message.data['id'];
+      Util.UrlOpenWebview(url, message.notification!.title.toString());
+
     //   navigatorKey.currentState?.pushNamed(
     //     NotificationScreen.route,
     //     arguments: message,
@@ -111,6 +116,7 @@ class FirebaseApi{
   Future<void> saveNotificationID(String id) async{
     //String url = "https://svn.gallery360.co.kr:8443/flutterServer/saveNotification";
     String url = "${base_url}/flutterServer/saveNotification.gm";
+    print(url);
     final response = await dio.post(url,
         data: {
           'id': id,
@@ -118,8 +124,8 @@ class FirebaseApi{
         options: Options(
           contentType: 'application/json; charset=UTF-8',
         ));
-    // print("=================================");
-    // print(response);
+     print("=================================");
+     print(response);
 
   }
 }
