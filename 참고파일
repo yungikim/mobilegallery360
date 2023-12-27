@@ -1,14 +1,17 @@
 
 안드로이드 upload키 생서
- keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 패스워드 : gallery360
 
 iOS 배포파일 만들기
 flutter build ipa
+==> build > ios > archive > Runner.xcarchive 마우스 우클 open width finder 하고 더블 클릭해서 validate, distribute 진행
+==> https://appstoreconnect.apple.com/ 사이트에서 배포
 flutter build appbundle
+=> play.google.com/console 에서 build된 파일 업로드 후 배포
 
 아이콘 변경하기
 flutter pub run flutter_launcher_icons
 
 패키지명 변경하기
- flutter pub run change_app_package_name:main com.gallery360.mobile
+flutter pub run change_app_package_name:main com.gallery360.mobile
