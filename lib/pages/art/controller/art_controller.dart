@@ -159,10 +159,18 @@ class ArtInfoController extends GetxController {
     dataLoadingComplete_artinfo.value = true;
   }
 
-  Future getArtInfo2() async {
+  Future getArtInfo2(String email) async {
+
+    await getArtInfo();
+    await getArtInArtist(email);
+
+
     dataLoadingComplete_artinfo.value = false;
     var response = await _artRepository.SelectArtInfo(select_art_key.value);
     artinfo = ArtInfo.fromJson(response);
+
+
+
     return artinfo;
   }
 

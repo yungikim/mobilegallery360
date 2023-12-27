@@ -37,8 +37,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   void initState() {
     _artInfoController.select_art_key.value = widget.dockey;
     email = widget.dockey.split("_")[0];
-    _artInfoController.getArtInfo();
-    _artInfoController.getArtInArtist(email);
+    // _artInfoController.getArtInfo();
+    // _artInfoController.getArtInArtist(email);
     _artInfoController.artinarts.value = <ArtInArt>[];
 
     // TODO: implement initState
@@ -84,7 +84,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
               )),
         ),
         body: FutureBuilder(
-          future: _artInfoController.getArtInfo2(),
+          future: _artInfoController.getArtInfo2(email),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
