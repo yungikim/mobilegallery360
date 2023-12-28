@@ -58,7 +58,10 @@ class FirebaseApi{
       //print(message);
       //Get.to(() => NotificationScreen(message: message,));
 
-      String url = "$base_url/push.jsp?id="+message.data['id'];
+      // String url = "$base_url/push.jsp?id="+message.data['id'];
+      // Util.UrlOpenWebview(url, message.notification!.title.toString());
+
+      String url = "$base_url/main/news/main_news_mobile.jsp?bun=${message.data['id']}";
       Util.UrlOpenWebview(url, message.notification!.title.toString());
 
     //   navigatorKey.currentState?.pushNamed(
