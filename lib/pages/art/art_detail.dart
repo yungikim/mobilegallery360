@@ -657,6 +657,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                             child: Container(
                                               margin: const EdgeInsets.all(2.0),
                                               decoration: BoxDecoration(
+                                                  border: Border.all(color: Colors.grey.shade300),
                                                   image: DecorationImage(
                                                       image: NetworkImage(url),
                                                       fit: BoxFit.cover)),
