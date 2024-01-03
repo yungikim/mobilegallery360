@@ -98,6 +98,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                   ? "가격문의"
                   : "￦${Util.addComma(item.artPrice / 10000)}만원";
               return CustomScrollView(
+                physics: const ClampingScrollPhysics(),
                 slivers: [
                   SliverToBoxAdapter(
                     child: Padding(

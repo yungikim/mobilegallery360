@@ -40,6 +40,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
     return SafeArea(
       child: Scaffold(
         body: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
           slivers: [
             SliverAppBar(
               elevation: 0,
@@ -57,7 +58,7 @@ class _VrDetailPageState extends State<VrDetailPage> {
               // title: Text("111111", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white.withOpacity(0.7)),),
               floating: true,
               pinned: true,
-              expandedHeight: 520,
+              expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 520 : ResponsiveBreakpoints.of(context).isTablet ? 520 : 700,
               flexibleSpace: FlexibleSpaceBar(
                 background: InAppWebView(
                   //initialFile: "assets/html/index.html",

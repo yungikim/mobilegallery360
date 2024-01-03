@@ -107,6 +107,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
           child: customAppBar(context),
         ),
         body: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
           controller: _scrollController,
           slivers: [
             SliverToBoxAdapter(

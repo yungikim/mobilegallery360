@@ -123,6 +123,7 @@ class _VrMainPageState extends State<VrMainPage> {
           child: customAppBar(context),
         ),
         body: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
           controller: _scrollController,
           slivers: [
             // 최상단 케러셀 보기

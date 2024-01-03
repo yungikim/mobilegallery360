@@ -33,6 +33,7 @@ class _AboutUsState extends State<AboutUs> {
           child: customAppBar(context),
         ),
         body: CustomScrollView(
+          physics: const ClampingScrollPhysics(),
           slivers: [
             SliverToBoxAdapter(
               child: FutureBuilder(

@@ -27,6 +27,7 @@ class dbookService extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
             Padding(
@@ -34,7 +35,7 @@ class dbookService extends StatelessWidget {
               child: Container(
                 width: width,
                 height:
-                    ResponsiveBreakpoints.of(context).isMobile ? 1450 : ResponsiveBreakpoints.of(context).isTablet ? 3000 : 4500,
+                    ResponsiveBreakpoints.of(context).isMobile ? 1450 : ResponsiveBreakpoints.of(context).isTablet ? 3000 : 4300,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(

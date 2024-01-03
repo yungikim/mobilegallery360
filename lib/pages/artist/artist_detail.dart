@@ -108,6 +108,7 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
           return DefaultTabController(
             length: 3,
             child: NestedScrollView(
+              physics: const ClampingScrollPhysics(),
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverAppBar(
                   backgroundColor: Colors.black,

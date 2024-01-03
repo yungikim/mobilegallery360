@@ -85,6 +85,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
         body: Obx(() {
           if (_artistController.dataLoadingComplete.value) {
             return CustomScrollView(
+              physics: const ClampingScrollPhysics(),
               controller: _scrollController,
               slivers: [
                 SliverAppBar(

@@ -16,6 +16,7 @@ class ArtistExpressWidget extends StatelessWidget {
     const double dfontsize = 13.0;
 
     return SingleChildScrollView(
+      physics: const ClampingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(

@@ -38,6 +38,7 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
           );
         }
         return MasonryGridView.builder(
+          physics: const ClampingScrollPhysics(),
           itemCount: _artistController.detailvrs.length,
           gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: ResponsiveBreakpoints.of(context).isMobile ? 1 : 2,
