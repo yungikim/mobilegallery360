@@ -560,7 +560,7 @@ class _AboutUsState extends State<AboutUs> {
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
                         height: ResponsiveBreakpoints.of(context).isMobile
-                            ? 780
+                            ? 820
                             : 680,
                         width: double.infinity,
                         //   color: Colors.red,
@@ -817,7 +817,7 @@ class _AboutUsState extends State<AboutUs> {
                           vertical: 20, horizontal: 10),
                       content: SizedBox(
                         height: ResponsiveBreakpoints.of(context).isMobile
-                            ? 820
+                            ? 850
                             : 710,
                         width: double.infinity,
                         //   color: Colors.red,
