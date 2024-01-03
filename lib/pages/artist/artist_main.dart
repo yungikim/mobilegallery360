@@ -95,7 +95,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                   automaticallyImplyLeading: false,
                   floating: false,
                   pinned: false,
-                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : 550,
+                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : ResponsiveBreakpoints.of(context).isTablet ? 380 : 550,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(
                       children: [
