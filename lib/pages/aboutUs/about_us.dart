@@ -1,6 +1,5 @@
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:gallery360/pages/aboutUs/controller/about_controller.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';

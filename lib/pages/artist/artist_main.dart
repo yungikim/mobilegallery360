@@ -92,12 +92,12 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                   automaticallyImplyLeading: false,
                   floating: false,
                   pinned: false,
-                  expandedHeight: 250,
+                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : 550,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(
                       children: [
                         Container(
-                          height: 250,
+                          //height: 650,
                           decoration: const BoxDecoration(
                               color: Colors.black,
                               image: DecorationImage(

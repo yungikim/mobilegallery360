@@ -114,13 +114,16 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                   automaticallyImplyLeading: false,
                   floating: false,
                   pinned: true,
-                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : 350,
-                  actions: [
-                      IconButton(onPressed: (){
-                        Get.back();
-                      }, icon: const Icon(Icons.close, color: Colors.white, size: 25,)),
-                  ],
-                  title: const Text("작가 상세보기", style: TextStyle(color: Colors.white, fontSize:18),),
+                  expandedHeight: ResponsiveBreakpoints.of(context).isMobile ? 250 : 500,
+                  leading: IconButton(onPressed: (){
+                    Get.back();
+                  }, icon: const Icon(Icons.arrow_back_ios, color: Colors.white,),),
+                  // actions: [
+                  //     IconButton(onPressed: (){
+                  //       Get.back();
+                  //     }, icon: const Icon(Icons.close, color: Colors.white, size: 25,)),
+                  // ],
+                 // title: const Text("작가 상세보기", style: TextStyle(color: Colors.white, fontSize:18),),
                   centerTitle: true,
                   flexibleSpace: FlexibleSpaceBar(
                     background: Stack(

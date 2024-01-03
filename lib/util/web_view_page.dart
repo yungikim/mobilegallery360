@@ -18,7 +18,7 @@ class _WebViewPageState extends State<WebViewPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: widget.title.isNotEmpty ? AppBar(
           title: Text(
             widget.title,
             style: const TextStyle(color: Colors.white, fontSize: 18),
@@ -34,7 +34,7 @@ class _WebViewPageState extends State<WebViewPage> {
               color: Colors.white,
             ),
           ),
-        ),
+        ) : null,
         body: InAppWebView(
           initialUrlRequest: URLRequest(
             url: Uri.parse(widget.url),

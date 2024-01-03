@@ -116,12 +116,13 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                             child: Hero(
                               tag: widget.dockey,
                               child: Container(
-                                height: 450,
+                                width: width * 0.97,
+                                height: ResponsiveBreakpoints.of(context).isMobile ? 450 : 750,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
                                             "$base_url/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
-                                        fit: BoxFit.fitHeight)),
+                                        fit: BoxFit.fitWidth)),
                               ),
                             ),
                           ),
@@ -136,7 +137,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                 color: Colors.grey),
                           ),
                           Text(
-                            "Copyright © ${item.artArtist}. All rights reserved.",
+                            "Copyright © ${ Util.chageText(item.artArtist)}. All rights reserved.",
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -175,7 +176,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                           ),
                                         ),
                                         Text(
-                                          "${item.artArtist}",
+                                          Util.chageText(item.artArtist),
                                           style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,
@@ -520,14 +521,14 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                           .spaceEvenly,
                                                   children: [
                                                     SizedBox(
-                                                      width: item.artArtist
+                                                      width: Util.chageText(item.artArtist)
                                                                   .toString()
                                                                   .length >
                                                               5
                                                           ? 170
                                                           : 80,
                                                       child: Text(
-                                                        "${item.artArtist}",
+                                                        Util.chageText(item.artArtist),
                                                         style: const TextStyle(
                                                           fontSize: 23,
                                                           fontWeight:

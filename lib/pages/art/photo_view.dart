@@ -19,7 +19,7 @@ class _PhotoViewState extends State<PhotoDisplay> {
     String url = "$base_url/artimage/${widget.email}/art/watermark/${widget.dockey}.jpg";
     return Scaffold(
       appBar: AppBar(
-        title: const Text("확대보기",style: TextStyle(color: Colors.white, fontSize: 18),),
+       // title: const Text("확대보기",style: TextStyle(color: Colors.white, fontSize: 18),),
         centerTitle: false,
         backgroundColor: Colors.black,
         leading: IconButton(
@@ -31,9 +31,9 @@ class _PhotoViewState extends State<PhotoDisplay> {
       ),
       body: PhotoView(
         imageProvider: NetworkImage(url),
-        initialScale: PhotoViewComputedScale.contained * 0.8,
-        minScale: PhotoViewComputedScale.contained * 0.8,
-        maxScale: PhotoViewComputedScale.contained * 5.0,
+        initialScale: PhotoViewComputedScale.contained * 0.95,
+        minScale: PhotoViewComputedScale.contained * 0.5,
+        maxScale: PhotoViewComputedScale.contained * 10.0,
         heroAttributes: PhotoViewHeroAttributes(tag: widget.dockey),
       ),
     );
