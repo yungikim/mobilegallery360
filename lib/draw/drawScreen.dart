@@ -6,6 +6,7 @@ import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controlle
 import 'package:gallery360/pages/aboutUs/about_us.dart';
 import 'package:gallery360/pages/art/art_main.dart';
 import 'package:gallery360/pages/artist/artist_main.dart';
+import 'package:gallery360/pages/dbook/dbook_main.dart';
 import 'package:gallery360/pages/tech/tech.dart';
 import 'package:gallery360/pages/vrgallery/vr_main.dart';
 import 'package:gallery360/util/Util.dart';
@@ -67,11 +68,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
               //draw메뉴를 닫고 URL로 이동한다.
               ZoomDrawer.of(context)!.close()?.then((value) => cls());
             } else if (item.title == "D-Book 서비스") {
-              String url =
-                  "${base_url}/main/news/main_news_mobile.jsp?bun=65&111";
-              ZoomDrawer.of(context)!
-                  .close()
-                  ?.then((value) => Util.UrlOpenWebview(url, "D-BOOK 서비스 소개"));
+              ZoomDrawer.of(context)!.close()?.then((value) =>  Get.to(()=> const dbookService(), transition: Transition.rightToLeft));
+
+
+              // String url =
+              //     "${base_url}/main/news/main_news_mobile.jsp?bun=65&111";
+              // ZoomDrawer.of(context)!
+              //     .close()
+              //     ?.then((value) => Util.UrlOpenWebview(url, "D-BOOK 서비스 소개"));
             } else {
               setState(() {
                 currentItem = item;
