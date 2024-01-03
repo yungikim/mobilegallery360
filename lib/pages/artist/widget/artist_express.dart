@@ -3,6 +3,7 @@ import 'package:gallery360/pages/artist/controller/artist_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gallery360/pages/artist/model/artist_detail.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 import '../../../util/Util.dart';
 
@@ -13,7 +14,9 @@ class ArtistExpressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double dfontsize = 13.0;
+    final double dfontsize = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+    final double default2 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
+
 
     return SingleChildScrollView(
       physics: const ClampingScrollPhysics(),
@@ -45,7 +48,7 @@ class ArtistExpressWidget extends StatelessWidget {
                 Util.chageText(
                         _artistController.artistInfo.value.content.toString()) ??
                     '',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: dfontsize,
                 ),
               ),
@@ -73,7 +76,7 @@ class ArtistExpressWidget extends StatelessWidget {
                             .toString()) ??
                         '',
                     style:
-                        const TextStyle(letterSpacing: 1, fontSize: dfontsize),
+                    TextStyle(letterSpacing: 1, fontSize: dfontsize),
                   ),
                   const SizedBox(
                     height: 40,
@@ -83,7 +86,7 @@ class ArtistExpressWidget extends StatelessWidget {
             ),
             Visibility(
               visible: _artistController.artistInfo.value.group != null &&
-                  _artistController.artistInfo.value.group!.length > 0,
+                  _artistController.artistInfo.value.group!.isNotEmpty,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,7 +102,7 @@ class ArtistExpressWidget extends StatelessWidget {
                   ),
                   Text(
                     Util.chageText(draw0()),
-                    style: const TextStyle(fontSize: dfontsize),
+                    style: TextStyle(fontSize: dfontsize),
                   ),
                   const SizedBox(
                     height: 20,
@@ -124,7 +127,7 @@ class ArtistExpressWidget extends StatelessWidget {
                   ),
                   Text(
                     Util.chageText(draw1()),
-                    style: const TextStyle(fontSize: dfontsize),
+                    style: TextStyle(fontSize: dfontsize),
                   ),
                   const SizedBox(
                     height: 30,
@@ -151,7 +154,7 @@ class ArtistExpressWidget extends StatelessWidget {
                   ),
                   Text(
                     Util.chageText(draw4()),
-                    style: const TextStyle(fontSize: dfontsize),
+                    style: TextStyle(fontSize: dfontsize),
                   ),
                   const SizedBox(
                     height: 30,
@@ -275,6 +278,7 @@ class ArtistExpressWidget extends StatelessWidget {
 
   Widget changeTextDisplay(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
     if (_artistController.artistInfo.value.display != null) {
       return ListView.builder(
         shrinkWrap: true,
@@ -285,10 +289,10 @@ class ArtistExpressWidget extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(width : 80, child: Text(item.term)),
+              SizedBox(width : 80, child: Text(item.term, style: TextStyle(fontSize: default5),)),
               const SizedBox(width: 10,),
               SizedBox(width: width - 140,
-                child: Text(Util.chageText(item.title.trim())),
+                child: Text(Util.chageText(item.title.trim()), style: TextStyle(fontSize: default5),),
               ),
             ],
           );

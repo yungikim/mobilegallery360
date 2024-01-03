@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
 import 'package:get/get.dart';
 import 'package:gallery360/pages/artist/controller/artist_controller.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../util/Util.dart';
 import 'image_cache.dart';
 
@@ -14,6 +15,9 @@ class ImageCard2 extends StatelessWidget {
 
     final ArtistController state2 = Get.put(ArtistController());
     final width = MediaQuery.of(context).size.width;
+    final double default2 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+    final double default6 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 18;
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -49,15 +53,15 @@ class ImageCard2 extends StatelessWidget {
                   children: [
                     Text(
                       Util.chageText(state2.artists[index].nickname.toString()),
-                      style: const TextStyle(
+                      style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: default6,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       Util.chageText(state2.artists[index].ename.toString()),
                       style:
-                      const TextStyle(color: Colors.white),
+                      TextStyle(color: Colors.white, fontSize: default5),
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -68,24 +72,25 @@ class ImageCard2 extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.vrpano,
-                                color: Colors.white, size: 20),
+                            Icon(Icons.vrpano,
+                                color: Colors.white, size: default2),
                             Text(
                               state2.artists[index].vrcount ==
                                   null
                                   ? "  "
                                   : state2.artists[index].vrcount
                                   .toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
+                                fontSize: default5,
                                   color: Colors.white),
                             ),
                             const SizedBox(
                               width: 5.0,
                             ),
-                            const Icon(
+                            Icon(
                               Icons.article_outlined,
                               color: Colors.white,
-                              size: 20,
+                              size: default2,
                             ),
                             Text(
                               state2.artists[index].artcount ==
@@ -93,7 +98,8 @@ class ImageCard2 extends StatelessWidget {
                                   ? " "
                                   : state2.artists[index].artcount
                                   .toString(),
-                              style: const TextStyle(
+                              style: TextStyle(
+                                fontSize: default5,
                                   color: Colors.white),
                             ),
                           ],

@@ -92,6 +92,10 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
 
   @override
   Widget build(BuildContext context) {
+
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 15;
+    final double default6 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 18;
+
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Colors.black,
@@ -150,8 +154,8 @@ class _ArtistDetailPageState extends State<ArtistDetailPage> with TickerProvider
                     indicatorColor: Colors.red,
                     labelColor: Colors.white,
                     unselectedLabelColor: Colors.white,
-                    labelStyle: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                    unselectedLabelStyle: const TextStyle(fontSize: 15.0),
+                    labelStyle: TextStyle(fontSize: default6, fontWeight: FontWeight.bold),
+                    unselectedLabelStyle: TextStyle(fontSize: default5),
                     tabs: const [
                       Tab(
                         text: "작가 소개",

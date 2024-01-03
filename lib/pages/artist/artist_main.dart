@@ -75,6 +75,8 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double default4 = ResponsiveBreakpoints.of(context).isDesktop ? 38 : 25;
+
     return Scaffold(
         floatingActionButton: actionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -122,7 +124,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.8),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24.0,
+                                  fontSize: default4,
                                 ),
                               ),
                               Text(
@@ -130,7 +132,7 @@ class _ArtistMainPageState extends State<ArtistMainPage> {
                                 style: TextStyle(
                                   color: Colors.white.withOpacity(0.8),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24.0,
+                                  fontSize: default4,
                                 ),
                               ),
                             ],

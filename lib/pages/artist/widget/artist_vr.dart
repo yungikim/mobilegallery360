@@ -30,6 +30,11 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final double default3 = ResponsiveBreakpoints.of(context).isDesktop ? 25 : 16;
+    final double default4 = ResponsiveBreakpoints.of(context).isDesktop ? 38 : 25;
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+
+
     return Obx(() {
       if (_artistController.dataLoadingComplete_vr.value) {
         if (_artistController.detailvrs.isEmpty){
@@ -71,32 +76,32 @@ class _ArtistVRWidgetState extends State<ArtistVRWidget> {
                   ),
                   Text(
                     Util.chageText(item.title),
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: default3, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     item.nickname,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 14),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: default5),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
-                      const Icon(CustomIcons.icon_vr_view_count_b),
+                      Icon(CustomIcons.icon_vr_view_count_b, size: default3,),
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(Util.addComma2(item.read)),
+                      Text(Util.addComma2(item.read), style: TextStyle(fontSize: default5),),
                       const SizedBox(
                         width: 10,
                       ),
-                      const Icon(CustomIcons.icon_vr_collect_count_b),
+                      Icon(CustomIcons.icon_vr_collect_count_b, size: default3,),
                       const SizedBox(
                         width: 5,
                       ),
-                      Text("${item.like}"),
+                      Text("${item.like}", style: TextStyle(fontSize: default5),),
                     ],
                   ),
                   const SizedBox(

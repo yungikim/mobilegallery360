@@ -29,6 +29,9 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13;
+    final double default6 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 18;
+
     return Obx(() {
       if (_artistController.dataLoadingComplete_art.value) {
         if (_artistController.detailarts.isEmpty){
@@ -91,15 +94,15 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                           children: [
                             Text(
                               art_title,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: default5),
                             ),
                             const SizedBox(
                               height: 5,
                             ),
                             Text(
                               art_artist,
-                              style: const TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: default5),
                             ),
                             const SizedBox(
                               height: 5,
@@ -107,7 +110,7 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                             Text(
                               art_dis,
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: default5,
                                   color: Colors.black.withOpacity(0.5)),
                             ),
                             const SizedBox(
@@ -118,23 +121,23 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                               children: [
                                 Text(
                                   price,
-                                  style: const TextStyle(
-                                      fontSize: 14, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                      fontSize: default5, fontWeight: FontWeight.bold),
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(
                                       CustomIcons.icon_artwork_original,
                                       color: Colors.grey,
-                                      size: 18,
+                                      size: default6,
                                     ),
-                                    SizedBox(
-                                      width: 10,
+                                    const SizedBox(
+                                      width: 15,
                                     ),
                                     Icon(
                                       CustomIcons.icon_artwork_vr,
                                       color: Colors.grey,
-                                      size: 18,
+                                      size: default6,
                                     ),
                                   ],
                                 )
