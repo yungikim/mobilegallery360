@@ -34,12 +34,12 @@ class dbookService extends StatelessWidget {
               child: Container(
                 width: width,
                 height:
-                    ResponsiveBreakpoints.of(context).isMobile ? 1450 : 2930,
+                    ResponsiveBreakpoints.of(context).isMobile ? 1450 : ResponsiveBreakpoints.of(context).isTablet ? 3000 : 4500,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(
                             "assets/images/dbook/book_detail2_1.jpg"),
-                        fit: BoxFit.cover)),
+                        fit: BoxFit.fill)),
               ),
             ),
             const SizedBox(
@@ -302,19 +302,19 @@ class dbookService extends StatelessWidget {
                      // const Text("Gallery360"),
                       const SizedBox(height: 20,),
                       RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           //text: "하단",
                           //style: DefaultTextStyle.of(context).style,
                           children: [
-                            TextSpan(text: "하단 ", style: TextStyle(color: Colors.black)),
-                            TextSpan(text: '[제작요청서]', style: TextStyle(color: Color(0xff6f43d6))),
-                            TextSpan(text: "를 다운로드 받아 작성 후", style: TextStyle(color: Colors.black))
+                            TextSpan(text: "하단 ", style: TextStyle(color: Colors.black, fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13)),
+                            TextSpan(text: '[제작요청서]', style: TextStyle(color: Color(0xff6f43d6), fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13)),
+                            TextSpan(text: "를 다운로드 받아 작성 후", style: TextStyle(color: Colors.black, fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13))
                           ]
                         ),
                       ),
                       //Text("하단 [제작요청서]를 다운로드 받아 작성 후"),
-                      const Text("together@gallery360.co.kr 메일 주소로"),
-                      const Text("발송해 주세요"),
+                      Text("together@gallery360.co.kr 메일 주소로", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13) ),
+                      Text("발송해 주세요", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13) ),
                       const SizedBox(height: 30,),
                       OutlinedButton(
                         style: OutlinedButton.styleFrom(
@@ -330,17 +330,17 @@ class dbookService extends StatelessWidget {
                                   "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=659565277be62549e65734b1&ty=1",
                               fileName: "D-Book 제작요청서.docx");
                         },
-                        child: const Text("제작요청서 다운받기"),
+                        child: Text("제작요청서 다운받기", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13) ),
                       ),
                       const SizedBox(height: 40,),
-                      const Column(
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("문 의 070-8803-0123", style: TextStyle(fontSize: 13),),
-                          Text("카카오툭에서 '갤러리360'을 검색해 주세요", style: TextStyle(fontSize: 13),),
+                          Text("문 의 070-8803-0123", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13) ,),
+                          Text("카카오툭에서 '갤러리360'을 검색해 주세요", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13),),
                         ],
                       ),
-
+                      const SizedBox(height: 50,),
                     ],
                   ),
                 ),
@@ -376,7 +376,7 @@ class dbooklist extends StatelessWidget {
       },
       child: Container(
         width: width * 0.29,
-        height: ResponsiveBreakpoints.of(context).isMobile ? 155 : 300,
+        height: ResponsiveBreakpoints.of(context).isMobile ? 155 : ResponsiveBreakpoints.of(context).isTablet ? 300 : 450,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/dbook/$imagepath"),
