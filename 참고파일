@@ -15,3 +15,6 @@ flutter pub run flutter_launcher_icons
 
 패키지명 변경하기
 flutter pub run change_app_package_name:main com.gallery360.mobile
+
+iOS 에뮬레이터 뜨지 않을때
+사과모양 > Mac에 관하여 > 저장공간 > 개발자 > Xcode 관련된 캐시 삭제

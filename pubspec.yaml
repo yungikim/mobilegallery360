@@ -70,6 +70,7 @@ dependencies:
   path_provider: ^2.1.1
   open_file_plus: ^3.4.1
   easy_localization: ^3.0.3
+  sizer: ^2.0.15
 
 flutter_native_splash:
   image: "assets/icons/App_logo.png"

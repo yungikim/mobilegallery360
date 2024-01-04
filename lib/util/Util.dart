@@ -11,12 +11,28 @@ import 'package:intl/intl.dart';
 import 'package:linkify/linkify.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../const/const.dart';
 import '../pages/search/search_main.dart';
 
 class Util {
+
+  late int fSize1;
+
+  void fontSetting(BuildContext context){
+    fSize1 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+
+    final double default1 = ResponsiveBreakpoints.of(context).isDesktop ? 40 : 28;
+    final double default2 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
+    final double default3 = ResponsiveBreakpoints.of(context).isDesktop ? 25 : 16;
+    final double default4 = ResponsiveBreakpoints.of(context).isDesktop ? 38 : 25;
+    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+    final double default6 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 18;
+    final double default7 = ResponsiveBreakpoints.of(context).isDesktop ? 33 : 22;
+  }
+
   static String chageText(String str) {
     return str
         .replaceAll("&#40;", "(")

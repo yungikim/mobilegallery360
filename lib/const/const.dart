@@ -1,5 +1,6 @@
 
 //Main Page URL
+
 const String base_url = "https://www.gallery360.co.kr";
 const String MainPage_ArtList_URL = "$base_url/monthly_image_list.mon";
 const String MainPage_VR_URL = "${base_url}/load_all_vr_public.mon?start=0&perpage=12";
@@ -13,4 +14,6 @@ const String SearchCategory_Url = "${base_url}/portal_search_option_public.mon?o
 
 //Artist URL
 const String Artist_Main_Url = "${base_url}/load_artist_public.mon?start=-start-&perpage=-perpage-&ty=-ty-";
+
+
 

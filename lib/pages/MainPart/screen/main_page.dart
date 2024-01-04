@@ -17,6 +17,7 @@ import 'package:gallery360/pages/MainPart/screen/widgets/spacebarBottom.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/vr_list2.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../util/Util.dart';
 import '../../search/search_main.dart';
@@ -163,17 +164,21 @@ class CenterText1 extends StatefulWidget {
 class _CenterText1State extends State<CenterText1> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          widget.title1,
-          style: const TextStyle(fontSize: 15.0),
-        ),
-        Text(
-          widget.title2,
-          style: const TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-        ),
-      ],
-    );
+
+        return Column(
+          children: [
+            Text(
+              widget.title1,
+              style: TextStyle(fontSize: 15.0),
+            ),
+            Text(
+              widget.title2,
+              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            ),
+          ],
+        );
+
+
+
   }
 }

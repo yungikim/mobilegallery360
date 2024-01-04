@@ -11,6 +11,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
+import 'package:sizer/sizer.dart';
 import 'draw/drawScreen.dart';
 import 'firebase_options.dart';
 
@@ -77,31 +78,40 @@ class Gallery360Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
-    return GetMaterialApp(
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
+    return Sizer(
+        builder: (context, orientation, deviceType){
+          return GetMaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
 
 
-      title: "Gallery360 Mobile",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-          fontFamily: "NotoSans",
-          useMaterial3: true),
-      builder: (context, child) {
-        return ResponsiveBreakpoints(
-          breakpoints: const [
-            Breakpoint(start: 0, end: 450, name: MOBILE),
-            Breakpoint(start: 451, end: 850, name: TABLET),
-            Breakpoint(start: 851, end: 1920, name: DESKTOP),
-            Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-          ],
-          child: child!,
-        );
-      },
-      navigatorKey: navigatorKey,
-      home: const DrawerScreen(),
-    );
+            title: "Gallery360 Mobile",
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+                fontFamily: "NotoSans",
+                useMaterial3: true
+            ),
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: ResponsiveBreakpoints(
+                  breakpoints: const [
+                    Breakpoint(start: 0, end: 450, name: MOBILE),
+                    Breakpoint(start: 451, end: 850, name: TABLET),
+                    Breakpoint(start: 851, end: 1920, name: DESKTOP),
+                    Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+                  ],
+                  child: child!,
+                ),
+              );
+            },
+            navigatorKey: navigatorKey,
+            home: const DrawerScreen(),
+          );
+        }
+     );
+
   }
 }

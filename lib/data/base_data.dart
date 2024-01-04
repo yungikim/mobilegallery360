@@ -4,6 +4,7 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import '../../../core/const.dart';
 import '../util/video_show.dart';
 
@@ -87,7 +88,7 @@ final List<Color> mainMessage_btn_color = [
 final List<Widget> main_btn_widget = [
   OutlinedButton(
     onPressed: () {
-      print("소개영상 보기");
+
       String url =
           "${base_url}/intro/gallery360_kr_web.mp4"; //x-frame-options Gallery360서버가 막아 놓았음
       String url2 =
@@ -110,7 +111,7 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_17'),
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.white, fontSize: 15.0),
     ),
   ),
   const SizedBox(),
