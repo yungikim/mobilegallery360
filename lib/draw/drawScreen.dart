@@ -179,7 +179,7 @@ class MenuScreen extends StatelessWidget {
           selected: currentItem == item,
           minLeadingWidth: 20,
           leading: Icon(item.icon, ),
-          title: Text(item.title, style: TextStyle(fontSize: Util.fSize14),),
+          title: Text(item.title, style: TextStyle(fontSize: Util.fSize16),),
           onTap: () {
             return onSelectedItem(item);
           },
