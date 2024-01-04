@@ -60,7 +60,8 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                                 ),
                                 child: Text(
                                   tr('main_32'),
-                                  style: const TextStyle(
+                                  style: TextStyle(
+                                    fontSize: Util.fSize14,
                                     color: Colors.white,
                                   ),
                                 ),

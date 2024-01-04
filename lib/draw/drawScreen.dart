@@ -49,7 +49,15 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   @override
+  void initState() {
+
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Util.fontSetting(context);
     return ZoomDrawer(
       style: DrawerStyle.defaultStyle,
       borderRadius: ResponsiveBreakpoints.of(context).isMobile ? 40 : 30,

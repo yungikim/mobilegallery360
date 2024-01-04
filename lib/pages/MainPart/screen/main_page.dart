@@ -164,21 +164,17 @@ class CenterText1 extends StatefulWidget {
 class _CenterText1State extends State<CenterText1> {
   @override
   Widget build(BuildContext context) {
-
-        return Column(
-          children: [
-            Text(
-              widget.title1,
-              style: TextStyle(fontSize: 15.0),
-            ),
-            Text(
-              widget.title2,
-              style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-            ),
-          ],
-        );
-
-
-
+      return Column(
+        children: [
+          Text(
+            widget.title1,
+            style: TextStyle(fontSize: Util.fSize15),
+          ),
+          Text(
+            widget.title2,
+            style: TextStyle(fontSize: Util.fSize15, fontWeight: FontWeight.bold),
+          ),
+        ],
+      );
   }
 }

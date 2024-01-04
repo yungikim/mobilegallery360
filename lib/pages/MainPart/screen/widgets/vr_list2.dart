@@ -207,11 +207,11 @@ class CarouselInnerText extends StatelessWidget {
             children: [
               Text(
                 Util.chageText(e.title.toString()),
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    shadows: [
+                    fontSize: Util.fSize15,
+                    shadows: const [
                       Shadow(
                         offset: Offset(1.0, 0.0),
                         blurRadius: 3,
@@ -224,10 +224,10 @@ class CarouselInnerText extends StatelessWidget {
               ),
               Text(
                 "${e.nickname}",
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.white,
-                    fontSize: 13,
-                    shadows: [
+                    fontSize: Util.fSize14,
+                    shadows: const [
                       Shadow(
                         offset: Offset(1.0, 0.0),
                         blurRadius: 3.0,
@@ -257,7 +257,7 @@ class CarouselInnerText extends StatelessWidget {
                   ),
                   Text(
                     "${e.read}",
-                    style: const TextStyle(color: Colors.white, shadows: [
+                    style: TextStyle(color: Colors.white, fontSize: Util.fSize13, shadows: const [
                       Shadow(
                         offset: Offset(1, 0),
                         blurRadius: 3,
@@ -284,7 +284,7 @@ class CarouselInnerText extends StatelessWidget {
                   ),
                   Text(
                     "${e.like}",
-                    style: const TextStyle(color: Colors.white, shadows: [
+                    style: TextStyle(color: Colors.white, fontSize: Util.fSize13, shadows: const [
                       Shadow(
                         offset: Offset(1.0, 0.0),
                         blurRadius: 3,

@@ -18,19 +18,29 @@ import '../const/const.dart';
 import '../pages/search/search_main.dart';
 
 class Util {
+  static late double fSize12;
+  static late double fSize13;
+  static late double fSize14;
+  static late double fSize15;
+  static late double fSize16;
+  static late double fSize18;
+  static late double fSize20;
+  static late double fSize22;
+  static late double fSize25;
+  static late double fSize28;
 
-  late int fSize1;
+  static fontSetting(BuildContext context){
+    fSize12 = ResponsiveBreakpoints.of(context).isDesktop ? 16 : 12;
+    fSize13 = ResponsiveBreakpoints.of(context).isDesktop ? 18 : 13;
+    fSize14 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
+    fSize15 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 15;
+    fSize16 = ResponsiveBreakpoints.of(context).isDesktop ? 25 : 16;
+    fSize18 = ResponsiveBreakpoints.of(context).isDesktop ? 28 : 18;
+    fSize20 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
+    fSize22 = ResponsiveBreakpoints.of(context).isDesktop ? 33 : 22;
+    fSize25 = ResponsiveBreakpoints.of(context).isDesktop ? 36 : 25;
+    fSize28 = ResponsiveBreakpoints.of(context).isDesktop ? 40 : 28;
 
-  void fontSetting(BuildContext context){
-    fSize1 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
-
-    final double default1 = ResponsiveBreakpoints.of(context).isDesktop ? 40 : 28;
-    final double default2 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
-    final double default3 = ResponsiveBreakpoints.of(context).isDesktop ? 25 : 16;
-    final double default4 = ResponsiveBreakpoints.of(context).isDesktop ? 38 : 25;
-    final double default5 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
-    final double default6 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 18;
-    final double default7 = ResponsiveBreakpoints.of(context).isDesktop ? 33 : 22;
   }
 
   static String chageText(String str) {

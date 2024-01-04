@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../util/Util.dart';
+
 class Spacebar1 extends StatelessWidget {
   const Spacebar1({super.key});
 
@@ -22,11 +24,11 @@ class Spacebar1 extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               tr('main_37'),
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w400,
-                fontSize: 20,
+                fontSize: Util.fSize20,
                 color: Colors.white,
-                shadows:[
+                shadows:const [
                   Shadow(
                     offset: Offset(1.0, 0.0),
                     blurRadius: 1.0,

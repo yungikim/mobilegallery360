@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:gallery360/pages/splash/splash_screen.dart';
 import 'package:gallery360/push/firebase_api.dart';
+import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -51,6 +52,8 @@ void main() async {
   //다국어 처리를 위한 기능 초기화
   await EasyLocalization.ensureInitialized();
 
+
+
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //WidgetsFlutterBinding.ensureInitialized();
   //await Permission.microphone.request();
@@ -77,6 +80,7 @@ class Gallery360Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     FlutterNativeSplash.remove();
     return Sizer(
         builder: (context, orientation, deviceType){

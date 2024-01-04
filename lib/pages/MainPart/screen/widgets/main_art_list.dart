@@ -107,8 +107,8 @@ class _MainArtListState extends State<MainArtList> {
                     Text(
                       Util.chageText(
                           _dataController.mainPageRecommandImageTitle.value),
-                      style: const TextStyle(
-                          fontSize: 23,
+                      style: TextStyle(
+                          fontSize: Util.fSize22,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
@@ -117,8 +117,8 @@ class _MainArtListState extends State<MainArtList> {
                     ),
                     Text(
                       _dataController.mainPageRecommandImageArtist.value,
-                      style: const TextStyle(
-                          fontSize: 16,
+                      style: TextStyle(
+                          fontSize: Util.fSize16,
                           color: Colors.black,
                           fontWeight: FontWeight.w500),
                     ),
@@ -140,7 +140,7 @@ class _MainArtListState extends State<MainArtList> {
                           side: const BorderSide(color: Colors.black)),
                       child: Text(
                         tr('main_30'),
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.black, fontSize: Util.fSize14),
                       ),
                     ),
                   ],
@@ -202,15 +202,17 @@ class _MainArtListState extends State<MainArtList> {
                                           Text(
                                             Util.chageText(dm.artTitle),
                                             maxLines: 2,
-                                            style: const TextStyle(
+                                            style: TextStyle(
+                                              fontSize: Util.fSize13,
                                               fontWeight: FontWeight.bold,
                                               overflow: TextOverflow.clip,
                                             ),
                                           ),
-                                          Text(dm.artArtist),
+                                          Text(dm.artArtist, style: TextStyle(fontSize: Util.fSize13),),
                                           Text(
                                             "${dm.artHeight} X ${dm.artWidth} ${dm.artHosu != null ? "(${dm.artHosu})호" : ''}",
-                                            style: const TextStyle(
+                                            style: TextStyle(
+                                              fontSize: Util.fSize13,
                                               overflow: TextOverflow.clip,
                                             ),
                                           ),
@@ -245,7 +247,8 @@ class _MainArtListState extends State<MainArtList> {
                                   children: [
                                     Text(
                                       "₩ ${f.format(dm.artPrice)}",
-                                      style: const TextStyle(
+                                      style: TextStyle(
+                                          fontSize: Util.fSize14,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Row(
