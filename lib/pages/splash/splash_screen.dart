@@ -17,25 +17,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
     _controller = VideoPlayerController.asset(
       'assets/icons/nike_animation.mp4',
-    )
-      ..initialize().then((_) {
+    )..initialize().then((_) {
         setState(() {});
       })
       ..setVolume(0.0);
-
     _playVideo();
   }
 
   void _playVideo() async {
     // playing video
     _controller.play();
-
     //add delay till video is complite
-    await Future.delayed(const Duration(seconds: 4));
-
+    await Future.delayed(const Duration(seconds: 3));
     // navigating to home screen
     Get.offAll(()=> const DrawerScreen());
   }

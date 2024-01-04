@@ -75,7 +75,7 @@ class _ArtistArtWidgetState extends State<ArtistArtWidget> {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.fadeIn);
+                          Get.to(() => ArtDetailPage(dockey: item.dockey), transition: Transition.rightToLeft);
                         },
                         child: CachedNetworkImage(
                           imageUrl: url,
