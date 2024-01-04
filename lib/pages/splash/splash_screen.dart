@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(
-      'assets/icons/nike_animation.mp4',
+      'assets/icons/splash.mp4',
     )..initialize().then((_) {
         setState(() {});
       })
@@ -43,17 +43,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: _controller.value.isInitialized
-            ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(
-            _controller,
-          ),
-        )
-            : Container(),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: _controller.value.isInitialized
+              ? AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(
+              _controller,
+            ),
+          )
+              : Container(),
+        ),
       ),
     );
   }
