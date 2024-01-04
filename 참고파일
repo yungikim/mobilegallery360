@@ -18,3 +18,7 @@ flutter pub run change_app_package_name:main com.gallery360.mobile
 
 iOS 에뮬레이터 뜨지 않을때
 사과모양 > Mac에 관하여 > 저장공간 > 개발자 > Xcode 관련된 캐시 삭제
+
+code . 이 실행되지 않을 경우
+비주얼코드를 실행 > command+shift+P
+"shell command" 하단에 'install code command in PATH' 선택
