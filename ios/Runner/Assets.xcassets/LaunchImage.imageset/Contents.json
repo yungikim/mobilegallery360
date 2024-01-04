@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "App_logo.png",
+      "filename" : "App_logo 복사본.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "App_logo 3.png",
+      "filename" : "App_logo 복사본 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "App_logo 1.png",
+      "filename" : "App_logo 복사본 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "App_logo 4.png",
+      "filename" : "App_logo 복사본 4.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "App_logo 2.png",
+      "filename" : "App_logo 복사본 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "App_logo 5.png",
+      "filename" : "App_logo 복사본 5.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
