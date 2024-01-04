@@ -118,7 +118,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                               tag: widget.dockey,
                               child: Container(
                                 width: width * 0.97,
-                                height: ResponsiveBreakpoints.of(context).isMobile ? 150 : ResponsiveBreakpoints.of(context).isTablet ? 450 : 800,
+                                height: ResponsiveBreakpoints.of(context).isMobile ? 350 : ResponsiveBreakpoints.of(context).isTablet ? 450 : 800,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
