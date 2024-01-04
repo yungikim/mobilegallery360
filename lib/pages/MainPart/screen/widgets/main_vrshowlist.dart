@@ -78,7 +78,7 @@ class _VrShowListState extends State<VrShowList> {
                                         "${item.lendingName} / ${item.organizerName}",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 17,
+                                            fontSize: Util.fSize15,
                                             color: Colors.white.withOpacity(0.7),
                                             overflow: TextOverflow.ellipsis),
                                       ),
@@ -134,6 +134,7 @@ class _VrShowListState extends State<VrShowList> {
         child: Text(
           "#$title",
           style: TextStyle(
+            fontSize: Util.fSize15,
             color: index == _dataController.currentItem.value ? const Color(0xff9b3de4) : Colors.black,
           ),
         ),

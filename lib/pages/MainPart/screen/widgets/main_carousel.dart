@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../../data/base_data.dart';
 import '../../../../core/const.dart';
+import '../../../../util/Util.dart';
 
 class MainCarouselWidget extends StatefulWidget {
   const MainCarouselWidget({super.key});
@@ -80,8 +81,8 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                               .isMobile
                                           ? TextAlign.center
                                           : TextAlign.left,
-                                  style: const TextStyle(
-                                      shadows: [
+                                  style: TextStyle(
+                                      shadows: const [
                                         Shadow(
                                           offset: Offset(3.0, 0.0),
                                           blurRadius: 30.0,
@@ -89,7 +90,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                         ),
                                       ],
                                       color: Colors.white,
-                                      fontSize: 30.0,
+                                      fontSize: Util.fSize28,
                                       fontWeight: FontWeight.bold)),
                               const SizedBox(
                                 height: 20.0,
@@ -98,8 +99,8 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                   mainMessage_sub[
                                       imageList.indexOf(item)],
                                   textAlign: ResponsiveBreakpoints.of(context).isMobile ? TextAlign.center : TextAlign.left,
-                                  style: const TextStyle(
-                                      shadows: [
+                                  style: TextStyle(
+                                      shadows: const [
                                         Shadow(
                                           offset: Offset(3.0, 0.0),
                                           blurRadius: 30,
@@ -107,7 +108,7 @@ class _MainCarouselWidgetState extends State<MainCarouselWidget> {
                                         )
                                       ],
                                       color: Colors.white,
-                                      fontSize: 15.0,
+                                      fontSize: Util.fSize15,
                                       fontWeight: FontWeight.bold)),
                               const SizedBox(
                                 height: 50.0,

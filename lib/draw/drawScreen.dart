@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/main_page.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/pages/aboutUs/about_us.dart';
@@ -179,8 +178,8 @@ class MenuScreen extends StatelessWidget {
           selectedTileColor: Colors.black26,
           selected: currentItem == item,
           minLeadingWidth: 20,
-          leading: Icon(item.icon),
-          title: Text(item.title),
+          leading: Icon(item.icon, ),
+          title: Text(item.title, style: TextStyle(fontSize: Util.fSize14),),
           onTap: () {
             return onSelectedItem(item);
           },

@@ -165,9 +165,9 @@ class _VrMainPageState extends State<VrMainPage> {
                                                     Text(
                                                       Util.chageText(
                                                           item.space),
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 12,
+                                                        fontSize: Util.fSize13,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -178,9 +178,9 @@ class _VrMainPageState extends State<VrMainPage> {
                                                     Text(
                                                       Util.chageText(
                                                           item.title),
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 16,
+                                                        fontSize: Util.fSize16,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -194,9 +194,9 @@ class _VrMainPageState extends State<VrMainPage> {
                                                     Text(
                                                       Util.chageText(
                                                           item.space),
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 24,
+                                                        fontSize: Util.fSize25,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -225,11 +225,11 @@ class _VrMainPageState extends State<VrMainPage> {
                                                     Text(
                                                       Util.chageText(
                                                           item.subtitle),
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                           color: Colors.white,
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontSize: 16),
+                                                          fontSize: Util.fSize16),
                                                     ),
                                                     const SizedBox(
                                                       height: 50,
@@ -245,11 +245,11 @@ class _VrMainPageState extends State<VrMainPage> {
                                                           borderRadius: BorderRadius.circular(0.0)
                                                         )
                                                       ),
-                                                      child: const Text(
+                                                      child: Text(
                                                         "VR전시 감상하기",
                                                         style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 16,
+                                                          fontSize: Util.fSize16,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -307,10 +307,10 @@ class _VrMainPageState extends State<VrMainPage> {
                     height: 80,
                     width: double.infinity,
                     alignment: Alignment.center,
-                    child: const Text(
+                    child: Text(
                       "추천 VR 갤러리",
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: Util.fSize18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -468,8 +468,8 @@ class _VrMainPageState extends State<VrMainPage> {
                       Obx(
                         () => Text(
                           "${Util.addComma2(_vrController.currentcount.value)}/${Util.addComma2(_vrController.totalcount.value)}",
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: Util.fSize14, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
@@ -528,15 +528,15 @@ class _VrMainPageState extends State<VrMainPage> {
                                   ),
                                   Text(
                                     Util.chageText(item.title ?? ""),
-                                    style: const TextStyle(
-                                        fontSize: 16,
+                                    style: TextStyle(
+                                        fontSize: Util.fSize16,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     item.nickname ?? "",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 14),
+                                        fontSize: Util.fSize14),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -548,7 +548,7 @@ class _VrMainPageState extends State<VrMainPage> {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(Util.addComma2(item.read ?? 0)),
+                                      Text(Util.addComma2(item.read ?? 0), style: TextStyle(fontSize: Util.fSize14),),
                                       const SizedBox(
                                         width: 10,
                                       ),
@@ -557,7 +557,7 @@ class _VrMainPageState extends State<VrMainPage> {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text("${item.like}"),
+                                      Text("${item.like}", style: TextStyle(fontSize: Util.fSize14),),
                                     ],
                                   ),
                                   const SizedBox(

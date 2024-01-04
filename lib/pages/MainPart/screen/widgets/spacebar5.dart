@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../../const/const.dart';
 import '../../../../util/Util.dart';
 
@@ -9,7 +10,7 @@ class SpaceBar5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 190,
+      height: ResponsiveBreakpoints.of(context).isDesktop ? 230 :  190,
       alignment: Alignment.center,
       //  color: Colors.red,
       decoration: BoxDecoration(
@@ -28,15 +29,15 @@ class SpaceBar5 extends StatelessWidget {
           children: [
             Text(
               tr('main_45'),
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: Util.fSize14,
                 color: Colors.white,
               ),
             ),
             Text(
               tr('main_46'),
-              style: const TextStyle(
-                fontSize: 14,
+              style: TextStyle(
+                fontSize: Util.fSize14,
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
@@ -57,7 +58,7 @@ class SpaceBar5 extends StatelessWidget {
               ),
               child: Text(
                 tr('main_47'),
-                style: const TextStyle(color: Colors.white, fontSize: 14),
+                style: TextStyle(color: Colors.white, fontSize: Util.fSize14),
               ),
             ),
           ],

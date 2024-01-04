@@ -34,7 +34,7 @@ class Util {
     fSize13 = ResponsiveBreakpoints.of(context).isDesktop ? 18 : 13;
     fSize14 = ResponsiveBreakpoints.of(context).isDesktop ? 20 : 14;
     fSize15 = ResponsiveBreakpoints.of(context).isDesktop ? 22 : 15;
-    fSize16 = ResponsiveBreakpoints.of(context).isDesktop ? 25 : 16;
+    fSize16 = ResponsiveBreakpoints.of(context).isDesktop ? 26 : 16;
     fSize18 = ResponsiveBreakpoints.of(context).isDesktop ? 28 : 18;
     fSize20 = ResponsiveBreakpoints.of(context).isDesktop ? 30 : 20;
     fSize22 = ResponsiveBreakpoints.of(context).isDesktop ? 33 : 22;

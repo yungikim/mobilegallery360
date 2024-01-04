@@ -168,11 +168,11 @@ class _CenterText1State extends State<CenterText1> {
         children: [
           Text(
             widget.title1,
-            style: TextStyle(fontSize: Util.fSize15),
+            style: TextStyle(fontSize: Util.fSize16),
           ),
           Text(
             widget.title2,
-            style: TextStyle(fontSize: Util.fSize15, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: Util.fSize16, fontWeight: FontWeight.bold),
           ),
         ],
       );

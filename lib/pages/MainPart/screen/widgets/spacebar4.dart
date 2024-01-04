@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import '../../../../util/Util.dart';
 
 class SpaceBar4 extends StatefulWidget {
   const SpaceBar4({super.key});
@@ -24,7 +27,7 @@ class _SpaceBar4State extends State<SpaceBar4> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120,
+      height: ResponsiveBreakpoints.of(context).isDesktop ? 160 :  120,
       decoration: BoxDecoration(
           image: DecorationImage(
         image: const AssetImage("assets/images/mainPage/banner03.jpg"),
@@ -42,8 +45,8 @@ class _SpaceBar4State extends State<SpaceBar4> {
                 return RichText(
                   text: TextSpan(
                     children: [
-                      TextSpan(text: "${snapshot.data} ", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                      TextSpan(text: tr('main_43'), style: const TextStyle(fontSize: 17)),
+                      TextSpan(text: "${snapshot.data} ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: Util.fSize16)),
+                      TextSpan(text: tr('main_43'), style: TextStyle(fontSize: Util.fSize15)),
                     ]
                   ),
                 );
@@ -61,7 +64,7 @@ class _SpaceBar4State extends State<SpaceBar4> {
             tr('main_44'),
             style: TextStyle(
               color: Colors.white.withOpacity(0.9),
-              fontSize: 17,
+              fontSize: Util.fSize16,
             ),
           )
         ],

@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
+
+import '../../../../util/Util.dart';
 
 class SpaceBar6 extends StatelessWidget {
   const SpaceBar6({super.key});
@@ -7,7 +10,7 @@ class SpaceBar6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: ResponsiveBreakpoints.of(context).isDesktop ? 400 :  300,
      // color: Colors.yellow,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -28,13 +31,13 @@ class SpaceBar6 extends StatelessWidget {
                   children: [
                     Text(
                       tr('main_48'),
-                      style: const TextStyle(
-                        fontSize: 15,
+                      style: TextStyle(
+                        fontSize: Util.fSize15,
                       ),
                     ),
                     Text(
                       tr('main_49'),
-                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: Util.fSize14, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -65,11 +68,11 @@ class SpaceBar6 extends StatelessWidget {
                   children: [
                     Text(
                       tr('main_50'),
-                      style: const TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: Util.fSize15),
                     ),
                     Text(
                       tr('main_51'),
-                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: Util.fSize14, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -98,11 +101,11 @@ class SpaceBar6 extends StatelessWidget {
                   children: [
                     Text(
                       tr('main_52'),
-                      style: const TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: Util.fSize15),
                     ),
                     Text(
                       tr('main_53'),
-                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: Util.fSize14, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )

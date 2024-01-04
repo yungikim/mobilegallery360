@@ -106,20 +106,20 @@ class _VrDetailPageState extends State<VrDetailPage> {
               child: Container(
                 padding: const EdgeInsets.all(10),
                 alignment: Alignment.center,
-                child: const Column(
+                child: Column(
                   children: [
                     Text(
                       "VR갤러리 이미지에 대한 활용 및 재배포시 출처를 반드시 남겨주세요.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: Util.fSize12,
                         color: Colors.grey,
                       ),
                     ),
                     Text(
                       "Copyright © 2018-2023 Gallery360. All Rights Reserved.",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(fontSize: Util.fSize12, color: Colors.grey),
                     ),
                     Text(""),
                   ],
@@ -142,8 +142,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
                         children: [
                           Text(
                             Util.chageText(item.title.toString()),
-                            style: const TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: Util.fSize25, fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
                             height: 10,
@@ -156,8 +156,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               ),
                               Text(
                                 "${item.read}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: Util.fSize14),
                               ),
                               const SizedBox(
                                 width: 15,
@@ -168,16 +168,16 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               ),
                               Text(
                                 "${item.like}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: Util.fSize14),
                               ),
                               const SizedBox(
                                 width: 30,
                               ),
                               Text(
                                 "게시일 ${Util.changeDate(item.date.toString())}",
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 14),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: Util.fSize14),
                               ),
                             ],
                           ),
@@ -186,8 +186,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
                           ),
                           Text(
                             Util.chageText(item.express.toString()),
-                            style: const TextStyle(
-                                fontSize: 16,
+                            style: TextStyle(
+                                fontSize: Util.fSize16,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey),
                           ),
@@ -218,8 +218,8 @@ class _VrDetailPageState extends State<VrDetailPage> {
                               ),
                               Text(
                                 "${item.nickname}",
-                                style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: Util.fSize16, fontWeight: FontWeight.bold),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -239,12 +239,12 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                       transition: Transition.rightToLeft,
                                       preventDuplicates: false);
                                 },
-                                child: const Text(
+                                child: Text(
                                   "작가",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
-                                    fontSize: 14,
+                                    fontSize: Util.fSize14,
                                   ),
                                 ),
                               ),
@@ -285,9 +285,9 @@ class _VrDetailPageState extends State<VrDetailPage> {
                             children: [
                               Text(
                                 "${xitem.nickname}의 VR갤러리",
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20,
+                                  fontSize: Util.fSize20,
                                 ),
                               ),
                               const SizedBox(
@@ -325,12 +325,12 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                                 Text(
                                                   Util.chageText(
                                                       item.title.toString()),
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 15,
-                                                      shadows: [
+                                                      fontSize: Util.fSize15,
+                                                      shadows: const [
                                                         Shadow(
                                                           offset:
                                                               Offset(1.0, 0.0),
@@ -344,10 +344,10 @@ class _VrDetailPageState extends State<VrDetailPage> {
                                                 ),
                                                 Text(
                                                   item.nickname,
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 13,
-                                                      shadows: [
+                                                      fontSize: Util.fSize13,
+                                                      shadows: const [
                                                         Shadow(
                                                           offset:
                                                               Offset(1.0, 0.0),

@@ -118,29 +118,29 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                               tag: widget.dockey,
                               child: Container(
                                 width: width * 0.97,
-                                height: ResponsiveBreakpoints.of(context).isMobile ? 450 : 750,
+                                height: ResponsiveBreakpoints.of(context).isMobile ? 150 : ResponsiveBreakpoints.of(context).isTablet ? 450 : 800,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: NetworkImage(
                                             "$base_url/artimage/${item.email}/art/preview/${widget.dockey}.jpg"),
-                                        fit: BoxFit.fitWidth)),
+                                        fit: BoxFit.fitHeight)),
                               ),
                             ),
                           ),
                           const SizedBox(
                             height: 15,
                           ),
-                          const Text(
+                          Text(
                             "작품 이미지에 대한 무단 도용 및 재배포를 금지합니다.",
                             style: TextStyle(
-                                fontSize: 12,
+                                fontSize: Util.fSize12,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.grey),
                           ),
                           Text(
                             "Copyright © ${ Util.chageText(item.artArtist)}. All rights reserved.",
-                            style: const TextStyle(
-                              fontSize: 12,
+                            style: TextStyle(
+                              fontSize: Util.fSize12,
                               fontWeight: FontWeight.w600,
                               color: Colors.grey,
                             ),
@@ -155,8 +155,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                               children: [
                                 Text(
                                   Util.chageText(item.artTitle ?? ''),
-                                  style: const TextStyle(
-                                    fontSize: 20,
+                                  style: TextStyle(
+                                    fontSize: Util.fSize20,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -167,20 +167,20 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                   children: [
                                     Row(
                                       children: [
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 80,
                                           child: Text(
                                             "작가명",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: Util.fSize13),
                                           ),
                                         ),
                                         Text(
                                           Util.chageText(item.artArtist),
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: Util.fSize14,
                                           ),
                                         )
                                       ],
@@ -190,20 +190,20 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 80,
                                           child: Text(
                                             "제작연도",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: Util.fSize13),
                                           ),
                                         ),
                                         Text(
                                           "${item.artDateYear}",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: Util.fSize14,
                                           ),
                                         )
                                       ],
@@ -213,20 +213,20 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 80,
                                           child: Text(
                                             "장르",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: Util.fSize13),
                                           ),
                                         ),
                                         Text(
                                           "${item.artGenre}",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: Util.fSize14,
                                           ),
                                         )
                                       ],
@@ -236,20 +236,20 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 80,
                                           child: Text(
                                             "재료",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: Util.fSize13),
                                           ),
                                         ),
                                         Text(
                                           "${item.artSource}",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: Util.fSize14,
                                           ),
                                         )
                                       ],
@@ -259,22 +259,22 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     ),
                                     Row(
                                       children: [
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 80,
                                           child: Text(
                                             "작품코드",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: 13),
+                                                fontSize: Util.fSize13),
                                           ),
                                         ),
                                         SizedBox(
                                           width: width - 120,
                                           child: Text(
                                             "${item.artkey}",
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                fontSize: 14,
+                                                fontSize: Util.fSize14,
                                                 overflow: TextOverflow.clip),
                                           ),
                                         ),
@@ -296,10 +296,10 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "판매금액",
                                           style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: Util.fSize20,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -317,8 +317,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                             Text(
                                               //Util.addComma2(item.artPrice!),
                                               price,
-                                              style: const TextStyle(
-                                                fontSize: 20,
+                                              style: TextStyle(
+                                                fontSize: Util.fSize20,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             )
@@ -331,6 +331,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     ),
                                     SizedBox(
                                       width: width,
+                                      height: 50,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.black,
@@ -342,7 +343,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                         onPressed: () {
                                           showDialogWithRequest();
                                         },
-                                        child: const Text("작품문의"),
+                                        child: Text("작품문의", style: TextStyle(fontSize: Util.fSize13),),
                                       ),
                                     ),
                                   ],
@@ -352,11 +353,11 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                 ),
                                 Container(
                                   alignment: Alignment.center,
-                                  child: const Text(
+                                  child: Text(
                                     "작품 소개",
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: titlesize,
+                                      fontSize: Util.fSize18,
                                     ),
                                   ),
                                 ),
@@ -390,8 +391,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                 Linkify(
                                   onOpen: _onOpen,
                                   text: Util.chageText(item.artExpress ?? ""),
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w500, fontSize: 14),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500, fontSize: Util.fSize14),
                                   linkStyle: const TextStyle(color: Colors.blue),
                                   linkifiers: const [
                                     UserTagLinkifier(),
@@ -409,11 +410,11 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                     children: [
                                       Container(
                                         alignment: Alignment.center,
-                                        child: const Text(
+                                        child: Text(
                                           "추천 이유",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: titlesize,
+                                            fontSize: Util.fSize18,
                                           ),
                                         ),
                                       ),
@@ -424,9 +425,9 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                         onOpen: _onOpen,
                                         text: Util.chageText(
                                             item.artCuratorExpress ?? ""),
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 14),
+                                            fontSize: Util.fSize14),
                                         linkStyle:
                                             const TextStyle(color: Colors.blue),
                                         linkifiers: const [
@@ -510,10 +511,10 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                const Text(
+                                                Text(
                                                   "A R T I S T INFO",
                                                   style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: Util.fSize14,
                                                       color: Colors.grey),
                                                 ),
                                                 Row(
@@ -530,8 +531,8 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                           : 80,
                                                       child: Text(
                                                         Util.chageText(item.artArtist),
-                                                        style: const TextStyle(
-                                                          fontSize: 23,
+                                                        style: TextStyle(
+                                                          fontSize: Util.fSize15,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -542,12 +543,12 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                     const SizedBox(
                                                       width: 7,
                                                     ),
-                                                    const Text(
+                                                    Text(
                                                       "작가",
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w500,
-                                                          fontSize: 15),
+                                                          fontSize: Util.fSize15),
                                                     ),
                                                     const SizedBox(
                                                       width: 10,
@@ -575,9 +576,9 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                     //maxLines: 8,
                                                     softWrap: true,
                                                     overflow: TextOverflow.clip,
-                                                    style: const TextStyle(
+                                                    style: TextStyle(
                                                       //  letterSpacing: 1.2,
-                                                      fontSize: 17,
+                                                      fontSize: Util.fSize16,
                                                       fontWeight: FontWeight.w500,
                                                     ),
                                                   ),
@@ -604,7 +605,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                                         borderRadius:
                                                             BorderRadius.zero,
                                                       )),
-                                                  child: const Text("작가정보 더보기"),
+                                                  child: Text("작가정보 더보기", style: TextStyle(fontSize: Util.fSize14),),
                                                 ),
                                               ],
                                             ),
@@ -621,13 +622,14 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                                   height: 50,
                                   //  color: Colors.yellow,
                                   alignment: Alignment.center,
-                                  child: const Text(
+                                  child: Text(
                                     "작가의 다른 작품",
                                     style: TextStyle(
-                                        fontSize: titlesize,
+                                        fontSize: Util.fSize18,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
+                                const SizedBox(height: 30,),
                                 FutureBuilder(
                                   future: _artInfoController
                                       .getArtInArts(item.email!),

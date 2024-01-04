@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery360/const/const.dart';
+import 'package:gallery360/pages/dbook/dbook_main.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 import '../../../core/const.dart';
 import '../util/video_show.dart';
 
@@ -111,7 +111,7 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_17'),
-      style: const TextStyle(color: Colors.white, fontSize: 15.0),
+      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
     ),
   ),
   const SizedBox(),
@@ -135,7 +135,7 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_19'),
-      style: const TextStyle(color: Color(0xff4af5d4)),
+      style: TextStyle(color: Color(0xff4af5d4), fontSize: Util.fSize16),
     ),
   ),
   const SizedBox(),
@@ -155,14 +155,15 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_19'),
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
     ),
   ),
   const SizedBox(),
   OutlinedButton(
     onPressed: () {
-      String url = "$base_url/main/news/main_news_mobile.jsp?bun=65";
-      Util.UrlOpenWebview(url, "D-BOOK 서비스 소개");
+    //  String url = "$base_url/main/news/main_news_mobile.jsp?bun=65";
+    //  Util.UrlOpenWebview(url, "D-BOOK 서비스 소개");
+      Get.to(() => const dbookService(), transition: Transition.rightToLeft);
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.black,
@@ -175,7 +176,7 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_23'),
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
     ),
   ),
   OutlinedButton(
@@ -193,7 +194,7 @@ final List<Widget> main_btn_widget = [
         )),
     child: Text(
       tr('main_24'),
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
     ),
   ),
 ];
@@ -217,7 +218,7 @@ final List<Widget> imageSliders = imageList
                         fit: BoxFit.cover,
                       )),
                 ),
-                // Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
+                Image.network(item, fit: BoxFit.cover, width:200, height: 200,),
                 Positioned.fill(
                   child: Align(
                     alignment: Alignment.center,
@@ -225,9 +226,9 @@ final List<Widget> imageSliders = imageList
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(mainMessage[imageList.indexOf(item)],
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.0,
+                                fontSize: Util.fSize15,
                                 fontWeight: FontWeight.bold)),
                         //Text("22222222222",style: const TextStyle(color: Colors.white, fontSize: 15.0, fontWeight: FontWeight.bold))
                       ],

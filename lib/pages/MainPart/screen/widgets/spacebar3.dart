@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../util/Util.dart';
+
 class Spacebar3 extends StatelessWidget {
   const Spacebar3({super.key});
 
@@ -15,14 +17,14 @@ class Spacebar3 extends StatelessWidget {
         children: [
           Text(
             tr('main_41'),
-            style: const TextStyle(
-              fontSize: 18.0,
+            style: TextStyle(
+              fontSize: Util.fSize18,
             ),
           ),
           Text(
             tr('main_42'),
-            style: const TextStyle(
-              fontSize: 18.0,
+            style: TextStyle(
+              fontSize: Util.fSize18,
               fontWeight: FontWeight.bold,
             ),
           )

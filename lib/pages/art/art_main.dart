@@ -143,8 +143,8 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                 child: cacheImage(
                                   url:
                                       "$base_url/artimage/${item.email}/art/expand/${item.dockey}.jpg",
-                                  width: double.infinity,
-                                  height: 600,
+                                //  width: double.infinity,
+                                //  height: 100,
                                   childtext: Stack(
                                     children: [
                                       Positioned(
@@ -158,9 +158,9 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                               width: width - 50,
                                               child: Text(
                                                 Util.chageText(item.artTitle),
-                                                style: const TextStyle(
+                                                style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 30,
+                                                  fontSize: Util.fSize28,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
@@ -170,9 +170,9 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                             ),
                                             Text(
                                               Util.chageText(item.artArtist),
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 23,
+                                                fontSize: Util.fSize22,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
@@ -189,7 +189,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                           .toList(),
                       options: CarouselOptions(
                         autoPlay: true,
-                        aspectRatio: 16 / 12,
+                        aspectRatio: ResponsiveBreakpoints.of(context).isDesktop ? 17 / 12 : ResponsiveBreakpoints.of(context).isTablet ? 20 / 12 :  14 / 12,
                         autoPlayInterval: const Duration(seconds: 5),
                         viewportFraction: 1.0,
                       ),
@@ -242,13 +242,13 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                 onTap: () {
                                   ShowBottomSheet(context);
                                 },
-                                child: const Row(
+                                child: Row(
                                   children: [
-                                    Text("Filter"),
-                                    SizedBox(
+                                    Text("Filter", style: TextStyle(fontSize: Util.fSize14),),
+                                    const SizedBox(
                                       width: 10,
                                     ),
-                                    Icon(Icons.filter_1_outlined)
+                                    const Icon(Icons.filter_1_outlined)
                                   ],
                                 ),
                               ),
@@ -478,7 +478,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                         imageBuilder: (context, imageProvider) => Image(image: imageProvider),
                                         // progressIndicatorBuilder: (context, url, downloadProgress) =>
                                         //     CircularProgressIndicator(value: downloadProgress.progress),
-                                        errorWidget: (context, url, error) => Icon(Icons.error),
+                                        errorWidget: (context, url, error) => const Icon(Icons.error),
 
                                         // // 이미지가 완전히 로드될 때 호출됩니다.
                                         // loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
@@ -501,9 +501,9 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                           children: [
                                             Text(
                                               Util.chageText(art_title),
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 13),
+                                                  fontSize: Util.fSize13),
                                             ),
                                             const SizedBox(
                                               height: 5,
@@ -511,7 +511,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                             Text(
                                               Util.chageText(art_artist),
                                               style:
-                                                  const TextStyle(fontSize: 12),
+                                              TextStyle(fontSize: Util.fSize12),
                                             ),
                                             const SizedBox(
                                               height: 5,
@@ -519,7 +519,7 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                             Text(
                                               art_dis,
                                               style: TextStyle(
-                                                  fontSize: 12,
+                                                  fontSize: Util.fSize12,
                                                   color: Colors.black
                                                       .withOpacity(0.5)),
                                             ),
@@ -533,27 +533,27 @@ class _ArtMainPageState extends State<ArtMainPage> with WidgetsBindingObserver{
                                               children: [
                                                 Text(
                                                   price,
-                                                  style: const TextStyle(
-                                                      fontSize: 12,
+                                                  style: TextStyle(
+                                                      fontSize: Util.fSize12,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
-                                                const Row(
+                                                Row(
                                                   children: [
                                                     Icon(
                                                       CustomIcons
                                                           .icon_artwork_original,
                                                       color: Colors.grey,
-                                                      size: 15,
+                                                      size: Util.fSize15,
                                                     ),
-                                                    SizedBox(
-                                                      width: 10,
+                                                    const SizedBox(
+                                                      width: 15,
                                                     ),
                                                     Icon(
                                                       CustomIcons
                                                           .icon_artwork_vr,
                                                       color: Colors.grey,
-                                                      size: 15,
+                                                      size: Util.fSize15,
                                                     ),
                                                   ],
                                                 )

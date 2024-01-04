@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gallery360/util/Util.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class SpacebarBottom extends StatelessWidget {
   const SpacebarBottom({super.key});
@@ -9,7 +10,7 @@ class SpacebarBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
+      //height: 450,
       color: Colors.black,
       child: Column(
         children: [
@@ -18,49 +19,49 @@ class SpacebarBottom extends StatelessWidget {
           ),
           Text(
             tr('main_54'),
-            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+            style: TextStyle(color: Colors.white, fontSize: Util.fSize13, height: 1.7),
             textAlign: TextAlign.center,
           ),
           Text(
             tr('main_55'),
-            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+            style: TextStyle(color: Colors.white, fontSize: Util.fSize13, height: 1.7),
             textAlign: TextAlign.center,
           ),
           Text(
             tr('main_56'),
-            style: const TextStyle(color: Colors.white, fontSize: 13, height: 2),
+            style: TextStyle(color: Colors.white, fontSize: Util.fSize13, height: 2),
             textAlign: TextAlign.center,
           ),
           Text(
             tr('main_57'),
-            style: const TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+            style: TextStyle(color: Colors.white, fontSize: Util.fSize13, height: 1.7),
             textAlign: TextAlign.center,
           ),
-          const Text(
+          Text(
             "E-mail : help@gallery360.co.kr",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+            style: TextStyle(color: Colors.white, fontSize: Util.fSize13, height: 1.7),
             textAlign: TextAlign.center,
           ),
-          const Text(
+          Text(
             "Copyright © 2018-2023 Gallery360. All Rights Reserved.",
-            style: TextStyle(color: Colors.white, fontSize: 13, height: 1.7),
+            style: TextStyle(color: Colors.white, fontSize:Util.fSize13, height: 1.7),
             textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 20,
           ),
-          const Text(
+          Text(
             "070-8803-0123",
             style: TextStyle(
-              fontSize: 20,
+              fontSize: Util.fSize20,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
           Text(
             tr('main_58'),
-            style: const TextStyle(
-              fontSize: 15,
+            style: TextStyle(
+              fontSize: Util.fSize15,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
@@ -82,7 +83,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: Text(tr('main_59'), style: const TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_59'), style: TextStyle(color: Colors.white, fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 15 :  10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -96,7 +97,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: Text(tr('main_60'), style: const TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_60'), style: TextStyle(color: Colors.white, fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 15 :  10),),
               ),
               const SizedBox(width: 10,),
               OutlinedButton(
@@ -110,7 +111,7 @@ class SpacebarBottom extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   side: const BorderSide(color: Colors.white),
                 ),
-                child: Text(tr('main_61'), style: const TextStyle(color: Colors.white, fontSize: 10),),
+                child: Text(tr('main_61'), style: TextStyle(color: Colors.white, fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 15 :  10),),
               ),
               // const SizedBox(width: 10,),
               // OutlinedButton(
@@ -180,7 +181,8 @@ class SpacebarBottom extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 30,)
         ],
       ),
     );

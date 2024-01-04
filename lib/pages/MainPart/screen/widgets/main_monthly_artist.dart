@@ -5,6 +5,7 @@ import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/MainPart/screen/widgets/controls/data_controller.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 import '../../../../Sample/carousel/sub/base_carousel.dart';
 import '../../../artist/artist_detail.dart';
 
@@ -34,27 +35,29 @@ class _MonthlyArtistState extends State<MonthlyArtistWidget> {
                 childtext: Stack(
                         children: [
                           Positioned(
-                            bottom: 48.0,
-                            left: 10.0,
+                            bottom: ResponsiveBreakpoints.of(context).isDesktop ? 60.0 : 60.0,
+                            left: 20.0,
                             child: Text(
                               "${item.nickname} | ${item.nameEng}",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: Colors.white,
+                                fontSize: Util.fSize14
                               ),
                             ),
                           ),
                           Positioned(
                             bottom: 10.0,
-                            left: 10.0,
+                            left: 20.0,
                             child: InkWell(
                               onTap: (){
                                 Get.to(() => ArtistDetailPage(email: item.email), transition: Transition.rightToLeft);
                               },
                               child: Container(
+                                padding: const EdgeInsets.all(8.0),
                                 alignment: Alignment.center,
-                                width: 120,
-                                height: 30,
+                                // width: 120,
+                                // height: 30,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.white),
                                 ),
