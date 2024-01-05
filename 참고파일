@@ -24,3 +24,6 @@ iOS 에뮬레이터 뜨지 않을때
 code . 이 실행되지 않을 경우
 비주얼코드를 실행 > command+shift+P
 "shell command" 하단에 'install code command in PATH' 선택
+
+안드로이드에서 SSL연결 에러 발생할 경우 처리 방안
+https://stackoverflow.com/questions/73181210/playing-video-player-in-flutter-with-api

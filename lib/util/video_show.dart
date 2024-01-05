@@ -12,10 +12,10 @@ class VideoShow extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Locale locale = Localizations.localeOf(context);
-    //print(locale);
+    print(locale);
 
     String turl = url;
-    if (!locale.toString().contains("kr")){
+    if (!locale.toString().contains("ko")){
       turl = url.replaceAll("_kr_", "_en_");
     }
 
