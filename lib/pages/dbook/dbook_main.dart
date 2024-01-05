@@ -328,7 +328,8 @@ class dbookService extends StatelessWidget {
                         onPressed: () {
                           openFile(
                               url:
-                                  "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=659565277be62549e65734b1&ty=1",
+                                  //"https://meet.kmslab.com:8444/WMeet/FDownload.do?id=659565277be62549e65734b1&ty=1",
+                                  "https://www.gallery360.co.kr/public/d-books_request.docx",
                               fileName: "D-Book 제작요청서.docx");
                         },
                         child: Text("제작요청서 다운받기", style: TextStyle(fontSize: ResponsiveBreakpoints.of(context).isDesktop ? 20 : 13) ),

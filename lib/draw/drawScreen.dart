@@ -161,9 +161,10 @@ class MenuScreen extends StatelessWidget {
           backgroundColor: Colors.indigo,
           body: SingleChildScrollView(
             child: SizedBox(
-              height: 500,
+              height: 1000,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Spacer(),
                   ...MenuItems.all.map(buildMenuItem).toList(),
