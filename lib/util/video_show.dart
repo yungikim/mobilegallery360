@@ -11,8 +11,18 @@ class VideoShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final Locale locale = Localizations.localeOf(context);
+    //print(locale);
+
+    String turl = url;
+    if (!locale.toString().contains("kr")){
+      turl = url.replaceAll("_kr_", "_en_");
+    }
+
+    print(turl);
+
     final FlickManager flickManager = FlickManager(
-        videoPlayerController: VideoPlayerController.networkUrl(Uri.parse(url)));
+        videoPlayerController: VideoPlayerController.networkUrl(Uri.parse(turl)));
 
     void _moveToScreen2(BuildContext context) =>
         Navigator.pushReplacementNamed(context, "screen2");
