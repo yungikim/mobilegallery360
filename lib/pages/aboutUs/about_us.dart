@@ -1,5 +1,6 @@
 import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery360/const/const.dart';
 import 'package:gallery360/pages/aboutUs/controller/about_controller.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
@@ -419,7 +420,7 @@ class _AboutUsState extends State<AboutUs> {
                     GestureDetector(
                       onTap: () {
                         openFile(
-                          url: "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573488&ty=1",
+                          url: "$base_url/cp_downloadFile.gu?type=Company",
                           fileName: "갤러리360_회사소개서.pdf"
                         );
                         // print("openfile");
@@ -465,7 +466,7 @@ class _AboutUsState extends State<AboutUs> {
                     GestureDetector(
                       onTap: (){
                         openFile(
-                            url: "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=657735ce7be62549e6573487&ty=1",
+                            url: "$base_url/cp_downloadFile.gu?type=RentalService",
                             fileName: "갤러리360_대관서비스_소개서.pdf"
                         );
                         // FileDownloader.downloadFile(
