@@ -159,15 +159,20 @@ class MenuScreen extends StatelessWidget {
       data: ThemeData.dark(),
       child: Scaffold(
           backgroundColor: Colors.indigo,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Spacer(),
-              ...MenuItems.all.map(buildMenuItem).toList(),
-              const Spacer(
-                flex: 2,
+          body: SingleChildScrollView(
+            child: SizedBox(
+              height: 500,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+                  ...MenuItems.all.map(buildMenuItem).toList(),
+                  const Spacer(
+                    flex: 2,
+                  ),
+                ],
               ),
-            ],
+            ),
           )),
     );
   }
