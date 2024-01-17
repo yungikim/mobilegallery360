@@ -64,6 +64,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
     return WillPopScope(
       onWillPop: () async{
@@ -713,6 +714,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
   }
 
   void showDialogWithRequest() {
+    GlobalKey<FormState> formKey = GlobalKey<FormState>();
     showDialog(
       context: context,
       builder: (context) {
@@ -734,6 +736,7 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Form(
+                    key: formKey,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -748,28 +751,44 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                           controller: field1,
                           decoration:
                               const InputDecoration(hintText: "제목을 입력하세요"),
+                          validator: (value){
+                            if (value?.isEmpty ?? true) return "제목을 입력해주세요";
+                          },
                         ),
                         TextFormField(
                           controller: field2,
                           decoration:
                               const InputDecoration(hintText: "이름을 입력하세요"),
+                          validator: (value){
+                            if (value?.isEmpty ?? true) return "이름을 입력해주세요";
+                          },
                         ),
                         TextFormField(
                           controller: field3,
                           decoration:
                               const InputDecoration(hintText: "이메일을 입력하세요"),
+                          validator: (value){
+                            if (value?.isEmpty ?? true) return "이메일을 입력해주세요";
+                          },
                         ),
                         TextFormField(
                           controller: field4,
                           decoration:
                               const InputDecoration(hintText: "연락처를 입력하세요"),
+                          validator: (value){
+                            if (value?.isEmpty ?? true) return "연락처를 입력해주세요";
+                          },
                         ),
-                        TextField(
+                        TextFormField(
                           controller: field5,
                           keyboardType: TextInputType.multiline,
                           minLines: 5,
                           maxLines: 5,
                           decoration: const InputDecoration(hintText: "문의 내용을 입력하세요"),
+                          validator: (value){
+                            if (value?.isEmpty ?? true) return "문의 내용을 입력해주세요";
+                          },
+
                         ),
                       ],
                     ),
@@ -792,9 +811,15 @@ class _ArtDetailPageState extends State<ArtDetailPage> {
                     _artInfoController.artinfo.artArtist.toString();
                 _artInfoController.art_title.value =
                     _artInfoController.artinfo.artTitle.toString();
-                _artInfoController.SaveArtRequest();
 
-                Navigator.of(context, rootNavigator: true).pop('dialog');
+
+                bool validationResult = formKey.currentState?.validate() ?? false;
+                if (validationResult){
+
+                  _artInfoController.SaveArtRequest();
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                }
+
               },
               style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.black,
