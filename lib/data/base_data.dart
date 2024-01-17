@@ -8,81 +8,81 @@ import 'package:get/get.dart';
 import '../../../core/const.dart';
 import '../util/video_show.dart';
 
-final List<String> imageList2 = [
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_artist.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_rental_01.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_curie.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/renewal.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_trial.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_dbook.jpg',
-  'https://www.gallery360.co.kr/img/main_banner/main_banner_mypalce.jpg',
-];
+// final List<String> imageList2 = [
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_welcome.jpg',
+//  // 'https://www.gallery360.co.kr/img/main_banner/main_banner_artist.jpg',
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_rental_01.jpg',
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_curie.jpg',
+//  // 'https://www.gallery360.co.kr/img/main_banner/renewal.jpg',
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_trial.jpg',
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_dbook.jpg',
+//   'https://www.gallery360.co.kr/img/main_banner/main_banner_mypalce.jpg',
+// ];
 
 final List<String> imageList = [
   'assets/images/mainPage/banner/main_banner_welcome.jpg',
-  'assets/images/mainPage/banner/main_banner_artist.jpg',
+ // 'assets/images/mainPage/banner/main_banner_artist.jpg',
   'assets/images/mainPage/banner/main_banner_rental_01.jpg',
-  'assets/images/mainPage/banner/main_banner_curie.jpg',
-  'assets/images/mainPage/banner/renewal.jpg',
-  'assets/images/mainPage/banner/main_banner_trial.jpg',
+ // 'assets/images/mainPage/banner/main_banner_curie.jpg',
+ // 'assets/images/mainPage/banner/renewal.jpg',
+ // 'assets/images/mainPage/banner/main_banner_trial.jpg',
   'assets/images/mainPage/banner/main_banner_dbook.jpg',
   'assets/images/mainPage/banner/main_banner_mypalce.jpg',
 ];
 
 final List<String> mainMessage = [
   tr('main_1'),
-  tr('main_2'),
+//  tr('main_2'),
   tr('main_3'),
-  tr('main_4'),
-  tr('main_5'),
-  tr('main_6'),
-  tr('main_7'),
-  tr('main_8'),
+ //  tr('main_4'),
+ // // tr('main_5'),
+ //  tr('main_6'),
+   tr('main_7'),
+   tr('main_8'),
 ];
 
 final List<String> mainMessage_sub = [
   tr('main_9'),
-  tr('main_10'),
+ // tr('main_10'),
   tr('main_11'),
-  tr('main_12'),
-  tr('main_13'),
-  tr('main_14'),
-  tr('main_15'),
-  tr('main_16'),
+ //  tr('main_12'),
+ // // tr('main_13'),
+ //  tr('main_14'),
+   tr('main_15'),
+   tr('main_16'),
 ];
 
 final List<String> mainMessage_btn_title = [
   tr('main_17'),
-  '작가 등록 하기',
+//  '작가 등록 하기',
   '자세히 알아보기',
-  'AI페인터로 그려보기',
-  '자세히 알아보기',
-  '무료체험 신청하기',
-  'D-Book 알아보기',
-  '작품 걸어보기',
+ //  'AI페인터로 그려보기',
+ // // '자세히 알아보기',
+ //  '무료체험 신청하기',
+   'D-Book 알아보기',
+   '작품 걸어보기',
 ];
 
 final List<String> mainMessage_btn_url = [
   'video',
-  'regart',
+ // 'regart',
   'vrshow',
-  'aipainter',
-  'detail',
-  'free',
-  'dbook',
-  'show_myroom',
+ //  'aipainter',
+ // // 'detail',
+ //  'free',
+   'dbook',
+   'show_myroom',
 ];
 
 final List<Color> mainMessage_btn_color = [
   Colors.white,
-  Colors.white,
+ // Colors.white,
   const Color(0xff4af5d4),
-  Colors.white,
-  Colors.white,
-  Colors.white,
-  Colors.white,
-  Colors.white,
+ //  Colors.white,
+ // // Colors.white,
+ //  Colors.white,
+   Colors.white,
+   Colors.white,
 ];
 
 final List<Widget> main_btn_widget = [
@@ -114,7 +114,7 @@ final List<Widget> main_btn_widget = [
       style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
     ),
   ),
-  const SizedBox(),
+  //const SizedBox(),
   OutlinedButton(
     onPressed: () {
       Get.to(
@@ -138,27 +138,27 @@ final List<Widget> main_btn_widget = [
       style: TextStyle(color: Color(0xff4af5d4), fontSize: Util.fSize16),
     ),
   ),
-  const SizedBox(),
-  OutlinedButton(
-    onPressed: () {
-      String url = "$base_url/main/news/main_news_mobile.jsp?bun=150";
-      Util.UrlOpenWebview(url, tr('main_26'));
-    },
-    style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
-        ),
-        side: const BorderSide(
-          color: Colors.white,
-          width: 1.0,
-        )),
-    child: Text(
-      tr('main_19'),
-      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
-    ),
-  ),
-  const SizedBox(),
+ // const SizedBox(),
+ //  OutlinedButton(
+ //    onPressed: () {
+ //      String url = "$base_url/main/news/main_news_mobile.jsp?bun=150";
+ //      Util.UrlOpenWebview(url, tr('main_26'));
+ //    },
+ //    style: OutlinedButton.styleFrom(
+ //        backgroundColor: Colors.transparent,
+ //        shape: RoundedRectangleBorder(
+ //          borderRadius: BorderRadius.circular(0.0),
+ //        ),
+ //        side: const BorderSide(
+ //          color: Colors.white,
+ //          width: 1.0,
+ //        )),
+ //    child: Text(
+ //      tr('main_19'),
+ //      style: TextStyle(color: Colors.white, fontSize: Util.fSize16),
+ //    ),
+ //  ),
+ //  const SizedBox(),
   OutlinedButton(
     onPressed: () {
     //  String url = "$base_url/main/news/main_news_mobile.jsp?bun=65";

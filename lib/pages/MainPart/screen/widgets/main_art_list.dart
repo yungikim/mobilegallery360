@@ -219,17 +219,17 @@ class _MainArtListState extends State<MainArtList> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 30.0,
                                       height: 20.0,
                                       //  padding: EdgeInsets.zero,
                                       //  color: Colors.red,
-                                      child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.favorite_outline,
-                                            color: Colors.grey,
-                                          )),
+                                      // child: IconButton(
+                                      //     onPressed: () {},
+                                      //     icon: const Icon(
+                                      //       Icons.favorite_outline,
+                                      //       color: Colors.grey,
+                                      //     )),
                                     ),
                                     //SizedBox.shrink(),
                                   ],
