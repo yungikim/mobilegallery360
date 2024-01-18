@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:gallery360/pages/aipainter/ai_painter.dart';
 import 'package:gallery360/util/web_view_page.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -339,6 +340,8 @@ Widget actionButton() {
     onTap: (){
       String url = "$base_url/main/myspace.jsp";
       Util.UrlOpenWebview(url, "내공간에 작품 걸어보기");
+
+    //  Get.to(() => aiPainter());
     },
     child: Container(
       height: 80,

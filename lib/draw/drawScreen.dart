@@ -69,7 +69,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         builder: (context) => MenuScreen(
           currentItem: currentItem,
           onSelectedItem: (item) {
-            print(item.title);
+            //print(item.title);
             if (item.title == "VR 대관") {
               //op("https://exhibit.gallery360.co/");
               //draw메뉴를 닫고 URL로 이동한다.
