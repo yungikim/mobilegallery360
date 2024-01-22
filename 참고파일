@@ -7,6 +7,7 @@ iOS 배포파일 만들기
 flutter build ipa
 ==> build > ios > archive > Runner.xcarchive 마우스 우클 open width finder 하고 더블 클릭해서 validate, distribute 진행
 ==> https://appstoreconnect.apple.com/ 사이트에서 배포
+    https://developer.apple.com/account
 
 안드로이드 배포 만들기
 flutter build appbundle
