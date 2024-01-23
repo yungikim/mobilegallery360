@@ -30,3 +30,6 @@ code . 이 실행되지 않을 경우
 
 안드로이드에서 SSL연결 에러 발생할 경우 처리 방안
 https://stackoverflow.com/questions/73181210/playing-video-player-in-flutter-with-api
+
+폰의 사진을 참고해야 할 경우
+https://zeddios.tistory.com/369 사이트의 내용을 등록해주지 않으면 IOS Appstore에 올라지 않음
