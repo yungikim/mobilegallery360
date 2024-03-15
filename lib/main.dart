@@ -32,6 +32,8 @@ Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print('Title : ${message.notification?.title}');
     print('Body : ${message.notification?.body}');
     print('Payload : ${message.data}');
+
+
     FirebaseApi().handleMessage(message);
   }
 }

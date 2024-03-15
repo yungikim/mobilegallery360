@@ -16,6 +16,7 @@ import '../util/Util.dart';
 class FirebaseApi{
   final _firebaseMessaging = FirebaseMessaging.instance;
   Dio dio = Dio();
+  bool isBack = true;
 
   //로컬 푸쉬 알림에서 안드로이드 채널을 활용한다...
   final _androidChannel = const AndroidNotificationChannel(
@@ -48,23 +49,33 @@ class FirebaseApi{
       print('FOREGROUND PAYLOAD: $payload');
       //streamController.add(payload);
       final message = RemoteMessage.fromMap(jsonDecode(payload));
+
+      this.isBack = false;
       handleMessage(message);
     }
   }
   ///////////////////////////////////////////////////////////////////
 
-  void handleMessage(RemoteMessage? message){
+  Future<void> handleMessage(RemoteMessage? message) async{
     if (message == null) return;
       //print(message);
       //Get.to(() => NotificationScreen(message: message,));
 
       // String url = "$base_url/push.jsp?id="+message.data['id'];
       // Util.UrlOpenWebview(url, message.notification!.title.toString());
-
+      // String bun = message.data['id'];
+      // if (bun == ""){
+      //   bun = "53";
+      // }
       String url = "$base_url/main/news/main_news_mobile.jsp?bun=${message.data['id']}";
       print("###########################################");
       print(url);
+      print(this.isBack);
       print("###########################################");
+
+      if (this.isBack){
+        await Future.delayed(const Duration(seconds: 4));
+      }
       Util.UrlOpenWebview(url, message.notification!.title.toString());
 
     //   navigatorKey.currentState?.pushNamed(
