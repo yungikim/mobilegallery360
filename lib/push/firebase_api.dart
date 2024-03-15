@@ -68,10 +68,10 @@ class FirebaseApi{
       //   bun = "53";
       // }
       String url = "$base_url/main/news/main_news_mobile.jsp?bun=${message.data['id']}";
-      print("###########################################");
-      print(url);
-      print(this.isBack);
-      print("###########################################");
+      // print("###########################################");
+      // print(url);
+      // print(this.isBack);
+      // print("###########################################");
 
       if (this.isBack){
         await Future.delayed(const Duration(seconds: 4));
