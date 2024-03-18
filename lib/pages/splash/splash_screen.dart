@@ -44,19 +44,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(
-              _controller,
-            ),
-          )
-              : Container(),
+      child:  Scaffold(
+          backgroundColor: Colors.black,
+          body: Center(
+            child: _controller.value.isInitialized
+                ? AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(
+                _controller,
+              ),
+            )
+                : Container(),
+          ),
         ),
-      ),
+
     );
   }
 }

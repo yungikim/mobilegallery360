@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,12 +10,14 @@ import 'package:gallery360/push/firebase_api.dart';
 import 'package:gallery360/util/Util.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:responsive_framework/breakpoint.dart';
 import 'package:responsive_framework/responsive_breakpoints.dart';
 import 'package:sizer/sizer.dart';
 import 'draw/drawScreen.dart';
 import 'firebase_options.dart';
+
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -40,6 +43,7 @@ Future _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
+
 void main() async {
   HttpOverrides.global =
       MyHttpOverrides(); //Network.Image, Http로 ReverseProxy형태의 호출시 SSL에러 처리
@@ -61,6 +65,10 @@ void main() async {
   //await Permission.microphone.request();
 
   //runApp(const Gallery360Main());
+
+  print("===============================================================");
+
+  print("===============================================================");
 
   runApp(EasyLocalization(
     supportedLocales: supportedLocales,
@@ -116,6 +124,7 @@ class Gallery360Main extends StatelessWidget {
             navigatorKey: navigatorKey,
             //home: const DrawerScreen(),
             home: const SplashScreen(),
+
           );
         }
      );

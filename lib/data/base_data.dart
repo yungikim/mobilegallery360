@@ -91,14 +91,13 @@ final List<Widget> main_btn_widget = [
 
       String url =
           "${base_url}/intro/gallery360_kr_web.mp4"; //x-frame-options Gallery360서버가 막아 놓았음
-      // String url2 =
-      //     "https://meet.kmslab.com:8444/WMeet/FDownload.do?id=6571cd8c7be62549e657347c&ty=1";
-      Get.to(
-          () => VideoShow(
-                url: url,
-                title: tr('main_25'),
-              ),
-          transition: Transition.fadeIn);
+
+      // Get.to(
+      //     () => VideoShow(
+      //           url: url,
+      //           title: tr('main_25'),
+      //         ),
+      //     transition: Transition.fadeIn);
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
