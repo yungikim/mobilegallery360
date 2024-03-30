@@ -92,12 +92,12 @@ final List<Widget> main_btn_widget = [
       String url =
           "${base_url}/intro/gallery360_kr_web.mp4"; //x-frame-options Gallery360서버가 막아 놓았음
 
-      // Get.to(
-      //     () => VideoShow(
-      //           url: url,
-      //           title: tr('main_25'),
-      //         ),
-      //     transition: Transition.fadeIn);
+      Get.to(
+          () => VideoShow(
+                url: url,
+                title: tr('main_25'),
+              ),
+          transition: Transition.fadeIn);
     },
     style: OutlinedButton.styleFrom(
         backgroundColor: Colors.transparent,
